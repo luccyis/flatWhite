@@ -4,18 +4,18 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mj.infra.modules.codegroup.CodeGroupMapper">
+<mapper namespace="com.mj.infra.modules.code.CodeMapper">
 
-    <resultMap id="resultMapObj" type="com.mj.infra.modules.codegroup.CodeGroup"></resultMap>
+    <resultMap id="resultMapObj" type="com.mj.infra.modules.code.Code"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-			,(select count(cdName) from infrCode aa where aa.infrCodeGroup_cgSeq = a.cgSeq) as count
+			,b.*
 		FROM infrCodeGroup a
+		JOIN infrCode b on b.infrCodeGroup_cgSeq = a.cgSeq
 		WHERE 1=1
 			AND cgDelNy = 0
-			
 	</select>
 
 </mapper>

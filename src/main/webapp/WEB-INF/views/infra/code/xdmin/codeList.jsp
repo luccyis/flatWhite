@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -21,7 +25,7 @@
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="/resources/assets/"
+  data-assets-path="/assets/"
   data-template="vertical-menu-template-free"
 >
   <head>
@@ -36,7 +40,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/resources/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -179,12 +183,12 @@
                 <div data-i18n="Authentications">시스템</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item active">
+                <li class="menu-item">
                   <a href="../system/ccgList.html" class="menu-link">
                     <div data-i18n="Basic">코드 그룹 관리</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a href="../system/ccList.html" class="menu-link">
                     <div data-i18n="Basic">코드 관리</div>
                   </a>
@@ -231,7 +235,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -240,7 +244,7 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -282,12 +286,12 @@
           </nav>
 
           <!-- / Navbar -->
-          
+		
          <!--  Content Wrapper -->
 			<div class="content-wrapper">
 		<!-- Content -->	
 				<div class="container-xxl flex-grow-1 container-p-y">
-					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span> 코드 그룹 관리 </h4>
+					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span>코드 관리 </h4>
 					
 					<div class="card">
 						<div class="card-body">
@@ -333,12 +337,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-						
+					</div><br>
+
 				<!-- 	Table -->
 					<div class="card">
-						<h5 class="card-header">코드 그룹 관리 </h5>
+						<h5 class="card-header">코드 리스트 </h5>
 						<div class="card-body">
 							<div class="table-responsive text-nowrap">
 								<table class="table table-bordered">
@@ -350,72 +353,39 @@
 												</div>
 											</th>
 											<th>시퀸스</th>
-											<th>코드그룹 코드</th>
-											<th>코드그룹 이름(한글)</th>
-											<th>코드그룹 이름(영문)</th>
-											<th>코드개수</th>
+											<th>코드그룹코드</th>
+											<th>코드그룹이름 (한글)</th>
+											<th>코드</th>
+											<th>대체코드</th>
+											<th>코드 이름(한글)</th>
+											<th>코드 이름(영문)</th>
+											<th>사용</th>
+											<th>순서</th>
 											<th>등록일</th>
 											<th>수정일</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" value="" id="listCheck">
-												</div>
-											</td>	
-											<td>1</td>
-											<td></td>
-											<td>회원.sns로그인</td>
-											<td>snsLogin</td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" value="" id="listCheck">
-												</div>
-											</td>
-											<td>2</td>
-											<td></td>
-											<td>회원.이메일</td>
-											<td>email</td>
-											<td></td>
-											<td></td>
-											<td></td>
-											
-										</tr>	
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" value="" id="listCheck">
-												</div>
-											</td>
-											<td>3</td>
-											<td></td>
-											<td>회원.등급</td>
-											<td>grade</td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>	
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" value="" id="listCheck">
-												</div>
-											</td>
-											<td>4</td>
-											<td></td>
-											<td>회원.성별</td>
-											<td>gender</td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>	
+										<c:forEach items="${list}" var="list" varStatus="status">
+											<tr>
+												<td>
+													<div class="form-check g-2">
+														<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
+													</div>
+												</td>
+												<td>${status.count}</td>
+												<td><c:out value="${list.cgSeq }"/></td>
+												<td><c:out value="${list.cgName }"/></td>
+												<td></td>
+												<td></td>
+												<td><c:out value="${list.cdName}"/></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>	
+										</c:forEach>
 									</tbody>	
 								</table>
 							</div>
@@ -460,7 +430,7 @@
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="location.href='codeGroupForm.html'">
+							<button type="button" class="btn btn-success" onclick="location.href='codeForm.html'">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -482,6 +452,7 @@
 								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 
        
@@ -556,4 +527,3 @@
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
   </body>
 </html>
-

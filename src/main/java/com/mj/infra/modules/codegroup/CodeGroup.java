@@ -2,12 +2,21 @@ package com.mj.infra.modules.codegroup;
 
 public class CodeGroup {
 
-	//infr_code_group
 	private String cgSeq;
 	private String cgName;
 	private String cgNameEng;
 	private Integer cgUseNy;
 	private Integer cgDelNy;
+	
+	//count 서브쿼리
+	private String count;
+	
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
 	public String getCgSeq() {
 		return cgSeq;
 	}
@@ -38,5 +47,6 @@ public class CodeGroup {
 	public void setCgDelNy(Integer cgDelNy) {
 		this.cgDelNy = cgDelNy;
 	}
+	
 	
 }

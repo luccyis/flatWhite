@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CodeGroupDao {
-
 	@Inject
-	@Resource(name = "sqlSession")
+	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
 	
 	private static String namespace = "com.mj.infra.modules.codegroup.CodeGroupMapper";
 	
-	public List<CodeGroup> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<CodeGroup> selectList(){ return sqlSession.selectList(namespace + ".selectList", "");} 
+
 }

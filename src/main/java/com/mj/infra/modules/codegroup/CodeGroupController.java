@@ -13,15 +13,14 @@ public class CodeGroupController {
 	
 	@Autowired
 	CodeGroupServiceImpl service;
-
+	
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model) throws Exception {
+	public String codeGroupList(Model model) throws Exception{
 		
 		List<CodeGroup> list = service.selectList();
 		model.addAttribute("list", list);
 		
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
-	
 
 }
