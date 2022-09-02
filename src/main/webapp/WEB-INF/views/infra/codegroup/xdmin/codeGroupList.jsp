@@ -295,47 +295,50 @@
 					
 					<div class="card">
 						<div class="card-body">
-							<div class="row">
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option value="1" selected>N</option>
-										<option value="2">Y</option>
-									</select>	
+							<form method="post" action="/codeGroup/codeGroupList">
+								<div class="row">
+									<div class="col p-2">
+										<select id="" class="form-select">
+											<option value="1" selected>N</option>
+											<option value="2">Y</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<select id="" class="form-select">
+											<option>수정일</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="" placeholder="시작일">
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="" placeholder="종료일">
+									</div>
 								</div>
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option>수정일</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>	
+								<div class="row">
+									<div class="col p-2">
+										<select id="shOption" name="shOption" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+											<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+											<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
+											<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
+									</div>
+									<div class="col p-2">
+										<button type="submit" class="btn btn-warning">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button type="button" class="btn btn-danger">
+											<i class="fa-solid fa-rotate-left"></i>
+										</button>
+									</div>
 								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="시작일">
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="종료일">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option>검색구분</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>	
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="검색어">
-								</div>
-								<div class="col p-2">
-									<button type="button" class="btn btn-warning">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
-									<button type="button" class="btn btn-danger">
-										<i class="fa-solid fa-rotate-left"></i>
-									</button>
-								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 					<br>
@@ -364,7 +367,7 @@
 									</thead>
 									<tbody>
 									<c:choose>
-										<c:when test="${fn:length(list) eq 4}">
+										<c:when test="${fn:length(list) eq 0}">
 											<tr>
 												<td class="text-center" colspan="9">There is no data!</td>
 											</tr>

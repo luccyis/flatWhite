@@ -15,8 +15,15 @@ public class Member {
 	private String ifmmSmsNy;
 	private String ifmmDobLoginNy;
 	private String ifmmSnsLogin;
+	private String ifmmGrade;
 	
 	
+	public String getIfmmGrade() {
+		return ifmmGrade;
+	}
+	public void setIfmmGrade(String ifmmGrade) {
+		this.ifmmGrade = ifmmGrade;
+	}
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}
