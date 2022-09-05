@@ -15,14 +15,16 @@
 			,(select count(cdName) from infrCode aa where aa.infrCodeGroup_cgSeq = a.cgSeq) as count
 		FROM infrCodeGroup a
 		WHERE 1=1
-			AND cgDelNy = 0
-		
+			
+			
+			<if test="shDelNy != null and !shDelNy.equals('')">AND cgDelNy = #{shDelNy}</if>
 			<if test="shValue != null"></if>
 			<choose>
 				<when test="shOption == 1">AND cgSeq = #{shValue}</when>
 				<when test="shOption == 2">AND cgName LIKE CONCAT('%', #{shValue},'%')</when>
 				<when test="shOption == 3">AND cgNameEng LIKE CONCAT('%', #{shValue},'%') </when>
 			</choose>
+		
 	</select>
 
 </mapper>

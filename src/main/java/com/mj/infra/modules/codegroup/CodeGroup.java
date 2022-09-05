@@ -8,6 +8,7 @@ public class CodeGroup {
 	private Integer cgUseNy;
 	private Integer cgDelNy;
 	
+	
 	//count 서브쿼리
 	private String count;
 	
