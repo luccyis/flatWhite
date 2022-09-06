@@ -24,7 +24,25 @@
 				<when test="shOption == 2">AND cgName LIKE CONCAT('%', #{shValue},'%')</when>
 				<when test="shOption == 3">AND cgNameEng LIKE CONCAT('%', #{shValue},'%') </when>
 			</choose>
-		
+		ORDER BY cgSeq
 	</select>
 
+	<insert id="insert">
+		INSERT INTO infrCodeGroup (
+			cgName
+		    ,cgNameEng
+		    ,cgUseNy
+		    ,cgDelNy
+		)
+		VALUES (
+			#{cgName}
+		    ,#{cgNameEng}
+		    ,1
+		    ,0
+		)
+		<selectKey resultType="String" keyProperty="cgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	
+	</insert>
 </mapper>

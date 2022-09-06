@@ -15,7 +15,42 @@
 		FROM infrCodeGroup a
 		JOIN infrCode b on b.infrCodeGroup_cgSeq = a.cgSeq
 		WHERE 1=1
-			AND cgDelNy = 0
+		
+		<if test="shDelNy != null and !shDelNy.equals('')">AND b.cdDelNy = #{shDelNy}</if>
+		<if test="shValue != null"></if>
+		<choose>
+			<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
+			<when test="shOption == 2">AND b.cdName LIKE CONCAT('%', #{shValue},'%')</when>
+		</choose>
+		ORDER BY b.cdSeq
 	</select>
+	
+	<select id="selectCodeGroup" resultMap="resultMapObj">
+		SELECT
+		 	cgName
+		FROM infrCodeGroup 
+ 		WHERE 1=1
+	
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO infrCode (
+			cdName
+			,cdUseNy
+			,cdDelNy
+			,infrCodeGroup_cgSeq
+		)
+		VALUES(
+			#{cdName}
+			,1
+			,0
+			,#{infrCodeGroup_cgSeq}
+		)
+		<selectKey resultType="String" keyProperty="cdSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	
+	</insert>
+	
 
 </mapper>

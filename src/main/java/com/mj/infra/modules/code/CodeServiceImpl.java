@@ -12,8 +12,23 @@ public class CodeServiceImpl implements CodeService {
 	CodeDao dao;
 	
 	@Override
-	public List<Code> selectList() throws Exception {
-		return dao.selectList();
+	public List<Code> selectList(CodeVo vo) throws Exception {
+		List<Code> list= dao.selectList(vo);
+		return list;
+	}
+	
+	@Override
+	public int insert(Code dto) throws Exception{
+		int result = dao.insert(dto);
+		System.out.println("service result" + result);
+		return result;
+	}
+	
+	
+	@Override
+	public List<Code> selectCodeGroup() throws Exception {
+		List<Code> list= dao.selectCodeGroup();
+		return list;
 	}
 	
 }

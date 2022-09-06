@@ -15,12 +15,34 @@ public class CodeController {
 	CodeServiceImpl service;
 	
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model) throws Exception{
+	public String codeList(Model model, CodeVo vo) throws Exception{
 		
-		List<Code> list = service.selectList();
+		System.out.println("vo.getShValue(): " + vo.getShValue());
+		System.out.println("vo.getShOption(): " + vo.getShOption());
+		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
+		
+		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/code/xdmin/codeList";
+	}
+	
+	
+	
+	@RequestMapping(value = "/codeForm")
+	public String codeForm(Model model) throws Exception{
+		List<Code> list = service.selectCodeGroup();
+		model.addAttribute("list", list);
+		return "infra/code/xdmin/codeForm";
+	}
+	
+	@RequestMapping(value = "/codeInst")
+	public String codeInst(Code dto) throws Exception{
+		
+		int result = service.insert(dto);
+		System.out.println("controller result: " + result);
+		
+		return "redirect:/code/codeList";
 	}
 
 }

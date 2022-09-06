@@ -38,9 +38,54 @@
     <title>Admin Template</title>
 
     <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+            $( "#startDate" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                 }    
+ 
+            });
+            $( "#endDate" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                 }    
+ 
+            });    
+    });
+</script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/resources/assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -295,47 +340,50 @@
 					
 					<div class="card">
 						<div class="card-body">
-							<div class="row">
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option value="1" selected>N</option>
-										<option value="2">Y</option>
-									</select>	
+							<form method="post" action="/code/codeList">
+								<div class="row">
+									<div class="col p-2">
+										<select id="shDelNy" name="shDelNy" class="form-select">
+											<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
+											<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+											<option value="1"<c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<select id="" class="form-select">
+											<option>수정일</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="startDate" name="startDate" placeholder="시작일">
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="endDate" name="endDate" placeholder="종료일">
+									</div>
 								</div>
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option>수정일</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>	
+								<div class="row">
+									<div class="col p-2">
+										<select id="shOption" name="shOption" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+												<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+												<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드 이름 (한글)</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="검색어">
+									</div>
+									<div class="col p-2">
+										<button type="submit" class="btn btn-warning">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button type="button" class="btn btn-danger">
+											<i class="fa-solid fa-rotate-left"></i>
+										</button>
+									</div>
 								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="시작일">
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="종료일">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option>검색구분</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>	
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="검색어">
-								</div>
-								<div class="col p-2">
-									<button type="button" class="btn btn-warning">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
-									<button type="button" class="btn btn-danger">
-										<i class="fa-solid fa-rotate-left"></i>
-									</button>
-								</div>
-							</div>
+							</form>
 						</div>
 					</div><br>
 
@@ -366,26 +414,35 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${list}" var="list" varStatus="status">
-											<tr>
-												<td>
-													<div class="form-check g-2">
-														<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
-													</div>
-												</td>
-												<td>${status.count}</td>
-												<td><c:out value="${list.cgSeq }"/></td>
-												<td><c:out value="${list.cgName }"/></td>
-												<td></td>
-												<td></td>
-												<td><c:out value="${list.cdName}"/></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>	
-										</c:forEach>
+										<c:choose>
+											<c:when test="${fn:length(list) eq 0 }">
+												<tr>
+													<td class="text-center" colspan="12">There is no data!</td>
+												</tr>
+											</c:when>
+											<c:otherwise>		
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<tr>
+														<td>
+															<div class="form-check g-2">
+																<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
+															</div>
+														</td>
+														<td>${status.count}</td>
+														<td><c:out value="${list.cgSeq}"/></td>
+														<td><c:out value="${list.cgName}"/></td>
+														<td><c:out value="${list.cdSeq}"/></td>
+														<td></td>
+														<td><c:out value="${list.cdName}"/></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>	
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>	
 									</tbody>	
 								</table>
 							</div>
@@ -506,7 +563,6 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
     <script src="/resources/assets/vendor/js/bootstrap.js"></script>
     <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>

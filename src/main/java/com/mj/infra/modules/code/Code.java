@@ -9,6 +9,15 @@ public class Code {
 	private String cdName;
 	private String cdUseNy;
 	private String cdDelNy;
+	
+	private String infrCodeGroup_cgSeq;
+	
+	public String getInfrCodeGroup_cgSeq() {
+		return infrCodeGroup_cgSeq;
+	}
+	public void setInfrCodeGroup_cgSeq(String infrCodeGroup_cgSeq) {
+		this.infrCodeGroup_cgSeq = infrCodeGroup_cgSeq;
+	}
 	public String getCgSeq() {
 		return cgSeq;
 	}
