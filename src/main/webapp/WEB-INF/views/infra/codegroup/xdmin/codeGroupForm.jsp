@@ -282,7 +282,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -291,7 +291,7 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -344,15 +344,15 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
-							<form method="post" action="/codeGroup/codeGroupInst">
+							<form id="myForm" method="post" action="/codeGroup/codeGroupInst">
 								<div class="row">
 									<div class="col p-2">
 										<label for="codeGroupCode" class="form-label">코드그룹 코드</label>
-										<input type="text" class="form-control" id="codeGroupCode" name="cgSeq" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="codeGroupCode" name="cgSeq" placeholder="영문(대소문자), 숫자" disabled>
 									</div>
 									<div class="col p-2">
 										<label for="codeGroupCode2" class="form-label">코드그룹 코드(Another)</label>
-										<input type="text" class="form-control" id="codeGroupCode2" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="codeGroupCode2" placeholder="영문(대소문자), 숫자" disabled>
 									</div>
 								</div>
 								<div class="row">
@@ -393,12 +393,37 @@
 								</div>
 								<div class="row">
 									<div class="col p-2">
-										<label for="codeOthers" class="form-label">예비 (varchar type)</label>
-										<input type="text" class="form-control" id="codeOthers" placeholder="영문(대소문자), 숫자">
+										<label for="codeOthers" class="form-check-label">예비 (varchar type)</label>
+										<div class="form-check form-check-inline mt-3">
+											<input type="radio" class="form-check-input" id="others1" name="codeOthers" value="a">예비1
+										</div>
+										<div class="form-check form-check-inline mt-3">
+											<input type="radio" class="form-check-input" id="others2" name="codeOthers" value="b">예비2
+										</div>
+										<div class="form-check form-check-inline mt-3">
+											<input type="radio" class="form-check-input" id="others3" name="codeOthers" value="c">예비3
+										</div>
 									</div>
 									<div class="col p-2">
 										<label for="codeOthers2" class="form-label">예비2 (varchar type)</label>
 										<input type="text" class="form-control" id="codeOthers2" placeholder="영문(대소문자), 숫자">
+									</div>
+								</div>
+								<div class="row">
+									<label class="col-sm-2 col-form-label" for="inputSnsLogin">SNS 로그인</label>
+									<div class="col-sm-10">
+										<div class="form-check form-check-inline mt-3">
+											<input class="form-check-input" type="checkbox" value ="페이스북" id="loginFacebook" name="snsLogin">
+											<label class="form-check-label" for="loginFacebook">페이스북</label>
+										</div>	
+										<div class="form-check form-check-inline mt-3">
+											<input class="form-check-input" type="checkbox" value ="네이버" id="loginNaver" name="snsLogin">
+											<label class="form-check-label" for="loginNaver">네이버</label>
+										</div>	
+										<div class="form-check form-check-inline mt-3">
+											<input class="form-check-input" type="checkbox" value ="카카오" id="loginKakao" name="snsLogin">
+											<label class="form-check-label" for="loginKakao">카카오</label>
+										</div>	
 									</div>
 								</div>	
 								<div class="row">
@@ -445,7 +470,7 @@
 											<button type="button" class="btn btn-danger" >
 												<i class="fa-solid fa-trash-can"></i>
 											</button>
-											<button type="submit" class="btn btn-success">
+											<button type="button" class="btn btn-success" id="btnSave" onclick="test();">
 												<i class="fa-solid fa-arrow-up-from-bracket"></i>
 											</button>	
 										</div>
@@ -521,7 +546,36 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
-
+	<script type="text/javascript">
+		function test(){
+	
+			if(document.getElementById("inputCgName").value =='' || document.getElementById("inputCgName").value == null){
+				alert("입력해 주세요...")
+				document.getElementById("inputCgName").value = "";
+				document.getElementById("inputCgName").focus();
+				return false;
+			} else {
+				alert(document.getElementById("inputCgName").value);
+				alert(document.getElementById("useNy").value);
+				alert(document.getElementById("codeExplain").value);
+				alert(document.querySelector("input[name='codeOthers']:checked").value);;
+			
+				for(var i=0; i<document.getElementsByName("snsLogin").length; i++){
+					
+					if(document.getElementsByName("snsLogin")[i].checked == true){
+						alert(document.getElementsByName("snsLogin")[i].value);
+					}
+					
+				}
+				
+				return false;
+			}
+			
+			document.getElementById("myForm").submit();
+			
+		}
+	
+	</script>
 
 
     <!-- Place this tag in your head or just before your close body tag. -->

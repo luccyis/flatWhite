@@ -9,6 +9,6 @@ public interface CodeService {
 	
 	public int insert(Code dto) throws Exception;
 	
-	public List<Code> selectCodeGroup() throws Exception;
+	/* public List<Code> selectCodeGroup() throws Exception; */
 
 }

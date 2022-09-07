@@ -25,13 +25,13 @@
 		ORDER BY b.cdSeq
 	</select>
 	
-	<select id="selectCodeGroup" resultMap="resultMapObj">
+<!-- 	<select id="selectCodeGroup" resultMap="resultMapObj">
 		SELECT
 		 	cgName
 		FROM infrCodeGroup 
  		WHERE 1=1
 	
-	</select>
+	</select> -->
 	
 	<insert id="insert">
 		INSERT INTO infrCode (

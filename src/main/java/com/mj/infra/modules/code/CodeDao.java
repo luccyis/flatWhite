@@ -29,9 +29,9 @@ public class CodeDao {
 		return result;
 	}
 	
-	public List<Code> selectCodeGroup(){
-		return sqlSession.selectList(namespace + ".selectCodeGroup","");
-	}
-
+	/*
+	 * public List<Code> selectCodeGroup(){ return sqlSession.selectList(namespace +
+	 * ".selectCodeGroup",""); }
+	 */
 	
 }

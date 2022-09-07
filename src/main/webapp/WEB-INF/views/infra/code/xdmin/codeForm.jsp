@@ -342,7 +342,7 @@
 					<div class="card">
 						<h5 class="card-header">코드 관리 </h5>
 						<div class="card-body">
-							<form method="post" action="/code/codeInst">
+							<form id="myForm" method="post" action="/code/codeInst">
 								<div class="row">
 									<div class="col-6 p-2">
 										<label for="codeUseNy" class="form-label">사용여부</label>
@@ -360,9 +360,9 @@
 									</div>
 									<div class="col p-2">
 										<label for="inputCgSeq" class="form-label">코드그룹 코드</label>
-										<select class="form-select" id="inputCgSeq" name="cgName">
-											<c:forEach items="${list}" var="list" varStatus="status">
-												<option value=""><c:out value="${list.cgName}"/></option>
+										<select class="form-select" id="inputCgSeq" name="infrCodeGroup_cgSeq">
+											<c:forEach items="${list1}" var="list1" varStatus="status">
+												<option value="${list1.cgSeq}">${list1.cgName}</option>
 											</c:forEach> 
 										</select>
 									</div>
@@ -370,7 +370,7 @@
 								<div class="row">
 									<div class="col p-2">
 										<label for="inputCodeName" class="form-label">코드 이름(한글)</label>
-										<input type="text" class="form-control" name="cdName" id="inputCodeName">
+										<input type="text" class="form-control" id="inputCodeName" name="cdName" id="inputCodeName">
 									</div>
 									<div class="col p-2">
 										<label for="inputCodeEng" class="form-label">코드 이름(영문)</label>
@@ -440,7 +440,7 @@
 											<button type="button" class="btn btn-danger">
 												<i class="fa-solid fa-trash-can"></i>
 											</button>
-											<button type="submit" class="btn btn-success">
+											<button type="button" class="btn btn-success" id="btnSave" onclick="test();">
 												<i class="fa-solid fa-arrow-up-from-bracket"></i>
 											</button>	
 										</div>
@@ -516,6 +516,26 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    
+    <script type="text/javascript">
+    	function test(){
+    		
+    		if(document.getElementById("inputCodeName").value == '' || document.getElementById("inputCodeName").value == null){
+    			alert("입력해주세요...")
+    			document.getElementById("inputCodeName").value = "";
+    			document.getElementById("inputCodeName").focus();
+    			return false;
+    		} else {
+    			alert(document.getElementById("inputCodeName").value);
+        		alert(document.getElementById("inputCgSeq").value);
+        		return false;
+    		}
+    		
+    		document.getElementById("myForm").submit();
+    		
+    	}
+    
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -27,13 +27,13 @@ public class CodeGroupController {
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
 	
-	@RequestMapping(value = "/codeGroupForm")
+	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm() throws Exception {
 		
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
-	@RequestMapping(value = "/codeGroupInst")
+	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroup dto) throws Exception {
 		
 		int result = service.insert(dto);

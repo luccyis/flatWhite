@@ -487,7 +487,7 @@
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="location.href='codeForm.html'">
+							<button type="button" class="btn btn-success" onclick="location.href='codeForm'">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
