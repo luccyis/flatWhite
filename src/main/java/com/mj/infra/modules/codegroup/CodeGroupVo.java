@@ -6,7 +6,29 @@ public class CodeGroupVo {
 	private String shValue;
 	
 	private Integer shDelNy;
+	
+	private String cgSeq;
+	private String cgName;
+	private String cgNameEng;
 
+	public String getCgNameEng() {
+		return cgNameEng;
+	}
+	public void setCgNameEng(String cgNameEng) {
+		this.cgNameEng = cgNameEng;
+	}
+	public String getCgName() {
+		return cgName;
+	}
+	public void setCgName(String cgName) {
+		this.cgName = cgName;
+	}
+	public String getCgSeq() {
+		return cgSeq;
+	}
+	public void setCgSeq(String cgSeq) {
+		this.cgSeq = cgSeq;
+	}
 	public Integer getShDelNy() {
 		return shDelNy;
 	}

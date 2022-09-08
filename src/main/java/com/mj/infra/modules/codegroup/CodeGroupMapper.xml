@@ -26,6 +26,16 @@
 			</choose>
 		ORDER BY cgSeq
 	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM infrCodeGroup a
+		WHERE 1=1
+			AND cgSeq = #{cgSeq}
+	
+	</select>
+	
 
 	<insert id="insert">
 		INSERT INTO infrCodeGroup (
