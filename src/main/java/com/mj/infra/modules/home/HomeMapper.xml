@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.mj.infra.modules.home.HomeMapper">
+
+	<resultMap id="resultMapObj" type="com.mj.infra.modules.home.Home"></resultMap>
+
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT 
+			a.tdmvRank
+			,a.tdmvMovieTitle
+   			,a.tdmvLiked
+    		,a.tdmvReleaseDate
+    	FROM tradMovie a
+		ORDER BY 
+			a.tdmvRank
+    		,a.tdmvReleaseDate
+	
+	</select>
+	
+	
+
+</mapper>	
+	
