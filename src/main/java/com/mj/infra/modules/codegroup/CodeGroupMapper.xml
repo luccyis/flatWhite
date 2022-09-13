@@ -55,4 +55,43 @@
 		</selectKey>
 	
 	</insert>
+	
+	<update id="update">
+		UPDATE infrCodeGroup 
+		SET
+			cgName = #{cgName}
+			,cgNameEng = #{cgNameEng}
+			,cgUseNy = #{cgUseNy}
+			<!-- <include refid="Base.updateModColumnValue"/> -->
+		WHERE
+			cgSeq = #{cgSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrCodeGroup
+		SET
+			cgDelNy = 1
+			<!-- <include refid="Base.updateModColumnValue"/> -->
+		WHERE
+			cgSeq = #{cgSeq}
+	
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrCodeGroup WHERE cgSeq = #{cgSeq}
+	
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap = "resultMapObj">
+		SELECT
+			a.cgSeq
+			,a.cgName
+		FROM infrCodeGroup a
+		WHERE 1=1
+			AND cgDelNy = 0
+			AND cgUseNy = 1
+		ORDER BY a.cgSeq 
+	
+	</select>
+	
 </mapper>

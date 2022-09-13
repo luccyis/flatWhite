@@ -43,4 +43,26 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		System.out.println("service result: " + result);
 		return result;
 	}
+	@Override
+	public int update(CodeGroup dto) throws Exception{
+		setRegMod(dto);
+		return dao.update(dto);
+	}
+	
+	private void setRegMod(CodeGroup dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int uelete(CodeGroup dto) throws Exception{
+		setRegMod(dto);
+		return dao.uelete(dto);
+	}
+	
+	@Override
+	public int delete(CodeGroupVo vo) throws Exception{
+		return dao.delete(vo);
+	}
+		
 }

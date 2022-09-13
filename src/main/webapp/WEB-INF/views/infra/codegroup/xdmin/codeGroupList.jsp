@@ -282,7 +282,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -291,7 +291,7 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -406,7 +406,7 @@
 													<input class="form-check-input" type="checkbox" value="" id="listCheck">
 												</div>
 											</th>
-											<th>시퀸스</th>
+											<th>#</th>
 											<th>코드그룹 코드</th>
 											<th>코드그룹 이름(한글)</th>
 											<th>코드그룹 이름(영문)</th>
@@ -424,7 +424,7 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-											<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupView?cgSeq=<c:out value="${list.cgSeq }"/>'">
+											<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupForm?cgSeq=<c:out value="${list.cgSeq }"/>'">
 												<td>
 													<div class="form-check g-2">
 														<input class="form-check-input" type="checkbox" value="" id="listCheck">
@@ -574,7 +574,29 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
-
+	<script>
+		var goUrlList = "/codeGroup/codeGroupList";
+		var goUrlInst = "/codeGroup/codeGroupInst";
+		var goUrlUpdt = "/codeGroup/codeGroupUpdt";
+		var goUrlUele = "/codeGroup/codeGroupUele";
+		var goUrlDele = "/codeGroup/codeGroupDele";
+		
+		var seq = $("input:hidden[name=cgSeq]");
+		
+		var form = $("form[name = form]");
+		var formVo = $("form[name=formVo]");
+		
+		$("btnSave").on("click", function(){
+			if (seq.val() == "0" || seq.val()==""){
+				if(validationInst() == false) return false;
+				form.attr("action", goUrlInst).submit();
+			} else {
+				if(validationUpdt() == false) return false;
+				form.attr("action", goUrlUpdt).submit();
+			}
+		});
+		
+	</script>
 
 
     <!-- Place this tag in your head or just before your close body tag. -->

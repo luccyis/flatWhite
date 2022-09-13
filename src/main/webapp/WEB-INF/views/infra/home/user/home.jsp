@@ -34,12 +34,12 @@
     	<button type="button" class="btn-del">광고영역 닫기</button>
 	</div>
 	<header id="header" class="main-header no-bg">
-		    <h1 class="ci"><a href="home" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
+		    <h1 class="ci"><a href="/home" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
 		    <div class="util-area">
 		        <div class="right-link">
 		            <!-- 로그인전 -->
 		            <div class="before" style="">
-		                <a href="../login/login.html" title="로그인">로그인</a>
+		                <a href="/login" title="로그인">로그인</a>
 		                <a href="../member/memberJoinAuth.html" title="회원가입">회원가입</a>
 		            </div>
 		            <!-- 로그인후 -->
@@ -57,7 +57,7 @@
 		
 			<nav id="gnb" class="">
 		        <ul class="gnb-depth1">
-		            <li><a href="../movie/movieMain.html" class="gnb-txt-movie" title="영화">영화</a></li>
+		            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
 		            <li><a href="../booking/timeTable.html" class="gnb-txt-reserve" title="예매">예매</a></li>
 		            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
 			        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
@@ -96,14 +96,14 @@
 							
 							</div>
 						<!-- tab-sorting -->
-							<a href="../movie/movieMain.html" class="more-movie" title="더 많은 영화보기">
+							<a href="/movie/main" class="more-movie" title="더 많은 영화보기">
 								더 많은 영화보기 <i class="iconset ico-more-corss gray"></i>
 							</a>
 							<!-- main-movie-list -->
 							<div class="main-movie-list">
 								<ol class="list">
 									<li name="li_boxoRankList" class="first">
-										<a href="../movie/movieDetailTopGun.html" class="movie-list-info" title="영화상세 보기">
+										<a href="/movie/detail" class="movie-list-info" title="영화상세 보기">
 											<p class="rank">1<span class="ir">위</span></p>
 											<!-- to 개발 : alt 값에 영화 제목 출력 -->
 									      	<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_420.jpg" alt="탑건: 매버릭" class="poster" onerror="noImg(this, 'main');">

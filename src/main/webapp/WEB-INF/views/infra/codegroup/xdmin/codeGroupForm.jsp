@@ -344,11 +344,12 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
-							<form id="myForm" method="post" action="/codeGroup/codeGroupInst">
+							<form id="myForm" method="post" name="form">
+								<input type="hidden" name="cgSeq" value="<c:out value="${vo.cgSeq}"/>"/>
 								<div class="row">
 									<div class="col p-2">
 										<label for="codeGroupCode" class="form-label">코드그룹 코드</label>
-										<input type="text" class="form-control" id="codeGroupCode" name="cgSeq" placeholder="영문(대소문자), 숫자" disabled>
+										<input type="text" class="form-control" id="cgSeq" value="<c:out value="${item.cgSeq}"/>" placeholder="영문(대소문자), 숫자">
 									</div>
 									<div class="col p-2">
 										<label for="codeGroupCode2" class="form-label">코드그룹 코드(Another)</label>
@@ -358,19 +359,19 @@
 								<div class="row">
 									<div class="col p-2">
 										<label for="inputCgName" class="form-label">코드그룹 이름(한글)</label>
-										<input type="text" class="form-control" id="inputCgName" name="cgName" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="cgName"  value="<c:out value="${item.cgName}"/>" placeholder="영문(대소문자), 숫자">
 									</div>
 									<div class="col p-2">
 										<label for="inputCgNameEng" class="form-label">코드그룹 이름(영문)</label>
-										<input type="text" class="form-control" id="inputCgNameEng" name="cgNameEng" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="cgNameEng" value="<c:out value="${item.cgNameEng}"/>" placeholder="영문(대소문자), 숫자">
 									</div>
 								</div>
 								<div class="row">
 									<div class="col p-2">
 										<label for="useNy" class="form-label">사용여부</label>
 										<select id="useNy" class="form-select">
-											<option value="1" selected>Y</option>
-											<option value="0">N</option>
+											<option value="1" <c:if test="${item.cgUseNy eq 1}">selected</c:if>>Y</option>
+											<option value="0" <c:if test="${item.cgUseNy eq 0}">selected</c:if>>N</option>
 										</select>
 									</div>
 									<div class="col p-2">
@@ -386,8 +387,8 @@
 									<div class="col p-2">
 										<label for="delNy" class="form-label">삭제여부</label>
 										<select id="delNy" class="form-select">
-											<option value="0" selected>N</option>
-											<option value="1">Y</option>
+											<option value="0" <c:if test="${item.cgDelNy eq 0}">selected</c:if>>N</option>
+											<option value="1" <c:if test="${item.cgDelNy eq 1}">selected</c:if>>Y</option>
 										</select>
 									</div>
 								</div>
@@ -464,15 +465,30 @@
 									</div>	
 									<div class="col-6 d-flex flex-row-reverse">
 										<div class="demo-inline-spacing">
-											<button type="button" class="btn btn-danger">
+											<button type="button" class="btn btn-danger" id="btnUelete">
 												<i class="fa-solid fa-xmark"></i>
 											</button>
-											<button type="button" class="btn btn-danger" >
+											<button type="button" class="btn btn-danger" id="btnDelete">
 												<i class="fa-solid fa-trash-can"></i>
 											</button>
-											<button type="button" class="btn btn-success" id="btnSave" onclick="test();">
+											<button type="button" class="btn btn-success" id="btnSave">
 												<i class="fa-solid fa-arrow-up-from-bracket"></i>
 											</button>	
+										</div>
+									</div>
+								</div>
+								<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">정말 삭제하시겠습니까?</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
+												<button type="button" class="btn btn-danger">삭제</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -546,8 +562,8 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
-	<script type="text/javascript">
-		function test(){
+<!-- 	<script type="text/javascript">
+		 function test(){
 	
 			if(document.getElementById("inputCgName").value =='' || document.getElementById("inputCgName").value == null){
 				alert("입력해 주세요...")
@@ -555,25 +571,76 @@
 				document.getElementById("inputCgName").focus();
 				return false;
 			} else {
-				alert(document.getElementById("inputCgName").value);
-				alert(document.getElementById("useNy").value);
-				alert(document.getElementById("codeExplain").value);
-				alert(document.querySelector("input[name='codeOthers']:checked").value);;
+				form.attr("action").submit();
+				
+				
+				
+				 alert(document.querySelector("input[name='codeOthers']:checked").value);; 
 			
-				for(var i=0; i<document.getElementsByName("snsLogin").length; i++){
+				 for(var i=0; i<document.getElementsByName("snsLogin").length; i++){
 					
 					if(document.getElementsByName("snsLogin")[i].checked == true){
-						alert(document.getElementsByName("snsLogin")[i].value);
+						alert(document.getElementsByName("snsLogin")[i].value); 
 					}
-					
 				}
-				
 				return false;
 			}
-			
 			document.getElementById("myForm").submit();
-			
+		} 
+	
+	</script> -->
+	<script>
+	var goUrlList = "/codeGroup/codeGroupList";
+	var goUrlInst = "/codeGroup/codeGroupInst";
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";
+	var goUrlUele = "/codeGroup/codeGroupUele";
+	var goUrlDele = "/codeGroup/codeGroupDele";
+	
+	var seq = $("input:hidden[name=cgSeq]");
+	
+	var form = $("form[name = form]");
+	var formVo = $("form[name=formVo]");
+	
+	$("#btnSave").on("click", function(){
+		if (seq.val() == "0" || seq.val()==""){
+			/* if(validationInst() == false) return false; */
+			form.attr("action", goUrlInst).submit();
+		} else {
+			/* if(validationUpdt() == false) return false; */
+			form.attr("action", goUrlUpdt).submit();
 		}
+	});
+	
+	$("#btnUelete").on("click", function(){
+		$("input:hidden[name=exDeleteType]").val(1);
+		$(".modal-title").text("확 인");
+		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+		$("#btnModalUelete").show();
+		$("#btnModalDelete").hide();
+		$("#modalConfirm").modal("show");
+	});
+	
+
+	$("#btnDelete").on("click", function(){
+		$("input:hidden[name=exDeleteType]").val(2);
+		$(".modal-title").text("확 인");
+		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+		$("#btnModalUelete").hide();
+		$("#btnModalDelete").show();
+		$("#modalConfirm").modal("show");
+	});
+	
+	
+	$("#btnModalUelete").on("click", function(){
+		$("#modalConfirm").modal("hide");
+		formVo.attr("action", goUrlUele).submit();
+	});
+	
+	
+	$("#btnModalDelete").on("click", function(){
+		$("#modalConfirm").modal("hide");
+		formVo.attr("action", goUrlDele).submit();
+	});
 	
 	</script>
 
@@ -581,6 +648,7 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </body>
 </html>
 

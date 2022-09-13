@@ -344,7 +344,8 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
-							<form id="myForm" method="post" action="/codeGroup/codeGroupInst">
+							<form id="myForm" method="post" name="form">
+								<input type="hidden" name="cgSeq" value="<c:out value="${vo.cgSeq}"/>"/>
 								<div class="row">
 									<div class="col p-2">
 										<label for="codeGroupCode" class="form-label">코드그룹 코드</label>
@@ -369,8 +370,8 @@
 									<div class="col p-2">
 										<label for="useNy" class="form-label">사용여부</label>
 										<select id="useNy" class="form-select">
-											<option value="1" selected>Y</option>
-											<option value="0">N</option>
+											<option value="1" <c:if test="${item.cgUseNy eq 1}">selected</c:if>>Y</option>
+											<option value="0" <c:if test="${item.cgUseNy eq 0}">selected</c:if>>N</option>
 										</select>
 									</div>
 									<div class="col p-2">
@@ -386,8 +387,8 @@
 									<div class="col p-2">
 										<label for="delNy" class="form-label">삭제여부</label>
 										<select id="delNy" class="form-select">
-											<option value="0" selected>N</option>
-											<option value="1">Y</option>
+											<option value="0" <c:if test="${item.cgDelNy eq 0}">selected</c:if>>N</option>
+											<option value="1" <c:if test="${item.cgDelNy eq 1}">selected</c:if>>Y</option>
 										</select>
 									</div>
 								</div>
@@ -464,15 +465,30 @@
 									</div>	
 									<div class="col-6 d-flex flex-row-reverse">
 										<div class="demo-inline-spacing">
-											<button type="button" class="btn btn-danger">
+											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
 												<i class="fa-solid fa-xmark"></i>
 											</button>
-											<button type="button" class="btn btn-danger" >
+											<button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#backDropModal">
 												<i class="fa-solid fa-trash-can"></i>
 											</button>
-											<button type="button" class="btn btn-success" id="btnSave" onclick="test();">
+											<button type="button" class="btn btn-success" id="btnSave">
 												<i class="fa-solid fa-arrow-up-from-bracket"></i>
 											</button>	
+										</div>
+									</div>
+								</div>
+								<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">정말 삭제하시겠습니까?</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
+												<button type="button" class="btn btn-danger">삭제</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -576,6 +592,36 @@
 		}
 	
 	</script>
+	
+	<script>
+		var goUrlList = "/codeGroup/codeGroupList";
+		var goUrlInst = "/codeGroup/codeGroupInst";
+		var goUrlUpdt = "/codeGroup/codeGroupUpdt";
+		var goUrlUele = "/codeGroup/codeGroupUele";
+		var goUrlDele = "/codeGroup/codeGroupDele";
+		
+		var seq = $("input:hidden[name=cgSeq]");
+		
+		var form = $("form[name = form]");
+		var formVo = $("form[name=formVo]");
+		
+		$("#btnSave").on("click", function(){
+			if (seq.val() == "0" || seq.val()==""){
+			/* 	if(validationInst() == false) return false; */
+				form.attr("action", goUrlInst).submit();
+			} else {
+				/* if(validationUpdt() == false) return false; */
+				form.attr("action", goUrlUpdt).submit();
+			}
+		});
+		
+		
+		
+	</script>
+
+	
+	
+	
 
 
     <!-- Place this tag in your head or just before your close body tag. -->
