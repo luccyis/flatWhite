@@ -340,9 +340,9 @@
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span> 코드 그룹 관리 </h4>
 					
-					<div class="card">
-						<div class="card-body">
-							<form method="post" action="/codeGroup/codeGroupList">
+					<form method="post" name="form">
+						<div class="card">
+							<div class="card-body">
 								<div class="row">
 									<div class="col p-2">
 										<select id="shDelNy" name="shDelNy" class="form-select">
@@ -380,18 +380,17 @@
 										<input type="text" class="form-control" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어">
 									</div>
 									<div class="col p-2">
-										<button type="submit" class="btn btn-warning">
+										<button type="button" class="btn btn-warning" id="btnSearch">
 											<i class="fa-solid fa-magnifying-glass"></i>
 										</button>
-										<button type="button" class="btn btn-danger">
+										<button type="button" class="btn btn-danger" id="btnReset">
 											<i class="fa-solid fa-rotate-left"></i>
 										</button>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
-					</div>
-					<br>
+						<br>
 						
 				<!-- 	Table -->
 					<div class="card">
@@ -413,6 +412,8 @@
 											<th>코드개수</th>
 											<th>등록일</th>
 											<th>수정일</th>
+											<th>사용여부</th>
+											<th>삭제여부</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -437,6 +438,8 @@
 												<td><c:out value="${list.count}"/></td>
 												<td></td>
 												<td></td>
+												<td><c:out value="${list.cgUseNy}"/></td>
+												<td><c:out value="${list.cgDelNy}"/></td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
@@ -507,6 +510,7 @@
 								</div>
 							</div>
 						</div>
+					</form>	
 				</div>
 
        
@@ -586,14 +590,12 @@
 		var form = $("form[name = form]");
 		var formVo = $("form[name=formVo]");
 		
-		$("btnSave").on("click", function(){
-			if (seq.val() == "0" || seq.val()==""){
-				if(validationInst() == false) return false;
-				form.attr("action", goUrlInst).submit();
-			} else {
-				if(validationUpdt() == false) return false;
-				form.attr("action", goUrlUpdt).submit();
-			}
+		$("#btnSearch").on("click", function(){
+			form.attr("action", goUrlList).submit();
+		});
+		
+		$("#btnReset").on("click", function(){
+			$(location).attr("href", goUrlList);
 		});
 		
 	</script>

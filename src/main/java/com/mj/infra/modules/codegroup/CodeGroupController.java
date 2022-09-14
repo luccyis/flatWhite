@@ -16,7 +16,7 @@ public class CodeGroupController {
 	CodeGroupServiceImpl service;
 	
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception{
+	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
@@ -60,9 +60,23 @@ public class CodeGroupController {
 		model.addAttribute("item", model);
 		
 		return "redirect:/codeGroup/codeGroupList";
-		
+	}
+	
+	@RequestMapping(value = "codeGroupDele")
+	public String codeGroupDele(CodeGroupVo vo) throws Exception {
+		int result = service.delete(vo);
+		System.out.println("delete result: " + result);
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupUele")
+	public String codeGroupUele(CodeGroup dto) throws Exception {
+		int result = service.uelete(dto);
+		System.out.println("uelete result: "+ result);
+		return "redirect:/codeGroup/codeGroupList";
 		
 	}
+	
 
 	
 

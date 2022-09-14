@@ -337,10 +337,9 @@
 		<!-- Content -->	
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span>코드 관리 </h4>
-					
-					<div class="card">
-						<div class="card-body">
-							<form method="post" action="/code/codeList">
+					<form method="post" name="form">
+						<div class="card">
+							<div class="card-body">
 								<div class="row">
 									<div class="col p-2">
 										<select id="shDelNy" name="shDelNy" class="form-select">
@@ -383,132 +382,133 @@
 										</button>
 									</div>
 								</div>
-							</form>
-						</div>
-					</div><br>
+							</div>
+						</div><br>
 
-				<!-- 	Table -->
-					<div class="card">
-						<h5 class="card-header">코드 리스트 </h5>
-						<div class="card-body">
-							<div class="table-responsive text-nowrap">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" value="" id="listCheck">
-												</div>
-											</th>
-											<th>시퀸스</th>
-											<th>코드그룹코드</th>
-											<th>코드그룹이름 (한글)</th>
-											<th>코드</th>
-											<th>대체코드</th>
-											<th>코드 이름(한글)</th>
-											<th>코드 이름(영문)</th>
-											<th>사용</th>
-											<th>순서</th>
-											<th>등록일</th>
-											<th>수정일</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:choose>
-											<c:when test="${fn:length(list) eq 0 }">
-												<tr>
-													<td class="text-center" colspan="12">There is no data!</td>
-												</tr>
-											</c:when>
-											<c:otherwise>		
-												<c:forEach items="${list}" var="list" varStatus="status">
+					<!-- 	Table -->
+						<div class="card">
+							<h5 class="card-header">코드 리스트 </h5>
+							<div class="card-body">
+								<div class="table-responsive text-nowrap">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>
+													<div class="form-check g-2">
+														<input class="form-check-input" type="checkbox" value="" id="listCheck">
+													</div>
+												</th>
+												<th>시퀸스</th>
+												<th>코드그룹코드</th>
+												<th>코드그룹이름 (한글)</th>
+												<th>코드</th>
+												<th>대체코드</th>
+												<th>코드 이름(한글)</th>
+												<th>코드 이름(영문)</th>
+												<th>사용</th>
+												<th>순서</th>
+												<th>등록일</th>
+												<th>수정일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0 }">
 													<tr>
-														<td>
-															<div class="form-check g-2">
-																<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
-															</div>
-														</td>
-														<td>${status.count}</td>
-														<td><c:out value="${list.cgSeq}"/></td>
-														<td><c:out value="${list.cgName}"/></td>
-														<td><c:out value="${list.cdSeq}"/></td>
-														<td></td>
-														<td><c:out value="${list.cdName}"/></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>	
-												</c:forEach>
-											</c:otherwise>
-										</c:choose>	
-									</tbody>	
-								</table>
+														<td class="text-center" colspan="12">There is no data!</td>
+													</tr>
+												</c:when>
+												<c:otherwise>		
+													<c:forEach items="${list}" var="list" varStatus="status">
+														<tr>
+															<td>
+																<div class="form-check g-2">
+																	<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
+																</div>
+															</td>
+															<td>${status.count}</td>
+															<td><c:out value="${list.cgSeq}"/></td>
+															<td><c:out value="${list.cgName}"/></td>
+															<td><c:out value="${list.cdSeq}"/></td>
+															<td></td>
+															<td><c:out value="${list.cdName}"/></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>	
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>	
+										</tbody>	
+									</table>
+								</div>
 							</div>
-						</div>
-						<div class="card-footer">
-							<div class="col-12">
-								<div class="demo-inline-spacing">
-									<nav aria-lable="Page Navigation">
-										<ul class="pagination pagination-sm justify-content-center">
-											<li class="page-item prev">
-												<a class="page-link" href="javascript:void(0);">
-													<i class="tf-icon bx bx-chevrons-left"></i>
-                           						</a>
-				                            </li>
-				                            <li class="page-item active">
-				                              <a class="page-link" href="javascript:void(0);">1</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">2</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">3</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">4</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">5</a>
-				                            </li>
-				                            <li class="page-item next">
-				                            	<a class="page-link" href="javascript:void(0);">
-				                              		<i class="tf-icon bx bx-chevrons-right"></i>
-			                              		</a>
-				                            </li>
-				                          </ul>
-				                        </nav>	
+							<div class="card-footer">
+								<div class="col-12">
+									<div class="demo-inline-spacing">
+										<nav aria-lable="Page Navigation">
+											<ul class="pagination pagination-sm justify-content-center">
+												<li class="page-item prev">
+													<a class="page-link" href="javascript:void(0);">
+														<i class="tf-icon bx bx-chevrons-left"></i>
+	                           						</a>
+					                            </li>
+					                            <li class="page-item active">
+					                              <a class="page-link" href="javascript:void(0);">1</a>
+					                            </li>
+					                            <li class="page-item">
+					                              <a class="page-link" href="javascript:void(0);">2</a>
+					                            </li>
+					                            <li class="page-item">
+					                              <a class="page-link" href="javascript:void(0);">3</a>
+					                            </li>
+					                            <li class="page-item">
+					                              <a class="page-link" href="javascript:void(0);">4</a>
+					                            </li>
+					                            <li class="page-item">
+					                              <a class="page-link" href="javascript:void(0);">5</a>
+					                            </li>
+					                            <li class="page-item next">
+					                            	<a class="page-link" href="javascript:void(0);">
+					                              		<i class="tf-icon bx bx-chevrons-right"></i>
+				                              		</a>
+					                            </li>
+					                          </ul>
+					                        </nav>	
+										</div>
+									</div>
+								</div>
+							</div>	
+							
+							<div class="demo-inline-spacing">
+								<button type="button" class="btn btn-primary">
+									<i class="fa-solid fa-file-arrow-down"></i>
+								</button>
+								<button type="button" class="btn btn-success" onclick="location.href='codeForm'">
+									<i class="fa-solid fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+									<i class="fa-solid fa-minus"></i>
+								</button>
+							</div>
+							<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">정말 삭제하시겠습니까?</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
+											<button type="button" class="btn btn-danger">삭제</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>	
-						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary">
-								<i class="fa-solid fa-file-arrow-down"></i>
-							</button>
-							<button type="button" class="btn btn-success" onclick="location.href='codeForm'">
-								<i class="fa-solid fa-plus"></i>
-							</button>
-							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
-								<i class="fa-solid fa-minus"></i>
-							</button>
-						</div>
-						<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">정말 삭제하시겠습니까?</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-										<button type="button" class="btn btn-danger">삭제</button>
-									</div>
-								</div>
-							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 

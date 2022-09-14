@@ -16,7 +16,6 @@
 		FROM infrCodeGroup a
 		WHERE 1=1
 			
-			
 			<if test="shDelNy != null and !shDelNy.equals('')">AND cgDelNy = #{shDelNy}</if>
 			<if test="shValue != null"></if>
 			<choose>
@@ -47,8 +46,8 @@
 		VALUES (
 			#{cgName}
 		    ,#{cgNameEng}
-		    ,1
-		    ,0
+		    ,#{cgUseNy}
+		    ,#{cgDelNy}
 		)
 		<selectKey resultType="String" keyProperty="cgSeq" order="AFTER">
 			SELECT last_insert_id()

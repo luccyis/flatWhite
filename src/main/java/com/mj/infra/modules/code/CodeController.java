@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mj.infra.modules.codegroup.CodeGroup;
@@ -22,11 +23,7 @@ public class CodeController {
 	
 	
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model, CodeVo vo) throws Exception{
-		
-		System.out.println("vo.getShValue(): " + vo.getShValue());
-		System.out.println("vo.getShOption(): " + vo.getShOption());
-		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
+	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);

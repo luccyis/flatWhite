@@ -6,6 +6,8 @@ public class CodeVo {
 	private String shValue;
 	
 	private Integer shDelNy;
+	
+	
 
 	public Integer getShDelNy() {
 		return shDelNy;

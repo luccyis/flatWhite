@@ -465,10 +465,10 @@
 									</div>	
 									<div class="col-6 d-flex flex-row-reverse">
 										<div class="demo-inline-spacing">
-											<button type="button" class="btn btn-danger" id="btnUelete">
+											<button type="button" class="btn btn-outline-danger" id="btnUelete">
 												<i class="fa-solid fa-xmark"></i>
 											</button>
-											<button type="button" class="btn btn-danger" id="btnDelete">
+											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
 												<i class="fa-solid fa-trash-can"></i>
 											</button>
 											<button type="button" class="btn btn-success" id="btnSave">
@@ -487,7 +487,7 @@
 											<div class="modal-body">정말 삭제하시겠습니까?</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-												<button type="button" class="btn btn-danger">삭제</button>
+												<button type="button" class="btn btn-danger" id="btnDeleteInModal">삭제</button>
 											</div>
 										</div>
 									</div>
@@ -611,7 +611,16 @@
 		}
 	});
 	
+	$("#btnDeleteInModal").on("click", function(){
+		form.attr("action", goUrlDele).submit();
+	});
+	
 	$("#btnUelete").on("click", function(){
+		form.attr("action", goUrlUele).submit();
+	});
+	
+	
+/* 	$("#btnUelete").on("click", function(){
 		$("input:hidden[name=exDeleteType]").val(1);
 		$(".modal-title").text("확 인");
 		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
@@ -640,7 +649,7 @@
 	$("#btnModalDelete").on("click", function(){
 		$("#modalConfirm").modal("hide");
 		formVo.attr("action", goUrlDele).submit();
-	});
+	}); */
 	
 	</script>
 
