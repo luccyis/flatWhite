@@ -8,6 +8,20 @@
 
     <resultMap id="resultMapObj" type="com.mj.infra.modules.code.Code"></resultMap>
 	
+	<!-- <sql id="selectCommon">
+	FROM infrCode a
+	WHERE 1=1
+		<if test="shDelNy != null and !shDelNy.equals('')">AND b.cdDelNy = #{shDelNy}</if>
+		<if test="shValue != null"></if>
+		<choose>
+			<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
+			<when test="shOption == 2">AND b.cdName LIKE CONCAT('%', #{shValue},'%')</when>
+		</choose>
+		ORDER BY a.cdSeq
+	</select>
+	 -->
+	
+<!-- 	</sql> -->
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
