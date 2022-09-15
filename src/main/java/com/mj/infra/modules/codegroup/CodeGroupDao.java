@@ -42,7 +42,6 @@ public class CodeGroupDao {
 	}
 	
 	public int selectOneCount(CodeGroupVo vo) {
-		System.out.println("셀렉트카운트");
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 		
 	}
