@@ -231,12 +231,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item active">
-                  <a href="/system/ccgList.html" class="menu-link">
+                  <a href="codegroup/codegroupList" class="menu-link">
                     <div data-i18n="Basic">코드 그룹 관리</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/system/ccList.html" class="menu-link">
+                  <a href="code/codeList" class="menu-link">
                     <div data-i18n="Basic">코드 관리</div>
                   </a>
                 </li>
@@ -340,8 +340,13 @@
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span> 코드 그룹 관리 </h4>
 					
-					<form method="post" name="form">
-						<div class="card">
+					<form method="post" name="formList" id="formList">
+						<!-- <input type="hidden" name="mainkey"> -->
+						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+						<input type="hidden" name="checkboxSeqArray">
+						
+						<div class="card"> 
 							<div class="card-body">
 								<div class="row">
 									<div class="col p-2">
@@ -396,6 +401,7 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
+							<span>총 데이터 수 : </span><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
 							<div class="table-responsive text-nowrap">
 								<table class="table table-bordered">
 									<thead>
@@ -435,7 +441,7 @@
 												<td><c:out value="${list.cgSeq }"/></td>
 												<td><c:out value="${list.cgName }"/></td>
 												<td><c:out value="${list.cgNameEng }"/></td>
-												<td><c:out value="${list.count}"/></td>
+												<td><c:out value="${list.xcdSeqCount}"/></td>
 												<td></td>
 												<td></td>
 												<td><c:out value="${list.cgUseNy}"/></td>
@@ -449,40 +455,11 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<div class="col-12">
-								<div class="demo-inline-spacing">
-									<nav aria-lable="Page Navigation">
-										<ul class="pagination pagination-sm justify-content-center">
-											<li class="page-item prev">
-												<a class="page-link" href="javascript:void(0);">
-													<i class="tf-icon bx bx-chevrons-left"></i>
-                           						</a>
-				                            </li>
-				                            <li class="page-item active">
-				                              <a class="page-link" href="javascript:void(0);">1</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">2</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">3</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">4</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">5</a>
-				                            </li>
-				                            <li class="page-item next">
-				                            	<a class="page-link" href="javascript:void(0);">
-				                              		<i class="tf-icon bx bx-chevrons-right"></i>
-			                              		</a>
-				                            </li>
-				                          </ul>
-				                        </nav>	
-									</div>
-								</div>
-							</div>
+						
+							<!-- pagination s -->
+							<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+							<!-- pagination e -->
+						</div>
 						</div>	
 						<div class="demo-inline-spacing">
 							<button type="button" class="btn btn-primary">
@@ -587,7 +564,7 @@
 		
 		var seq = $("input:hidden[name=cgSeq]");
 		
-		var form = $("form[name = form]");
+		var form = $("form[name = formList]");
 		var formVo = $("form[name=formVo]");
 		
 		$("#btnSearch").on("click", function(){
@@ -597,6 +574,12 @@
 		$("#btnReset").on("click", function(){
 			$(location).attr("href", goUrlList);
 		});
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+		
 		
 	</script>
 

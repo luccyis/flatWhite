@@ -15,6 +15,7 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
+	
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
 		
@@ -22,10 +23,15 @@ public class CodeGroupController {
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
 		
+		vo.setParamsPaging(service.selectOneCount(vo));
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/codegroup/xdmin/codeGroupList";
+	}
+	
+	public void setSearchAndPaging(CodeGroupVo vo) throws Exception {
+		vo.setParamsPaging(service.selectOneCount(vo));
 	}
 	
 	@RequestMapping(value = "codeGroupForm")

@@ -10,13 +10,13 @@ public class CodeGroup {
 	
 	
 	//count 서브쿼리
-	private String count;
+	private String xcdSeqCount;
 	
-	public String getCount() {
-		return count;
+	public String getXcdSeqCount() {
+		return xcdSeqCount;
 	}
-	public void setCount(String count) {
-		this.count = count;
+	public void setXcdSeqCount(String xcdSeqCount) {
+		this.xcdSeqCount = xcdSeqCount;
 	}
 	public String getCgSeq() {
 		return cgSeq;

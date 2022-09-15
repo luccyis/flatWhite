@@ -1,6 +1,8 @@
 package com.mj.infra.modules.codegroup;
 
-public class CodeGroupVo {
+import com.mj.infra.common.base.BaseVo;
+
+public class CodeGroupVo extends BaseVo {
 
 	private Integer shOption;
 	private String shValue;

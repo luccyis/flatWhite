@@ -231,12 +231,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item active">
-                  <a href="/system/ccgList.html" class="menu-link">
+                  <a href="/codegroup/codegroupList" class="menu-link">
                     <div data-i18n="Basic">코드 그룹 관리</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/system/ccList.html" class="menu-link">
+                  <a href="/code/codeList" class="menu-link">
                     <div data-i18n="Basic">코드 관리</div>
                   </a>
                 </li>
@@ -349,7 +349,7 @@
 								<div class="row">
 									<div class="col p-2">
 										<label for="codeGroupCode" class="form-label">코드그룹 코드</label>
-										<input type="text" class="form-control" id="cgSeq" name="cgSeq" value="<c:out value="${item.cgSeq}"/>" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="cgSeq" value="<c:out value="${item.cgSeq}"/>" placeholder="영문(대소문자), 숫자">
 									</div>
 									<div class="col p-2">
 										<label for="codeGroupCode2" class="form-label">코드그룹 코드(Another)</label>
@@ -359,17 +359,17 @@
 								<div class="row">
 									<div class="col p-2">
 										<label for="inputCgName" class="form-label">코드그룹 이름(한글)</label>
-										<input type="text" class="form-control" id="cgName" name="cgName" value="<c:out value="${item.cgName}"/>" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="inputCgName" name="cgName" value="<c:out value="${item.cgName}"/>" placeholder="영문(대소문자), 숫자">
 									</div>
 									<div class="col p-2">
 										<label for="inputCgNameEng" class="form-label">코드그룹 이름(영문)</label>
-										<input type="text" class="form-control" id="cgNameEng" name="cgNameEng" value="<c:out value="${item.cgNameEng}"/>" placeholder="영문(대소문자), 숫자">
+										<input type="text" class="form-control" id="inputCgNameEng" name="cgNameEng" value="<c:out value="${item.cgNameEng}"/>" placeholder="영문(대소문자), 숫자">
 									</div>
 								</div>
 								<div class="row">
 									<div class="col p-2">
 										<label for="useNy" class="form-label">사용여부</label>
-										<select id="useNy" class="form-select">
+										<select id="useNy" class="form-select" name="cgUseNy">
 											<option value="1" <c:if test="${item.cgUseNy eq 1}">selected</c:if>>Y</option>
 											<option value="0" <c:if test="${item.cgUseNy eq 0}">selected</c:if>>N</option>
 										</select>
@@ -386,7 +386,7 @@
 									</div>
 									<div class="col p-2">
 										<label for="delNy" class="form-label">삭제여부</label>
-										<select id="delNy" class="form-select">
+										<select id="delNy" class="form-select" name="cgDelNy">
 											<option value="0" <c:if test="${item.cgDelNy eq 0}">selected</c:if>>N</option>
 											<option value="1" <c:if test="${item.cgDelNy eq 1}">selected</c:if>>Y</option>
 										</select>

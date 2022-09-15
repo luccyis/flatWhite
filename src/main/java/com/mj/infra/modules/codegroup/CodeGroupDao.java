@@ -38,13 +38,19 @@ public class CodeGroupDao {
 	public CodeGroup selectOne(CodeGroupVo vo) {
 		CodeGroup result = sqlSession.selectOne(namespace + ".selectOne", vo);
 		System.out.println("dao result" + result);
-		return result;
-				
+		return result;			
+	}
+	
+	public int selectOneCount(CodeGroupVo vo) {
+		System.out.println("셀렉트카운트");
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+		
 	}
 	
 	public int update(CodeGroup dto) {return sqlSession.update(namespace + ".update", dto);}
 	public int uelete(CodeGroup dto) {return sqlSession.update(namespace + ".uelete", dto);}
 	public int delete(CodeGroupVo vo) {return sqlSession.delete(namespace + ".delete", vo);}
+	
 	
 	
 }
