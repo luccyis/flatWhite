@@ -11,6 +11,7 @@
 		<sql id ="selectCommon">
 		FROM infrCodeGroup a
 		WHERE 1=1
+			ORDER BY a.cgSeq
 			<if test="shDelNy != null and !shDelNy.equals('')">AND cgDelNy = #{shDelNy}</if>
 			<choose>
 				<when test="shOption == 1">AND cgSeq = #{shValue}</when>
@@ -30,7 +31,7 @@
 				,a.cgDelNy
 				<!-- <include refid="Base.selectRegModWithAlies" /> -->
 			<include refid="selectCommon" />
-			ORDER BY a.cgSeq
+			
 			<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" />
 	</select>

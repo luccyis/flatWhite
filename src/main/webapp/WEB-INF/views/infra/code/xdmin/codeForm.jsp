@@ -361,8 +361,8 @@
 									<div class="col p-2">
 										<label for="inputCgSeq" class="form-label">코드그룹 코드</label>
 										<select class="form-select" id="inputCgSeq" name="infrCodeGroup_cgSeq">
-											<c:forEach items="${list1}" var="list1" varStatus="status">
-												<option value="${list1.cgSeq}">${list1.cgName}</option>
+											<c:forEach items="${list}" var="item" varStatus="status">
+												<option value="${list.cgSeq}">${list.cgName}</option>
 											</c:forEach> 
 										</select>
 									</div>

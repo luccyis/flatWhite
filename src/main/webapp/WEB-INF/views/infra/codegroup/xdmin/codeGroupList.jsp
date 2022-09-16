@@ -45,7 +45,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
             $.datepicker.setDefaults($.datepicker.regional['ko']); 
-            $( "#startDate" ).datepicker({
+            $( "#shDateStart" ).datepicker({
                  changeMonth: true, 
                  changeYear: true,
                  nextText: '다음 달',
@@ -59,11 +59,11 @@
                  onClose: function( selectedDate ) {    
                       //시작일(startDate) datepicker가 닫힐때
                       //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                     $("#shDateEnd").datepicker( "option", "minDate", selectedDate );
                  }    
  
             });
-            $( "#endDate" ).datepicker({
+            $( "#shDateEnd" ).datepicker({
                  changeMonth: true, 
                  changeYear: true,
                  nextText: '다음 달',
@@ -77,7 +77,7 @@
                  onClose: function( selectedDate ) {    
                      // 종료일(endDate) datepicker가 닫힐때
                      // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                     $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
                  }    
  
             });    
@@ -341,11 +341,7 @@
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span> 코드 그룹 관리 </h4>
 					
 					<form method="post" name="formList" id="formList">
-						<!-- <input type="hidden" name="mainkey"> -->
-						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
-						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-						<input type="hidden" name="checkboxSeqArray">
-						
+						<%@include file="codeGroupVo.jsp" %>
 						<div class="card"> 
 							<div class="card-body">
 								<div class="row">
@@ -357,19 +353,19 @@
 										</select>	
 									</div>
 									<div class="col p-2">
-										<select id="" class="form-select">
-											<option>수정일</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
+										<select id="shOptionDate" name="shOptionDate" class="form-select">
+											<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+											<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+											<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
 										</select>	
 									</div>
 									<div class="col p-2">
-										<p>
-										<input type="text" class="form-control" id="startDate" name="startDate" placeholder="시작일"></p>
+									<%-- 	<fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd"/> --%>
+										<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일">
 									</div>
 									<div class="col p-2">
-										<p>
-										<input type="text" class="form-control" id="endDate" name="endDate" placeholder="종료일"></p>
+									<%-- 	<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd"/> --%>
+										<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일">
 									</div>
 								</div>
 								<div class="row">
@@ -401,7 +397,7 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
-							<span>총 데이터 수 : </span><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
+							<span>total : </span><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
 							<div class="table-responsive text-nowrap">
 								<table class="table table-bordered">
 									<thead>
@@ -431,15 +427,21 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-											<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupForm?cgSeq=<c:out value="${list.cgSeq }"/>'">
+											<tr>
 												<td>
 													<div class="form-check g-2">
 														<input class="form-check-input" type="checkbox" value="" id="listCheck">
 													</div>	
 												</td>
 												<td>${status.count}</td>	
-												<td><c:out value="${list.cgSeq }"/></td>
-												<td><c:out value="${list.cgName }"/></td>
+												<td>
+													<a href="javascript:goForm(<c:out value="${list.cgSeq }"/>)" class="text-decoration-none">
+													<c:out value="${list.cgSeq }"/></a>
+												</td>
+												<td>
+													<a href="javascript:goForm(<c:out value="${list.cgSeq }"/>)" class="text-decoration-none">
+													<c:out value="${list.cgName }"/></a>
+												</td>
 												<td><c:out value="${list.cgNameEng }"/></td>
 												<td><c:out value="${list.xcdSeqCount}"/></td>
 												<td></td>
@@ -465,7 +467,7 @@
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="location.href='codeGroupForm'">
+							<button type="button" class="btn btn-success" id="btnForm">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -487,7 +489,8 @@
 								</div>
 							</div>
 						</div>
-					</form>	
+					</form>
+					
 				</div>
 
        
@@ -561,6 +564,7 @@
 		var goUrlUpdt = "/codeGroup/codeGroupUpdt";
 		var goUrlUele = "/codeGroup/codeGroupUele";
 		var goUrlDele = "/codeGroup/codeGroupDele";
+		var goUrlForm = "/codeGroup/codeGroupForm";
 		
 		var seq = $("input:hidden[name=cgSeq]");
 		
@@ -580,6 +584,14 @@
 			form.attr("action", goUrlList).submit();
 		}
 		
+		$("#btnForm").on("click", function(){
+			goForm(0);
+		});
+		
+		goForm = function(keyValue){
+			seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
 		
 	</script>
 

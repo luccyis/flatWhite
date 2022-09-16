@@ -344,8 +344,12 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
-							<form id="myForm" method="post" name="form">
-								<input type="hidden" name="cgSeq" value="<c:out value="${vo.cgSeq}"/>"/>
+							<form id="form" method="post" name="form" autocomplete="off" enctype="multipart/form-data">
+								<!-- *Vo.jsp s -->
+								<%@include file="codeGroupVo.jsp" %>
+								<!-- *Vo.jsp e -->
+								<c:out value="${vo.cgSeq }"/> ddddddddddddd
+								
 								<div class="row">
 									<div class="col p-2">
 										<label for="codeGroupCode" class="form-label">코드그룹 코드</label>
@@ -458,7 +462,7 @@
 								<div class="row">
 									<div class="col-6">
 										<div class="demo-inline-spacing">
-											<button type="button" class="btn btn-primary" onclick="location.href='codeGroupList'">
+											<button type="button" class="btn btn-primary" id="btnList">
 												<i class="fa-solid fa-bars"></i>
 											</button>
 										</div>
@@ -493,11 +497,16 @@
 									</div>
 								</div>
 							</form>
+							
+							<form name="formVo" id="formVo" method="post">
+							<!-- *Vo.jsp s -->
+							<%@include file="codeGroupVo.jsp" %>
+							<!-- *Vo.jsp e -->
+							</form>
 						</div>	
 					</div>
 				</div>
-
-       
+				
             <!-- / Content -->
 
             <!-- Footer -->
@@ -619,6 +628,9 @@
 		form.attr("action", goUrlUele).submit();
 	});
 	
+	$("#btnList").on("click", function(){
+		formVo.attr("action", goUrlList).submit();
+	});
 	
 /* 	$("#btnUelete").on("click", function(){
 		$("input:hidden[name=exDeleteType]").val(1);

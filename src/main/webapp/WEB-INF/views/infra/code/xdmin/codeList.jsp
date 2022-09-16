@@ -337,7 +337,11 @@
 		<!-- Content -->	
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span>코드 관리 </h4>
-					<form method="post" name="form">
+					<form method="post" name="formList" id="formList">
+						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+						<input type="hidden" name="checkboxSeqArray">
+						
 						<div class="card">
 							<div class="card-body">
 								<div class="row">
@@ -374,10 +378,10 @@
 										<input type="text" class="form-control" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="검색어">
 									</div>
 									<div class="col p-2">
-										<button type="submit" class="btn btn-warning">
+										<button type="submit" class="btn btn-warning" id="btnSearch">
 											<i class="fa-solid fa-magnifying-glass"></i>
 										</button>
-										<button type="button" class="btn btn-danger">
+										<button type="button" class="btn btn-danger" id="btnReset">
 											<i class="fa-solid fa-rotate-left"></i>
 										</button>
 									</div>
@@ -389,6 +393,7 @@
 						<div class="card">
 							<h5 class="card-header">코드 리스트 </h5>
 							<div class="card-body">
+								<span>total: </span><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }"/>
 								<div class="table-responsive text-nowrap">
 									<table class="table table-bordered">
 										<thead>
@@ -398,10 +403,10 @@
 														<input class="form-check-input" type="checkbox" value="" id="listCheck">
 													</div>
 												</th>
-												<th>시퀸스</th>
+												<th>#</th>
 												<th>코드그룹코드</th>
 												<th>코드그룹이름 (한글)</th>
-												<th>코드</th>
+												<th>코드seq</th>
 												<th>대체코드</th>
 												<th>코드 이름(한글)</th>
 												<th>코드 이름(영문)</th>
@@ -420,7 +425,7 @@
 												</c:when>
 												<c:otherwise>		
 													<c:forEach items="${list}" var="list" varStatus="status">
-														<tr>
+														<tr style="cursor:pointer;" onclick="location.href='/code/codeForm?cgSeq=<c:out value="${list.cdSeq }"/>'"> 
 															<td>
 																<div class="form-check g-2">
 																	<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
@@ -433,7 +438,7 @@
 															<td></td>
 															<td><c:out value="${list.cdName}"/></td>
 															<td></td>
-															<td></td>
+															<td><c:out value="${list.cdUseNy}"/></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -446,71 +451,41 @@
 								</div>
 							</div>
 							<div class="card-footer">
-								<div class="col-12">
-									<div class="demo-inline-spacing">
-										<nav aria-lable="Page Navigation">
-											<ul class="pagination pagination-sm justify-content-center">
-												<li class="page-item prev">
-													<a class="page-link" href="javascript:void(0);">
-														<i class="tf-icon bx bx-chevrons-left"></i>
-	                           						</a>
-					                            </li>
-					                            <li class="page-item active">
-					                              <a class="page-link" href="javascript:void(0);">1</a>
-					                            </li>
-					                            <li class="page-item">
-					                              <a class="page-link" href="javascript:void(0);">2</a>
-					                            </li>
-					                            <li class="page-item">
-					                              <a class="page-link" href="javascript:void(0);">3</a>
-					                            </li>
-					                            <li class="page-item">
-					                              <a class="page-link" href="javascript:void(0);">4</a>
-					                            </li>
-					                            <li class="page-item">
-					                              <a class="page-link" href="javascript:void(0);">5</a>
-					                            </li>
-					                            <li class="page-item next">
-					                            	<a class="page-link" href="javascript:void(0);">
-					                              		<i class="tf-icon bx bx-chevrons-right"></i>
-				                              		</a>
-					                            </li>
-					                          </ul>
-					                        </nav>	
-										</div>
-									</div>
-								</div>
-							</div>	
+								<!-- pagination s -->
+								<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+								<!-- pagination e -->
+							</div>
+						</div>	
 							
-							<div class="demo-inline-spacing">
-								<button type="button" class="btn btn-primary">
-									<i class="fa-solid fa-file-arrow-down"></i>
-								</button>
-								<button type="button" class="btn btn-success" onclick="location.href='codeForm'">
-									<i class="fa-solid fa-plus"></i>
-								</button>
-								<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
-									<i class="fa-solid fa-minus"></i>
-								</button>
-							</div>
-							<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body">정말 삭제하시겠습니까?</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-											<button type="button" class="btn btn-danger">삭제</button>
-										</div>
+						<div class="demo-inline-spacing">
+							<button type="button" class="btn btn-primary">
+								<i class="fa-solid fa-file-arrow-down"></i>
+							</button>
+							<button type="button" class="btn btn-success" onclick="location.href='codeForm'">
+								<i class="fa-solid fa-plus"></i>
+							</button>
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+								<i class="fa-solid fa-minus"></i>
+							</button>
+						</div>
+						<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">정말 삭제하시겠습니까?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
+										<button type="button" class="btn btn-danger">삭제</button>
 									</div>
 								</div>
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
+			</div>
 
        
             <!-- / Content -->
@@ -557,7 +532,7 @@
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
+    
     <!-- / Layout wrapper -->
 
 
@@ -577,6 +552,34 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script>
+    var goUrlList = "/code/codeList";
+    var goUrlInst = "/code/codeInst";
+    var goUrlUpdt = "/code/codeUpdt";
+    var goUrlUele = "/code/codeUele";
+    var goUrlDele = "/code/codeDele";
+    
+    var seq = $("input:hidden[name=cdSeq]");
+    
+    var form = $("form[name=formList]");
+    var formVo = $("form[name=formVo]");
+    
+    $("#btnSearch").on("click", function(){
+    	form.attr("action", goUrlList).submit();
+    });
+    
+    $("#btnReset").on("click", function(){
+    	$(location).attr("href", goUrlList);
+    });
+    
+    goList = function(thisPage){
+    	$("input:hidden[name=thisPage]").val(thisPage);
+    	form.attr("action", goUrlList).submit();
+    }
+    
+    </script>
+    
+    
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

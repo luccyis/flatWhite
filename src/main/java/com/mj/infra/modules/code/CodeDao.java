@@ -19,9 +19,20 @@ public class CodeDao {
 	
 	private static String namespace = "com.mj.infra.modules.code.CodeMapper";
 	
+	public List<Code> selectList(){
+		List<Code> list = sqlSession.selectList(namespace + ".selectList", "");
+		return list;
+	}
+	
 	public List<Code> selectList(CodeVo vo){ 
 		return sqlSession.selectList(namespace + ".selectList", vo);
-		} 
+	}
+	
+	public Code selectOne(CodeVo vo) {
+		Code result = sqlSession.selectOne(namespace + ".selectOne", vo);
+		System.out.println("dao result: " + result);
+		return result;
+	}
 	
 	public int insert(Code dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
@@ -29,9 +40,13 @@ public class CodeDao {
 		return result;
 	}
 	
-	/*
-	 * public List<Code> selectCodeGroup(){ return sqlSession.selectList(namespace +
-	 * ".selectCodeGroup",""); }
-	 */
+	public int selectOneCount(CodeVo vo) {
+		return sqlSession.selectOne(namespace +".selectOneCount", vo);
+	}
+	
+	public int update(Code dto) {return sqlSession.update(namespace + ".update", dto);}
+	public int uelete(Code dto) {return sqlSession.update(namespace + ".uelete", dto);}
+	public int delete(CodeVo vo) {return sqlSession.delete(namespace + ".delete", vo);}
+
 	
 }

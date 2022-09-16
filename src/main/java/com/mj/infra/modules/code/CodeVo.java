@@ -1,14 +1,31 @@
 package com.mj.infra.modules.code;
 
-public class CodeVo {
+import com.mj.infra.common.base.BaseVo;
+
+public class CodeVo extends BaseVo {
 
 	private Integer shOption;
 	private String shValue;
 	
 	private Integer shDelNy;
 	
+	private String cdSeq;
+	private String infrCodeGroup_cgSeq;
+	
 	
 
+	public String getCdSeq() {
+		return cdSeq;
+	}
+	public void setCdSeq(String cdSeq) {
+		this.cdSeq = cdSeq;
+	}
+	public String getInfrCodeGroup_cgSeq() {
+		return infrCodeGroup_cgSeq;
+	}
+	public void setInfrCodeGroup_cgSeq(String infrCodeGroup_cgSeq) {
+		this.infrCodeGroup_cgSeq = infrCodeGroup_cgSeq;
+	}
 	public Integer getShDelNy() {
 		return shDelNy;
 	}

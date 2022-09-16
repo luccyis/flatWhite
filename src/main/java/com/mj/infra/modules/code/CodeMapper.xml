@@ -8,44 +8,45 @@
 
     <resultMap id="resultMapObj" type="com.mj.infra.modules.code.Code"></resultMap>
 	
-	<!-- <sql id="selectCommon">
+	<sql id="selectCommon">
 	FROM infrCode a
+	JOIN infrCodeGroup b on a.infrCodeGroup_cgSeq = b.cgSeq
 	WHERE 1=1
-		<if test="shDelNy != null and !shDelNy.equals('')">AND b.cdDelNy = #{shDelNy}</if>
+		<if test="shDelNy != null and !shDelNy.equals('')">AND a.cdDelNy = #{shDelNy}</if>
 		<if test="shValue != null"></if>
 		<choose>
-			<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
-			<when test="shOption == 2">AND b.cdName LIKE CONCAT('%', #{shValue},'%')</when>
+			<when test="shOption == 1">AND a.cdSeq = #{shValue}</when>
+			<when test="shOption == 2">AND a.cdName LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
 		ORDER BY a.cdSeq
-	</select>
-	 -->
+	</sql>
 	
-<!-- 	</sql> -->
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"/>
+		SELECT
+			a.cdSeq
+			,a.cdName
+			,a.infrCodeGroup_cgSeq
+			,b.cgName
+			,b.cgUseNy
+		<include refid="selectCommon"/>
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql"/>	
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
-			,b.*
-		FROM infrCodeGroup a
-		JOIN infrCode b on b.infrCodeGroup_cgSeq = a.cgSeq
+		FROM infrCode a
 		WHERE 1=1
-		
-		<if test="shDelNy != null and !shDelNy.equals('')">AND b.cdDelNy = #{shDelNy}</if>
-		<if test="shValue != null"></if>
-		<choose>
-			<when test="shOption == 1">AND a.cgSeq = #{shValue}</when>
-			<when test="shOption == 2">AND b.cdName LIKE CONCAT('%', #{shValue},'%')</when>
-		</choose>
-		ORDER BY b.cdSeq
+		AND	cdSeq = #{cdSeq}
 	</select>
 	
-<!-- 	<select id="selectCodeGroup" resultMap="resultMapObj">
-		SELECT
-		 	cgName
-		FROM infrCodeGroup 
- 		WHERE 1=1
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon"/>
+	</select>
 	
-	</select> -->
 	
 	<insert id="insert">
 		INSERT INTO infrCode (
@@ -56,8 +57,8 @@
 		)
 		VALUES(
 			#{cdName}
-			,1
-			,0
+			,#{cdUseNy}
+			,#{cdDelNy}
 			,#{infrCodeGroup_cgSeq}
 		)
 		<selectKey resultType="String" keyProperty="cdSeq" order="AFTER">
@@ -65,6 +66,35 @@
 		</selectKey>
 	
 	</insert>
+	
+	<update id="update">
+		UPDATE infrCode
+		SET
+		 infrCodeGroup_cgSeq = #{infrCodeGroup_cgSeq}
+		 ,cdName = #{cdName}
+		 ,cdUseNy = #{cdUseNy}
+		 ,cdDelNy = #{cdDelNy}
+		WHERE 1=1
+			cdSeq = #{cdSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrCode
+		SET 
+			cdDelNy=1
+		WHERE
+			cdSeq=#{cdSeq}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM infrCode WHERE cdSeq = #{cdSeq}
+	</update>
+	
+	
+	
+	
+	
+	
 	
 
 </mapper>
