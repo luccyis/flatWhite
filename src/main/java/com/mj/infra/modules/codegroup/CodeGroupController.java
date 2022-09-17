@@ -56,8 +56,9 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 
-		service.insert(dto);
 		vo.setCgSeq(dto.getCgSeq());
+		service.insert(dto);
+		
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		if(Constants.INSERT_AFTER_TYPE ==1) {
@@ -74,7 +75,7 @@ public class CodeGroupController {
 	public String codeGroupUpdt(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes)  throws Exception {
 		
 		service.update(dto);
-	
+		
 		vo.setCgSeq(dto.getCgSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
