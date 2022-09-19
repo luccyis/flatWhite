@@ -344,11 +344,12 @@
 					<div class="card">
 						<h5 class="card-header">코드 그룹 관리 </h5>
 						<div class="card-body">
-							<form id="form" method="post" name="form" autocomplete="off" enctype="multipart/form-data">
+							<form id="form" method="post" name="form" >
+							
 								<!-- *Vo.jsp s -->
 								<%@include file="codeGroupVo.jsp" %>
+								
 								<!-- *Vo.jsp e -->
-								<c:out value="${vo.cgSeq }"/> ddddddddddddd
 								
 								<div class="row">
 									<div class="col p-2">
@@ -621,6 +622,7 @@
 	});
 	
 	$("#btnDeleteInModal").on("click", function(){
+		alert("du");
 		form.attr("action", goUrlDele).submit();
 	});
 	

@@ -53,31 +53,33 @@ public class CodeGroupController {
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
+	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 
-		vo.setCgSeq(dto.getCgSeq());
 		service.insert(dto);
+		vo.setCgSeq(dto.getCgSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		if(Constants.INSERT_AFTER_TYPE ==1) {
-			System.out.println("폼으로");
 			return "redirect:/codeGroup/codeGroupForm";
 		} else {
-			System.out.println("리스트로");
 			return "redirect:/codeGroup/codeGroupList";
 		}
 		
 	}
 	
 	@RequestMapping(value = "codeGroupUpdt")
-	public String codeGroupUpdt(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes)  throws Exception {
-		
+	public String codeGroupUpdt( CodeGroup dto, CodeGroupVo vo, RedirectAttributes redirectAttributes)  throws Exception {
 		service.update(dto);
 		
-		vo.setCgSeq(dto.getCgSeq());
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ==  " + dto.getCgSeq());
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ==  " + dto.getCgName());
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ==  " + dto.getCgNameEng());
 		
+		vo.setCgSeq(dto.getCgSeq());
+
 		redirectAttributes.addFlashAttribute("vo", vo);
 
 //		if(Constants.UPDATE_AFTER_TYPE ==1) {

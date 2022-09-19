@@ -1,3 +1,5 @@
+<%@ page language="java" pageEncoding="UTF-8"%> 
+
 <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 
