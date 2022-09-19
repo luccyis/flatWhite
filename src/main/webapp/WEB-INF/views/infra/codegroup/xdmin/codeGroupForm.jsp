@@ -231,7 +231,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item active">
-                  <a href="/codegroup/codegroupList" class="menu-link">
+                  <a href="codeGroupList" class="menu-link">
                     <div data-i18n="Basic">코드 그룹 관리</div>
                   </a>
                 </li>
