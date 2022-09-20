@@ -48,5 +48,12 @@ public class CodeDao {
 	public int uelete(Code dto) {return sqlSession.update(namespace + ".uelete", dto);}
 	public int delete(CodeVo vo) {return sqlSession.delete(namespace + ".delete", vo);}
 
+//	for cache
+	public List<Code> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
+	
+	public List<Code> selectCodeGroupList(){
+		return sqlSession.selectList(namespace + ".selectCodeGroupList");
+	}
+	
 	
 }

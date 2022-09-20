@@ -25,7 +25,7 @@
 		SELECT
 			a.cdSeq
 			,a.cdName
-			,a.infrCodeGroup_cgSeq
+			,a.infrCodeGroup_cgSeq as cgSeq
 			,b.cgName
 			,b.cgUseNy
 		<include refid="selectCommon"/>
@@ -52,7 +52,7 @@
 			cdName
 			,cdUseNy
 			,cdDelNy
-			,infrCodeGroup_cgSeq
+			,infrCodeGroup_cgSeq as cgSeq
 		)
 		VALUES(
 			#{cdName}
@@ -69,7 +69,7 @@
 	<update id="update">
 		UPDATE infrCode
 		SET
-		 infrCodeGroup_cgSeq = #{infrCodeGroup_cgSeq}
+		 infrCodeGroup_cgSeq as cgSeq = #{infrCodeGroup_cgSeq}
 		 ,cdName = #{cdName}
 		 ,cdUseNy = #{cdUseNy}
 		 ,cdDelNy = #{cdDelNy}
@@ -89,8 +89,27 @@
 		DELETE FROM infrCode WHERE cdSeq = #{cdSeq}
 	</update>
 	
+    <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+	SELECT 
+		cdSeq
+		,cdName
+		,infrCodeGroup_cgSeq as cgSeq
+	FROM
+		infrCode 
+	WHERE 1=1
+		AND cdDelNy = 0
+	    AND cdUseNy = 1
+   </select>
 	
-	
+ 	<select id="selectCodeGroupList" resultMap="resultMapObj">
+	SELECT 
+		cgSeq
+		,cgName
+	FROM
+		infrCodeGroup
+	WHERE 1=1
+	AND cgUseNy = 1
+	</select>
 	
 	
 	

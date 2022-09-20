@@ -29,8 +29,8 @@
 				,(select count(aa.cdSeq) from infrCode aa where 1=1 and aa.cdDelNy = 0 and aa.cdSeq = a.cgSeq) as xcdSeqCount
 				,a.cgUseNy
 				,a.cgDelNy
-				,a.cgRegTime
-				,a.cgModTime
+				,a.cgRegDate
+				,a.cgModDate
 				<!-- <include refid="Base.selectRegModWithAlies" /> -->
 			<include refid="selectCommon" />
 			
@@ -59,7 +59,7 @@
 		    ,cgNameEng
 		    ,cgUseNy
 		    ,cgDelNy
-		    ,cgRegTime
+		    ,cgRegDate
 		)
 		VALUES (
 			#{cgName}
@@ -81,7 +81,7 @@
 			,cgNameEng = #{cgNameEng}
 			,cgUseNy = #{cgUseNy}
 			,cgDelNy = #{cgDelNy}
-			,cgModTime = now()
+			,cgModDate = now()
 			<!-- <include refid="Base.updateModColumnValue"/> -->
 		WHERE
 			cgSeq = #{cgSeq}

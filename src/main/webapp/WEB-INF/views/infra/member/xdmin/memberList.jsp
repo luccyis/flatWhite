@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -107,12 +109,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="../movie/movieList.html" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Without menu">기본 정보</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="../movie/movieTimetable.html" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Without navbar">상영시간표</div>
                   </a>
                 </li>
@@ -164,7 +166,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item active">
-                  <a href="../member/memberList.html" class="menu-link">
+                  <a href="/member/memberList" class="menu-link">
                     <div data-i18n="Account">회원 리스트</div>
                   </a>
                 </li>
@@ -183,12 +185,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="../system/ccgList.html" class="menu-link">
+                  <a href="/codeGroup/codeGroupList" class="menu-link">
                     <div data-i18n="Basic">공통 코드 그룹 관리</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="../system/ccList.html" class="menu-link">
+                  <a href="/code/codeList" class="menu-link">
                     <div data-i18n="Basic">공통 코드 관리</div>
                   </a>
                 </li>
@@ -339,6 +341,8 @@
 					</div>
 					<br>
 				<!-- 	Table -->
+					<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+					<c:set var="listCodeGrade" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
 					<div class="card">
 						<h5 class="card-header">회원 리스트 </h5>
 						<div class="card-body">
@@ -369,6 +373,7 @@
 										</tr>
 									</thead>
 									<tbody>
+									
 									<c:choose>
 										<c:when test="${fn:length(list) eq 0}">
 											<tr>
@@ -380,7 +385,7 @@
 											<tr>
 												<td>
 													<div class="form-check g-2">
-														<input class="form-check-input" type="checkbox" value="" id="listCheck">
+														<input class="form-check-input" type="checkbox" name="checkboxSeq" value="<c:out value="${list.ifmmSeq}"/>" id="listCheck">
 													</div>
 												</td>
 												<td>${status.count}</td>
@@ -388,8 +393,16 @@
 												<td><c:out value="${list.ifmmId}"/></td>
 												<td><c:out value="${list.ifmmPassword}"/></td>
 												<td><c:out value="${list.ifmmName}"/></td>
-												<td><c:out value="${list.ifmmGender}"/></td>
-												<td><c:out value="${list.ifmmGrade}"/></td>
+												<td>
+													<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+														<c:if test="${list.ifmmGender eq listGender.cdSeq}"><c:out value="${listGender.cdName}"/></c:if>
+													</c:forEach>	
+												</td>
+												<td>
+													<c:forEach items="${listCodeGrade}" var="listGrade" varStatus="statusGrade">
+														<c:if test="${list.ifmmGrade eq listGrade.cdSeq}"><c:out value="${listGrade.cdName}"/></c:if>
+													</c:forEach>
+												</td>
 												<td><c:out value="${list.ifmmEmailAddress}"/></td>
 												<td><c:out value="${list.ifmmEmailDomain}"/></td>
 												<td><c:out value="${list.ifmmPhone}"/></td>
@@ -436,9 +449,8 @@
 				                              		<i class="tf-icon bx bx-chevrons-right"></i>
 			                              		</a>
 				                            </li>
-				                          </ul>
-				                        </nav>	
-									</div>
+				                         </ul>
+				                    </nav>	
 								</div>
 							</div>
 						</div>	
@@ -446,7 +458,7 @@
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="location.href='../member/memberReg.html'">
+							<button type="button" class="btn btn-success" id="btnList">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -468,9 +480,8 @@
 								</div>	
 							</div>
 						</div>
-
-				</div>
-
+					</div>
+				</div>	
        
             <!-- / Content -->
 

@@ -7,22 +7,23 @@ public class CodeGroup {
 	private String cgNameEng;
 	private Integer cgUseNy;
 	private Integer cgDelNy;
-	private String cgRegTime;
-	private String cgModTime;
+	private String cgRegDate;
+	private String cgModDate;
 
 	
 	
-	public String getCgRegTime() {
-		return cgRegTime;
+	
+	public String getCgRegDate() {
+		return cgRegDate;
 	}
-	public void setCgRegTime(String cgRegTime) {
-		this.cgRegTime = cgRegTime;
+	public void setCgRegDate(String cgRegDate) {
+		this.cgRegDate = cgRegDate;
 	}
-	public String getCgModTime() {
-		return cgModTime;
+	public String getCgModDate() {
+		return cgModDate;
 	}
-	public void setCgModTime(String cgModTime) {
-		this.cgModTime = cgModTime;
+	public void setCgModDate(String cgModDate) {
+		this.cgModDate = cgModDate;
 	}
 	//count 서브쿼리
 	private String xcdSeqCount;

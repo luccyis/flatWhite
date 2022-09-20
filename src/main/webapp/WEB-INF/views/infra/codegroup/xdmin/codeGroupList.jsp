@@ -155,12 +155,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="../movie/movieList.html" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Without menu">기본 정보</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="../movie/movieTimetable.html" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Without navbar">상영시간표</div>
                   </a>
                 </li>
@@ -212,7 +212,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/member/memberList.html" class="menu-link">
+                  <a href="/member/memberList" class="menu-link">
                     <div data-i18n="Account">회원 리스트</div>
                   </a>
                 </li>
@@ -444,8 +444,8 @@
 												</td>
 												<td><c:out value="${list.cgNameEng }"/></td>
 												<td><c:out value="${list.xcdSeqCount}"/></td>
-												<td></td>
-												<td></td>
+												<td><c:out value="${list.cgRegDate}"/></td>
+												<td><c:out value="${list.cgModDate}"/></td>
 												<td><c:out value="${list.cgUseNy}"/></td>
 												<td><c:out value="${list.cgDelNy}"/></td>
 											</tr>

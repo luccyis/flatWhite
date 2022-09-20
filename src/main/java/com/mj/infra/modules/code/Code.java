@@ -1,5 +1,8 @@
 package com.mj.infra.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 
 	private String cgSeq;
@@ -10,14 +13,11 @@ public class Code {
 	private String cdUseNy;
 	private String cdDelNy;
 	
-	private String infrCodeGroup_cgSeq;
 	
-	public String getInfrCodeGroup_cgSeq() {
-		return infrCodeGroup_cgSeq;
-	}
-	public void setInfrCodeGroup_cgSeq(String infrCodeGroup_cgSeq) {
-		this.infrCodeGroup_cgSeq = infrCodeGroup_cgSeq;
-	}
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
+	
+	
 	public String getCgSeq() {
 		return cgSeq;
 	}

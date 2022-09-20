@@ -18,9 +18,6 @@ public class CodeController {
 	@Autowired
 	CodeServiceImpl service;
 	
-	@Autowired
-	CodeGroupServiceImpl service2;
-	
 	
 	@RequestMapping(value = "codeList")
 	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
@@ -42,14 +39,15 @@ public class CodeController {
 	
 	@RequestMapping(value = "codeForm")
 	public String codeForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+		if(vo.getCdSeq() != null) {
+			System.out.println("vo.getCdSeq(): " + vo.getCdSeq());
+			Code result = service.selectOne(vo);
+			model.addAttribute("item", result);
+		} else {
+			List<Code> list = service.selectCodeGroupList();
+			model.addAttribute("list", list);
+		}
 		
-		System.out.println("vo.getCdSeq(): " + vo.getCdSeq());
-		Code result = service.selectOne(vo);
-		/*
-		 * List<CodeGroup> list = service2.selectList(); model.addAttribute("list",
-		 * list);
-		 */
-		model.addAttribute("item", result);
 		return "infra/code/xdmin/codeForm";
 	}
 	
