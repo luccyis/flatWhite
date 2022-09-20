@@ -12,13 +12,12 @@
 	FROM infrCode a
 	JOIN infrCodeGroup b on a.infrCodeGroup_cgSeq = b.cgSeq
 	WHERE 1=1
+		ORDER BY a.cdSeq
 		<if test="shDelNy != null and !shDelNy.equals('')">AND a.cdDelNy = #{shDelNy}</if>
-		<if test="shValue != null"></if>
 		<choose>
 			<when test="shOption == 1">AND a.cdSeq = #{shValue}</when>
 			<when test="shOption == 2">AND a.cdName LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
-		ORDER BY a.cdSeq
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -75,7 +74,7 @@
 		 ,cdUseNy = #{cdUseNy}
 		 ,cdDelNy = #{cdDelNy}
 		WHERE 1=1
-			cdSeq = #{cdSeq}
+			a. cdSeq = #{cdSeq}
 	</update>
 	
 	<update id="uelete">

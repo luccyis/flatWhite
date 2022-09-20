@@ -73,23 +73,14 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupUpdt")
 	public String codeGroupUpdt( CodeGroup dto, CodeGroupVo vo, RedirectAttributes redirectAttributes)  throws Exception {
 		service.update(dto);
-		
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ==  " + dto.getCgSeq());
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ==  " + dto.getCgName());
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ==  " + dto.getCgNameEng());
-		
 		vo.setCgSeq(dto.getCgSeq());
-
 		redirectAttributes.addFlashAttribute("vo", vo);
 
-//		if(Constants.UPDATE_AFTER_TYPE ==1) {
-//			System.out.println("업대이트 에서 폼");
-//			return "redirect:/codeGroup/codeGroupForm";
-//		} else {
-//			System.out.println("업대이트 에서 리스트");
-//			return "redirect:/codeGroup/codeGroupList";
-//		}
-		return "redirect:/codeGroup/codeGroupForm";
+		if(Constants.UPDATE_AFTER_TYPE ==1) {
+			return "redirect:/codeGroup/codeGroupForm";
+		} else {
+			return "redirect:/codeGroup/codeGroupList";
+		}
 	}
 	
 	@RequestMapping(value = "codeGroupDele")

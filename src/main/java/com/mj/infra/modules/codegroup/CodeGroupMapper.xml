@@ -29,6 +29,8 @@
 				,(select count(aa.cdSeq) from infrCode aa where 1=1 and aa.cdDelNy = 0 and aa.cdSeq = a.cgSeq) as xcdSeqCount
 				,a.cgUseNy
 				,a.cgDelNy
+				,a.cgRegTime
+				,a.cgModTime
 				<!-- <include refid="Base.selectRegModWithAlies" /> -->
 			<include refid="selectCommon" />
 			
@@ -57,12 +59,14 @@
 		    ,cgNameEng
 		    ,cgUseNy
 		    ,cgDelNy
+		    ,cgRegTime
 		)
 		VALUES (
 			#{cgName}
 		    ,#{cgNameEng}
 		    ,#{cgUseNy}
 		    ,#{cgDelNy}
+		    ,now()
 		)
 		<selectKey resultType="String" keyProperty="cgSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -77,6 +81,7 @@
 			,cgNameEng = #{cgNameEng}
 			,cgUseNy = #{cgUseNy}
 			,cgDelNy = #{cgDelNy}
+			,cgModTime = now()
 			<!-- <include refid="Base.updateModColumnValue"/> -->
 		WHERE
 			cgSeq = #{cgSeq}

@@ -348,7 +348,6 @@
 							
 								<!-- *Vo.jsp s -->
 								<%@include file="codeGroupVo.jsp" %>
-								
 								<!-- *Vo.jsp e -->
 								
 								<div class="row">
@@ -622,7 +621,6 @@
 	});
 	
 	$("#btnDeleteInModal").on("click", function(){
-		alert("du");
 		form.attr("action", goUrlDele).submit();
 	});
 	

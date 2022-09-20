@@ -229,12 +229,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="../system/ccgList.html" class="menu-link">
+                  <a href="/codeGroup/codeGroupList" class="menu-link">
                     <div data-i18n="Basic">코드 그룹 관리</div>
                   </a>
                 </li>
                 <li class="menu-item active">
-                  <a href="../system/ccList.html" class="menu-link">
+                  <a href="codeList" class="menu-link">
                     <div data-i18n="Basic">코드 관리</div>
                   </a>
                 </li>
@@ -342,7 +342,12 @@
 					<div class="card">
 						<h5 class="card-header">코드 관리 </h5>
 						<div class="card-body">
-							<form id="myForm" method="post" action="/code/codeInst">
+							<form id="form" method="post">
+							
+								<!-- *Vo.jsp s -->
+								<%@include file="codeVo.jsp" %>
+								<!-- *Vo.jsp e -->
+								
 								<div class="row">
 									<div class="col-6 p-2">
 										<label for="codeUseNy" class="form-label">사용여부</label>
@@ -370,7 +375,7 @@
 								<div class="row">
 									<div class="col p-2">
 										<label for="inputCodeName" class="form-label">코드 이름(한글)</label>
-										<input type="text" class="form-control" id="inputCodeName" name="cdName" id="inputCodeName">
+										<input type="text" class="form-control" id="inputCodeName"  name="cdName" value="<c:out value="${item.cdName}"/>">
 									</div>
 									<div class="col p-2">
 										<label for="inputCodeEng" class="form-label">코드 이름(영문)</label>
@@ -380,9 +385,9 @@
 								<div class="row">
 									<div class="col p-2">
 										<label for="useNy" class="form-label">사용여부</label>
-										<select id="useNy" class="form-select">
-											<option value="1" selected>Y</option>
-											<option value="2">N</option>
+										<select id="useNy" class="form-select" name="cdUseNy">
+											<option value="1" <c:if test="${item.cdUseNy eq 1}">selected</c:if>>Y</option>
+											<option value="0" <c:if test="${item.cdUseNy eq 0}">selected</c:if>>N</option>
 										</select>
 									</div>
 									<div class="col p-2">
@@ -397,9 +402,9 @@
 									</div>
 									<div class="col p-2">
 										<label for="delNy" class="form-label">삭제여부</label>
-										<select id="delNy" class="form-select">
-											<option value="1" selected>N</option>
-											<option value="2">Y</option>
+										<select id="delNy" class="form-select" name="cdDelNy">
+											<option value="0" <c:if test="${item.cdDelNy eq 0}">selected</c:if>>>N</option>
+											<option value="1" <c:if test="${item.cdDelNy eq 1}">selected</c:if>>>Y</option>
 										</select>
 									</div>
 								</div>
@@ -427,20 +432,20 @@
 								<div class="row">
 									<div class="col-6">
 										<div class="demo-inline-spacing">
-											<button type="button" class="btn btn-primary" onclick="location.href='codeList'">
+											<button type="button" class="btn btn-primary" id="btnList">
 												<i class="fa-solid fa-bars"></i>
 											</button>
 										</div>
 									</div>	
 									<div class="col-6 d-flex flex-row-reverse">
 										<div class="demo-inline-spacing">
-											<button type="button" class="btn btn-danger">
+											<button type="button" class="btn btn-danger" id="btnUelete">
 												<i class="fa-solid fa-xmark"></i>
 											</button>
-											<button type="button" class="btn btn-danger">
+											<button type="button" class="btn btn-danger" id="btnDelete">
 												<i class="fa-solid fa-trash-can"></i>
 											</button>
-											<button type="button" class="btn btn-success" id="btnSave" onclick="test();">
+											<button type="button" class="btn btn-success" id="btnSave">
 												<i class="fa-solid fa-arrow-up-from-bracket"></i>
 											</button>	
 										</div>
@@ -518,27 +523,42 @@
     <!-- Page JS -->
     
     <script type="text/javascript">
-    	function test(){
-    		
-    		if(document.getElementById("inputCodeName").value == '' || document.getElementById("inputCodeName").value == null){
-    			alert("입력해주세요...")
-    			document.getElementById("inputCodeName").value = "";
-    			document.getElementById("inputCodeName").focus();
-    			return false;
-    		} else {
-    			alert(document.getElementById("inputCodeName").value);
-        		alert(document.getElementById("inputCgSeq").value);
-        		return false;
-    		}
-    		
-    		document.getElementById("myForm").submit();
-    		
-    	}
     
+    	var goUrlList = "code/codeList";
+    	var goUrlInst = "code/codeInst";
+    	var goUrlUpdt = "code/codeUpdt";
+    	var goUrlUele = "code/codeUele";
+    	var goUrlDele = "code/codeDele";
+    	
+    	var seq = $("input:hidden[name=cdSeq]");
+    	
+    	var form = $("form[name=form]");
+    	var formVo = $("form[name=formVo]");
+    	
+    	$("#btnSave").on("click", function(){
+    		if(seq.val() == "0" || seq.val() == ""){
+    			form.attr("action", goUrlInst).submit();
+    		} else {
+    			form.attr("action", goUrlUpdt).submit();
+    		}
+    	});
+    	
+    	$("#btnDelete").on("click", function(){
+    		form.attr("action", goUrlDele).submit();
+    	});
+    	
+    	$("#btnUelete").on("click", function(){
+    		form.attr("action", goUrlUele).submit();
+    	});
+    	
+    	$("#btnList").on("click", function(){
+    		formVo.attr("action", goUrlList).submit();
+    	})
     </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </body>
 </html>

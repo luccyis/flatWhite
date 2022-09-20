@@ -45,8 +45,10 @@ public class CodeController {
 		
 		System.out.println("vo.getCdSeq(): " + vo.getCdSeq());
 		Code result = service.selectOne(vo);
-		List<CodeGroup> list = service2.selectList();
-		/* model.addAttribute("list", list); */
+		/*
+		 * List<CodeGroup> list = service2.selectList(); model.addAttribute("list",
+		 * list);
+		 */
 		model.addAttribute("item", result);
 		return "infra/code/xdmin/codeForm";
 	}
