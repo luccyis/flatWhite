@@ -287,7 +287,7 @@
                                     <div class="bg">
 	                                    <div class="wrap">    
 	                                    	<div class="img">
-	                                    		<img src="../images/poster-topgun.jpg" alt="탑건: 매버릭" movie-no="22018400" onerror="noImg(this);">
+	                                    		<img src="/resources/images/poster-topgun.jpg" alt="탑건: 매버릭" movie-no="22018400" onerror="noImg(this);">
 	                                   		</div>    
 	                                   		<button type="button" class="del" onclick="fn_deleteMovieChoice('22018400')">삭제</button>
 	                               		</div>

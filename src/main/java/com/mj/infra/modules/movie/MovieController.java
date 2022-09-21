@@ -25,4 +25,32 @@ public class MovieController {
 	public String MoviePostList() throws Exception{
 		return "infr/movie/user/moviePostList";
 	}
+	
+	@RequestMapping(value="postListxdmin")
+	public String postListxdmin() throws Exception{
+		return "infr/movie/xdmin/postListxdmin";
+	}
+	
+	@RequestMapping(value="postForm")
+	public String postForm() throws Exception{
+		return "infr/movie/xdmin/postForm";
+	}
+	
+	@RequestMapping(value="movieList")
+	public String movieList() throws Exception{
+		return "infr/movie/xdmin/movieList";
+	}
+	
+	
+	@RequestMapping(value="movieForm")
+	public String movieForm() throws Exception{
+		return "infr/movie/xdmin/movieForm";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

@@ -25,5 +25,25 @@ public class MemberController {
 		
 		return "infra/member/xdmin/memberList";
 	}
+	
+	@RequestMapping(value="memberForm")
+	public String memberForm() throws Exception {
+		return "infra/member/xdmin/memberForm";
+	}
+	
+	@RequestMapping(value="joinAuth")
+	public String joinAuth() throws Exception {
+		return "infra/member/user/joinAuth";
+	}
+	
+	@RequestMapping(value="joinForm")
+	public String joinForm() throws Exception {
+		return "infra/member/user/joinForm";
+	}
+	
+	@RequestMapping(value="joinResult")
+	public String joinResult() throws Exception {
+		return "infra/member/user/joinResult";
+	}
 
 }

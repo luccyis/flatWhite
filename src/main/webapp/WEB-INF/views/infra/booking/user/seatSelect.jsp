@@ -124,7 +124,7 @@
                                 	<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
                                 		<div id="mCSB_1_container" class="mCSB_container mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; height: 270px;" dir="ltr">
                                     		<div id="seatLayout" style="width: 100%; height: 270px;">
-                                        		<img src="../images/theaterScreen.png" alt="screen" style="position: absolute; left: 62px; top: 10px;" class="mCS_img_loaded">
+                                        		<img src="/resources/images/theaterScreen.png" alt="screen" style="position: absolute; left: 62px; top: 10px;" class="mCS_img_loaded">
                                         			<div class'row'="">  
                                         				<button type="button" class="btn-seat-row" title="A 행" style="position:absolute; left:330px; top:50px;">A</button>
 		                                        		<button type="button" title="A3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:351px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100401" rownm="A" seatno="3" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
@@ -326,7 +326,7 @@
 		                                        			<span class="condition">판매가능</span>
 		                                        			<span class="rank">일반</span>
 		                                        		</button>
-	                                        		<img src="../images/doorTop.png" alt="좌우측 출입구" style="position:absolute; left:491px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
+	                                        		<img src="/resources/images/doorTop.png" alt="좌우측 출입구" style="position:absolute; left:491px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
                                         		</div>
                                 			</div>
                                 			<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;">
@@ -360,7 +360,7 @@
                                     <button type="button" class="now">12:00~14:20<i class="arr"></i></button>
                                 </div>
                                 <p class="poster">
-                                    <img src="../images/poster1.jpg" onerror="noImg(this);" alt="탑건: 매버릭">
+                                    <img src="/resources/images/poster1.jpg" onerror="noImg(this);" alt="탑건: 매버릭">
                                 </p>
                             </div>
                             <div class="choice-seat-area">
