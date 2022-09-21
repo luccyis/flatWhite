@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mj.infra.modules.theater.TheaterMapper">
+
+	<resultMap id="resultMapObj" type="com.mj.infra.modules.theater.Theater"></resultMap>
+	
+		<sql id ="selectCommon">
+		FROM tradTheater a
+		WHERE 1=1
+			ORDER BY a.tdthSeq
+			<if test="shDelNy != null and !shDelNy.equals('')">AND tdthDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND tdthSeq = #{shValue}</when>
+				<when test="shOption == 2">AND tdthRegion LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND tdthBranch LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+		</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.tdthSeq
+				,a.tdthRegion
+				,a.tdthBranch
+				,a.tdthAddress
+				,a.tdthZipcode
+				,a.tdthDelNy
+				,a.tdthUseNy
+			<include refid="selectCommon" />
+			
+			<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM tradTheater a
+		WHERE 1=1
+			AND a.tdthSeq = #{tdthSeq}
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+
+	<insert id="insert">
+		INSERT INTO tradTheater(
+			tdthRegion
+			,tdthBranch
+			,tdthAddress
+			,tdthZipcode
+			,tdthDelNy
+			,tdthUseNy
+		) 
+		VALUES(
+			#{tdthRegion}
+			,#{tdthBranch}
+			,#{tdthAddress}
+			,#{tdthZipcode}
+			,#{tdthDelNy}
+			,#{tdthUseNy}
+		)
+		<selectKey resultType="String" keyProperty="tdthSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE tradTheater
+		SET
+			tdthRegion = #{tdthRegion}
+			,tdthBranch = #{tdthBranch}
+			,tdthAddress = #{tdthAddress}
+			,tdthZipcode = #{tdthZipcode}
+			,tdthDelNy = #{tdthDelNy}
+			,tdthUseNy = #{tdthUseNy}
+		WHERE
+			tdthSeq = #{tdthSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE tradTheater
+		SET
+			tdthDelNy = 1
+		WHERE
+			tdthSeq = #{tdthSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tradTheater WHERE tdthSeq = #{tdthSeq}
+	</delete>
+
+
+
+</mapper>
+
