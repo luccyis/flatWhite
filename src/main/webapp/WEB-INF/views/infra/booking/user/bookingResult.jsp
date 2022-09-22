@@ -27,7 +27,7 @@
 	            <!-- 로그인전 -->
 	            <div class="before" style="">
 	                <a href="/login" title="로그인">로그인</a>
-	                <a href="../member/memberJoinAuth.html" title="회원가입">회원가입</a>
+	                <a href="/member/join" title="회원가입">회원가입</a>
 	            </div>
 	            <!-- 로그인후 -->
 	            <div class="after" style="display:none">
@@ -39,7 +39,7 @@
 	    <div class="link-area">
 	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
 	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="/mypage/mypageMain" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
 	
 		<nav id="gnb" class="">
@@ -131,7 +131,7 @@
 					<div class="btn-group pt30">
 						<a href="#" class="button large" w-data="600" h-data="600" id="btn_ticket_print" title="교환권출력">교환권출력</a>
 						<a href="#" class="button large" id="btn_bill_print" title="영수증출력" style="display: none;">영수증출력 </a>
-						<a href="../mypage/mypageBookingList.html" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
+						<a href="/mypage/bookingList" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
 					</div>
 					<div class="box-border v1 mt10">
 						<ul class="dot-list gray">

@@ -351,13 +351,21 @@
 									<div class="row p-1">
 										<input type="text" class="form-control" id="sample3_extraAddress" placeholder="참고항목" disabled>
 									</div>
+									<div class="row p-1">
+										<div class="col">
+											<input type="text" class="form-control" id="ifmaLatArray0" placeholder="위도" disabled>
+										</div>
+										<div class="col">
+											<input type="text" class="form-control" id="ifmaLngArray0" placeholder="경도" disabled>
+										</div>
+									</div>
 								</div>	
 							</div>	
 					
 						<div class="row">
 							<div class="col-6">
 								<div class="demo-inline-spacing">
-									<button type="button" class="btn btn-primary" onclick="location.href='theaterList.html'">
+									<button type="button" class="btn btn-primary" onclick="location.href='theaterList'">
 										<i class="fa-solid fa-bars"></i>
 									</button>
 								</div>
@@ -451,7 +459,8 @@
 
     <!-- Page JS -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae2d588a9908efcae4b7f462eb1258db&libraries=services"></script>
+<script>	
 
 	$("#btnAddress").on("click", function(){
 		sample3_execDaumPostcode();
@@ -528,6 +537,24 @@
 
                 // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
                 document.body.scrollTop = currentScroll;
+                
+                //경도.위도 찾기
+        		/* lat and lng from address s */
+        			
+        		// 주소-좌표 변환 객체를 생성
+        		var geocoder = new daum.maps.services.Geocoder();
+        		
+        		// 주소로 좌표를 검색
+        		geocoder.addressSearch(roadaddr, function(result, status) {
+        		 
+        			// 정상적으로 검색이 완료됐으면,
+        			if (status == daum.maps.services.Status.OK) {
+        				
+        				document.getElementById("ifmaLatArray0").value=result[0].y;
+        				document.getElementById("ifmaLngArray0").value=result[0].x;
+        			}
+        		});
+        		/* lat and lng from address e */
             },
             // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
             onresize : function(size) {
@@ -540,6 +567,11 @@
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = 'block';
     }
+    
+    
+    
+   
+    
     
 </script>
     <!-- Place this tag in your head or just before your close body tag. -->

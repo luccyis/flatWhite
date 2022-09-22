@@ -28,7 +28,7 @@
 	            <!-- 로그인전 -->
 	            <div class="before" style="">
 	                <a href="/login" title="로그인">로그인</a>
-	                <a href="/member/join" title="회원가입">회원가입</a>
+	                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 	            </div>
 	            <!-- 로그인후 -->
 	            <div class="after" style="display:none">
@@ -40,7 +40,7 @@
 	    <div class="link-area">
 	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
 	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="/mypage/mypageMain" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
 	
 		<nav id="gnb" class="">
@@ -143,7 +143,7 @@
 
 				<!-- add-post -->
 				<div class="add-post">
-					<a href="../movie/moviePostReg.html" class="button purple" title="무비포스트 작성">무비포스트 작성</a>
+					<a href="/movie/postForm" class="button purple" title="무비포스트 작성">무비포스트 작성</a>
 				</div>
 				<!--// add-post -->
 			</div>

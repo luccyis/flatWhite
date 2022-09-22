@@ -28,7 +28,7 @@
 	            <!-- 로그인전 -->
 	            <div class="before" style="">
 	                <a href="/login" title="로그인">로그인</a>
-	                <a href="../member/memberJoinAuth.html" title="회원가입">회원가입</a>
+	                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 	            </div>
 	            <!-- 로그인후 -->
 	            <div class="after" style="display:none">
@@ -39,14 +39,14 @@
 	    </div>
 	    <div class="link-area">
 	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
-	        <a href="../booking/timeTable.html" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="../mypage/mypageMain.html" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
+	        <a href="/mypage/main." class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
 	
 		<nav id="gnb" class="">
 	        <ul class="gnb-depth1">
 	            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-	            <li><a href="../booking/timeTable.html" class="gnb-txt-reserve" title="예매">예매</a></li>
+	            <li><a href="/booking/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
 	            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
 		        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
 		        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
@@ -125,7 +125,7 @@
 					</div>
 					<div class="reserve screen-type col-2">
 						<div class="reserve">
-							<a href="../booking/timeTable.html" class="btn reserve" title="영화 예매하기">예매</a>
+							<a href="/booking/timeTable" class="btn reserve" title="영화 예매하기">예매</a>
 							<a href="" class="btn dolby">
 								<img src="" alt="">
 							</a>

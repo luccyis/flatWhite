@@ -18,7 +18,7 @@ public class TheaterDao {
 	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
 	
-	private static String namespace = "com.mj.infra.modules.theater.theaterMapper";
+	private static String namespace = "com.mj.infra.modules.theater.TheaterMapper";
 	
 	public List<Theater> selectList(TheaterVo vo){
 		List<Theater> list = sqlSession.selectList(namespace + ".selectList", vo);
@@ -42,7 +42,6 @@ public class TheaterDao {
 	
 	public int selectOneCount(TheaterVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
-		
 	}
 	
 	public int update(Theater dto) {return sqlSession.update(namespace + ".update", dto);}

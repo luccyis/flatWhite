@@ -32,7 +32,7 @@
 	            <!-- 로그인전 -->
 	            <div class="before" style="">
 	                <a href="/login" title="로그인">로그인</a>
-	                <a href="../member/memberJoinAuth.html" title="회원가입">회원가입</a>
+	                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 	            </div>
 	            <!-- 로그인후 -->
 	            <div class="after" style="display:none">
@@ -43,14 +43,14 @@
 	    </div>
 	    <div class="link-area">
 	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
-	        <a href="../booking/timeTable.html" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="../mypage/mypageMain.html" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
+	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
 	
 		<nav id="gnb" class="">
 	        <ul class="gnb-depth1">
 	            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-	            <li><a href="../booking/timeTable.html" class="gnb-txt-reserve" title="예매">예매</a></li>
+	            <li><a href="/booking/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
 	            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
 		        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
 		        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
@@ -97,7 +97,7 @@
 						<li tabindex="0" class="no-img">
 							<div class="movie-list-info">    
 								<p class="rank" style="">1<span class="ir">위</span></p>
-								<a href="/movie/detail">    
+								<a href="/movie/view">    
 									<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_420.jpg" alt="탑건: 매버릭" class="poster lozad" onerror="noImg(this)">  
 								</a>  
 				  				<div class="movie-score" style="opacity: 0;">        
@@ -128,7 +128,7 @@
 									<span>1k</span>
 								</button>    
 								<div class="case movieStat4" style="">        
-									<a href="../booking/timeTable.html" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
+									<a href="/booking/timeTable" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
 					  			</div>
 					  		</div>	
 				  		</li>

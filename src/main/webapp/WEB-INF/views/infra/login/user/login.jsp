@@ -24,13 +24,13 @@
 
    <div class="body-wrap">
 	   	<header id="header">
-		    <h1 class="ci"><a href="/home/main" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
+		    <h1 class="ci"><a href="/home" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
 		    <div class="util-area">
 		        <div class="right-link">
 		            <!-- 로그인전 -->
 		            <div class="before" style="">
 		                <a href="" title="로그인">로그인</a>
-		                <a href="../member/memberReg.html" title="회원가입">회원가입</a>
+		                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 		            </div>
 		            <!-- 로그인후 -->
 		            <div class="after" style="display:none">
@@ -48,7 +48,7 @@
 			<nav id="gnb" class="">
 		        <ul class="gnb-depth1">
 		            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-		            <li><a href="/booking/main" class="gnb-txt-reserve" title="예매">예매</a></li>
+		            <li><a href="/booking/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
 		            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
 			        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
 			        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
@@ -105,17 +105,17 @@
 										</div>
 										<!--// chk-util -->
 
-										<button id="btnLogin" type="button" class="button purple large btn-login">로그인</button>
+										<button id="btnLogin" type="button" class="button purple large btn-login" onclick="location.href='/home'">로그인</button>
 
 										<div class="link">
-											<a href="/find" title="ID/PW 찾기 선택">ID/PW 찾기</a>
-											<a href="/member/join" title="회원가입 선택">회원가입</a>
+											<a href="/find/findId" title="ID/PW 찾기 선택">ID/PW 찾기</a>
+											<a href="/member/joinAuth" title="회원가입 선택">회원가입</a>
 										</div>
 
 										<div class="sns-login">
-											<a href="" lnkgty="FACEBOOK" title="페이스북으로 로그인 선택"><img src="../images/ico-facebook.png" alt="페이스북">페이스북으로 로그인</a>
-											<a href="" lnkgty="NAVER" title="네이버로 로그인 선택"><img src="../images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
-											<a href="" lnkgty="KAKAO" title="카카오톡으로 로그인 선택"><img src="../images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
+											<a href="" lnkgty="FACEBOOK" title="페이스북으로 로그인 선택"><img src="/resources/images/ico-facebook.png" alt="페이스북">페이스북으로 로그인</a>
+											<a href="" lnkgty="NAVER" title="네이버로 로그인 선택"><img src="/resources/images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
+											<a href="" lnkgty="KAKAO" title="카카오톡으로 로그인 선택"><img src="/resources/images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
 										</div>
 									</div>
 								</div>

@@ -33,8 +33,8 @@
 
 				<div class="tab-list">
 					<ul>
-						<li class="on"><a href="../find/findId.html" title="아이디찾기 선택">아이디 찾기</a></li>
-						<li><a href="../find/findPw.html" title="비밀번호 찾기 선택">비밀번호 찾기</a></li>
+						<li class="on"><a href="/find/findId" title="아이디찾기 선택">아이디 찾기</a></li>
+						<li><a href="/find/findPw" title="비밀번호 찾기 선택">비밀번호 찾기</a></li>
 					</ul>
 				</div>
 				<h2 class="tit mt20">알림</h2>

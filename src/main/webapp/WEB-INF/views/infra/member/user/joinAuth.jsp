@@ -21,7 +21,7 @@
 <body>
 	<div class="body-wrap">
 		<div class="member-wrap">
-			<h1 class="ci"><a href="/home/main" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
+			<h1 class="ci"><a href="/home" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
 	
 			<!-- col-wrap -->
 			<div class="col-wrap">
@@ -52,12 +52,12 @@
 					</p>
 	
 					<div class="join-chk-me col-2">
-						<a href="/join/Auth" title="휴대폰 인증 선택" id="btnMblpCert">
+						<a href="/member/joinForm" title="휴대폰 인증 선택" id="btnMblpCert">
 							<i class="iconset ico-member-phone"></i>
 							<span>휴대폰 인증</span>
 						</a>
 	
-						<a href="/join/Auth" title="아이핀 인증 선택" id="btnIpinCert">
+						<a href="/member/joinForm" title="아이핀 인증 선택" id="btnIpinCert">
 							<i class="iconset ico-member-ipin"></i>
 							<span>아이핀 인증</span>
 						</a>

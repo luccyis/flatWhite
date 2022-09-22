@@ -27,7 +27,7 @@
 	            <!-- 로그인전 -->
 	            <div class="before" style="">
 	                <a href="/login" title="로그인">로그인</a>
-	                <a href="/member/join/Auth" title="회원가입">회원가입</a>
+	                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 	            </div>
 	            <!-- 로그인후 -->
 	            <div class="after" style="display:none">
@@ -39,7 +39,7 @@
 	    <div class="link-area">
 	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
 	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="/mypage/myPageMain" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
 	
 		<nav id="gnb" class="">
@@ -61,7 +61,7 @@
         	<div class="inner-wrap" id="myLoaction">
         		<div class="location">
 					<span>Home</span>
-					<a href="../mypage/mypageMain.html" title="나의 메가박스 페이지로 이동">나의 메가박스</a>
+					<a href="/mypage/mypageMain" title="나의 메가박스 페이지로 이동">나의 메가박스</a>
 				</div>
 			</div>
        	</div>

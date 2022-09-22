@@ -6,6 +6,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,7 +23,7 @@
 <body>
 	<div class="body-wrap">
 		<div class="member-wrap">
-			<h1 class="ci"><a href="/home/main" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
+			<h1 class="ci"><a href="/home" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
 			<!-- col-wrap -->
 			<div class="col-wrap">
 				<div class="col">
@@ -48,6 +50,8 @@
 				
 				<form>
 					<div class="table-wrap">
+						<form id="form" method="post" name="form">
+						
 						<table class="board-form">
 							<caption>회원가입 </caption>
 							<colgroup>
@@ -135,9 +139,10 @@
 								</tr>
 							</tbody>
 						</table>
+						</form>
 					</div>
 					<div class="btn-member-bottom">
-						<button id="btmReg" type="button" class="button purple large" onclick="location.href='../member/memberJoinResult.html'">
+						<button id="btmReg" type="button" class="button purple large" onclick="location.href='/member/joinResult'">
 							회원가입
 						</button>
 					</div>

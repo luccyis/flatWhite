@@ -137,7 +137,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a href="theater/theaterList" class="menu-link">
                     <div data-i18n="Without menu">극장 정보</div>
                   </a>
                 </li>
@@ -292,105 +292,120 @@
 		<!-- Content -->	
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 기본 정보 관리 </h4>
-					
+					<form method="post" name="formList" id="formList">
+					<%@include file="theaterVo.jsp" %>
 				<!-- 	Table -->
 					<div class="card">
-						<h5 class="card-header">극장 리스트</h5>
 						<div class="card-body">
-							<div class="table-responsive text-nowrap">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" id="theaterListCheck" value="">	
-												</div>
-											</th>	
-											<th>#</th>
-											<th>지역</th>
-											<th>지점</th>
-											<th>주소</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" id="theaterListCheck" value="">	
-												</div>
-											</td>
-											<td>1</td>
-											<td>서울</td>
-											<td>코엑스</td>
-											<td>서울시 강남구 봉은사로524 B1(삼성동,코엑스몰)</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" id="theaterListCheck" value="">	
-												</div>
-											</td>
-											<td>2</td>
-											<td>서울</td>
-											<td>성수</td>
-											<td>서울특별시 성동구 왕십리로 50</td>
-										</tr>	
-										<tr>
-											<td>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" id="theaterListCheck" value="">	
-												</div>
-											</td>
-											<td>3</td>
-											<td>서울</td>
-											<td>동대문</td>
-											<td>서울 중구 장충단로 247 굿모닝시티9층</td>
-										</tr>	
+							<div class="row">
+									<div class="col p-2">
+										<select id="shDelNy" name="shDelNy" class="form-select">
+											<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
+											<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+											<option value="1"<c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<select id="" class="form-select">
+											<option>수정일</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="startDate" name="startDate" placeholder="시작일">
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="endDate" name="endDate" placeholder="종료일">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col p-2">
+										<select id="shOption" name="shOption" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+												<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>극장코드</option>
+												<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>지역</option>
+												<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>지점</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="검색어">
+									</div>
+									<div class="col p-2">
+										<button type="submit" class="btn btn-warning" id="btnSearch">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button type="button" class="btn btn-danger" id="btnReset">
+											<i class="fa-solid fa-rotate-left"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<div class="card">
+							<h5 class="card-header">극장 리스트</h5>
+							<div class="card-body">
+								<span>total : </span><c:out value="${vo.totalRows -((vo.thisPage-1) * vo.rowNumToShow + status.index)}"/>
+								<div class="table-responsive text-nowrap">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>
+													<div class="form-check g-2">
+														<input class="form-check-input" type="checkbox" id="listCheck" value="">	
+													</div>
+												</th>	
+												<th>#</th>
+												<th>극장코드</th>
+												<th>지역</th>
+												<th>지점</th>
+												<th>주소</th>
+												<th>우편번호</th>
+												<th>사용여부</th>
+												<th>삭제여부</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0 }">
+													<tr>
+														<td class="text-center" colspan="7">There is no data!</td>
+													</tr>
+												</c:when>
+											<c:otherwise>
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<tr>
+														<td>
+															<div class="form-check g-2">
+																<input class="form-check-input" type="checkbox" id="listCheck" value="">	
+															</div>
+														</td>
+														<td>${status.count}</td>
+														<td><c:out value="${list.tdthSeq}"/></td>
+														<td><c:out value="${list.tdthRegion}"/></td>
+														<td><c:out value="${list.tdthBranch}"/></td>
+														<td><c:out value="${list.tdthAddress}"/></td>
+														<td><c:out value="${list.tdthZipCode}"/></td>
+														<td><c:out value="${list.tdthUseNy}"/></td>
+														<td><c:out value="${list.tdthDelNy}"/></td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>				
 									</tbody>	
 								</table>
 							</div>
 						</div>
 						<div class="card-footer">
-							<div class="col-12">
-								<div class="demo-inline-spacing">
-									<nav aria-lable="Page Navigation">
-										<ul class="pagination pagination-sm justify-content-center">
-											<li class="page-item prev">
-												<a class="page-link" href="javascript:void(0);">
-													<i class="tf-icon bx bx-chevrons-left"></i>
-                           						</a>
-				                            </li>
-				                            <li class="page-item active">
-				                              <a class="page-link" href="javascript:void(0);">1</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">2</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">3</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">4</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">5</a>
-				                            </li>
-				                            <li class="page-item next">
-				                            	<a class="page-link" href="javascript:void(0);">
-				                              		<i class="tf-icon bx bx-chevrons-right"></i>
-			                              		</a>
-				                           </li>
-				                        </ul>
-				                      </nav>	
-									</div>
-								</div>
-							</div>
+							<!-- pagination s -->
+							<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+							<!-- pagination e -->
 						</div>	
 						<div class="demo-inline-spacing">
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" id="">
+							<button type="button" class="btn btn-success" id="" onclick="location.href='theaterForm'">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -412,6 +427,7 @@
 								</div>	
 							</div>
 						</div>
+						</form>
 					</div>
        
             <!-- / Content -->
@@ -479,6 +495,35 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+
+	<script>
+	var goUrlList = "/theater/theaterList";
+	var goUrlInst = "/theater/theaterInst";
+	var goUrlUpdt = "/theater/theaterUpdt";
+	var goUrlUele = "/theater/theaterUele";
+	var goUrlDele = "/theater/theaterDele";
+	
+	var seq = $("input:hidden[name=tdthSeq]");
+	
+	var form = $("form[name=formList]");
+	var formVo = $("form[name=formVo]");
+	
+	$("#btnSearch").on("click", function(){
+		form.attr("action", goUrlList).submit();
+	});
+	
+	$("#btnReset").on("click", function(){
+		$(location).attr("href", goUrlList);
+	});
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	
+	
+	</script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

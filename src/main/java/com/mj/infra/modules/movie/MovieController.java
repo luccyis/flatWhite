@@ -13,38 +13,39 @@ public class MovieController {
 	
 	@RequestMapping(value="main")
 	public String MovieMain() throws Exception{
-		return "infr/movie/user/movieMain";
+		return "infra/movie/user/movieMain";
 	}
 
 	@RequestMapping(value="view")
 	public String MovieView() throws Exception {
-		return "infr/movie/user/movieView";
+		return "infra/movie/user/movieView";
 	}
 	
 	@RequestMapping(value="postList")
 	public String MoviePostList() throws Exception{
-		return "infr/movie/user/moviePostList";
-	}
-	
-	@RequestMapping(value="postListxdmin")
-	public String postListxdmin() throws Exception{
-		return "infr/movie/xdmin/postListxdmin";
+		return "infra/movie/user/moviePostList";
 	}
 	
 	@RequestMapping(value="postForm")
 	public String postForm() throws Exception{
-		return "infr/movie/xdmin/postForm";
+		return "infra/movie/user/postForm";
 	}
+	
+	@RequestMapping(value="postListxdmin")
+	public String postListxdmin() throws Exception{
+		return "infra/movie/xdmin/postListxdmin";
+	}
+	
 	
 	@RequestMapping(value="movieList")
 	public String movieList() throws Exception{
-		return "infr/movie/xdmin/movieList";
+		return "infra/movie/xdmin/movieList";
 	}
 	
 	
 	@RequestMapping(value="movieForm")
 	public String movieForm() throws Exception{
-		return "infr/movie/xdmin/movieForm";
+		return "infra/movie/xdmin/movieForm";
 	}
 	
 	

@@ -40,7 +40,7 @@
 		            <!-- 로그인전 -->
 		            <div class="before" style="">
 		                <a href="/login" title="로그인">로그인</a>
-		                <a href="../member/memberJoinAuth.html" title="회원가입">회원가입</a>
+		                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 		            </div>
 		            <!-- 로그인후 -->
 		            <div class="after" style="display:none">
@@ -51,14 +51,14 @@
 		    </div>
 		    <div class="link-area">
 		        <a href="" class="header-open-layer btn-layer-search" title="검색">검색</a>
-		        <a href="../booking/timetable.html" class="link-ticket" title="상영시간표">상영시간표</a>
-		        <a href="../mypage/mypageMain.html" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+		        <a href="/booking/timetable" class="link-ticket" title="상영시간표">상영시간표</a>
+		        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 		    </div>
 		
 			<nav id="gnb" class="">
 		        <ul class="gnb-depth1">
 		            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-		            <li><a href="../booking/timeTable.html" class="gnb-txt-reserve" title="예매">예매</a></li>
+		            <li><a href="/booking/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
 		            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
 			        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
 			        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
@@ -103,7 +103,7 @@
 							<div class="main-movie-list">
 								<ol class="list">
 									<li name="li_boxoRankList" class="first">
-										<a href="/movie/detail" class="movie-list-info" title="영화상세 보기">
+										<a href="/movie/view" class="movie-list-info" title="영화상세 보기">
 											<p class="rank">1<span class="ir">위</span></p>
 											<!-- to 개발 : alt 값에 영화 제목 출력 -->
 									      	<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_420.jpg" alt="탑건: 매버릭" class="poster" onerror="noImg(this, 'main');">
@@ -124,7 +124,7 @@
 													1k
 											</button>
 		                                    <div class="case">
-		                                       <a href="../booking/timeTable.html" class="button gblue" title="영화 예매하기">예매</a>
+		                                       <a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
 		                                   </div>
 		                               </div>
 									</li>
@@ -151,7 +151,7 @@
 													1.6k
 											</button>
 		                                    <div class="case">
-		                                    	<a href="../booking/timeTable.html" class="button gblue" title="영화 예매하기">예매</a>
+		                                    	<a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
 		                                    </div>
 		                               </div>
 									</li>
@@ -178,7 +178,7 @@
 												2.1k
 											</button>
 		                                    <div class="case">
-		                                    	<a href="../booking/timeTable.html" class="button gblue" title="영화 예매하기">예매</a>
+		                                    	<a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
 		                                    </div>
 		                                </div>
 									</li>
@@ -206,7 +206,7 @@
 												1k
 											</button>
 			                                 <div class="case">
-			                                   <a href="../booking/timeTable.html" class="button gblue" title="영화 예매하기">예매</a>
+			                                   <a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
 			                               </div>
 		                               </div>
 									</li>
@@ -222,9 +222,9 @@
 									</div>
 								</div>
 		
-								<div class="cell"><a href="../booking/timeTable.html" title="상영시간표 보기"><i class="iconset ico-schedule-main"></i> 상영시간표</a></div>
-								<div class="cell"><a href="../movie/movieMain.html" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
-								<div class="cell"><a href="../booking/timeTable.html" title="빠른예매 보기"><i class="iconset ico-quick-reserve-main"></i> 빠른예매</a></div>
+								<div class="cell"><a href="/booking/timeTable" title="상영시간표 보기"><i class="iconset ico-schedule-main"></i> 상영시간표</a></div>
+								<div class="cell"><a href="/movie/main" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
+								<div class="cell"><a href="/booking/timeTable" title="빠른예매 보기"><i class="iconset ico-quick-reserve-main"></i> 빠른예매</a></div>
 							</div>
 						</div>
 				<!--// cont-area  -->

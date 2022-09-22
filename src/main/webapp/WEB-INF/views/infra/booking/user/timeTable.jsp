@@ -27,7 +27,7 @@
 	            <!-- 로그인전 -->
 	            <div class="before" style="">
 	                <a href="/login" title="로그인">로그인</a>
-	                <a href="../member/memberJoinAuth.html" title="회원가입">회원가입</a>
+	                <a href="/member/join" title="회원가입">회원가입</a>
 	            </div>
 	            <!-- 로그인후 -->
 	            <div class="after" style="display:none">
@@ -39,7 +39,7 @@
 	    <div class="link-area">
 	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
 	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="/mypage/mypageMain" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
 	
 		<nav id="gnb" class="">
@@ -467,7 +467,7 @@
 	                            			<div id="mCSB_18_container" class="mCSB_container mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
 	                            				<ul>
 	                            					<li>
-	                            						<button type="button" class="btn" id="2208051003055" onclick="location.href='../booking/seatSeclect.html'"
+	                            						<button type="button" class="btn" id="2208051003055" onclick="location.href='/booking/seatSelect'"
 	                            							play-start-time="1815" play-de="20220805" play-seq="4" rpst-movie-no="22018401" brch-no="1003" theab-no="03" play-schdl-no="2208051003055" rest-seat-cnt="201" ctts-ty-div-cd="MVCT01" theab-popup-at="Y" theab-popup-no="1290">
 		                            						<div class="legend"></div>
 		                            							<span class="time">
