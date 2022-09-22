@@ -19,10 +19,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "memberList")
 	public String memberList(Model model) throws Exception{
-		
 		List<Member> list = service.selectList();
 		model.addAttribute("list", list);
-		
 		return "infra/member/xdmin/memberList";
 	}
 	
@@ -30,6 +28,8 @@ public class MemberController {
 	public String memberForm() throws Exception {
 		return "infra/member/xdmin/memberForm";
 	}
+	
+	//user
 	
 	@RequestMapping(value="joinAuth")
 	public String joinAuth() throws Exception {

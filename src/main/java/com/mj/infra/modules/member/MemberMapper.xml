@@ -8,12 +8,127 @@
 
     <resultMap id="resultMapObj" type="com.mj.infra.modules.member.Member"></resultMap>
 	
+	<sql id="selectCommon">
+	FROM infrMember a
+	WHERE 1=1
+		ORDER BY ifmmSeq
+		<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifmmDelNy = #{shDelNy}</if>
+		<choose>
+			<when test="shOption == 1">AND a.ifmmSeq = #{shValue}</when>
+			<when test="shOption == 2">AND a.ifmmName LIKE CONCAT('%', #{shValue},'%')</when>
+			<when test="shOption == 3">AND a.ifmmId LIKE CONCAT('%', #{shValue},'%')</when>
+		</choose>
+	</sql>
+	
 	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmPassword
+			,a.ifmmName
+			,a.ifmmGender
+			,a.ifmmGrade
+			,a.ifmmEmailAddress
+			,a.ifmmEmailDomain
+			,a.ifmmPhone
+			,a.ifmmDob
+			,a.ifmmEmailNy
+			,a.ifmmSmsNy
+			,a.ifmmDobLoginNy
+			,a.ifmmSnsLogin
+			,a.ifmmDelNy
+			,a.ifmmUseNy
+		<include refid="selectCommon"/>
+		<include refid="Base.orderByLimitForMysql"/>
+		<include refid="Base.selectListLowerForMysql"/>
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
 		FROM infrMember a
 		WHERE 1=1
-			
+		AND	ifmmSeq = #{ifmmSeq}
 	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon"/>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO infrMember (
+			ifmmSeq
+			,ifmmPassword
+			,ifmmName
+			,ifmmGender
+			,ifmmGrade
+			,ifmmEmailAddress
+			,ifmmEmailDomain
+			,ifmmPhone
+			,ifmmDob
+			,ifmmEmailNy
+			,ifmmSmsNy
+			,ifmmDobLoginNy
+			,ifmmSnsLogin
+			,ifmmDelNy
+			,ifmmUseNy
+		)
+		VALUES(
+			#{ifmmSeq}
+			,#{ifmmPassword}
+			,#{ifmmName}
+			,#{ifmmGender}
+			,#{ifmmGrade}
+			,#{ifmmEmailAddress}
+			,#{ifmmEmailDomain}
+			,#{ifmmPhone}
+			,#{ifmmDob}
+			,#{ifmmEmailNy}
+			,#{ifmmSmsNy}
+			,#{ifmmDobLoginNy}
+			,#{ifmmSnsLogin}
+			,#{ifmmDelNy}
+			,#{ifmmUseNy}
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE infrMember
+		SET
+			ifmmSeq = #{ifmmSeq}
+			,ifmmPassword = #{ifmmPassword}
+			,ifmmName = #{ifmmName}
+			,ifmmGender = #{ifmmGender}
+			,ifmmGrade = #{ifmmGrade}
+			,ifmmEmailAddress =#{ifmmEmailAddress}
+			,ifmmEmailDomain=#{ifmmEmailDomain}
+			,ifmmPhone=#{ifmmPhone}
+			,ifmmDob=#{ifmmDob}
+			,ifmmEmailNy=#{ifmmEmailNy}
+			,ifmmSmsNy=#{ifmmSmsNy}
+			,ifmmDobLoginNy=#{ifmmDobLoginNy}
+			,ifmmSnsLogin=#{ifmmSnsLogin}
+			,ifmmDelNy=#{ifmmDelNy}
+			,ifmmUseNy=#{ifmmUseNy}
+		WHERE 1=1
+			ifmmSeq = #{ifmmSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrMember
+		SET
+			ifmmDelNy = 1
+		WHERE
+			ifmmSeq = #{ifmmSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrMember WHERE ifmmSeq = #{ifmmSeq}
+	</delete>
+	
+	
 
 </mapper>
