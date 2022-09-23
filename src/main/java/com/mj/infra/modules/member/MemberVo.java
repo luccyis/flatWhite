@@ -9,6 +9,7 @@ public class MemberVo extends BaseVo {
 		private Integer shDelNy;
 		private String ifmmSeq;
 		
+		
 		public Integer getShOption() {
 			return shOption;
 		}

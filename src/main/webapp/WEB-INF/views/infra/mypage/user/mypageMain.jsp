@@ -75,7 +75,7 @@
 						<li>
 							<a href="/mypage/Main" title="회원정보">회원정보</a>
 							<ul class="depth3">
-								<li><a href="/mypage/mypageMod" title="개인정보 수정">개인정보 수정</a></li>
+								<li><a href="/mypage/mod" title="개인정보 수정">개인정보 수정</a></li>
 								<li><a href="/mypage/additionalInfo" title="선택정보 수정">선택정보 수정</a></li>
 							</ul>
 						</li>

@@ -54,5 +54,14 @@ public class MemberServiceImpl implements MemberService {
 	public int insert(Member dto) throws Exception {
 		return dao.insert(dto);
 	}
+
+	@Override
+	public int selectOneIdCheck(Member dto) throws Exception {
+		return dao.selectOneIdCheck(dto);
+	}
+
+	
+		
+	
 }
 

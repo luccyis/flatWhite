@@ -48,9 +48,8 @@
 					</div>
 				</div>
 				
-				<form>
 					<div class="table-wrap">
-						<form id="form" method="post" name="form">
+						<form id="mainForm" method="post" name="mainForm">
 						
 						<table class="board-form">
 							<caption>회원가입 </caption>
@@ -60,11 +59,13 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th scope="row"><label for="inputId">아이디</label></th>
-									<td>
-										<input id="inputId" maxlength="20" type="text" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" placeholder="아이디" class="input-text w230px">
-										<button id="btnIdchk" type="button" class="button purple w120px ml06" >아이디중복확인 </button>
+									<th scope="row"><label for="ifmmId">아이디<span class="text-danger">*</span></label></th>
+									<td>	
+										<input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+										<input id="ifmmId" maxlength="20" type="text" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" placeholder="아이디" class="input-text w230px">
+										<button id="btnIdchk" type="button" class="button purple w120px ml06">아이디중복확인 </button>
 									</td>
+									<td><div class="invalid-feedback" id="ifmmIdFeedback"></div></td>
 								</tr>
 								<tr>
 									<th scope="row"><label for="inputPw">비밀번호 </label></th>
@@ -139,19 +140,71 @@
 								</tr>
 							</tbody>
 						</table>
-						</form>
 					</div>
 					<div class="btn-member-bottom">
-						<button id="btmReg" type="button" class="button purple large" onclick="location.href='/member/joinResult'">
+						<button id="btmReg" type="button" class="button purple large" onclick="runForm('add');">
 							회원가입
 						</button>
 					</div>
 				</form>	
 			</div>
 		</div>
-		
-	
 	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+	$("#btnIdchk").on("click", function(){
+		var chkId = $("#ifmmId").val();
+		if(chkId ==null) return false;
+		
+		$.ajax({
+			async: true
+			,cache: false
+			,type: "post"
+			,url: "/member/checkId"
+			,data : {ifmmId : $("#ifmmId").val()}
+			,dataType:'json' 
+			,success: function(response){
+				if(response.rt=="success"){
+					alert("사용가능합니다.");
+				} else {
+					alert("사용불가능합니다.");
+				}
+			}
+			,error : function(){
+			alert("ajax error");
+			}
+			
+		})
+		
+	});
+	
+	
+	
+	</script>
+	<script type="text/javascript">
+	var form = $("#mainForm");
+	  
+	runForm = function(key) {
+		  
+	  switch(key)
+	  {
+	  	case "return":
+ 		{
+	  	  	form.attr("action", "/member/memberList" ).submit();
+	  		break;
+  		}
+	  	case "add":
+  		{
+			form.attr("action","/member/joinResult").submit(); 		
+  		}
+	  
+	  }
+	}
+	
+	
+	
+	</script>
+	
 	<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
 	<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
 </body>

@@ -57,10 +57,18 @@
 		<include refid="selectCommon"/>
 	</select>
 	
+	<select id="idCheck" resultType="int">
+		SELECT
+			COUNT(*) 
+		FROM
+			infrMember
+		WHERE 
+			ifmmId = #{ifmmId}
+	</select>
+	
 	<insert id="insert">
 		INSERT INTO infrMember (
-			ifmmSeq
-			,ifmmId
+			ifmmId
 			,ifmmPassword
 			,ifmmName
 			,ifmmGender
@@ -73,13 +81,11 @@
 			,ifmmUseNy
 		)
 		VALUES(
-			#{ifmmSeq}
-			,#{ifmmId}
+			#{ifmmId}
 			,#{ifmmPassword}
 			,#{ifmmName}
 			,#{ifmmGender}
-			,#{ifmmEmailAddress}
-			,#{ifmmEmailDomain}
+			,CONCAT(#{ifmmEmailAddress},'@',(SELECT cc.cdName FROM infrCode cc WHERE cc.cdSeq = #{ifmmEmailDomain}))
 			,#{ifmmPhone}
 			,#{ifmmDob}
 			,4
@@ -110,7 +116,7 @@
 			,ifmmDelNy=#{ifmmDelNy}
 			,ifmmUseNy=#{ifmmUseNy}
 		WHERE 1=1
-			ifmmSeq = #{ifmmSeq}
+		AND	ifmmSeq = #{ifmmSeq}
 	</update>
 	
 	<update id="uelete">

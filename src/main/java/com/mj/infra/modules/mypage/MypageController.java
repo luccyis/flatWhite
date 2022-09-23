@@ -12,7 +12,7 @@ public class MypageController {
 		return "infra/mypage/user/mypageMain";
 	}
 	
-	@RequestMapping(value="Mod")
+	@RequestMapping(value="mod")
 	public String mypageMod() throws Exception {
 		return "infra/mypage/user/mypageMod";
 	}
