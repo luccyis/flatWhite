@@ -68,9 +68,9 @@
        	<div class="inner-wrap">
 			<div class="lnb-area">
 				<nav id="lnb">
-					<p class="tit on"><a href="/mypage/Main" title="나의 메가박스">나의 메가박스</a></p>
+					<p class="tit on"><a href="/mypage/main" title="나의 메가박스">나의 메가박스</a></p>
 					<ul>
-						<li class=""><a href="/mypage/BookingList" title="예매/구매내역">예매내역</a></li>
+						<li class=""><a href="/mypage/bookingList" title="예매/구매내역">예매내역</a></li>
 						
 						<li>
 							<a href="/mypage/Main" title="회원정보">회원정보</a>

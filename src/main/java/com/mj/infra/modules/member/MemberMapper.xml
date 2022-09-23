@@ -11,18 +11,20 @@
 	<sql id="selectCommon">
 	FROM infrMember a
 	WHERE 1=1
-		ORDER BY ifmmSeq
-		<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifmmDelNy = #{shDelNy}</if>
+		ORDER BY a.ifmmSeq
+		<if test="shDelNy != null and !shDelNy.equals('')">AND ifmmDelNy = #{shDelNy}</if>
 		<choose>
-			<when test="shOption == 1">AND a.ifmmSeq = #{shValue}</when>
-			<when test="shOption == 2">AND a.ifmmName LIKE CONCAT('%', #{shValue},'%')</when>
-			<when test="shOption == 3">AND a.ifmmId LIKE CONCAT('%', #{shValue},'%')</when>
+			<when test="shOption == 1">AND ifmmSeq = #{shValue}</when>
+			<when test="shOption == 2">AND ifmmName LIKE CONCAT('%', #{shValue},'%')</when>
+			<when test="shOption == 3">AND ifmmId LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"/>
 		SELECT
 			a.ifmmSeq
+			,a.ifmmId
 			,a.ifmmPassword
 			,a.ifmmName
 			,a.ifmmGender
@@ -58,37 +60,31 @@
 	<insert id="insert">
 		INSERT INTO infrMember (
 			ifmmSeq
+			,ifmmId
 			,ifmmPassword
 			,ifmmName
 			,ifmmGender
-			,ifmmGrade
 			,ifmmEmailAddress
 			,ifmmEmailDomain
 			,ifmmPhone
 			,ifmmDob
-			,ifmmEmailNy
-			,ifmmSmsNy
-			,ifmmDobLoginNy
-			,ifmmSnsLogin
+			,ifmmGrade
 			,ifmmDelNy
 			,ifmmUseNy
 		)
 		VALUES(
 			#{ifmmSeq}
+			,#{ifmmId}
 			,#{ifmmPassword}
 			,#{ifmmName}
 			,#{ifmmGender}
-			,#{ifmmGrade}
 			,#{ifmmEmailAddress}
 			,#{ifmmEmailDomain}
 			,#{ifmmPhone}
 			,#{ifmmDob}
-			,#{ifmmEmailNy}
-			,#{ifmmSmsNy}
-			,#{ifmmDobLoginNy}
-			,#{ifmmSnsLogin}
-			,#{ifmmDelNy}
-			,#{ifmmUseNy}
+			,4
+			,0
+			,1
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()

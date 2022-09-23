@@ -62,14 +62,14 @@
 								<tr>
 									<th scope="row"><label for="inputId">아이디</label></th>
 									<td>
-										<input id="inputId" maxlength="20" type="text" placeholder="아이디" class="input-text w230px">
+										<input id="inputId" maxlength="20" type="text" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" placeholder="아이디" class="input-text w230px">
 										<button id="btnIdchk" type="button" class="button purple w120px ml06" >아이디중복확인 </button>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><label for="inputPw">비밀번호 </label></th>
 									<td>
-										<input id="inputPw" maxlength="20" type="password" placeholder="비밀번호" class="input-text w230px">
+										<input id="inputPw" maxlength="20" type="password" name="ifmmPassword" value="<c:out value="${item.ifmmPassword}"/>" placeholder="비밀번호" class="input-text w230px">
 									</td>
 								</tr>
 								<tr>
@@ -81,13 +81,13 @@
 								<tr>
 									<th scope="row"><label for="inputName">이름</label></th>
 									<td>
-										<input id="inputName" maxlength="20" type="text" placeholder="이름" class="input-text w230px">
+										<input id="inputName" maxlength="20" type="text" name="ifmmName" value="<c:out value="${item.ifmmName}"/>" placeholder="이름" class="input-text w230px">
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><label for="inputGender">성별 </label></th>
 									<td>
-										<select class="form-select" id="inputGender">
+										<select class="form-select" id="inputGender" name="ifmmGender">
 											<option selected>성별</option>
 											<option value="1">남</option>
 											<option value="2">여</option>
@@ -98,8 +98,8 @@
 								<tr>
 									<th scope="row"><label for="inputEmail">이메일 </label></th>
 									<td>
-										<input id="inputEmail" type="text" class="input-text w230px">
-										<select class="form-select" id="emailHelpInline" aria-label=".form-select email">
+										<input id="inputEmail" type="text" class="input-text w230px"name="ifmmEmailAddress">
+										<select class="form-select" id="emailHelpInline" name="ifmmEmailDomain" aria-label=".form-select email">
 											<option selected>email address</option>
 											<option value="1">gmail.com</option>
 											<option value="2">naver.com</option>
@@ -110,7 +110,7 @@
 								<tr>
 									<th scope="row"><label for="inputTel">휴대폰 번호</label></th>
 									<td>
-										<input type="text" id="inputTel" maxlength="11" placeholder="'-' 없이 입력" class="input-text w230px">
+										<input type="text" id="inputTel" name="ifmmPhone" maxlength="11" placeholder="'-' 없이 입력" class="input-text w230px">
 										<button id="btnInputTelAuth" type="button" class="button gray w75px ml08 disabled" disabled="disabled">인증요청</button>
 									</td>
 								</tr>
@@ -134,7 +134,7 @@
 								<tr>
 									<th scope="row"><label for="inputDob">생년월일 </label></th>
 									<td>
-										<input id="inputDob" maxlength="20" type="date" placeholder="생년월일 " class="input-text w230px">
+										<input id="inputDob" maxlength="20" type="date" name="ifmmDob" placeholder="생년월일 " class="input-text w230px">
 									</td>
 								</tr>
 							</tbody>
