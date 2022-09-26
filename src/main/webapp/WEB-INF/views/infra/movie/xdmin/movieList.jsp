@@ -291,14 +291,71 @@
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">영화 /</span> 기본 정보 관리 </h4>
 					
+					<form method="post" name="formList" id="formList">
+					<input type="hidden" name="tdmvSeq">
+					<input type="hidden" name="thisPage" value="${vo.thisPage}">
+					<div class="card">
+							<div class="card-body">
+								<div class="row">
+									<div class="col p-2">
+										<select id="shDelNy" name="shDelNy" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>삭제여부</option>
+											<option value="0" <c:if test="${vo.shOption eq 0}">selected</c:if>>N</option>
+											<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>Y</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<select id="shOptionDate" name="shOptionDate" class="form-select">
+											<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+											<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+											<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일">
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col p-2">
+										<select id="shOption" name="shOption" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+											<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>영화 시퀀스</option>
+											<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>제목</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shValue" name="shValue" value="${vo.shValue}" placeholder="검색어">
+									</div> 
+									<div class="col p-2">
+										<button type="button" class="btn btn-warning" id="btnSearch">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button type="button" class="btn btn-danger" id="btnReset">
+											<i class="fa-solid fa-rotate-left"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
 				<!-- 	Table -->
 					<div class="card">
 						<h5 class="card-header">영화 리스트</h5>
 						<div class="card-body">
+							<span>total: </span><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }"/>
 							<div class="table-responsive text-nowrap">
 								<table class="table table-bordered">
 									<thead>
 										<tr>
+											<th>
+												<div class="form-check g-2">
+													<input class="form-check-input" type="checkbox" value="" id="listCheck">
+												</div>
+											</th>
+											<th>순번</th>
 											<th>시퀸스</th>
 											<th>제목</th>
 											<th>영어제목</th>
@@ -315,126 +372,69 @@
 											<th>누적관객수</th>
 											<th>예고편</th>
 											<th>좋아요 수</th>
+											<th>등록일</th>
+											<th>수정일</th>
+											<th>삭제여부</th>
+											<th>사용여부</th>
+											
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>헤어질 결심</td>
-											<td>Decision To Leave</td>
-											<td>9</td>
-											<td>2</td>
-											<td>산 정상에서 추락한 한 남자의 변사 사건.담당 형사 '해준'(박해일)은 사망자의...</td>
-											<td>2D, 2D ATMOS, 디지털가치봄</td>
-											<td>박찬욱</td>
-											<td>탕웨이, 박해일, 이정현, 박용우, 고경표, 김신영</td>
-											<td>드라마, 로맨스, 미스터리</td>
-											<td>138</td>
-											<td>15세이상관람가</td>
-											<td>2022-06-29</td>
-											<td>1644791</td>
-											<td>https://youtu.be/i50tT8n9fp8</td>
-											<td>1.7k</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>토르: 러브 앤 썬더</td>
-											<td>Thor: Love and Thunder</td>
-											<td>7.9</td>
-											<td>3</td>
-											<td>“신을 죽이는 자, 신이 상대한다!” 슈퍼 히어로 시절이여, 안녕! 이너피스를... </td>
-											<td>2D ATMOS(자막), 2D Dolby(자막), 2D(자막), 3D Dolby(</td>
-											<td>타이카 와이티티</td>
-											<td>크리스 헴스워스, 나탈리 포트만, 테사 톰슨, 크리스찬 베일, 타이카 와이티티</td>
-											<td>액션, 어드벤처, 판타지</td>
-											<td>119</td>
-											<td>12세이상관람가</td>
-											<td>2022-07-06</td>
-											<td>2707598</td>
-											<td>https://youtu.be/Dlfp3K11C_o</td>
-											<td>2.1k</td>
-										</tr>	
-										<tr>
-											<td>3</td>
-											<td>애프터 양</td>
-											<td>After Yang</td>
-											<td>7.3</td>
-											<td>4</td>
-											<td>함께 살던 안드로이드 인간 ‘양’이 어느 날 작동을 멈추자 제이크 가족은 그를... </td>
-											<td>2D, 2D ATMOS</td>
-											<td>코고나다</td>
-											<td>콜린파렐, 조디 터너-스미스, 저스틴 민, 말레아 엠마 찬드로위자야</td>
-											<td>드라마, SF</td>
-											<td>96</td>
-											<td>전체관람가</td>
-											<td>2022-06-01</td>
-											<td>38990</td>
-											<td>https://youtu.be/5OK4gAiTxnU</td>
-											<td>1.5k</td>
-										</tr>	
-										<tr>
-											<td>4</td>
-											<td>탑건: 매버릭</td>
-											<td>Top Gun: Maverick</td>
-											<td>9.7</td>
-											<td>1</td>
-											<td>한순간의 실수도 용납되지 않는 하늘 위, 가장 압도적인 비행이 시작된다!...</td>
-											<td>2D ATMOS(자막), 2D Dolby(자막), 2D(자막)</td>
-											<td>조셉 코신스키</td>
-											<td>톰 크루즈, 마일즈 텔러, 제니퍼 코넬리, 존 햄, 에드 해리스, 글렌 포웰, 제</td>
-											<td>액션</td>
-											<td>130</td>
-											<td>12세이상관람가</td>
-											<td>2022-06-22</td>
-											<td>6937098</td>
-											<td>https://youtu.be/Mrj9XACVJ8U</td>
-											<td>3.4k</td>
-										</tr>	
+										<c:choose>
+											<c:when test="${fn:length(list) eq 0}">
+												<tr>
+													<td class="text-center" colspan="23">There is no data!</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<tr style="cursor:pointer;" onclick="goForm('${list.tdmvSeq}')">
+														<td>
+															<div class="form-check g-2">
+																<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" name="checkboxSeq" value="" id="listCheck">
+															</div>
+														</td>
+														<td>${status.count}</td>
+														<td><c:out value="${list.tdmvSeq}"/></td>
+														<td><c:out value="${list.tdmvMovieTitle}"/></td>
+														<td><c:out value="${list.tdmvTitleEng}"/></td>
+														<td><c:out value="${list.tdmvAudienceScore}"/></td>
+														<td><c:out value="${list.tdmvRank}"/></td>
+														<td><c:out value="${list.tdmvStory}"/></td>
+														<td><c:out value="${list.tdmvShowType}"/></td>
+														<td><c:out value="${list.tdmvDirector}"/></td>
+														<td><c:out value="${list.tdmvCast}"/></td>
+														<td><c:out value="${list.tdmvGenres}"/></td>
+														<td><c:out value="${list.tdmvRunningTime}"/></td>
+														<td><c:out value="${list.tdmvAge}"/></td>
+														<td><c:out value="${list.tdmvReleaseDate}"/></td>
+														<td><c:out value="${list.tdmvAudienceNumber}"/></td>
+														<td><c:out value="${list.tdmvTrailer}"/></td>
+														<td><c:out value="${list.tdmvLiked}"/></td>
+														<td><c:out value="${list.tdmvRegDate}"/></td>
+														<td><c:out value="${list.tdmvModDate}"/></td>
+														<td><c:out value="${list.tdmvDelNy}"/></td>
+														<td><c:out value="${list.tdmvUseNy}"/></td>
+														
+													</tr>
+												</c:forEach>
+											</c:otherwise>	
+										</c:choose>	
 									</tbody>	
 								</table>
 							</div>
 						</div>
 						<div class="card-footer">
-							<div class="col-12">
-								<div class="demo-inline-spacing">
-									<nav aria-lable="Page Navigation">
-										<ul class="pagination pagination-sm justify-content-center">
-											<li class="page-item prev">
-												<a class="page-link" href="javascript:void(0);">
-													<i class="tf-icon bx bx-chevrons-left"></i>
-                           						</a>
-				                            </li>
-				                            <li class="page-item active">
-				                              <a class="page-link" href="javascript:void(0);">1</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">2</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">3</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">4</a>
-				                            </li>
-				                            <li class="page-item">
-				                              <a class="page-link" href="javascript:void(0);">5</a>
-				                            </li>
-				                            <li class="page-item next">
-				                            	<a class="page-link" href="javascript:void(0);">
-				                              		<i class="tf-icon bx bx-chevrons-right"></i>
-			                              		</a>
-				                           </li>
-				                        </ul>
-				                      </nav>	
-									</div>
-								</div>
+							<!-- pagination s -->
+								<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+								<!-- pagination e -->
 							</div>
 						</div>	
 						<div class="demo-inline-spacing">
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="location.href='../movie/movieForm.html'">
+							<button type="button" class="btn btn-success" id="btnForm">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -456,6 +456,7 @@
 								</div>	
 							</div>
 						</div>
+						</form>
 					</div>
 
        
@@ -525,6 +526,42 @@
 
     <!-- Page JS -->
 
+	<script>
+		var goUrlList = "/movie/movieList";
+		var goUrlInst = "/movie/movieInst";
+		var goUrlUpdt = "/movie/movieUpdt";
+		var goUrlUele = "/movie/movieUele";
+		var goUrlDele = "/movie/movieDele";
+		var goUrlForm = "/movie/movieForm";
+		
+		var seq = $("input:hidden[name=tdmvSeq]");
+		
+		var form = $("form[name=formList]");
+		var formVo = $("form[name=formVo]");
+		
+		$("#btnSearch").on("click", function(){
+			form.attr("action", goUrlList).submit();
+		});
+		
+		$("#btnReset").on("click", function(){
+			$(location).attr("href", goUrlList);
+		});
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+		
+		$("#btnForm").on("click", function(){
+			goForm(0);
+		});
+		
+		goForm = function(keyValue){
+			seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+		
+	</script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>

@@ -427,21 +427,15 @@
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${list}" var="list" varStatus="status">
-											<tr>
+											<tr style="cursor:pointer;" onclick="goForm('${list.cgSeq}')">
 												<td>
 													<div class="form-check g-2">
-														<input class="form-check-input" type="checkbox" value="" id="listCheck">
+														<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" value="" id="listCheck">
 													</div>	
 												</td>
 												<td>${status.count}</td>	
-												<td>
-													<a href="javascript:goForm(<c:out value="${list.cgSeq }"/>)" class="text-decoration-none">
-													<c:out value="${list.cgSeq }"/></a>
-												</td>
-												<td>
-													<a href="javascript:goForm(<c:out value="${list.cgSeq }"/>)" class="text-decoration-none">
-													<c:out value="${list.cgName }"/></a>
-												</td>
+												<td><c:out value="${list.cgSeq }"/></td>
+												<td><c:out value="${list.cgName }"/></td>
 												<td><c:out value="${list.cgNameEng }"/></td>
 												<td><c:out value="${list.xcdSeqCount}"/></td>
 												<td><c:out value="${list.cgRegDate}"/></td>

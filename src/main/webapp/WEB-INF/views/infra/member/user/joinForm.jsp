@@ -190,7 +190,7 @@
 	  {
 	  	case "return":
  		{
-	  	  	form.attr("action", "/member/memberList" ).submit();
+	  	  	form.attr("action", "/member/joinAuth").submit();
 	  		break;
   		}
 	  	case "add":

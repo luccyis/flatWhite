@@ -11,13 +11,14 @@
 	<sql id="selectCommon">
 	FROM infrMember a
 	WHERE 1=1
-		ORDER BY a.ifmmSeq
+		
 		<if test="shDelNy != null and !shDelNy.equals('')">AND ifmmDelNy = #{shDelNy}</if>
 		<choose>
 			<when test="shOption == 1">AND ifmmSeq = #{shValue}</when>
 			<when test="shOption == 2">AND ifmmName LIKE CONCAT('%', #{shValue},'%')</when>
 			<when test="shOption == 3">AND ifmmId LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
+		ORDER BY a.ifmmSeq
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -86,6 +87,7 @@
 			,#{ifmmName}
 			,#{ifmmGender}
 			,CONCAT(#{ifmmEmailAddress},'@',(SELECT cc.cdName FROM infrCode cc WHERE cc.cdSeq = #{ifmmEmailDomain}))
+			,#{ifmmEmailDomain}
 			,#{ifmmPhone}
 			,#{ifmmDob}
 			,4

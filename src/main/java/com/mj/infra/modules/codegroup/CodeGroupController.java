@@ -41,7 +41,6 @@ public class CodeGroupController {
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
-
 	}
 	
 	@RequestMapping(value = "codeGroupForm")

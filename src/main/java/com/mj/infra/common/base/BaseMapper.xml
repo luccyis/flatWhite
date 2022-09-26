@@ -15,7 +15,7 @@
 	</sql>
 	
 	<sql id="selectListLowerForMysql">	
-		) aa
+		)as aa
 		limit #{rowNumToShow} offset #{startRnumForMysql}
 	</sql>
 

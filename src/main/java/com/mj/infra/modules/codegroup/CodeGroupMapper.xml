@@ -11,13 +11,13 @@
 		<sql id ="selectCommon">
 		FROM infrCodeGroup a
 		WHERE 1=1
-			ORDER BY a.cgSeq
 			<if test="shDelNy != null and !shDelNy.equals('')">AND cgDelNy = #{shDelNy}</if>
 			<choose>
 				<when test="shOption == 1">AND cgSeq = #{shValue}</when>
 				<when test="shOption == 2">AND cgName LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption == 3">AND cgNameEng LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
+			ORDER BY a.cgSeq
 		</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">

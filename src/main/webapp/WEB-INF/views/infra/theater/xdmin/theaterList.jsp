@@ -293,7 +293,7 @@
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 기본 정보 관리 </h4>
 					<form method="post" name="formList" id="formList">
-					<%@include file="theaterVo.jsp" %>
+					<input type="hidden" name="tdthSeq">
 				<!-- 	Table -->
 					<div class="card">
 						<div class="card-body">
@@ -306,10 +306,10 @@
 										</select>	
 									</div>
 									<div class="col p-2">
-										<select id="" class="form-select">
-											<option>수정일</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
+										<select id="shOptionDate" name="shOptionDate" class="form-select">
+											<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+											<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+											<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
 										</select>	
 									</div>
 									<div class="col p-2">
@@ -329,7 +329,7 @@
 										</select>	
 									</div>
 									<div class="col p-2">
-										<input type="text" class="form-control" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="검색어">
+										<input type="text" class="form-control" id="shValue" name="shValue" value="${vo.shValue}" placeholder="검색어">
 									</div>
 									<div class="col p-2">
 										<button type="submit" class="btn btn-warning" id="btnSearch">
@@ -369,15 +369,15 @@
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0 }">
 													<tr>
-														<td class="text-center" colspan="7">There is no data!</td>
+														<td class="text-center" colspan="9">There is no data!</td>
 													</tr>
 												</c:when>
 											<c:otherwise>
 												<c:forEach items="${list}" var="list" varStatus="status">
-													<tr>
+													<tr style="cursor:pointer;" onclick="goForm('${list.tdthSeq}')">
 														<td>
 															<div class="form-check g-2">
-																<input class="form-check-input" type="checkbox" id="listCheck" value="">	
+																<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" id="listCheck" value="">	
 															</div>
 														</td>
 														<td>${status.count}</td>
@@ -405,7 +405,7 @@
 							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-file-arrow-down"></i>
 							</button>
-							<button type="button" class="btn btn-success" id="" onclick="location.href='theaterForm'">
+							<button type="button" class="btn btn-success" id="btnForm">
 								<i class="fa-solid fa-plus"></i>
 							</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -502,6 +502,7 @@
 	var goUrlUpdt = "/theater/theaterUpdt";
 	var goUrlUele = "/theater/theaterUele";
 	var goUrlDele = "/theater/theaterDele";
+	var goUrlForm = "/theater/theaterForm";
 	
 	var seq = $("input:hidden[name=tdthSeq]");
 	
@@ -516,11 +517,19 @@
 		$(location).attr("href", goUrlList);
 	});
 	
+	$("#btnForm").on("click", function(){
+		goForm(0);
+	});
+	
 	goList = function(thisPage){
 		$("input:hidden[name=thisPage]").val(thisPage);
 		form.attr("action", goUrlList).submit();
 	}
 	
+	goForm = function(keyValue){
+		seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
 	
 	
 	</script>

@@ -338,7 +338,7 @@
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">시스템 /</span>코드 관리 </h4>
 					<form method="post" name="formList" id="formList">
-						<%@include file="codeVo.jsp" %>
+					<input type="hidden" name="thisPage" value="${vo.thisPage}">
 						<div class="card">
 							<div class="card-body">
 								<div class="row">
@@ -422,10 +422,10 @@
 												</c:when>
 												<c:otherwise>		
 													<c:forEach items="${list}" var="list" varStatus="status">
-														<tr style="cursor:pointer;" onclick="location.href='/code/codeForm?cgSeq=<c:out value="${list.cdSeq }"/>'"> 
+														<tr style="cursor:pointer;" onclick="location.href='/code/codeForm?cdSeq=<c:out value="${list.cdSeq }"/>'"> 
 															<td>
 																<div class="form-check g-2">
-																	<input class="form-checkt-input" type="checkbox"  value="" id="listCheck">
+																	<input class="form-checkt-input" onclick="event.stopPropagation()" type="checkbox"  value="" id="listCheck">
 																</div>
 															</td>
 															<td>${status.count}</td>
@@ -555,6 +555,7 @@
     var goUrlUpdt = "/code/codeUpdt";
     var goUrlUele = "/code/codeUele";
     var goUrlDele = "/code/codeDele";
+    var goUrlForm = "/code/codeForm";
     
     var seq = $("input:hidden[name=cdSeq]");
     
@@ -573,6 +574,13 @@
     	$("input:hidden[name=thisPage]").val(thisPage);
     	form.attr("action", goUrlList).submit();
     }
+    
+	goForm = function(keyValue){
+		seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
+	
+    
     
     </script>
     

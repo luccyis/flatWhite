@@ -70,6 +70,51 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+            $( "#shDateStart" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#shDateEnd").datepicker( "option", "minDate", selectedDate );
+                 }    
+ 
+            });
+            $( "#shDateEnd" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
+                 }    
+ 
+            });    
+    });
+</script>
   </head>
 
   <body>
@@ -293,165 +338,182 @@
 		<!-- Content -->	
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">회원 /</span>회원 리스트 </h4>
-					
-					<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option value="1" selected>N</option>
-										<option value="2">Y</option>
-									</select>	
+				
+					<form method="post" name="formList" id="formList">
+					<input type="hidden" name="ifmmSeq">
+					<input type="hidden" name="thisPage" value="${vo.thisPage}">
+						<div class="card">
+							<div class="card-body">
+								<div class="row">
+									<div class="col p-2">
+										<select id="shDelNy" name="shDelNy" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>삭제여부</option>
+											<option value="0" <c:if test="${vo.shOption eq 0}">selected</c:if>>N</option>
+											<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>Y</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<select id="shOptionDate" name="shOptionDate" class="form-select">
+											<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+											<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+											<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+											<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생년월일</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일">
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일">
+									</div>
 								</div>
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option>수정일</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>	
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="시작일">
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="종료일">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col p-2">
-									<select id="" class="form-select">
-										<option>검색구분</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>	
-								</div>
-								<div class="col p-2">
-									<input type="text" class="form-control" id="" placeholder="검색어">
-								</div>
-								<div class="col p-2">
-									<button type="button" class="btn btn-warning">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
-									<button type="button" class="btn btn-danger">
-										<i class="fa-solid fa-rotate-left"></i>
-									</button>
+								<div class="row">
+									<div class="col p-2">
+										<select id="shOption" name="shOption" class="form-select">
+											<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+											<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>멤버 시퀀스</option>
+											<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>이름</option>
+											<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>아이디</option>
+										</select>	
+									</div>
+									<div class="col p-2">
+										<input type="text" class="form-control" id="shValue" name="shValue" value="${vo.shValue}" placeholder="검색어">
+									</div> 
+									<div class="col p-2">
+										<button type="button" class="btn btn-warning" id="btnSearch">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button type="button" class="btn btn-danger" id="btnReset">
+											<i class="fa-solid fa-rotate-left"></i>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-				<!-- 	Table -->
-					<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
-					<c:set var="listCodeGrade" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
-					<div class="card">
-						<h5 class="card-header">회원 리스트 </h5>
-						<div class="card-body">
-							<div class="table-responsive text-nowrap">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>
-												<div class="form-check g-2">
-													<input class="form-check-input" type="checkbox" value="" id="listCheck">
-												</div>
-											</th>
-											<th>순번</th>
-											<th>시퀸스</th>
-											<th>아이디 </th>
-											<th>패스워드 </th>
-											<th>이름 </th>
-											<th>성별 </th>
-											<th>등급</th>
-											<th>이메일주소</th>
-											<th>이메일도메인</th>
-											<th>핸드폰번호</th>
-											<th>생년월일</th>
-											<th>이메일수신동의</th>
-											<th>SMS수신동의</th>
-											<th>생년월일로그인</th>
-											<th>sns로그인</th>
-										</tr>
-									</thead>
-									<tbody>
-									
-									<c:choose>
-										<c:when test="${fn:length(list) eq 0}">
+						<br>
+					<!-- 	Table -->
+						<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+						<c:set var="listCodeGrade" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
+						<c:set var="listCodeEmailDomain" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
+						<c:set var="listCodeSnsLogin" value="${CodeServiceImpl.selectListCachedCode('4')}"/>
+						<div class="card">
+							<h5 class="card-header">회원 리스트 </h5>
+							<div class="card-body">
+								<div class="table-responsive text-nowrap">
+									<table class="table table-bordered">
+										<thead>
 											<tr>
-												<td class="text-center" colspan="9">There is no data!</td>
-											</tr>
-										</c:when>
-										<c:otherwise>
-											<c:forEach items="${list}" var="list" varStatus="status">
-											<tr>
-												<td>
+												<th>
 													<div class="form-check g-2">
-														<input class="form-check-input" type="checkbox" name="checkboxSeq" value="<c:out value="${list.ifmmSeq}"/>" id="listCheck">
+														<input class="form-check-input" type="checkbox" value="" id="listCheck">
 													</div>
-												</td>
-												<td>${status.count}</td>
-												<td><c:out value="${list.ifmmSeq}"/></td>
-												<td><c:out value="${list.ifmmId}"/></td>
-												<td><c:out value="${list.ifmmPassword}"/></td>
-												<td><c:out value="${list.ifmmName}"/></td>
-												<td>
-													<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-														<c:if test="${list.ifmmGender eq listGender.cdSeq}"><c:out value="${listGender.cdName}"/></c:if>
-													</c:forEach>	
-												</td>
-												<td>
-													<c:forEach items="${listCodeGrade}" var="listGrade" varStatus="statusGrade">
-														<c:if test="${list.ifmmGrade eq listGrade.cdSeq}"><c:out value="${listGrade.cdName}"/></c:if>
-													</c:forEach>
-												</td>
-												<td><c:out value="${list.ifmmEmailAddress}"/></td>
-												<td><c:out value="${list.ifmmEmailDomain}"/></td>
-												<td><c:out value="${list.ifmmPhone}"/></td>
-												<td><c:out value="${list.ifmmDob}"/></td>
-												<td><c:out value="${list.ifmmEmailNy}"/></td>
-												<td><c:out value="${list.ifmmSmsNy}"/></td>
-												<td><c:out value="${list.ifmmDobLoginNy}"/></td>
-												<td><c:out value="${list.ifmmSnsLogin}"/></td>
+												</th>
+												<th>순번</th>
+												<th>시퀸스</th>
+												<th>아이디 </th>
+												<th>패스워드 </th>
+												<th>이름 </th>
+												<th>성별 </th>
+												<th>등급</th>
+												<th>이메일주소</th>
+												<th>이메일도메인</th>
+												<th>핸드폰번호</th>
+												<th>생년월일</th>
+												<th>이메일수신동의</th>
+												<th>SMS수신동의</th>
+												<th>생년월일로그인</th>
+												<th>sns로그인</th>
 											</tr>
-											</c:forEach>
-										</c:otherwise>	
-									</c:choose>	
-									</tbody>	
-								</table>
+										</thead>
+										<tbody>
+										
+										<c:choose>
+											<c:when test="${fn:length(list) eq 0}">
+												<tr>
+													<td class="text-center" colspan="16">There is no data!</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${list}" var="list" varStatus="status">
+												<tr>
+													<td>
+														<div class="form-check g-2">
+															<input class="form-check-input" type="checkbox" name="checkboxSeq" value="<c:out value="${list.ifmmSeq}"/>" id="listCheck">
+														</div>
+													</td>
+													<td>${status.count}</td>
+													<td><c:out value="${list.ifmmSeq}"/></td>
+													<td><c:out value="${list.ifmmId}"/></td>
+													<td><c:out value="${list.ifmmPassword}"/></td>
+													<td><c:out value="${list.ifmmName}"/></td>
+													<td>
+														<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+															<c:if test="${list.ifmmGender eq listGender.cdSeq}"><c:out value="${listGender.cdName}"/></c:if>
+														</c:forEach>	
+													</td>
+													<td>
+														<c:forEach items="${listCodeGrade}" var="listGrade" varStatus="statusGrade">
+															<c:if test="${list.ifmmGrade eq listGrade.cdSeq}"><c:out value="${listGrade.cdName}"/></c:if>
+														</c:forEach>
+													</td>
+													<td><c:out value="${list.ifmmEmailAddress}"/></td>
+													<td>
+														<c:forEach items="${listCodeEmailDomain}" var="listEmailDomain" varStatus="statusEmailDomain">
+															<c:if test="${list.ifmmEmailDomain eq listEmailDomain.cdSeq}"><c:out value="${listEmailDomain.cdName}"/></c:if>
+														</c:forEach>	
+													</td>
+													<td><c:out value="${list.ifmmPhone}"/></td>
+													<td><c:out value="${list.ifmmDob}"/></td>
+													<td><c:out value="${list.ifmmEmailNy}"/></td>
+													<td><c:out value="${list.ifmmSmsNy}"/></td>
+													<td><c:out value="${list.ifmmDobLoginNy}"/></td>
+													<td>
+														<c:forEach items="${listCodeSnsLogin}" var="listSnsLogin" varStatus="statusSnsLogin">
+															<c:if test="${list.ifmmSnsLogin eq listSnsLogin.cdSeq}"><c:out value="${listSnsLogin.cdName}"/></c:if>
+														</c:forEach>	
+													</td>
+												</tr>
+												</c:forEach>
+											</c:otherwise>	
+										</c:choose>	
+										</tbody>	
+									</table>
+								</div>
+							</div>
+							<div class="card-footer">
+								<!-- pagination s -->
+								<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+								<!-- pagination e -->
+								
+							</div>	
+							<div class="demo-inline-spacing">
+								<button type="button" class="btn btn-primary">
+									<i class="fa-solid fa-file-arrow-down"></i>
+								</button>
+								<button type="button" class="btn btn-success" id="btnForm">
+									<i class="fa-solid fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+									<i class="fa-solid fa-minus"></i>
+								</button>
+							</div>
+							<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">정말 삭제하시겠습니까?</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
+											<button type="button" class="btn btn-danger" >삭제</button>
+										</div>
+									</div>	
+								</div>
 							</div>
 						</div>
-						<div class="card-footer">
-							<!-- pagination s -->
-							<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
-							<!-- pagination e -->
-							
-						</div>	
-						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary">
-								<i class="fa-solid fa-file-arrow-down"></i>
-							</button>
-							<button type="button" class="btn btn-success" id="btnList">
-								<i class="fa-solid fa-plus"></i>
-							</button>
-							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
-								<i class="fa-solid fa-minus"></i>
-							</button>
-						</div>
-						<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">정말 삭제하시겠습니까?</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-										<button type="button" class="btn btn-danger">삭제</button>
-									</div>
-								</div>	
-							</div>
-						</div>
-					</div>
+					</form>
 				</div>	
        
             <!-- / Content -->
@@ -504,7 +566,6 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
     <script src="/resources/assets/vendor/js/bootstrap.js"></script>
     <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -520,6 +581,42 @@
 
     <!-- Page JS -->
 
+<script>
+		var goUrlList = "/member/memberList";
+		var goUrlInst = "/member/memberInst";
+		var goUrlUpdt = "/member/memberUpdt";
+		var goUrlUele = "/member/memberUele";
+		var goUrlDele = "/member/memberDele";
+		var goUrlForm = "/member/memberForm";
+		
+		var seq = $("input:hidden[name=ifmmSeq]");
+		
+		var form = $("form[name=formList]");
+		var formVo = $("form[name=formVo]");
+		
+		$("#btnSearch").on("click", function(){
+			form.attr("action", goUrlList).submit();
+		});
+		
+		$("#btnReset").on("click", function(){
+			$(location).attr("href", goUrlList);
+		});
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+		
+		$("#btnForm").on("click", function(){
+			goForm(0);
+		});
+		
+		goForm = function(keyValue){
+			seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+		
+	</script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>

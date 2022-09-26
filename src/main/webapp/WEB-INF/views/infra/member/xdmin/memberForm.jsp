@@ -298,39 +298,37 @@
 					<div class="card">
 						<h5 class="card-header">회원 추가</h5>
 						<div class="card-body">
-							<form>
+							<form id="form" method="post">
+							
+							<%@include file ="memberVo.jsp" %>
+							
 								<div class="row">
 									<div class="col p-2">
-										<label class="form-label" for="inputId">아이디</label>
-										<input type="text" class="form-control" id="inputId" name="">
+										<label class="form-label" for="ifmmId">아이디</label>
+										<input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+										<input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>">
 									</div>
 									<div class="col p-2">
 										<label class="form-label" for="inputPw">패스워드</label>
-										<input type="password" class="form-control" id="inputPw" name="">
+										<input type="password" class="form-control" id="inputPw" name="ifmmPassword">
 									</div>
 								</div>
 								<div class="row ">
 									<div class="col-6 p-2">
 										<label class="form-label" for="inputName">이름</label>
-										<input type="text" class="form-control" id="inputName" name="">
+										<input type="text" class="form-control" id="inputName" name="ifmmName">
 									</div>
 									<div class="col-6 p-2">
 										<div class="col-12">
 											<label class="form-label" for="inputGender">성별</label>
 										</div>
 										<div class="col p-2">
-											<div class="form-check form-check-inline">	
-												<input class="form-check-input" type="radio" value ="남" name="inputGender" id="inputGenderMale">
-												<label class="form-check-label" for="inputGenderMale">남</label>
-											</div>	
-											<div class="form-check form-check-inline">		
-												<input class="form-check-input" type="radio" value ="여" name="inputGender" id="inputGenderFemale">
-												<label class="form-check-label" for="inputGenderFemale">여</label>
-											</div>	
-											<div class="form-check form-check-inline">		
-												<input class="form-check-input" type="radio" value ="기타" name="inputGender" id="inputGenderOther">
-												<label class="form-check-label" for="inputGenderOther">기타</label>
-											</div>
+											<select class="form-select" id="inputGender" name="ifmmGender">
+												<option selected>성별</option>
+												<option value="1" <c:if test="${item.ifmmGender eq 1}">selected</c:if>>남</option>
+												<option value="2" <c:if test="${item.ifmmGender eq 2}">selected</c:if>>여</option>
+												<option value="3" <c:if test="${item.ifmmGender eq 3}">selected</c:if>>기타</option>
+											</select>
 										</div>	
 									</div>	
 								</div>
@@ -366,7 +364,7 @@
 										<div class="input-group">
 											<input type="text" class="form-control" id="inputEmail" aria-describedby="inputEmailAddr">
 											<span class="input-group-text" id="inputEmailAddr">@</span>
-											<select class="form-select" id="inputEmailDomain">
+											<select class="form-select" name="ifmmEmailDomain" id="inputEmailDomain">
 												<option selected>이메일주소</option>
 												<option value="1">gmail.com</option>
 												<option value="2">naver.com</option>
@@ -444,7 +442,7 @@
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary">제출</button>
-								<button type="button" class="btn btn-dark" onclick="location.href='../member/memberList.html'">
+								<button type="button" class="btn btn-dark" onclick="location.href='/member/memberList'">
 									<i class="fa-solid fa-arrow-left"></i>
 								</button>
 							</form>
@@ -518,6 +516,42 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+ <script type="text/javascript">
+    
+    	var goUrlList = "member/memberList";
+    	var goUrlInst = "member/memberInst";
+    	var goUrlUpdt = "member/memberUpdt";
+    	var goUrlUele = "member/memberUele";
+    	var goUrlDele = "member/memberDele";
+    	
+    	var seq = $("input:hidden[name=ifmmSeq]");
+    	
+    	var form = $("form[name=form]");
+    	var formVo = $("form[name=formVo]");
+    	
+    	$("#btnSave").on("click", function(){
+    		if(seq.val() == "0" || seq.val() == ""){
+    			form.attr("action", goUrlInst).submit();
+    		} else {
+    			form.attr("action", goUrlUpdt).submit();
+    		}
+    	});
+    	
+    	$("#btnDelete").on("click", function(){
+    		form.attr("action", goUrlDele).submit();
+    	});
+    	
+    	$("#btnUelete").on("click", function(){
+    		form.attr("action", goUrlUele).submit();
+    	});
+    	
+    	$("#btnList").on("click", function(){
+    		formVo.attr("action", goUrlList).submit();
+    	});
+    	
+    	
+    </script>
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

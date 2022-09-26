@@ -553,7 +553,9 @@
     	
     	$("#btnList").on("click", function(){
     		formVo.attr("action", goUrlList).submit();
-    	})
+    	});
+    	
+    	
     </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->

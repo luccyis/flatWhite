@@ -11,13 +11,13 @@
 		<sql id ="selectCommon">
 		FROM tradTheater a
 		WHERE 1=1
-			ORDER BY a.tdthSeq
 			<if test="shDelNy != null and !shDelNy.equals('')">AND tdthDelNy = #{shDelNy}</if>
 			<choose>
 				<when test="shOption == 1">AND tdthSeq = #{shValue}</when>
 				<when test="shOption == 2">AND tdthRegion LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption == 3">AND tdthBranch LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
+			ORDER BY a.tdthSeq
 		</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -26,6 +26,7 @@
 				a.tdthSeq
 				,a.tdthRegion
 				,a.tdthBranch
+				,a.tdthBranchEng
 				,a.tdthAddress
 				,a.tdthZipcode
 				,a.tdthDelNy
@@ -53,6 +54,7 @@
 		INSERT INTO tradTheater(
 			tdthRegion
 			,tdthBranch
+			,tdthBranchEng
 			,tdthAddress
 			,tdthZipcode
 			,tdthDelNy
@@ -61,6 +63,7 @@
 		VALUES(
 			#{tdthRegion}
 			,#{tdthBranch}
+			,#{tdthBranchEng}
 			,#{tdthAddress}
 			,#{tdthZipcode}
 			,#{tdthDelNy}
@@ -76,6 +79,7 @@
 		SET
 			tdthRegion = #{tdthRegion}
 			,tdthBranch = #{tdthBranch}
+			,tdthBranchEng = #{tdthBranchEng}
 			,tdthAddress = #{tdthAddress}
 			,tdthZipcode = #{tdthZipcode}
 			,tdthDelNy = #{tdthDelNy}

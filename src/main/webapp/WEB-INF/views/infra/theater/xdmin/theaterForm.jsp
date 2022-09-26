@@ -293,40 +293,43 @@
 				<div class="container-xxl flex-grow-1 container-p-y">
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 기본 정보 관리 </h4>
 					
+					<c:set var="listCodeRegion" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
 				<!-- 	Table -->
 					<div class="card">
 						<h5 class="card-header">극장 정보 추가</h5>
 						<div class="card-body">
+							<form id="form" method="post">
+								<%@include file="theaterVo.jsp" %>
+							
 							<div class="row">
 								<div class="col-6 p-2">
 									<label for="theaterCode" class="form-label">코드</label>
-									<input type="text" class="form-control" id="theaterCode" placeholder="자동생성" disabled>
+									<input type="text" class="form-control" name="tdthSeq" id="theaterCode" placeholder="자동생성" disabled>
 								</div>
 								<div class="col p-2">
 									<label for="inputRegion" class="form-label">지역선택</label>
-									<select id="inputRegion" class="form-select">
-										<option value="">서울</option>
-										<option value="">경기</option>
-										<option value="">인천</option>
-										<option value="">강원</option>
+									<select id="inputRegion" name="tdthRegion" class="form-select">
+										<c:forEach items="${listCodeRegion}" var="listRegion" varStatus="status">
+											<option value="${list.tdthRegion eq listRegion.cdSeq }">${listRegion.cdName}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>	
 							<div class="row">
 								<div class="col p-2">
 									<label for="inputBranch" class="form-label">지점명</label>
-									<input type="text" class="form-control" id="inputBranch">
+									<input type="text" class="form-control" name="tdthBranch" id="inputBranch">
 								</div>
 								<div class="col p-2">
 									<label for="inputBranchEng" class="form-label">지점명(영어)</label>
-									<input type="text" class="form-control" id="inputBranchEng">
+									<input type="text" class="form-control" name="tdthBranchEng" id="inputBranchEng">
 								</div>
 							</div>
 							<div class="row">	
 								<div class="col-6 p-2">
 									<label for="sample4_postcode" class="form-label">주소</label>
 									<div class="input-group">
-										<input type="text" class="form-control" id="sample3_postcode"  placeholder="우편번호" aria-describedby="btnAddress">
+										<input type="text" class="form-control" id="sample3_postcode" name="tdthZipCode" placeholder="우편번호" aria-describedby="btnAddress">
 										<button type="button" class="btn btn-outline-dark" id="btnAddress">
 											<i class="fa-solid fa-magnifying-glass"></i>
 										</button>
@@ -340,13 +343,13 @@
 								</div>
 								<div class="col-6 p-2">		
 									<div class="row p-1">	
-										<input type="text" class="form-control" id="sample3_roadAddress" placeholder="도로명주소" disabled>
+										<input type="text" class="form-control" id="sample3_roadAddress" name="tdthAddress" placeholder="도로명주소" disabled>
 									</div>	
 									<div class="row p-1">		
-										<input type="text" class="form-control" id="sample3_jibunAddress" placeholder="지번주소" disabled>
+										<input type="text" class="form-control" id="sample3_jibunAddress" name="" placeholder="지번주소" disabled>
 									</div>
 									<div class="row p-1">		
-										<input type="text" class="form-control" id="sample3_detailAddress" placeholder="상세주소">
+										<input type="text" class="form-control" id="sample3_detailAddress" name="" placeholder="상세주소">
 									</div>
 									<div class="row p-1">
 										<input type="text" class="form-control" id="sample3_extraAddress" placeholder="참고항목" disabled>
@@ -385,6 +388,7 @@
 							</div>
 						</div>		
 					</div>
+					</form>
 				</div>	
 							
 						

@@ -9,6 +9,15 @@ public class Theater {
 	private String tdthZipCode;
 	private String tdthDelNy;
 	private String tdthUseNy;
+	private String tdthBranchEng;
+	
+	
+	public String getTdthBranchEng() {
+		return tdthBranchEng;
+	}
+	public void setTdthBranchEng(String tdthBranchEng) {
+		this.tdthBranchEng = tdthBranchEng;
+	}
 	public String getTdthSeq() {
 		return tdthSeq;
 	}
