@@ -294,6 +294,7 @@
 					<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 기본 정보 관리 </h4>
 					<form method="post" name="formList" id="formList">
 					<input type="hidden" name="tdthSeq">
+					<input type="hidden" name="thisPage" value="${vo.thisPage}">
 				<!-- 	Table -->
 					<div class="card">
 						<div class="card-body">
@@ -342,6 +343,8 @@
 								</div>
 							</div>
 						</div>	
+						
+						<c:set var="listCodeRegion" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
 						<div class="card">
 							<h5 class="card-header">극장 리스트</h5>
 							<div class="card-body">
@@ -382,7 +385,11 @@
 														</td>
 														<td>${status.count}</td>
 														<td><c:out value="${list.tdthSeq}"/></td>
-														<td><c:out value="${list.tdthRegion}"/></td>
+														<td>
+															<c:forEach items="${listCodeRegion}" var="listRegion" varStatus="statusRegion">
+																<c:if test="${list.tdthRegion eq listRegion.cdSeq}"><c:out value="${listRegion.cdName}"/></c:if>
+															</c:forEach>
+														</td>
 														<td><c:out value="${list.tdthBranch}"/></td>
 														<td><c:out value="${list.tdthAddress}"/></td>
 														<td><c:out value="${list.tdthZipCode}"/></td>
