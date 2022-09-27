@@ -84,17 +84,18 @@
 
 						<div class="login-member col-2 pt00">
 							<!-- col-wrap -->
+							<form id="formLogin" name="formLogin" method="post">
 							<div class="col-wrap">
 								<div class="col left">
 									<div class="login-input-area">
-										<input autocomplete="off" id="ibxLoginId" maxlength="20" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim">
-										<input autocomplete="off" id="ibxLoginPwd" maxlength="20" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
+										<input autocomplete="off" id="ifmmId" name="ifmmId" maxlength="20" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim">
+										<input autocomplete="off" id="ifmmPassword" name="ifmmPassword" maxlength="20" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
 										<div class="alert"></div>
 
 										<!-- chk-util -->
 										<div class="chk-util">
 											<div class="left">
-												<input id="chkIdSave" type="checkbox"> <label for="chkIdSave">아이디 저장</label>
+												<input id="autoLogin" type="checkbox"> <label for="chkIdSave">아이디 저장</label>
 											</div>
 
 											<div class="right">
@@ -105,7 +106,7 @@
 										</div>
 										<!--// chk-util -->
 
-										<button id="btnLogin" type="button" class="button purple large btn-login" onclick="location.href='/home'">로그인</button>
+										<button id="btnLogin" type="button" class="button purple large btn-login">로그인</button>
 
 										<div class="link">
 											<a href="/find/findId" title="ID/PW 찾기 선택">ID/PW 찾기</a>
@@ -128,6 +129,7 @@
 									</div>
 								</div>
 							</div>
+							</form>
 							<!--// col-wrap -->
 						</div>
 					</div>
@@ -144,9 +146,48 @@
 
 
 
-<form id="mainForm"></form>
+
 <div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
 <div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+ 
+ <script>
+	$("#btnLogin").on("click", function(){
+		if(validation() == false) return false;
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/loginProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+			,success: function(response) {
+				if(response.rt == "success") {
+					if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else {
+						location.href = URL_INDEX_ADMIN;
+					}
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+ 
+ 
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
 </body>
 </html>

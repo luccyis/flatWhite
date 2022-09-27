@@ -16,8 +16,23 @@ public class Member {
 	private String ifmmDobLoginNy;
 	private String ifmmSnsLogin;
 	private String ifmmGrade;
+	private String ifmmDelNy;
+	private String ifmmUseNy;
 	
 	
+	
+	public String getIfmmDelNy() {
+		return ifmmDelNy;
+	}
+	public void setIfmmDelNy(String ifmmDelNy) {
+		this.ifmmDelNy = ifmmDelNy;
+	}
+	public String getIfmmUseNy() {
+		return ifmmUseNy;
+	}
+	public void setIfmmUseNy(String ifmmUseNy) {
+		this.ifmmUseNy = ifmmUseNy;
+	}
 	public String getIfmmGrade() {
 		return ifmmGrade;
 	}

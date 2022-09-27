@@ -102,12 +102,12 @@
 	<update id="update">
 		UPDATE infrMember
 		SET
-			ifmmSeq = #{ifmmSeq}
+			ifmmId = #{ifmmId}
 			,ifmmPassword = #{ifmmPassword}
 			,ifmmName = #{ifmmName}
 			,ifmmGender = #{ifmmGender}
 			,ifmmGrade = #{ifmmGrade}
-			,ifmmEmailAddress =#{ifmmEmailAddress}
+			,ifmmEmailAddress = CONCAT(#{ifmmEmailAddress},'@',(SELECT cc.cdName FROM infrCode cc WHERE cc.cdSeq = #{ifmmEmailDomain}))
 			,ifmmEmailDomain=#{ifmmEmailDomain}
 			,ifmmPhone=#{ifmmPhone}
 			,ifmmDob=#{ifmmDob}
@@ -115,8 +115,6 @@
 			,ifmmSmsNy=#{ifmmSmsNy}
 			,ifmmDobLoginNy=#{ifmmDobLoginNy}
 			,ifmmSnsLogin=#{ifmmSnsLogin}
-			,ifmmDelNy=#{ifmmDelNy}
-			,ifmmUseNy=#{ifmmUseNy}
 		WHERE 1=1
 		AND	ifmmSeq = #{ifmmSeq}
 	</update>
@@ -132,6 +130,43 @@
 	<delete id="delete">
 		DELETE FROM infrMember WHERE ifmmSeq = #{ifmmSeq}
 	</delete>
+	
+	<select id="selectOneIdCheck" resultType="Integer">
+		SELECT
+			count(ifmmSeq)
+		FROM
+			infrMember a
+		WHERE 1=1
+		AND a.ifmmid = #{ifmmId}
+	</select>
+	
+	<select id="selectOneId"  resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmId
+		FROM
+			infrMember a
+		WHERE 1=1 
+		AND a.ifmmId = #{ifmmId}
+	</select>
+	
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmId
+			,a.ifmmName
+		FROM 
+			infrMember a
+		WHERE 1=1
+			AND a.ifmmId=#{ifmmId}
+			<if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if> 
+	</select>
+	
+	
+	
+	
+	
+	
 	
 	
 

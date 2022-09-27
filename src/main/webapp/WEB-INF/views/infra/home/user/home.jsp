@@ -39,7 +39,7 @@
 		        <div class="right-link">
 		            <!-- 로그인전 -->
 		            <div class="before" style="">
-		                <a href="/login" title="로그인">로그인</a>
+		                <a href="/member/login" title="로그인">로그인</a>
 		                <a href="/member/joinAuth" title="회원가입">회원가입</a>
 		            </div>
 		            <!-- 로그인후 -->

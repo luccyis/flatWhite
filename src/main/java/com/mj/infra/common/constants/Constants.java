@@ -9,4 +9,8 @@ public final class Constants {
 // insert 또는 update 후 페이지 전환 타입 : 1:form, 2:list	
 	public static final Integer INSERT_AFTER_TYPE = 1;
 	public static final Integer UPDATE_AFTER_TYPE = 1;
+	
+	public static final Integer SESSION_MINUTE = 30;
+	
+	public static final String URL_LOGINFORM = "/member/loginForm";
 }
