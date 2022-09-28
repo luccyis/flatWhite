@@ -20,62 +20,28 @@
 
 <body>
 <div class="body-wrap">
-	<header id="header">
-	    <h1 class="ci"><a href="/home" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
-	    <div class="util-area">
-	        <div class="right-link">
-	            <!-- 로그인전 -->
-	            <div class="before" style="">
-	                <a href="/login" title="로그인">로그인</a>
-	                <a href="/member/joinAuth" title="회원가입">회원가입</a>
-	            </div>
-	            <!-- 로그인후 -->
-	            <div class="after" style="display:none">
-	                <a href="" class="" title="로그아웃">로그아웃</a>
-	                <a href="" class="notice" title="알림">알림</a>
-	            </div>
-	        </div>
-	    </div>
-	    <div class="link-area">
-	        <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
-	        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
-	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
-	    </div>
-	
-		<nav id="gnb" class="">
-	        <ul class="gnb-depth1">
-	            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-	            <li><a href="/booking/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
-	            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
-		        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
-		        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
-		        <li><a href="" class="gnb-txt-benefit" title="혜택">혜택</a></li>
-	        </ul>
-	    </nav>
-	    <!-- 레이어 : 검색 -->
-	    <div id="layer_header_search" class="header-layer layer-header-search"></div>
-	</header>
+	<%@include file="../../../common/user/includeV1/header.jsp" %>
 	
 	<div class="container has-lnb">
     	<div class="page-util">
         	<div class="inner-wrap" id="myLoaction">
         		<div class="location">
 					<span>Home</span>
-					<a href="/mypage/Main" title="나의 메가박스 페이지로 이동">나의 메가박스</a>
+					<a href="/mypage/main" title="나의 메가박스 페이지로 이동">나의 메가박스</a>
 				</div>
 			</div>
        	</div>
        	<div class="inner-wrap">
 			<div class="lnb-area">
 				<nav id="lnb">
-					<p class="tit on"><a href="/mypage/Main" title="나의 메가박스">나의 메가박스</a></p>
+					<p class="tit on"><a href="/mypage/main" title="나의 메가박스">나의 메가박스</a></p>
 					<ul>
 						<li class=""><a href="/mypage/bookingList" title="예매/구매내역">예매내역</a></li>
 						
 						<li>
-							<a href="/mypage/Main" title="회원정보">회원정보</a>
+							<a href="/mypage/main" title="회원정보">회원정보</a>
 							<ul class="depth3">
-								<li><a href="/mypage/mypageMod" title="개인정보 수정">개인정보 수정</a></li>
+								<li><a href="/mypage/mod" title="개인정보 수정">개인정보 수정</a></li>
 								<li><a href="/mypage/additionalInfo" title="선택정보 수정">선택정보 수정</a></li>
 							</ul>
 						</li>
@@ -226,7 +192,11 @@
 				</div>
 			</div>
 		</div>
-	</div>		
+	</div>
+	
+	<!-- footer-s -->
+	<%@include file="../../../common/user/includeV1/footer.jsp" %>
+	<!-- footer-e -->		
 	
 	
 </div>
@@ -235,6 +205,10 @@
 <form id="mainForm"></form>
 <div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
 <div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+<!-- script-s -->
+<%@include file="../../../common/user/includeV1/script.jsp" %>
+<!-- scripte-e -->
 </body>
 </html>

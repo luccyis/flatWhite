@@ -16,11 +16,6 @@
 	<title>meet play share, 메가박스</title>
 	<link rel="stylesheet" href="/resources/css/megabox.min.css" media="all">
 
-
-
-
-
-
 </head>
 
 <body>
@@ -37,21 +32,26 @@
 		    <h1 class="ci"><a href="/home" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
 		    <div class="util-area">
 		        <div class="right-link">
+		        	<c:if test="${sessSeq eq null}">
 		            <!-- 로그인전 -->
-		            <div class="before" style="">
-		                <a href="/member/login" title="로그인">로그인</a>
-		                <a href="/member/joinAuth" title="회원가입">회원가입</a>
-		            </div>
-		            <!-- 로그인후 -->
-		            <div class="after" style="display:none">
-		                <a href="" class="" title="로그아웃">로그아웃</a>
-		                <a href="" class="notice" title="알림">알림</a>
-		            </div>
+			            <div class="before" style="">
+			                <a href="/member/login" title="로그인">로그인</a>
+			                <a href="/member/joinAuth" title="회원가입">회원가입</a>
+			            </div>
+		        	</c:if>
+		        	<c:if test="${sessSeq ne null}">
+			            <!-- 로그인후 -->
+			            <div class="after" style="">
+							<a><c:out value="${sessName}"/> 님 안녕하세요.</a>
+			                <a id="btnLogout" class="" title="로그아웃">로그아웃</a>
+			                <a href="" class="notice" title="알림">알림</a>
+			            </div>
+		            </c:if>
 		        </div>
 		    </div>
 		    <div class="link-area">
 		        <a href="" class="header-open-layer btn-layer-search" title="검색">검색</a>
-		        <a href="/booking/timetable" class="link-ticket" title="상영시간표">상영시간표</a>
+		        <a href="/booking/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
 		        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 		    </div>
 		
@@ -68,6 +68,7 @@
 		    <!-- 레이어 : 검색 -->
 		    <div id="layer_header_search" class="header-layer layer-header-search"></div>
 		</header>
+		
 		<link rel="stylesheet" href="/resources/css/main.css" media="all">	
 	
 	
@@ -465,62 +466,22 @@
 		</div>
 	</div>	
 
-		
+	<!-- footer-s -->
+	<%@include file="../../../common/user/includeV1/footer.jsp" %>
+	<!-- footer-e -->	
 
-
-
-	<footer id="footer">
-	    <!-- footer-top -->
-	    <div class="footer-top">
-	        <div class="inner-wrap">
-	            <ul class="fnb">
-	                <li><a href="" title="">회사소개</a></li>
-	                <li><a href="" title="">인재채용</a></li>
-	                <li><a href="" title="">사회공헌</a></li>
-	                <li><a href="" title="">제휴/광고/부대사업문의</a></li>
-	                <li><a href="" title="">이용약관</a></li>
-	                <li><a href="" title="">위치기반서비스 이용약관</a></li>
-	                <li class=""><a href="" title="">개인정보처리방침</a></li>
-	                <li><a href="" target="" title="">윤리경영</a></li>
-	            </ul>
+	</div>
 	
-	            <a href="" class="btn-looking-theater" title="극장찾기"><i class="iconset ico-footer-search"></i> 극장찾기</a>
-	        </div>
-	    </div>
-	    <!--// footer-top -->
-	
-	    <!-- footer-bottom -->
-	    <div class="footer-bottom">
-	        <div class="inner-wrap">
-	            <div class="ci">MEGABOX : Life Theater</div>
-	
-	            <div class="footer-info">
-	                <div>
-	                    <address>서울특별시 마포구 월드컵로 240, 지상2층(성산동, 월드컵주경기장)</address>
-	                    <p>ARS 1544-0070</p>
-	                </div>
-	                <p>대표자명 홍정인</p>
-	                <p>· 개인정보보호책임자 공성진</p>
-	                <p>· 사업자등록번호 211-86-59478</p>
-	                <p>· 통신판매업신고번호 제 2020-서울마포-4545 호</p>
-	                <p class="copy">COPYRIGHT © MegaboxJoongAng, Inc. All rights reserved</p>
-	            </div>
-	
-	            <div class="footer-sns">
-	            	<a href="" target="_blank" title=""><i class="iconset ico-youtubeN">유튜브</i></a>
-	                <a href="" target="_blank" title=""><i class="iconset ico-instagramN">인스타그램</i></a>
-	                <a href="" target="_blank" title=""><i class="iconset ico-facebookN">페이스북</i></a>
-	                <a href="" target="_blank" title=""><i class="iconset ico-twitterN">트위터</i></a>
-	            </div>
-	        </div>
-	    </div>
-	    <!--// footer-bottom -->
-	    <div id="layer_looking_theater" class="layer-looking-theater"></div>
-	</footer>
 
 	<form id="mainForm"></form>
 	<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
 	<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	
+	<!-- script-s -->
+	<%@include file="../../../common/user/includeV1/script.jsp" %>
+	<!-- scripte-e -->
+	
+	
 </body>
 </html>

@@ -69,12 +69,12 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/theater/plexList" class="menu-link">
+                  <a href="/plex/list" class="menu-link">
                     <div data-i18n="Without navbar">상영관</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/theater/priceList" class="menu-link">
+                  <a href="/price/list" class="menu-link">
                     <div data-i18n="Container">관람료</div>
                   </a>
                 </li>

@@ -21,6 +21,23 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- session interceptor s 2022.03.13 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/member/login" />
+			<exclude-mapping path="/member/loginProc" />
+			<exclude-mapping path="/member/findIdPwdForm" />
+			<exclude-mapping path="/home" />
+			<exclude-mapping path="/movie/main" />
+			<exclude-mapping path="/movie/view" />
+			
+			<beans:bean id="checkLoginSessionInterception" class="com.mj.infra.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2022.03.13 for logincheck -->
+	
 	<context:component-scan base-package="com.mj.infra" />
 	
 	

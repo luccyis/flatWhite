@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mj.infra.common.constants.Constants;
+import com.mj.infra.common.util.UtilCookie;
 import com.mj.infra.common.util.UtilDateTime;
 import com.mj.infra.common.util.UtilSecurity;
 
@@ -97,7 +98,7 @@ public class MemberController {
 	
 	@RequestMapping(value="login")
 	public String login() throws Exception {
-		return "infra/member/xdmin/login";
+		return "infra/member/user/login";
 	}
 	
 	@ResponseBody
@@ -115,10 +116,11 @@ public class MemberController {
 				httpSession.setAttribute("sessSeq", rtMember2.getIfmmSeq());
 				httpSession.setAttribute("sessId", rtMember2.getIfmmId());
 				httpSession.setAttribute("sessName", rtMember2.getIfmmName());
+				httpSession.setAttribute("sessGrade", rtMember2.getIfmmGrade());
 
 				System.out.println(httpSession.getAttribute("sessName"));
-				}
 				returnMap.put("rt", "success");
+				}
 			} else {
 				dto.setIfmmSeq(rtMember.getIfmmSeq());
 				returnMap.put("rt", "fail");
@@ -127,6 +129,16 @@ public class MemberController {
 		
 		return returnMap;
 		}
+	
+
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
 
 	
 	

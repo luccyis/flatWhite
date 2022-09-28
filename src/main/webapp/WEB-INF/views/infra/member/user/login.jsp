@@ -110,7 +110,10 @@
 
 										<div class="link">
 											<a href="/find/findId" title="ID/PW 찾기 선택">ID/PW 찾기</a>
-											<a href="/member/joinAuth" title="회원가입 선택">회원가입</a>
+											<a href="/member/joinAuth" title="회원가입 선택">회원가입</a><br>
+											sessSeq : <c:out value="${sessSeq}"/><br>
+											sessName : <c:out value="${sessName}"/><br>
+											sessId: <c:out value="${sessId}"/><br>
 										</div>
 
 										<div class="sns-login">
@@ -138,7 +141,7 @@
 				<!--// tab-cont-wrap -->
 			</div>
 
-			<button type="button" class="btn-modal-close">레이어 닫기<!--레이어 닫기--></button>
+			<button type="button" class="btn-modal-close" onclick="location.href='/home'">레이어 닫기<!--레이어 닫기--></button>
 		</div>
 	</section>
 </div>
@@ -149,13 +152,10 @@
 
 <div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
 <div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  
  <script>
 	$("#btnLogin").on("click", function(){
-		if(validation() == false) return false;
-		
 		$.ajax({
 			async: true 
 			,cache: false
@@ -163,14 +163,10 @@
 			/* ,dataType:"json" */
 			,url: "/member/loginProc"
 			/* ,data : $("#formLogin").serialize() */
-			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
 			,success: function(response) {
 				if(response.rt == "success") {
-					if(response.changePwd == "true") {
-						location.href = URL_CHANGE_PWD_FORM;
-					} else {
-						location.href = URL_INDEX_ADMIN;
-					}
+					location.href='/home';
 				} else {
 					alert("회원없음");
 				}
@@ -181,6 +177,26 @@
 		});
 	});
  
+	$("#btnLogout").on("click", function(){
+		$.ajax({
+			async: true
+			,cach: false
+			,type: "post"
+			,url: "/member/logoutProc"
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success"){
+					location.href = "/home";
+				} else {
+					// by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate" + jqXHR.textStatus + ": " + jqXHR.errorThrown);
+			}
+			
+		});
+	});
  
  </script>
  

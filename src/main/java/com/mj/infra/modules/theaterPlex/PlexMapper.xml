@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mj.infra.modules.theaterPlex.PlexMapper">
+
+	<resultMap id="resultMapObj" type="com.mj.infra.modules.theaterPlex.Plex"></resultMap>
+	
+	<sql id ="selectCommon">
+		FROM tradTheaterPlex a
+		JOIN tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND tdpxDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND a.tdpxSeq = #{shValue}</when>
+				<when test="shOption == 2">AND a.tdpxPlexName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND b.tdthBranch LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+			ORDER BY a.tdpxSeq
+		</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"/>
+		SELECT
+			a.tdpxSeq
+			,a.tdpxPlexName
+			,a.tdpxPlexName
+			,a.tdpxSittingColNum
+			,a.tdpxSittingRowNum
+			,a.tdpxDelNy
+			,a.tdpxUseNy
+			,a.tradTheater_tdthSeq as tdthSeq
+			,b.tdthBranch
+		<include refid="selectCommon"/>
+		<include refid="Base.orderByLimitForMysql"/>
+		<include refid="Base.selectListLowerForMysql"/>	
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM tradTheaterPlex a
+		WHERE 1=1
+		AND tdpxSeq = #{tdpxSeq}
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon"/>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO tradTheaterPlex (
+			tdpxPlexName
+			,tdpxPlexName
+			,tdpxSittingColNum
+			,tdpxSittingRowNum
+			,tdpxDelNy
+			,tdpxUseNy
+			,tradTheater_tdthSeq as tdthSeq
+		)
+		VALUES(
+			#{tdpxPlexName}
+			,#{tdpxPlexName}
+			,#{tdpxSittingColNum}
+			,#{tdpxSittingRowNum}
+			,0
+			,1
+			,#{tdthSeq}
+		)
+		<selectKey resultType="String" keyProperty="tdpxSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
+	<!-- <update id -->
+	
+	
+	
+	
+
+		
+		
+	
+	
+	
+</mapper>	

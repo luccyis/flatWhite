@@ -94,26 +94,6 @@ public class TheaterController {
 	
 	
 	
-	
-	@RequestMapping(value="plexList")
-	public String plexList() throws Exception {
-		return "infra/theater/xdmin/plexList";
-	}
-	
-	@RequestMapping(value="plexForm")
-	public String plexForm() throws Exception {
-		return "infra/theater/xdmin/plexForm";
-	}
-	
-	@RequestMapping(value="priceList")
-	public String priceList() throws Exception {
-		return "infra/theater/xdmin/priceList";
-	}
-	
-	@RequestMapping(value="priceForm")
-	public String priceForm() throws Exception {
-		return "infra/theater/xdmin/priceForm";
-	}
-	
+
 	
 }

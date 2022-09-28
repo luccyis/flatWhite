@@ -12,5 +12,9 @@ public final class Constants {
 	
 	public static final Integer SESSION_MINUTE = 30;
 	
-	public static final String URL_LOGINFORM = "/member/loginForm";
+	public static final String URL_LOGINFORM = "/member/login";
+	
+	
+	
+	
 }

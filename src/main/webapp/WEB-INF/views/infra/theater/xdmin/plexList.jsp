@@ -94,7 +94,8 @@
 						</div>
 					</div>
 				</div>
-				
+			
+			<c:set var="listCodeRegion" value="${CodeServiceImpl.selectListCachedCode('5')}"/>	
 			<div class="card">
 				<h5 class="card-header">상영관 리스트</h5>
 				<div class="card-body">

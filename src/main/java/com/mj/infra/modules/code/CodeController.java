@@ -81,4 +81,8 @@ public class CodeController {
 		System.out.println("uelete result: " + result);
 		return "redirect:/code/codeList";
 	}
+	
+	
+	
+	
 }
