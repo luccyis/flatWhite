@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mj.infra.common.util.UtilDateTime;
 
 @Controller
-@RequestMapping(value="/plex/")
+@RequestMapping(value="/theaterPlex/")
 public class PlexController {
 	
 	@Autowired

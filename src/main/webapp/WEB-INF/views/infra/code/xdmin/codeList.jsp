@@ -166,7 +166,7 @@
 					<button type="button" class="btn btn-success" id="btnForm">
 						<i class="fa-solid fa-plus"></i>
 					</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal" onclick="">
 						<i class="fa-solid fa-minus"></i>
 					</button>
 				</div>

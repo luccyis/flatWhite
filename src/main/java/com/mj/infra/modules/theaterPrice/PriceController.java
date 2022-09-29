@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/price/")
+@RequestMapping(value="/theaterPrice/")
 public class PriceController {
 
 	@RequestMapping(value="list")
