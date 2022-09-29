@@ -9,7 +9,14 @@ public class PriceVo extends BaseVo {
 	private Integer shDelNy;
 	private String thprSeq;
 	private String tdthSeq;
+	private String tradTheater_tdthSeq;
 	
+	public String getTradTheater_tdthSeq() {
+		return tradTheater_tdthSeq;
+	}
+	public void setTradTheater_tdthSeq(String tradTheater_tdthSeq) {
+		this.tradTheater_tdthSeq = tradTheater_tdthSeq;
+	}
 	public Integer getShOption() {
 		return shOption;
 	}

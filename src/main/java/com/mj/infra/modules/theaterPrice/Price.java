@@ -11,7 +11,14 @@ public class Price {
 	private Integer thprDelNy;
 	private Integer thprUseNy;
 	private String tdthBranch;
+	private String tradTheater_tdthSeq;
 	
+	public String getTradTheater_tdthSeq() {
+		return tradTheater_tdthSeq;
+	}
+	public void setTradTheater_tdthSeq(String tradTheater_tdthSeq) {
+		this.tradTheater_tdthSeq = tradTheater_tdthSeq;
+	}
 	public String getThprSeq() {
 		return thprSeq;
 	}

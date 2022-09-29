@@ -47,14 +47,21 @@
 			<div class="card">
 				<h5 class="card-header">영화 관람료</h5>
 				<div class="card-body">
-					<div class="col-4 p-2">
-						<label class="form-label" for="priceSelectTheater">극장 선택</label>
-						<select class="form-select" id="priceSelectTheater">
-							<option value="1">코엑스</option>
-							<option value="2">성수</option>
-							<option value="3">동대문</option>
-						</select>
-					</div>	
+					<div class="row">
+						<div class="col-4 p-2">
+							<label class="form-label" for="priceSelectTheater">극장 선택</label>
+							<select class="form-select" onchange="selectTheater()" id="priceSelectTheater">
+								<option value="1">코엑스</option>
+								<option value="2">성수</option>
+								<option value="3">동대문</option>
+							</select>
+						</div>	
+						<div class="col-4 py-4">	
+							<button type="submit" class="btn btn-warning" id="btnSearch">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+					</div>		
 					<div class="table-responsive text-nowrap">
 						<table class="table table-bordered">
 							<thead>
@@ -66,9 +73,15 @@
 								</tr>
 							</thead>
 							<tbody>
+							
+							<tr>
+								<td></td>
+							
+							
+							
 								<tr>
-									<td rowspan="2">주중</td>
-									<td>조조</td>
+									<td rowspan="2">주중 thprWeekendNy</td>
+									<td>조조 thprMorningNy</td>
 									<td>10,000</td>
 									<td>8,000</td>
 								</tr>
@@ -94,47 +107,12 @@
 						</table>
 					</div>
 				</div>
-				<div class="card-footer">
-					<div class="col-12">
-						<div class="demo-inline-spacing">
-							<nav aria-lable="Page Navigation">
-								<ul class="pagination pagination-sm justify-content-center">
-									<li class="page-item prev">
-										<a class="page-link" href="javascript:void(0);">
-											<i class="tf-icon bx bx-chevrons-left"></i>
-                         						</a>
-		                            </li>
-		                            <li class="page-item active">
-		                              <a class="page-link" href="javascript:void(0);">1</a>
-		                            </li>
-		                            <li class="page-item">
-		                              <a class="page-link" href="javascript:void(0);">2</a>
-		                            </li>
-		                            <li class="page-item">
-		                              <a class="page-link" href="javascript:void(0);">3</a>
-		                            </li>
-		                            <li class="page-item">
-		                              <a class="page-link" href="javascript:void(0);">4</a>
-		                            </li>
-		                            <li class="page-item">
-		                              <a class="page-link" href="javascript:void(0);">5</a>
-		                            </li>
-		                            <li class="page-item next">
-		                            	<a class="page-link" href="javascript:void(0);">
-		                              		<i class="tf-icon bx bx-chevrons-right"></i>
-	                              		</a>
-		                           </li>
-		                        </ul>
-		                      </nav>	
-							</div>
-						</div>
-					</div>
-				</div>	
+				
 				<div class="demo-inline-spacing">
 					<button type="button" class="btn btn-primary">
 						<i class="fa-solid fa-file-arrow-down"></i>
 					</button>
-					<button type="button" class="btn btn-success" onclick="location.href='../theater/priceForm.html'">
+					<button type="button" class="btn btn-success" id="btnForm">
 						<i class="fa-solid fa-plus"></i>
 					</button>
 					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -191,6 +169,57 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script>
+	var goUrlList = "/theaterPrice/list";
+	var goUrlInst = "/theaterPrice/inst";
+	var goUrlUpdt = "/theaterPrice/updt";
+	var goUrlUele = "/theaterPrice/uele";
+	var goUrlDele = "/theaterPrice/dele";
+	var goUrlForm = "/theaterPrice/form";
+	
+	var seq = $("input:hidden[name=tdthSeq]");
+	
+	var form = $("form[name=formList]");
+	var formVo = $("form[name=formVo]");
+	
+	$("#btnSearch").on("click", function(){
+		form.attr("action", goUrlList).submit();
+	});
+	
+	$("#btnReset").on("click", function(){
+		$(location).attr("href", goUrlList);
+	});
+	
+	$("#btnForm").on("click", function(){
+		goForm(0);
+	});
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	goForm = function(keyValue){
+		seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
+	
+	selectTheater = function(){
+		var select = $("#priceSelectTheater");
+		//select된 밸류값 가져오기....
+		$.ajax(){
+			async: true
+			,cache: fale
+			,type: "post"
+			,url: ""
+			
+			//url 만들어야됨~~~~~~~
+		}
+	}
+	
+	
+	</script>
+    
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
