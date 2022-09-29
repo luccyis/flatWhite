@@ -17,7 +17,7 @@ import com.mj.infra.common.util.UtilDateTime;
 public class MovieController {
 	
 	@Autowired
-	MovieSerivceImpl service;
+	MovieServiceImpl service;
 	
 	public void setSearchAndPaging(MovieVo vo) throws Exception {
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());

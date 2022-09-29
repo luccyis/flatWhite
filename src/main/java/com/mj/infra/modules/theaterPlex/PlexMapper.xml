@@ -26,7 +26,7 @@
 		SELECT
 			a.tdpxSeq
 			,a.tdpxPlexName
-			,a.tdpxPlexName
+			,a.tdpxTotalSeatNum
 			,a.tdpxSittingColNum
 			,a.tdpxSittingRowNum
 			,a.tdpxDelNy
@@ -41,6 +41,7 @@
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
+			,(SELECT cc.tdthBranch FROM tradTheater cc WHERE cc.tdthSeq = #{tdthSeq}) as tdthBranch
 		FROM tradTheaterPlex a
 		WHERE 1=1
 		AND tdpxSeq = #{tdpxSeq}
@@ -55,6 +56,7 @@
 		INSERT INTO tradTheaterPlex (
 			tdpxPlexName
 			,tdpxPlexName
+			,tdpxTotalSeatNum
 			,tdpxSittingColNum
 			,tdpxSittingRowNum
 			,tdpxDelNy
@@ -64,6 +66,7 @@
 		VALUES(
 			#{tdpxPlexName}
 			,#{tdpxPlexName}
+			,#{tdpxTotalSeatNum}
 			,#{tdpxSittingColNum}
 			,#{tdpxSittingRowNum}
 			,0
@@ -76,7 +79,32 @@
 	</insert>
 	
 	
-	<!-- <update id -->
+	<update id="update">
+		UPDATE tradTheaterPlex
+		SET
+			tdpxPlexName = #{tdpxPlexName}
+			,tdpxTotalSeatNum = #{tdpxTotalSeatNum}
+			,tdpxSittingColNum = #{tdpxSittingColNum}
+			,tdpxSittingRowNum = #{tdpxSittingRowNum}
+			,tradTheater_tdthSeq = #{tradTheater_tdthSeq}
+			,tdpxDelNy = #{tdpxDelNy}
+			,tdpxUseNy = #{tdpxUseNy}
+		WHERE 1=1
+		AND tdpxSeq = #{tdpxSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE tradTheaterPlex
+		SET
+			tdpxDelNy = 1
+		WHERE
+			tdpxSeq = #{tdpxSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tradTheaterPlex WHERE tdpxSeq = #{tdpxSeq}
+	</delete>
+	
 	
 	
 	

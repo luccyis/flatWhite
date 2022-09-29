@@ -99,6 +99,7 @@
 			<div class="card">
 				<h5 class="card-header">상영관 리스트</h5>
 				<div class="card-body">
+					<span>total : </span><c:out value="${vo.totalRows -((vo.thisPage-1) * vo.rowNumToShow + status.index)}"/>
 					<div class="table-responsive text-nowrap">
 						<table class="table table-bordered">
 							<thead>
@@ -109,28 +110,44 @@
 										</div>
 									</th>	
 									<th>#</th>
+									<th>상영관코드</th>
 									<th>극장명</th>
 									<th>상영관이름</th>
 									<th>전체 좌석수</th>
 									<th>세로 좌석수(col)</th>
 									<th>가로 좌석수(row))</th>
+									<th>사용여부</th>
+									<th>삭제여부</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<div class="form-check g-2">
-											<input class="form-check-input" type="checkbox" id="theaterListCheck" value="">	
-										</div>
-									</td>
-									<td>1</td>
-									<td>코엑스</td>
-									<td>1관</td>
-									<td>32</td>
-									<td>4</td>
-									<td>8</td>
-								</tr>
-									
+								<c:choose>
+									<c:when test="${fn:length(list) eq 0}">
+										<tr>
+											<td class="text-center" colspan="10">There is no data!</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${list}" var="list" varStatus="status">
+											<tr style="cursor:pointer;" onclick="goForm('${list.tdpxSeq}')">
+												<td>
+													<div class="form-check g-2">
+														<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" id="theaterListCheck" value="">	
+													</div>
+												</td>
+												<td>${status.count}</td>
+												<td><c:out value="${list.tdpxSeq}"/></td>
+												<td><c:out value="${list.tdthBranch}"/></td>
+												<td><c:out value="${list.tdpxPlexName}"/></td>
+												<td><c:out value="${list.tdpxTotalSeatNum}"/></td>
+												<td><c:out value="${list.tdpxSittingColNum}"/></td>
+												<td><c:out value="${list.tdpxSittingRowNum}"/></td>	
+												<td><c:out value="${list.tdpxUseNy}"/></td>
+												<td><c:out value="${list.tdpxDelNy}"/></td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>	
 							</tbody>	
 						</table>
 					</div>
@@ -144,7 +161,7 @@
 					<button type="button" class="btn btn-primary">
 						<i class="fa-solid fa-file-arrow-down"></i>
 					</button>
-					<button type="button" class="btn btn-success" onclick="location.href='../theater/plexForm.html'">
+					<button type="button" class="btn btn-success" id="btnForm">
 						<i class="fa-solid fa-plus"></i>
 					</button>
 					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
@@ -202,6 +219,23 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    
+    <script>
+    var goUrlList = "/plex/list";
+	var goUrlInst = "/plex/inst";
+	var goUrlUpdt = "/plex/updt";
+	var goUrlUele = "/plex/uele";
+	var goUrlDele = "/plex/dele";
+	
+	var seq = $("input:hidden[name=tdpxSeq]");
+	
+	var form = $("form[name=form]");
+	var formVo = $("form[name=formVo]");
+    
+    </script>
+    
+    <!-- button -->
+    <%@include file="../../../common/xdmin/includeV1/btnScript.jsp" %>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
