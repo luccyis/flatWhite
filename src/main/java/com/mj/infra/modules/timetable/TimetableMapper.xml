@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mj.infra.modules.timetable.TimetableMapper">
+
+	<resultMap id="resultMapObj" type="com.mj.infra.modules.timetable.Timetable"></resultMap>
+	
+	<sql id ="selectCommon">
+		FROM tradTimeTable a
+		JOIN tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+		JOIN tradTheaterPlex c on c.tdpxSeq = a.tradTheaterPlex_tdpxSeq
+		JOIN tradMovie d on d.tdmvSeq = a.tradMovie_tdmvSeq
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND tdttDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND a.tdttShowTime LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 2">AND d.tdmvMovieTitle LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND b.tdthBranch LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+			ORDER BY a.tdttSeq
+		</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"/>
+		SELECT
+			a.tdttSeq
+			,a.tdttShowTime
+			,a.tdttMorningNy
+			,b.tdthBranch
+			,c.tdpxPlexName
+			,c.tdpxTotalSeatNum
+			,d.tdmvMovieTitle
+		<include refid="selectCommon"/>
+		<include refid="Base.orderByLimitForMysql"/>
+		<include refid="Base.selectListLowerForMysql"/>	
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.tdttSeq
+			,a.tdttShowTime
+			,a.tdttMorningNy
+			,b.tdthBranch
+			,c.tdpxPlexName
+			,c.tdpxTotalSeatNum
+			,d.tdmvMovieTitle
+		FROM tradTimeTable a
+		JOIN tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+		JOIN tradTheaterPlex c on c.tdpxSeq = a.tradTheaterPlex_tdpxSeq
+		JOIN tradMovie d on d.tdmvSeq = a.tradMovie_tdmvSeq
+		WHERE 
+			a.tdttSeq = #{tdttSeq}
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(a.tdttSeq)
+		<include refid="selectCommon"/>
+	</select>
+	
+	<insert id="insert">
+	INSERT INTO tradTimeTable (
+		tdttSeq
+		,tdttShowTime
+		,tdttMorningNy
+		,tradTheater_tdthSeq
+		,tradTheaterPlex_tdpxSeq
+		,tradMovie_tdmvSeq
+	)
+	VALUES (
+		#{tdttSeq}
+		,#{tdttShowTime}
+		,#{tdttMorningNy}
+		,#{tradTheater_tdthSeq}
+		,#{tradTheaterPlex_tdpxSeq}
+		,#{tradMovie_tdmvSeq}
+	)
+	<selectKey resultType="String" keyProperty="thprSeq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	</insert>
+	
+	<update id="update">
+	UPDATE tradTimeTable
+	SET
+		tdttShowTime  = #{tdttShowTime}
+		,tdttMorningNy  = #{tdttMorningNy}
+		,tradTheater_tdthSeq  = #{tdthSeq}
+		,tradTheaterPlex_tdpxSeq  = #{tdpxSeq}
+		,tradMovie_tdmvSeq  = #{tdmvSeq}
+	WHERE
+		tdttSeq = #{tdttSeq}
+	</update>
+	
+	<update id="uelete">
+	UPDATE tradTimeTable
+	SET
+		tdttDelNy =#{tdttDelNy}
+	WHERE
+	tdttSeq = #{tdttSeq}
+	</update>
+	
+	<delete id="delete"> 
+		DELETE FROM tradTimeTable WHERE tdttSeq = #{tdttSeq}
+	</delete>
+
+</mapper>	

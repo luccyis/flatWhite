@@ -9,17 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-/* @RequestMapping(value = "/home/", method= RequestMethod.GET) */
+@RequestMapping(value = "/home/")
 public class HomeController {
 	
 	@Autowired
 	HomeServiceImpl service;
 	
-	@RequestMapping(value = "/home")
+	@RequestMapping(value = "userMain")
 	public String HomeList(Model model) throws Exception{
 		List<Home> list = service.selectList();
 		model.addAttribute("list", list);
 		return "infra/home/user/home";
+	}
+	
+	@RequestMapping(value="xdminMain")
+	public String xdminHome() throws Exception {
+		return "infra/home/xdmin/home";
 	}
 
 	

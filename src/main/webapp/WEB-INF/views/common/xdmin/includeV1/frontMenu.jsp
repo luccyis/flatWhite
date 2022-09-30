@@ -41,7 +41,7 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a href="/timetable/timetableList" class="menu-link">
                     <div data-i18n="Without navbar">상영시간표</div>
                   </a>
                 </li>
@@ -74,7 +74,7 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/theaterPrice/list" class="menu-link">
+                  <a href="/theaterPrice/priceList" class="menu-link">
                     <div data-i18n="Container">관람료</div>
                   </a>
                 </li>

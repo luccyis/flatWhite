@@ -43,6 +43,59 @@
 	<div class="container-xxl flex-grow-1 container-p-y">
 		<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">영화 /</span> 상영 시간표 관리 </h4>
 		
+		<form method="post" name="formList" id="formList">
+		<input type="hidden" name="tdttSeq">
+		<input type="hidden" name="thisPage" value="${vo.thisPage}">
+		
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col p-2">
+						<select id="shDelNy" name="shDelNy" class="form-select">
+							<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>삭제여부</option>
+							<option value="0" <c:if test="${vo.shOption eq 0}">selected</c:if>>N</option>
+							<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>Y</option>
+						</select>	
+					</div>
+					<div class="col p-2">
+						<select id="shOptionDate" name="shOptionDate" class="form-select">
+							<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+							<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+							<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+							<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생년월일</option>
+						</select>	
+					</div>
+					<div class="col p-2">
+						<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일">
+					</div>
+					<div class="col p-2">
+						<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-2">
+						<select id="shOption" name="shOption" class="form-select">
+							<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+							<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>상영시간</option>
+							<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>영화제목</option>
+							<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>극장명</option>
+						</select>	
+					</div>
+					<div class="col p-2">
+						<input type="text" class="form-control" id="shValue" name="shValue" value="${vo.shValue}" placeholder="검색어">
+					</div>
+					<div class="col p-2">
+						<button type="button" class="btn btn-warning" id="btnSearch">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+						<button type="button" class="btn btn-danger" id="btnReset">
+							<i class="fa-solid fa-rotate-left"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
 	<!-- 	Table -->
 		<div class="card">
 			<h5 class="card-header">상영 시간표</h5>
@@ -51,6 +104,11 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
+								<th>
+									<div class="form-check g-2">
+										<input class="form-check-input" type="checkbox" value="" id="listCheck">
+									</div>
+								</th>
 								<th>#</th>
 								<th>seq</th>
 								<th>영화제목</th>
@@ -61,294 +119,50 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>탑건: 매버릭</td>
-								<td>코엑스</td>
-								<td>1</td>
-								<td>2022-08-02 09:40</td>
-								<td>1</td>
-							</tr>	
-							<tr>
-								<td>2</td>
-								<td>2</td>
-								<td>탑건: 매버릭</td>
-								<td>코엑스</td>
-								<td>1</td>
-								<td>2022-08-02 13:50</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>3</td>
-								<td>애프터 양</td>
-								<td>코엑스</td>
-								<td>1</td>
-								<td>2022-08-02 20:40</td>
-								<td>0</td>
-							</tr>	
-							<tr>
-								<td>4</td>
-								<td>4</td>
-								<td>헤어질 결심</td>
-								<td>코엑스</td>
-								<td>2</td>
-								<td>2022-08-02 08:20</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>5</td>
-								<td>헤어질 결심</td>
-								<td>코엑스</td>
-								<td>2</td>
-								<td>2022-08-02 12:50</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>6</td>
-								<td>헤어질 결심</td>
-								<td>코엑스</td>
-								<td>2</td>
-								<td>2022-08-02 17:10</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>7</td>
-								<td>토르</td>
-								<td>코엑스</td>
-								<td>3</td>
-								<td>2022-08-02 09:00</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>8</td>
-								<td>토르</td>
-								<td>코엑스</td>
-								<td>3</td>
-								<td>2022-08-02 13:00</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td>9</td>
-								<td>토르</td>
-								<td>코엑스</td>
-								<td>3</td>
-								<td>2022-08-02 19:10</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td>10</td>
-								<td>애프터 양</td>
-								<td>성수</td>
-								<td>4</td>
-								<td>2022-08-02 09:20</td>
-								<td>1</td>
-							</tr>	
-							<tr>
-								<td>11</td>
-								<td>11</td>
-								<td>애프터 양</td>
-								<td>성수</td>
-								<td>4</td>
-								<td>2022-08-02 15:30</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>12</td>
-								<td>12</td>
-								<td>토르</td>
-								<td>성수</td>
-								<td>4</td>
-								<td>2022-08-02 20:10</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>13</td>
-								<td>13</td>
-								<td>토르</td>
-								<td>성수</td>
-								<td>5</td>
-								<td>2022-08-02 12:15</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>14</td>
-								<td>14</td>
-								<td>헤어질 결심</td>
-								<td>성수</td>
-								<td>5</td>
-								<td>2022-08-02 16:55</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>15</td>
-								<td>15</td>
-								<td>헤어질 결심</td>
-								<td>성수</td>
-								<td>5</td>
-								<td>2022-08-02 21:10</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>16</td>
-								<td>16</td>
-								<td>탑건: 매버릭</td>
-								<td>성수</td>
-								<td>6</td>
-								<td>2022-08-02 07:30</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>17</td>
-								<td>17</td>
-								<td>탑건: 매버릭</td>
-								<td>성수</td>
-								<td>6</td>
-								<td>2022-08-02 12:40</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>18</td>
-								<td>18</td>
-								<td>탑건: 매버릭</td>
-								<td>성수</td>
-								<td>6</td>
-								<td>2022-08-02 18:20</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>19</td>
-								<td>19</td>
-								<td>헤어질 결심</td>
-								<td>동대문</td>
-								<td>7</td>
-								<td>2022-08-02 09:30</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>20</td>
-								<td>20</td>
-								<td>헤어질 결심</td>
-								<td>동대문</td>
-								<td>7</td>
-								<td>2022-08-02 14:40</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>21</td>
-								<td>21</td>
-								<td>헤어질 결심</td>
-								<td>동대문</td>
-								<td>7</td>
-								<td>2022-08-02 17:55</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>22</td>
-								<td>22</td>
-								<td>탑건: 매버릭</td>
-								<td>동대문</td>
-								<td>8</td>
-								<td>2022-08-02 08:30</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>23</td>
-								<td>23</td>
-								<td>탑건: 매버릭</td>
-								<td>동대문</td>
-								<td>8</td>
-								<td>2022-08-02 13:40</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>24</td>
-								<td>24</td>
-								<td>헤어질 결심</td>
-								<td>동대문</td>
-								<td>8</td>
-								<td>2022-08-02 19:00</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>25</td>
-								<td>25</td>
-								<td>토르</td>
-								<td>동대문</td>
-								<td>9</td>
-								<td>2022-08-02 11:20</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>26</td>
-								<td>26</td>
-								<td>애프터 양</td>
-								<td>동대문</td>
-								<td>9</td>
-								<td>2022-08-02 15:40</td>
-								<td>0</td>
-							</tr>
-							<tr>
-								<td>27</td>
-								<td>27</td>
-								<td>애프터 양</td>
-								<td>동대문</td>
-								<td>9</td>
-								<td>2022-08-02 20:10</td>
-								<td>0</td>
-							</tr>
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+								<tr>
+									<td class="text-center" colspan="8">There is no data!</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+								<tr style="cursor:pointer;" onclick="goForm('${list.tdttSeq}')">
+									<td>
+										<div class="form-check g-2">
+											<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" name="checkboxSeq" value="<c:out value="${list.tdttSeq}"/>" id="listCheck">
+										</div>
+									</td>
+									<td>${status.count}</td>
+									<td><c:out value="${list.tdttSeq}"/></td>
+									<td><c:out value="${list.tdmvMovieTitle}"/></td>
+									<td><c:out value="${list.tdthBranch}"/></td>
+									<td><c:out value="${list.tdpxPlexName}"/></td>
+									<td><c:out value="${list.tdttShowTime}"/></td>
+									<td>
+										<c:if test="${list.tdttMorningNy eq 0}">일반</c:if>
+										<c:if test="${list.tdttMorningNy eq 1}">조조</c:if>
+									</td>				
+								</tr>
+								</c:forEach>
+							</c:otherwise>	
+						</c:choose>		
 						</tbody>	
 					</table>
 				</div>
 			</div>
+			
 			<div class="card-footer">
-				<div class="col-12">
-					<div class="demo-inline-spacing">
-						<nav aria-lable="Page Navigation">
-							<ul class="pagination pagination-sm justify-content-center">
-								<li class="page-item prev">
-									<a class="page-link" href="javascript:void(0);">
-										<i class="tf-icon bx bx-chevrons-left"></i>
-                        						</a>
-	                            </li>
-	                            <li class="page-item active">
-	                              <a class="page-link" href="javascript:void(0);">1</a>
-	                            </li>
-	                            <li class="page-item">
-	                              <a class="page-link" href="javascript:void(0);">2</a>
-	                            </li>
-	                            <li class="page-item">
-	                              <a class="page-link" href="javascript:void(0);">3</a>
-	                            </li>
-	                            <li class="page-item">
-	                              <a class="page-link" href="javascript:void(0);">4</a>
-	                            </li>
-	                            <li class="page-item">
-	                              <a class="page-link" href="javascript:void(0);">5</a>
-	                            </li>
-	                            <li class="page-item next">
-	                            	<a class="page-link" href="javascript:void(0);">
-	                              		<i class="tf-icon bx bx-chevrons-right"></i>
-                              		</a>
-	                            </li>
-	                          </ul>
-	                        </nav>	
-						</div>
-					</div>
-				</div>
+			<!-- pagination s -->
+			<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+			<!-- pagination e -->	
 			</div>	
+			
 			<div class="demo-inline-spacing">
 				<button type="button" class="btn btn-primary">
 					<i class="fa-solid fa-file-arrow-down"></i>
 				</button>
-				<button type="button" class="btn btn-success" onclick="location.href='../movie/timeTableForm.html'">
+				<button type="button" class="btn btn-success" id="btnForm">
 					<i class="fa-solid fa-plus"></i>
 				</button>
 				<button type="button" class="btn btn-danger">
@@ -357,7 +171,7 @@
 			</div>
 		</div>
 	
-	
+		</form>
 	</div>
 
        
@@ -394,9 +208,47 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    
+<script>
+	var goUrlList = "/timetable/timetableList";
+	var goUrlInst = "/timetable/timetableInst";
+	var goUrlUpdt = "/timetable/timetableUpdt";
+	var goUrlUele = "/timetable/timetableUele";
+	var goUrlDele = "/timetable/timetableDele";
+	var goUrlForm = "/timetable/timetableForm";
+	
+	var seq = $("input:hidden[name=tdthSeq]");
+	
+	var form = $("form[name=formList]");
+	var formVo = $("form[name=formVo]");
+	
+	$("#btnSearch").on("click", function(){
+		form.attr("action", goUrlList).submit();
+	});
+	
+	$("#btnReset").on("click", function(){
+		$(location).attr("href", goUrlList);
+	});
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	$("#btnForm").on("click", function(){
+		goForm(0);
+	});
+	
+	goForm = function(keyValue){
+		seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
+	
+</script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>  
   </body>
 </html>

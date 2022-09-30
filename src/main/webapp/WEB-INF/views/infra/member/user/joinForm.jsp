@@ -68,25 +68,27 @@
 									<td><div class="invalid-feedback" id="ifmmIdFeedback"></div></td>
 								</tr>
 								<tr>
-									<th scope="row"><label for="inputPw">비밀번호 </label></th>
+									<th scope="row"><label for="inputPw">비밀번호 <span class="text-danger">*</span></label></th>
 									<td>
-										<input id="inputPw" maxlength="20" type="password" name="ifmmPassword" value="<c:out value="${item.ifmmPassword}"/>" placeholder="비밀번호" class="input-text w230px">
+										<input id="inputPw" maxlength="20" type="password" name="ifmmPassword" value="<c:out value="${item.ifmmPassword}"/>" placeholder="4자리 이상의 영문 + 숫자" class="input-text w230px">
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><label for="inputPwRe">비밀번호 확인 </label></th>
 									<td>
-										<input id="inputPwRe" maxlength="20" type="password" placeholder="비밀번호 확인 " class="input-text w230px">
+										<input id="pwCheck" name="pwCheck" maxlength="20" type="password" placeholder="4자리 이상의 영문 + 숫자" class="input-text w230px">
+										<span id="alert-success" style="display: none; color: #097e01; text-align: left; font-size: 15px; margin-top: 9px;"><i class="fa-solid fa-circle-info"></i>&nbsp; 비밀번호가 일치합니다.</span>
+										<span id="alert-danger" style="display: none; color: #c53e3e; text-align: left; font-size: 15px; margin-top: 9px;"><i class="fa-solid fa-circle-info"></i>&nbsp; 비밀번호가 다릅니다.</span>
 									</td>
 								</tr>
 								<tr>
-									<th scope="row"><label for="inputName">이름</label></th>
+									<th scope="row"><label for="inputName">이름<span class="text-danger">*</span></label></th>
 									<td>
 										<input id="inputName" maxlength="20" type="text" name="ifmmName" value="<c:out value="${item.ifmmName}"/>" placeholder="이름" class="input-text w230px">
 									</td>
 								</tr>
 								<tr>
-									<th scope="row"><label for="inputGender">성별 </label></th>
+									<th scope="row"><label for="inputGender">성별 <span class="text-danger">*</span></label></th>
 									<td>
 										<select class="form-select" id="inputGender" name="ifmmGender">
 											<option selected>성별</option>
@@ -97,19 +99,19 @@
 									</td>	
 								</tr>
 								<tr>
-									<th scope="row"><label for="inputEmail">이메일 </label></th>
+									<th scope="row"><label for="inputEmail">이메일<span class="text-danger">*</span> </label></th>
 									<td>
 										<input id="inputEmail" type="text" class="input-text w230px"name="ifmmEmailAddress">
 										<select class="form-select" id="emailHelpInline" name="ifmmEmailDomain" aria-label=".form-select email">
 											<option selected>email address</option>
-											<option value="1">gmail.com</option>
-											<option value="2">naver.com</option>
-											<option value="3">직접입력 </option>
+											<option value="8">gmail.com</option>
+											<option value="9">naver.com</option>
+											<option value="10">직접입력 </option>
 										</select>
 									</td>	
 								</tr>
 								<tr>
-									<th scope="row"><label for="inputTel">휴대폰 번호</label></th>
+									<th scope="row"><label for="inputTel">휴대폰 번호<span class="text-danger">*</span></label></th>
 									<td>
 										<input type="text" id="inputTel" name="ifmmPhone" maxlength="11" placeholder="'-' 없이 입력" class="input-text w230px">
 										<button id="btnInputTelAuth" type="button" class="button gray w75px ml08 disabled" disabled="disabled">인증요청</button>
@@ -133,7 +135,7 @@
 									</td>
 								</tr>
 								<tr>
-									<th scope="row"><label for="inputDob">생년월일 </label></th>
+									<th scope="row"><label for="inputDob">생년월일<span class="text-danger">*</span> </label></th>
 									<td>
 										<input id="inputDob" maxlength="20" type="date" name="ifmmDob" placeholder="생년월일 " class="input-text w230px">
 									</td>
@@ -178,14 +180,30 @@
 		
 	});
 	
+	$('#pwCheck').focusout(function () {
+        var pwd1 = $("#inputPw").val();
+        var pwd2 = $("#pwCheck").val();
+  
+        if ( pwd1 != '' && pwd2 == '' ) {
+            null;
+        } else if (pwd1 != "" || pwd2 != "") {
+            if (pwd1 == pwd2) {
+                $("#alert-success").css('display', 'inline-block');
+                $("#alert-danger").css('display', 'none');
+            } else {
+                $("#alert-success").css('display', 'none');
+                $("#alert-danger").css('display', 'inline-block');
+            }
+        }
+    });
+	
 	
 	
 	</script>
 	<script type="text/javascript">
 	var form = $("#mainForm");
-	  
+	
 	runForm = function(key) {
-		  
 	  switch(key)
 	  {
 	  	case "return":
@@ -195,6 +213,34 @@
   		}
 	  	case "add":
   		{
+	  		if($("#ifmmId").val() == null || $("#ifmmId").val().length<1){
+	  			alert("아이디를 입력해주세요.");
+	  			break;
+	  		} 
+	  		if($("#inputPw").val() == null || $("#inputPw").val().length<1){
+	  			alert("비밀번호를 입력해주세요.");
+	  			break;
+	  		} 
+	  		if($("#inputName").val() == null || $("#ifmmId").val().length<1){
+	  			alert("이름을 입력해주세요.");
+	  			break;
+	  		} 
+	  		if($("#inputGender").val() == null || $("#inputGender").val().length<1){
+	  			alert("성별을 입력해주세요.");
+	  			break;
+	  		} 
+	  		if($("#inputEmail").val() == null || $("#inputEmail").val().length<1){
+	  			alert("이메일을 입력해주세요.");
+	  			break;
+	  		} 
+	  		if($("#inputTel").val() == null || $("#inputTel").val().length<1){
+	  			alert("휴대폰번호를 입력해주세요.");
+	  			break;
+	  		} 
+	  		if($("#inputDob").val() == null || $("#inputDob").val().length<1){
+	  			alert("생년월일을 입력해주세요.");
+	  			break;
+	  		} 
 			form.attr("action","/member/joinResult").submit(); 		
   		}
 	  

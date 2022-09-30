@@ -61,7 +61,7 @@
 			,tdpxSittingRowNum
 			,tdpxDelNy
 			,tdpxUseNy
-			,tradTheater_tdthSeq as tdthSeq
+			,tradTheater_tdthSeq
 		)
 		VALUES(
 			#{tdpxPlexName}

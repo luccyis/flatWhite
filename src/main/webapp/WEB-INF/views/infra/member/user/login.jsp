@@ -111,9 +111,6 @@
 										<div class="link">
 											<a href="/find/findId" title="ID/PW 찾기 선택">ID/PW 찾기</a>
 											<a href="/member/joinAuth" title="회원가입 선택">회원가입</a><br>
-											sessSeq : <c:out value="${sessSeq}"/><br>
-											sessName : <c:out value="${sessName}"/><br>
-											sessId: <c:out value="${sessId}"/><br>
 										</div>
 
 										<div class="sns-login">

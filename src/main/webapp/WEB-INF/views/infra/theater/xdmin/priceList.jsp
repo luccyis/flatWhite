@@ -42,70 +42,134 @@
 	<!-- Content -->	
 		<div class="container-xxl flex-grow-1 container-p-y">
 			<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 관람료 </h4>
-
+			
+			<form method="post" name="formList" id="formList">
+			<input type="hidden" name="thprSeq">
+			<input type="hidden" name="thisPage" value="${vo.thisPage}">
 		<!-- 	Table -->
-			<div class="card">
-				<h5 class="card-header">영화 관람료</h5>
-				<div class="card-body">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+						<div class="col p-2">
+							<select id="shDelNy" name="shDelNy" class="form-select">
+								<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
+								<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+								<option value="1"<c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
+							</select>	
+						</div>
+						<div class="col p-2">
+							<select id="shOptionDate" name="shOptionDate" class="form-select">
+								<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+								<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+								<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+							</select>	
+						</div>
+						<div class="col p-2">
+							<input type="text" class="form-control" id="startDate" name="startDate" placeholder="시작일">
+						</div>
+						<div class="col p-2">
+							<input type="text" class="form-control" id="endDate" name="endDate" placeholder="종료일">
+						</div>
+					</div>
 					<div class="row">
-						<div class="col-4 p-2">
-							<label class="form-label" for="priceSelectTheater">극장 선택</label>
-							<select class="form-select" onchange="selectTheater()" id="priceSelectTheater">
-								<option value="1">코엑스</option>
-								<option value="2">성수</option>
-								<option value="3">동대문</option>
-							</select>
-						</div>	
-						<div class="col-4 py-4">	
+						<div class="col p-2">
+							<select id="shOption" name="shOption" class="form-select">
+								<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+									<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>관람료코드</option>
+									<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>지점</option>
+							</select>	
+						</div>
+						<div class="col p-2">
+							<input type="text" class="form-control" id="shValue" name="shValue" value="${vo.shValue}" placeholder="검색어">
+						</div>
+						<div class="col p-2">
 							<button type="submit" class="btn btn-warning" id="btnSearch">
 								<i class="fa-solid fa-magnifying-glass"></i>
 							</button>
+							<button type="button" class="btn btn-danger" id="btnReset">
+								<i class="fa-solid fa-rotate-left"></i>
+							</button>
 						</div>
-					</div>		
+					</div>
+				</div>
+			</div>	
+				
+			<div class="card">
+				<h5 class="card-header">영화 관람료</h5>
+				<div class="card-body">
+					<span>total : </span><c:out value="${vo.totalRows -((vo.thisPage-1) * vo.rowNumToShow + status.index)}"/>
 					<div class="table-responsive text-nowrap">
 						<table class="table table-bordered">
 							<thead>
 								<tr>
+									<th>
+										<div class="form-check g-2">
+											<input class="form-check-input" type="checkbox" id="listCheck" value="">	
+										</div>
+									</th>	
+									<th>#</th>
+									<th>관람료코드</th>
+									<th>지점</th>
 									<th>요일</th>
 									<th>상영시간</th>
-									<th>일반</th>
-									<th>청소년</th>
+									<th>청소년/일반</th>
+									<th>가격</th>
+									<th>사용여부</th>
+									<th>삭제여부</th>
 								</tr>
 							</thead>
 							<tbody>
-							
-							<tr>
-								<td></td>
-							
-							
-							
-								<tr>
-									<td rowspan="2">주중 thprWeekendNy</td>
-									<td>조조 thprMorningNy</td>
-									<td>10,000</td>
-									<td>8,000</td>
-								</tr>
-								<tr>
-									<!-- <td>월~목</td> -->
-									<td>일반</td>
-									<td>14,000</td>
-									<td>12,000</td>
-								</tr>
-								<tr>
-									<td rowspan="2">주말<br>공휴일</td>
-									<td>조조</td>
-									<td>11,000</td>
-									<td>9,000</td>
-								</tr>
-								<tr>
-									<!-- <td>금~일<br>공휴일</td> -->
-									<td>일반</td>
-									<td>15,000</td>
-									<td>13,000</td>
-								</tr>
+								<c:choose>
+									<c:when test="${fn:length(list) eq 0 }">
+										<tr>
+											<td class="text-center" colspan="9">There is no data!</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${list}" var="list" varStatus="status">
+											<tr style="cursor:pointer;" onclick="goForm('${list.thprSeq}')">
+												<td>
+													<div class="form-check g-2">
+														<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" id="listCheck" value="">	
+													</div>
+												</td>
+												<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+												<td><c:out value="${list.thprSeq}"/></td>
+												<td><c:out value="${list.tdthBranch}"/></td>
+												<td>
+													<c:if test="${list.thprWeekendNy eq 0}">일반</c:if>
+													<c:if test="${list.thprWeekendNy eq 1}">주말</c:if>
+												</td>
+												<td>
+													<c:if test="${list.thprMorningNy eq 0}">일반</c:if>
+													<c:if test="${list.thprMorningNy eq 1}">조조</c:if>
+												</td>
+												<td>
+													<c:if test="${list.thprTeenagerNy eq 0}">일반</c:if>
+													<c:if test="${list.thprTeenagerNy eq 1}">청소년</c:if>
+												</td>
+												<td><c:out value="${list.thprPrice}"/></td>
+												<td>
+													<c:if test="${list.thprUseNy eq 0}">N</c:if>
+													<c:if test="${list.thprUseNy eq 1}">Y</c:if>
+												</td>
+												<td>
+													<c:if test="${list.thprDelNy eq 0}">N</c:if>
+													<c:if test="${list.thprDelNy eq 1}">Y</c:if>
+												</td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>	
+											
 							</tbody>	
 						</table>
 					</div>
+				</div>
+				<div class="card-footer">
+					<!-- pagination s -->
+					<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+					<!-- pagination e -->
 				</div>
 				
 				<div class="demo-inline-spacing">
@@ -169,15 +233,15 @@
     <script src="/resources/assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script>
-	var goUrlList = "/theaterPrice/list";
-	var goUrlInst = "/theaterPrice/inst";
-	var goUrlUpdt = "/theaterPrice/updt";
-	var goUrlUele = "/theaterPrice/uele";
-	var goUrlDele = "/theaterPrice/dele";
-	var goUrlForm = "/theaterPrice/form";
+    <script> //컨트롤러 수정해야됨
+	var goUrlList = "/theaterPrice/priceList";
+	var goUrlInst = "/theaterPrice/priceInst";
+	var goUrlUpdt = "/theaterPrice/priceUpdt";
+	var goUrlUele = "/theaterPrice/priceUele";
+	var goUrlDele = "/theaterPrice/pricedele";
+	var goUrlForm = "/theaterPrice/priceForm";
 	
-	var seq = $("input:hidden[name=tdthSeq]");
+	var seq = $("input:hidden[name=thprSeq]");
 	
 	var form = $("form[name=formList]");
 	var formVo = $("form[name=formVo]");
@@ -204,18 +268,6 @@
 		form.attr("action", goUrlForm).submit();
 	}
 	
-	selectTheater = function(){
-		var select = $("#priceSelectTheater");
-		//select된 밸류값 가져오기....
-		$.ajax(){
-			async: true
-			,cache: fale
-			,type: "post"
-			,url: ""
-			
-			//url 만들어야됨~~~~~~~
-		}
-	}
 	
 	
 	</script>

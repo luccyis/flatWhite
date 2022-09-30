@@ -12,7 +12,7 @@
     FROM tradTheaterPrice a
     JOIN tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
     WHERE 1=1
-    	<if test="shDelNy != null and !shDelNy.equals('')">AND thprDelNy = #{thprDelNy}</if>
+    	<if test="shDelNy != null and !shDelNy.equals('')">AND thprDelNy = #{shDelNy}</if>
     	<choose>
     		<when test="shOption==1">AND thprSeq = #{shValue}</when>
     		<when test="shOption==2">AND tdthBranch = #{shValue}</when>
