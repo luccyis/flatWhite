@@ -44,7 +44,7 @@
 			<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 상영관 관리 </h4>
 			<form method="post" name="formList" id="formList">
 			<input type="hidden" name="tdpxSeq">
-			<input type="hidden" name="thisPage" value="${vo.thisPage}"
+			<input type="hidden" name="thisPage" value="${vo.thisPage}">
 		<!-- 	Table -->
 		
 			<div class="card">
