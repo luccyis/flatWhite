@@ -128,7 +128,7 @@
 						<div class="row">
 					<div class="col-6">
 						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary" onclick="href='../movie/movieList.html'">
+							<button type="button" class="btn btn-primary" id="">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>
