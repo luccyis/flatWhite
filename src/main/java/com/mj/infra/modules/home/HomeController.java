@@ -15,8 +15,13 @@ public class HomeController {
 	@Autowired
 	HomeServiceImpl service;
 	
+	@RequestMapping(value="main")
+	public String home() throws Exception{
+		return "infra/home/home";
+	}
+	
 	@RequestMapping(value = "userMain")
-	public String HomeList(Model model) throws Exception{
+	public String homeList(Model model) throws Exception{
 		List<Home> list = service.selectList();
 		model.addAttribute("list", list);
 		return "infra/home/user/home";

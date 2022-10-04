@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -41,79 +43,86 @@
 		<div class="container-xxl flex-grow-1 container-p-y">
 			<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">영화 /</span>기본 정보 관리</h4>
 			
+			<c:set var="listCodeAge" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
 		<!-- 	Table -->
 			<div class="card">
 				<h5 class="card-header">영화 정보 추가</h5>
 				<div class="card-body">
-					<form>
+					<form id="form" name="form" method="post">
+					<%@include file ="movieVo.jsp" %>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label" for="inputMovieTitle">제목</label>
-								<input type="text" class="form-control" id="inputMovieTitle" name="">
+								<label class="form-label" for="tdmvMovieTitle">제목</label>
+								<input type="text" class="form-control" id="tdmvMovieTitle" name="tdmvMovieTitle">
 							</div>
 							<div class="col p-2">
-								<label class="form-label" for="inputTitleEng">영어제목</label>
-								<input type="text" class="form-control" id="inputTitleEng" name="">
+								<label class="form-label" for="tdmvTitleEng">영어제목</label>
+								<input type="text" class="form-control" id="tdmvTitleEng" name="tdmvTitleEng">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label" for="inputAudienceScore">관람객평점</label>
-								<input type="text" class="form-control" id="inputAudienceScore" name="">
+								<label class="form-label" for="tdmvAudienceScore">관람객평점</label>
+								<input type="text" class="form-control" id="tdmvAudienceScore" name="tdmvAudienceScore">
 							</div>
 							<div class="col p-2">
-								<label class="form-label" for="inputRank">예매율</label>
-								<input type="text" class="form-control" id="inputRank" name="">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col p-2">
-								<label class="form-label" for="inputStory">스토리</label>
-								<textarea class="form-control" id="inputStory" row="7"></textarea>
-							</div>
-							<div class="col p-2">
-								<label class="form-label" for="inputShowType">상영타입</label>
-								<input type="text" class="form-control" id="inputShowType" name="">
+								<label class="form-label" for="tdmvRank">예매율</label>
+								<input type="text" class="form-control" id="tdmvRank" name="tdmvRank">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label" for="inputDirector">감독</label>
-								<input type="text" class="form-control" id="inputDirector" name="">
+								<label class="form-label" for="tdmvStory">스토리</label>
+								<textarea class="form-control" id="tdmvStory" row="7" name="tdmvStory"></textarea>
 							</div>
 							<div class="col p-2">
-								<label class="form-label" for="inputCast">출연진</label>
-								<input type="text" class="form-control" id="inputCast" name="">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col p-2">
-								<label class="form-label" for="inputGenres">장르</label>
-								<input type="text" class="form-control" id="inputGenres" name="">
-							</div>
-							<div class="col p-2">
-								<label class="form-label" for="inputRunningTime">상영시간</label>	
-								<input type="text" class="form-control" id="inputRunningTime" name="">
+								<label class="form-label" for="tdmvShowType">상영타입</label>
+								<input type="text" class="form-control" id="tdmvShowType" name="tdmvShowType">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label" for="inputReleaseDate">개봉일</label>
-								<input type="text" class="form-control" id="inputReleaseDate" name="">
+								<label class="form-label" for="tdmvDirector">감독</label>
+								<input type="text" class="form-control" id="tdmvDirector" name="tdmvDirector">
 							</div>
 							<div class="col p-2">
-								<label class="form-label" for="inputAudienceNumber">누적관람자수</label>
-								<input type="text" class="form-control" id="inputAudienceNumber" name="">
+								<label class="form-label" for="tdmvCast">출연진</label>
+								<input type="text" class="form-control" id="tdmvCast" name="tdmvCast">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label" for="inputTrailer">예고편</label>
-								<input type="text" class="form-control" id="inputTrailer" name="" placeholder="url">
+								<label class="form-label" for="tdmvGenres">장르</label>
+								<input type="text" class="form-control" id="tdmvGenres" name="tdmvGenres">
 							</div>
 							<div class="col p-2">
-								<label class="form-label" for="inputLiked">좋아요</label>
-								<input type="text" class="form-control" id="inputLiked" name="">
+								<label class="form-label" for="tdmvRunningTime">상영시간</label>	
+								<input type="text" class="form-control" id="tdmvRunningTime" name="tdmvRunningTime">
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col p-2">
+								<label class="form-label" for="tdmvReleaseDate">개봉일</label>
+								<input type="text" class="form-control" id="tdmvReleaseDate" name="tdmvReleaseDate">
+							</div>
+							<div class="col p-2">
+								<label class="form-label" for="tdmvAudienceNumber">누적관람자수</label>
+								<input type="text" class="form-control" id="tdmvAudienceNumber" name="tdmvAudienceNumber">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col p-2">
+								<label class="form-label" for="tdmvTrailer">예고편</label>
+								<input type="text" class="form-control" id="tdmvTrailer" name="tdmvTrailer" placeholder="url">
+							</div>
+							<div class="col p-2">
+								<label class="form-label" for="tdmvAge">등급</label>
+								<select id="tdmvAge" name="tdmvAge" class="form-select">
+									<c:forEach items="${listCodeAge}" var="listAge" varStatus="status">
+										<option value="${list.tdmvAge eq listAge.cdSeq }">${listAge.cdName}</option>
+									</c:forEach>
+								</select>
 							</div>
 						</div>
 						<div class="row">
@@ -173,8 +182,24 @@
 
     <!-- Main JS -->
     <script src="/resources/assets/js/main.js"></script>
-
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- Page JS -->
+    <script>
+    var goUrlList = "/movie/movieList";
+    var goUrlInst = "/movie/movieInst";
+    var goUrlUpdt = "/movie/movieUpdt";
+    var goUrlUele = "/movie/movieUele";
+    var goUrlDele = "/movie/movieDele";
+    var goUrlForm = "/movie/movieForm";
+    
+    var seq = $("input:hidden[name=tdmvSeq]");
+    
+    var form = $("form[name=form]");
+    var formVo = $("form[name=formVo]");
+    
+    </script>
+    <%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+    
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

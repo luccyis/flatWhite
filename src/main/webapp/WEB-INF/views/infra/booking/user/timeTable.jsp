@@ -33,13 +33,12 @@
 			</div>
 		</div>	
 		
+		<form method="post" name="formList" id="formList">
+        <input type="hidden" name="tdmvSeq">
 		<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
             <div class="quick-reserve">
             	<div class="tit-util">
             		<h2 class="tit">빠른예매</h2>
-            		<div id="btnLangChg" class="right btn-ticket" style="display:none">
-                        <button type="button" class="button gray-line" onclick="parent.setLangChg()">English</button>
-                    </div>
             	</div>
             	<div class="mege-quick-reserve-inculde">
 
@@ -191,6 +190,8 @@
                             <div class="list-area">
 
                                 <!-- all : 전체 -->
+                                
+                                
                                 <div class="all-list">
                                     <button type="button" class="btn-tab on" id="movieAll">전체</button>
                                     <div class="list">
@@ -198,13 +199,15 @@
                                         	<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
                                         		<div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
                                         			<ul>
-                                        				<li>
-                                        					<button type="button" class="btn on" movie-nm="탑건: 매버릭" movie-no="22018400" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-	                                        					<span class="movie-grade small age-12">12세이상관람가</span>
+                                        				<c:forEach items="${list}" var="list" varStatus="status">
+                                        					<li>
+                                        						<button type="button" class="btn on" movie-nm="${list.tdmvMovieTitle}"  img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
+	                                        					<span class="movie-grade small age-12">${list.tdmvAge}</span>
 	                                        					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
-	                                        					<span class="txt">탑건: 매버릭</span>
+	                                        					<span class="txt">${list.tdmvMovieTitle}</span>
                                         					</button>
-                                       					</li>
+                                       						</li>
+                                       					</c:forEach>	
                                        					<li>
                                         					<button type="button" class="btn" movie-nm="헤어질 결심" movie-no="22022900" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
 	                                        					<span class="movie-grade small age-15">15세이상관람가</span>
@@ -496,6 +499,7 @@
                 </div>
               </div>
            </div>
+           </form>
 		</div>
 		
 	<!-- footer-s -->

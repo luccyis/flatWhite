@@ -163,7 +163,7 @@
 			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
 			,success: function(response) {
 				if(response.rt == "success") {
-					location.href='/home';
+					location.href='/home/main';
 				} else {
 					alert("회원없음");
 				}
@@ -183,7 +183,7 @@
 			,data: {}
 			,success: function(response) {
 				if(response.rt == "success"){
-					location.href = "/home";
+					location.href = "/home/main";
 				} else {
 					// by pass
 				}

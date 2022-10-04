@@ -90,6 +90,23 @@ public class MovieController {
 		}
 	}
 	
+	@RequestMapping(value="movieDele")
+	public String movieDele(MovieVo vo) throws Exception {
+		int result = service.delete(vo);
+		System.out.println("delete result: " + result);
+		return "redirect:/movie/movieList";
+	}
+	
+	@RequestMapping(value="movieUele")
+	public String movieUele(Movie dto) throws Exception {
+		int result = service.uelete(dto);
+		System.out.println("uelete result: " + result);
+		return "redirect:/movie/movieList";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping(value="postList")
 	public String MoviePostList() throws Exception{

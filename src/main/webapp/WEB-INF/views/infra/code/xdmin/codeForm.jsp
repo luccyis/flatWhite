@@ -195,39 +195,20 @@
     
     <script type="text/javascript">
     
-    	var goUrlList = "code/codeList";
-    	var goUrlInst = "code/codeInst";
-    	var goUrlUpdt = "code/codeUpdt";
-    	var goUrlUele = "code/codeUele";
-    	var goUrlDele = "code/codeDele";
+    	var goUrlList = "/code/codeList";
+    	var goUrlInst = "/code/codeInst";
+    	var goUrlUpdt = "/code/codeUpdt";
+    	var goUrlUele = "/code/codeUele";
+    	var goUrlDele = "/code/codeDele";
     	
     	var seq = $("input:hidden[name=cdSeq]");
     	
     	var form = $("form[name=form]");
     	var formVo = $("form[name=formVo]");
     	
-    	$("#btnSave").on("click", function(){
-    		if(seq.val() == "0" || seq.val() == ""){
-    			form.attr("action", goUrlInst).submit();
-    		} else {
-    			form.attr("action", goUrlUpdt).submit();
-    		}
-    	});
-    	
-    	$("#btnDelete").on("click", function(){
-    		form.attr("action", goUrlDele).submit();
-    	});
-    	
-    	$("#btnUelete").on("click", function(){
-    		form.attr("action", goUrlUele).submit();
-    	});
-    	
-    	$("#btnList").on("click", function(){
-    		formVo.attr("action", goUrlList).submit();
-    	});
-    	
-    	
     </script>
+     <%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+     
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
