@@ -33,6 +33,10 @@ public class TimetableDao {
 	public int uelete(Timetable dto) {return sqlSession.update(namespace +".uelete", dto);}
 	public int delete(TimetableVo vo) {return sqlSession.delete(namespace +".delete", vo);}
 	
+	public List<Timetable> selectListFromMovie(TimetableVo vo){
+		List<Timetable> list = sqlSession.selectList(namespace + ".selectListFromMovie", vo);
+		return list;
+	}
 	
 
 	

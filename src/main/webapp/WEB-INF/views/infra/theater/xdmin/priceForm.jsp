@@ -46,15 +46,17 @@
 		<!-- 	Table -->
 			<div class="card">
 				<h5 class="card-header">영화 관람료 정보 추가</h5>
-				<form>
+				<form id="form" method="post">
+					<%@include file="priceVo.jsp" %>
+					
 					<div class="card-body">
 						<div class="row">
 							<div class="col-4 p-2">
 								<label class="form-label" for="priceSelectTheater">극장 선택</label>
-								<select class="form-select" id="priceSelectTheater">
-									<option value="1">코엑스</option>
-									<option value="2">성수</option>
-									<option value="3">동대문</option>
+								<select class="form-select" id="priceSelectTheater" name="tdthBranch">
+									<c:forEach items="${list}" var="list" varStatus="status">
+										<option value="${status.count}"<c:if test="${item.tradTheater_tdthSeq eq status.count}">selected</c:if>><c:out value="${list.tdthBranch} "/></option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -64,8 +66,8 @@
 								<tr>
 									<th>요일</th>
 									<th>상영시간</th>
-									<th>일반</th>
-									<th>청소년</th>
+									<th>일반 가격</th>
+									<th>청소년 가격</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -73,48 +75,40 @@
 									<td rowspan="2">주중</td>
 									<td>조조</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="thprPrice" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
 									</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
 									</td>
 								</tr>
 								<tr>
 									<!-- <td>월~목</td> -->
 									<td>일반</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
 									</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
 									</td>
 								</tr>
 								<tr>
 									<td rowspan="2">주말<br>공휴일</td>
 									<td>조조</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
 									</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
 									</td>
 								</tr>
 								<tr>
 									<!-- <td>금~일<br>공휴일</td> -->
 									<td>일반</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>" id="inputPrice">
 									</td>
 									<td>
-										<label for="inputPrice" class="form-label">가격</label>
-										<input type="text" class="form-control" id="inputPrice">
+										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>" id="inputPrice">
 									</td>
 								</tr>
 							</tbody>	
@@ -125,41 +119,7 @@
 						
 					</div>
 				
-					<div class="card-footer">
-						<div class="col-12">
-							<div class="demo-inline-spacing">
-								<nav aria-lable="Page Navigation">
-									<ul class="pagination pagination-sm justify-content-center">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0);">
-												<i class="tf-icon bx bx-chevrons-left"></i>
-                          						</a>
-			                            </li>
-			                            <li class="page-item active">
-			                              <a class="page-link" href="javascript:void(0);">1</a>
-			                            </li>
-			                            <li class="page-item">
-			                              <a class="page-link" href="javascript:void(0);">2</a>
-			                            </li>
-			                            <li class="page-item">
-			                              <a class="page-link" href="javascript:void(0);">3</a>
-			                            </li>
-			                            <li class="page-item">
-			                              <a class="page-link" href="javascript:void(0);">4</a>
-			                            </li>
-			                            <li class="page-item">
-			                              <a class="page-link" href="javascript:void(0);">5</a>
-			                            </li>
-			                            <li class="page-item next">
-			                            	<a class="page-link" href="javascript:void(0);">
-			                              		<i class="tf-icon bx bx-chevrons-right"></i>
-		                              		</a>
-			                           </li>
-			                        </ul>
-			                      </nav>	
-								</div>
-							</div>
-						</div>
+					
 					</form>	
 				</div>	
 				
@@ -167,7 +127,7 @@
 				<div class="row">
 					<div class="col-6">
 						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary" onclick="location.href='priceList.html'">
+							<button type="button" class="btn btn-primary">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>

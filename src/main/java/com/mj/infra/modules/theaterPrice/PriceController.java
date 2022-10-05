@@ -39,7 +39,14 @@ public class PriceController {
 	}
 	
 	@RequestMapping(value="priceForm")
-	public String priceForm() throws Exception {
+	public String priceForm(@ModelAttribute("vo") PriceVo vo, Model model) throws Exception {
+		
+		Price item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
+		List<Price> list = service.selectTdthList();
+		model.addAttribute("list", list);
+		
 		return "infra/theater/xdmin/priceForm";
 	}
 	

@@ -174,27 +174,12 @@
 									<button type="button" class="btn btn-outline-danger" id="btnUelete">
 										<i class="fa-solid fa-xmark"></i>
 									</button>
-									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
+									<button type="button" class="btn btn-danger" id="btnDelete">
 										<i class="fa-solid fa-trash-can"></i>
 									</button>
 									<button type="button" class="btn btn-success" id="btnSave">
 										<i class="fa-solid fa-arrow-up-from-bracket"></i>
 									</button>	
-								</div>
-							</div>
-						</div>
-						<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">정말 삭제하시겠습니까?</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-										<button type="button" class="btn btn-danger" id="btnDeleteInModal">삭제</button>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -211,6 +196,10 @@
 		
           <!-- / Content -->
  <%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
+ 
+<!-- modalBase s -->
+<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
+<!-- modalBase e -->
 
             <div class="content-backdrop fade"></div>
           </div>
@@ -223,22 +212,7 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-
-
-    <!-- Core JS -->
-
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
+	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 
 	<script>
 	var goUrlList = "/codeGroup/codeGroupList";
@@ -252,66 +226,12 @@
 	var form = $("form[name = form]");
 	var formVo = $("form[name=formVo]");
 	
-	$("#btnSave").on("click", function(){
-		if (seq.val() == "0" || seq.val()==""){
-			/* if(validationInst() == false) return false; */
-			form.attr("action", goUrlInst).submit();
-		} else {
-			/* if(validationUpdt() == false) return false; */
-			form.attr("action", goUrlUpdt).submit();
-		}
-	});
-	
-	$("#btnDeleteInModal").on("click", function(){
-		form.attr("action", goUrlDele).submit();
-	});
-	
-	$("#btnUelete").on("click", function(){
-		form.attr("action", goUrlUele).submit();
-	});
-	
-	$("#btnList").on("click", function(){
-		formVo.attr("action", goUrlList).submit();
-	});
-	
-/* 	$("#btnUelete").on("click", function(){
-		$("input:hidden[name=exDeleteType]").val(1);
-		$(".modal-title").text("확 인");
-		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
-		$("#btnModalUelete").show();
-		$("#btnModalDelete").hide();
-		$("#modalConfirm").modal("show");
-	});
-	
-
-	$("#btnDelete").on("click", function(){
-		$("input:hidden[name=exDeleteType]").val(2);
-		$(".modal-title").text("확 인");
-		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
-		$("#btnModalUelete").hide();
-		$("#btnModalDelete").show();
-		$("#modalConfirm").modal("show");
-	});
-	
-	
-	$("#btnModalUelete").on("click", function(){
-		$("#modalConfirm").modal("hide");
-		formVo.attr("action", goUrlUele).submit();
-	});
-	
-	
-	$("#btnModalDelete").on("click", function(){
-		$("#modalConfirm").modal("hide");
-		formVo.attr("action", goUrlDele).submit();
-	}); */
-	
 	</script>
-
+	 <%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </body>
 </html>
 

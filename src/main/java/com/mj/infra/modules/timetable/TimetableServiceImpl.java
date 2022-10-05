@@ -47,5 +47,12 @@ public class TimetableServiceImpl implements TimetableService {
 		return dao.delete(vo);
 	}
 
+	@Override
+	public List<Timetable> selectListFromMovie(TimetableVo vo) throws Exception {
+		List<Timetable> list = dao.selectListFromMovie(vo);
+		return list;
+	}
+
+	
 	
 }

@@ -12,7 +12,15 @@ public class CodeGroupVo extends BaseVo {
 	private String cgSeq;
 	private String cgName;
 	private String cgNameEng;
+	
+	private Integer exDeleteType;
 
+	public Integer getExDeleteType() {
+		return exDeleteType;
+	}
+	public void setExDeleteType(Integer exDeleteType) {
+		this.exDeleteType = exDeleteType;
+	}
 	public String getCgNameEng() {
 		return cgNameEng;
 	}

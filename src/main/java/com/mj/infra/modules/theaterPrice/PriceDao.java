@@ -31,4 +31,6 @@ public class PriceDao {
 	public int update(Price dto) {return sqlSession.update(namespace + ".update", dto);}
 	public int uelete(Price dto) {return sqlSession.update(namespace + ".uelete", dto);}
 	public int delete(PriceVo vo) {return sqlSession.delete(namespace + ".delete", vo);}
+
+	public List<Price> selectTdthList(){return sqlSession.selectList(namespace + ".selectTdthList");}
 }

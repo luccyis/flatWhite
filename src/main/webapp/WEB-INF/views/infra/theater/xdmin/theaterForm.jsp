@@ -58,7 +58,7 @@
 						</div>
 						<div class="col p-2">
 							<label for="inputRegion" class="form-label">지역선택</label>
-							<select id="inputRegion" name="tdthRegion" class="form-select">
+							<select id="inputRegion" name="tdthRegion" class="form-select" value="<c:out value="${item.tdthRegion}"/>">
 								<c:forEach items="${listCodeRegion}" var="listRegion" varStatus="status">
 									<option value="${list.tdthRegion eq listRegion.cdSeq }">${listRegion.cdName}</option>
 								</c:forEach>
@@ -68,11 +68,11 @@
 					<div class="row">
 						<div class="col p-2">
 							<label for="inputBranch" class="form-label">지점명</label>
-							<input type="text" class="form-control" name="tdthBranch" id="inputBranch">
+							<input type="text" class="form-control" name="tdthBranch" value="<c:out value="${item.tdthBranch}"/>" id="inputBranch">
 						</div>
 						<div class="col p-2">
 							<label for="inputBranchEng" class="form-label">지점명(영어)</label>
-							<input type="text" class="form-control" name="tdthBranchEng" id="inputBranchEng">
+							<input type="text" class="form-control" name="tdthBranchEng" value="<c:out value="${item.tdthBranchEng}"/>" id="inputBranchEng">
 						</div>
 					</div>
 					<div class="row">	
@@ -118,20 +118,20 @@
 				<div class="row">
 					<div class="col-6">
 						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary" onclick="location.href='theaterList'">
+							<button type="button" class="btn btn-primary" id="btnList">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>
 					</div>	
 					<div class="col-6 d-flex flex-row-reverse">
 						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" id="btnUelete">
 								<i class="fa-solid fa-xmark"></i>
 							</button>
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" id="btnDelete">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success">
+							<button type="button" class="btn btn-success" id="btnSave">
 								<i class="fa-solid fa-arrow-up-from-bracket"></i>
 							</button>	
 						</div>
@@ -139,9 +139,18 @@
 				</div>		
 			</div>
 			</form>
+			<form name="formVo" id="formVo" method="post">
+				<!-- *Vo.jsp s -->
+				<%@include file="theaterVo.jsp" %>
+				<!-- *Vo.jsp e -->
+			</form>
 		</div>	
         <!-- / Content -->
 		 <%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
+		 
+		 <!-- modalBase s -->
+		<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
+		<!-- modalBase e -->
 
             <div class="content-backdrop fade"></div>
           </div>
@@ -155,24 +164,22 @@
     </div>
     <!-- / Layout wrapper -->
 
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
+<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+    
+    <script type="text/javascript">
+    
+    	var goUrlList = "/theater/theaterList";
+    	var goUrlInst = "/theater/theaterInst";
+    	var goUrlUpdt = "/theater/theaterUpdt";
+    	var goUrlUele = "/theater/theaterUele";
+    	var goUrlDele = "/theater/theaterDele";
+    	
+    	var seq = $("input:hidden[name=tdthSeq]");
+    	
+    	var form = $("form[name=form]");
+    	var formVo = $("form[name=formVo]");
+    	
+    </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae2d588a9908efcae4b7f462eb1258db&libraries=services"></script>
 <script>	
@@ -283,12 +290,11 @@
         element_wrap.style.display = 'block';
     }
     
-    
-    
 </script>
+<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>  
   </body>
 </html>

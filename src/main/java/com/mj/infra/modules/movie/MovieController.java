@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mj.infra.common.constants.Constants;
 import com.mj.infra.common.util.UtilDateTime;
+import com.mj.infra.modules.timetable.Timetable;
+import com.mj.infra.modules.timetable.TimetableVo;
 
 @Controller
 @RequestMapping(value="/movie/")
@@ -102,6 +104,15 @@ public class MovieController {
 		int result = service.uelete(dto);
 		System.out.println("uelete result: " + result);
 		return "redirect:/movie/movieList";
+	}
+	
+	//링크 바꿔야 됨.
+	@RequestMapping(value="timeTable")
+	public String timeTable(Model model) throws Exception {
+			List<Movie> list = service.selectList();
+			model.addAttribute("list", list);
+		
+		return "infra/booking/user/timeTable";
 	}
 	
 	

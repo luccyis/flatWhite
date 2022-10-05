@@ -12,6 +12,7 @@ public interface MovieService {
 	public int uelete(Movie dto) throws Exception;
 	public int delete(MovieVo vo) throws Exception;
 
+	public List<Movie> selectList() throws Exception;
 
 	
 

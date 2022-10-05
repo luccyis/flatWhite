@@ -89,7 +89,10 @@
 			,CONCAT(#{ifmmEmailAddress},'@',(SELECT cc.cdName FROM infrCode cc WHERE cc.cdSeq = #{ifmmEmailDomain}))
 			,#{ifmmEmailDomain}
 			,#{ifmmPhone}
-			,#{ifmmDob}
+			<choose>
+				<when test="ifmmDob.equlas('')">,NULL</when>
+				<otherwise>,#{ifmmDob}</otherwise>
+			</choose>
 			,4
 			,0
 			,1

@@ -47,6 +47,12 @@ public class PlexServiceImpl implements PlexService {
 	public int delete(PlexVo vo) throws Exception {
 		return dao.delete(vo);
 	}
+
+	@Override
+	public List<Plex> selectTdthList() throws Exception {
+		return dao.selectTdthList();
+	}
+	
 	
 
 }

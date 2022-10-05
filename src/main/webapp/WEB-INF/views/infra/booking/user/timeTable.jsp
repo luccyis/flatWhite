@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -191,7 +192,7 @@
 
                                 <!-- all : 전체 -->
                                 
-                                
+        					<c:set var="listCodeAge" value="${CodeServiceImpl.selectListCachedCode('6')}"/>                        
                                 <div class="all-list">
                                     <button type="button" class="btn-tab on" id="movieAll">전체</button>
                                     <div class="list">
@@ -201,34 +202,19 @@
                                         			<ul>
                                         				<c:forEach items="${list}" var="list" varStatus="status">
                                         					<li>
-                                        						<button type="button" class="btn on" movie-nm="${list.tdmvMovieTitle}"  img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-	                                        					<span class="movie-grade small age-12">${list.tdmvAge}</span>
+                                        						<button type="button" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
+	                                        					<span class="movie-grade 
+	                                        						<c:choose>
+	                                        							<c:when test="${list.tdmvAge eq 18}">small age-all</c:when>
+	                                        							<c:when test="${list.tdmvAge eq 19}">small age-12</c:when>
+	                                        							<c:when test="${list.tdmvAge eq 20}">small age-15</c:when>
+	                                        							<c:when test="${list.tdmvAge eq 21}">small age-19</c:when>
+	                                        						</c:choose>"></span>
 	                                        					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
 	                                        					<span class="txt">${list.tdmvMovieTitle}</span>
                                         					</button>
                                        						</li>
                                        					</c:forEach>	
-                                       					<li>
-                                        					<button type="button" class="btn" movie-nm="헤어질 결심" movie-no="22022900" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-	                                        					<span class="movie-grade small age-15">15세이상관람가</span>
-	                                        					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
-	                                        					<span class="txt">헤어질 결심</span>
-                                        					</button>
-                                       					</li>
-                                       					<li>
-                                        					<button type="button" class="btn" movie-nm="토르: 러브 앤 썬더" movie-no="22028200" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-	                                        					<span class="movie-grade small age-12">12세이상관람가</span>
-	                                        					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
-	                                        					<span class="txt">토르: 러브 앤 썬더</span>
-                                        					</button>
-                                       					</li>
-                                       					<li>
-	                                       					<button type="button" class="btn" movie-nm="에프터 양" movie-no="21020400" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-		                                       					<span class="movie-grade small age-all">전체관람가</span>
-		                                       					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
-		                                       					<span class="txt">애프터 양</span>
-	                                       					</button>
-                                       					</li>
                                        				</ul>
                                        			</div>
                                        		</div>
@@ -516,6 +502,26 @@
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
 <!-- scripte-e -->
+
+<script>
+	goTheater = function(tdmvSeq){
+		$.ajax({
+			async: true
+			,cach: false
+			,type: "post"
+			,url: "/timetable/selectTheater"
+			,data: 	{"tdmvSeq" : tdmvSeq}
+			,success: function(response) {
+				
+			}
+			,error : function(){
+				alert("error");
+			}
+		});
+		
+	}
+
+</script>
 
 </body>
 </html>	

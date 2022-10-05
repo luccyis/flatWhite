@@ -32,6 +32,8 @@ public class PlexDao {
 	public int update(Plex dto) {return sqlSession.update(namespace +".update", dto);}
 	public int uelete(Plex dto) {return sqlSession.update(namespace +".selectOne", dto);}
 	public int delete(PlexVo vo) {return sqlSession.delete(namespace +".delete", vo);}
+
+	public List<Plex> selectTdthList() { return sqlSession.selectList(namespace + ".selectTdthList");}
 	
 
 	

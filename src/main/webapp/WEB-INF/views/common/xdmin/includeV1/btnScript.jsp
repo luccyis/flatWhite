@@ -31,17 +31,41 @@ $("#btnSave").on("click", function(){
 	}
 });
 
-$("#btnDelete").on("click", function(){
-	form.attr("action", goUrlDele).submit();
-});
-
-$("#btnUelete").on("click", function(){
-	form.attr("action", goUrlUele).submit();
-});
 
 $("#btnList").on("click", function(){
 	formVo.attr("action", goUrlList).submit();
 });
+
+$("#btnUelete").on("click", function(){
+$("input:hidden[name=exDeleteType]").val(1);
+$(".modal-title").text("확 인");
+$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+$("#btnModalUelete").show();
+$("#btnModalDelete").hide();
+$("#modalConfirm").modal("show");
+});
+
+
+$("#btnDelete").on("click", function(){
+$("input:hidden[name=exDeleteType]").val(2);
+$(".modal-title").text("확 인");
+$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+$("#btnModalUelete").hide();
+$("#btnModalDelete").show();
+$("#modalConfirm").modal("show");
+});
+
+
+$("#btnModalUelete").on("click", function(){
+$("#modalConfirm").modal("hide");
+formVo.attr("action", goUrlUele).submit();
+});
+
+
+$("#btnModalDelete").on("click", function(){
+$("#modalConfirm").modal("hide");
+formVo.attr("action", goUrlDele).submit();
+}); 
 
 
 </script>

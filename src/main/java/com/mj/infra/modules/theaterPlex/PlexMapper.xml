@@ -21,6 +21,13 @@
 			ORDER BY a.tdpxSeq
 		</sql>
 	
+	<select id="selectTdthList" resultMap="resultMapObj">
+	SELECT
+		tdthBranch
+	FROM tradTheater
+	WHERE 1=1
+	</select>
+	
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"/>
 		SELECT

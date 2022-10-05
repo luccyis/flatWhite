@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -92,6 +93,7 @@
 				</div>
 				<br>
 		<!-- 	Table -->
+		<c:set var="listCodeMovieAge" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
 			<div class="card">
 				<h5 class="card-header">영화 리스트</h5>
 				<div class="card-body">
@@ -156,7 +158,11 @@
 												<td><c:out value="${list.tdmvCast}"/></td>
 												<td><c:out value="${list.tdmvGenres}"/></td>
 												<td><c:out value="${list.tdmvRunningTime}"/></td>
-												<td><c:out value="${list.tdmvAge}"/></td>
+												<td>
+													<c:forEach items="${listCodeMovieAge}" var="listAge" varStatus="statusAge">
+														<c:if test="${list.tdmvAge eq listAge.cdSeq}"><c:out value="${listAge.cdName}"/></c:if>
+													</c:forEach>
+												</td>
 												<td><c:out value="${list.tdmvReleaseDate}"/></td>
 												<td><c:out value="${list.tdmvAudienceNumber}"/></td>
 												<td><c:out value="${list.tdmvTrailer}"/></td>
@@ -213,7 +219,6 @@
           <!-- / Content -->
 		<%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
 
-
             <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->
@@ -226,23 +231,7 @@
     </div>
     <!-- / Layout wrapper -->
 
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
+	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 
 	<script>
 		var goUrlList = "/movie/movieList";
@@ -256,30 +245,11 @@
 		
 		var form = $("form[name=formList]");
 		var formVo = $("form[name=formVo]");
-		
-		$("#btnSearch").on("click", function(){
-			form.attr("action", goUrlList).submit();
-		});
-		
-		$("#btnReset").on("click", function(){
-			$(location).attr("href", goUrlList);
-		});
-		
-		goList = function(thisPage) {
-			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlList).submit();
-		}
-		
-		$("#btnForm").on("click", function(){
-			goForm(0);
-		});
-		
-		goForm = function(keyValue){
-			seq.val(keyValue);
-			form.attr("action", goUrlForm).submit();
-		}
-		
+	
 	</script>
+	
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+	
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>

@@ -10,7 +10,7 @@ $("#btnLogout").on("click", function(){
 		,data: {}
 		,success: function(response) {
 			if(response.rt == "success"){
-				location.href = "/home";
+				location.href = "/home/userMain";
 			} else {
 				// by pass
 			}

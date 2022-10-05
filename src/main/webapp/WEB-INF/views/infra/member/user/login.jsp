@@ -89,7 +89,7 @@
 								<div class="col left">
 									<div class="login-input-area">
 										<input autocomplete="off" id="ifmmId" name="ifmmId" maxlength="20" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim">
-										<input autocomplete="off" id="ifmmPassword" name="ifmmPassword" maxlength="20" type="password" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
+										<input autocomplete="off" id="ifmmPassword" name="ifmmPassword" maxlength="20" type="password"  onkeyup="enterKey()" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
 										<div class="alert"></div>
 
 										<!-- chk-util -->
@@ -106,7 +106,7 @@
 										</div>
 										<!--// chk-util -->
 
-										<button id="btnLogin" type="button" class="button purple large btn-login">로그인</button>
+										<button onclick="submitform()" type="button" class="button purple large btn-login">로그인</button>
 
 										<div class="link">
 											<a href="/find/findId" title="ID/PW 찾기 선택">ID/PW 찾기</a>
@@ -138,7 +138,7 @@
 				<!--// tab-cont-wrap -->
 			</div>
 
-			<button type="button" class="btn-modal-close" onclick="location.href='/home'">레이어 닫기<!--레이어 닫기--></button>
+			<button type="button" class="btn-modal-close" onclick="location.href='/home/userMain'">레이어 닫기<!--레이어 닫기--></button>
 		</div>
 	</section>
 </div>
@@ -152,7 +152,17 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
  
  <script>
-	$("#btnLogin").on("click", function(){
+ 
+	enterKey = function() {
+		
+		var keycode = event.keyCode;
+		
+		if(keycode == 13) //Enter
+			submitform();  //여기가 이제 로그인 하는 함수로 연결되면 됩니다.
+	}
+	
+	submitform = function(){
+		
 		$.ajax({
 			async: true 
 			,cache: false
@@ -171,8 +181,9 @@
 			,error : function(jqXHR, textStatus, errorThrown){
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
-		});
 	});
+	
+	}
  
 	$("#btnLogout").on("click", function(){
 		$.ajax({

@@ -42,7 +42,7 @@
 	<!-- Content -->	
 		<div class="container-xxl flex-grow-1 container-p-y">
 			<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 상영관 관리 </h4>
-			<form method="post" name="formList" id="formList">
+			<form method="post" name="form" id="form">
 			<input type="hidden" name="tdpxSeq">
 			<input type="hidden" name="thisPage" value="${vo.thisPage}">
 		<!-- 	Table -->
@@ -203,29 +203,14 @@
     </div>
     <!-- / Layout wrapper -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
-    
+    <%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
     <script>
-    var goUrlList = "/plex/list";
-	var goUrlInst = "/plex/inst";
-	var goUrlUpdt = "/plex/updt";
-	var goUrlUele = "/plex/uele";
-	var goUrlDele = "/plex/dele";
+    var goUrlList = "/theaterPlex/plexList";
+	var goUrlInst = "/theaterPlex/plexInst";
+	var goUrlUpdt = "/theaterPlex/plexUpdt";
+	var goUrlUele = "/theaterPlex/plexUele";
+	var goUrlDele = "/theaterPlex/plexDele";
+	var goUrlForm = "/theaterPlex/plexForm";
 	
 	var seq = $("input:hidden[name=tdpxSeq]");
 	

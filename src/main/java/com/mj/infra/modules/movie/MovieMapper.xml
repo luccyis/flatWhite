@@ -74,6 +74,14 @@
 		 tdmvSeq = #{tdmvSeq}
 	</select>
 	
+	<select id="selectListAll" resultMap="resultMapObj">
+	SELECT
+	 *
+	FROM tradMovie
+	WHERE 1=1
+	
+	</select>
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="selectCommon"/>

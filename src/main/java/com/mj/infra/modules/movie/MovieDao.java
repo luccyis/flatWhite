@@ -36,6 +36,10 @@ public class MovieDao {
 	public int uelete(Movie dto) {return sqlSession.update(namespace +".uelete", dto);}
 	public int delete(MovieVo vo) {return sqlSession.update(namespace +".delete", vo);}
 
+	public List<Movie> selectList() {
+		return sqlSession.selectList(namespace + ".selectListAll");
+	}
+
 	
 	
 	

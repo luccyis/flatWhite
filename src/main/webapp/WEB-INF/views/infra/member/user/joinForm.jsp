@@ -225,7 +225,7 @@
 	  			alert("이름을 입력해주세요.");
 	  			break;
 	  		} 
-	  		if($("#inputGender").val() == null || $("#inputGender").val().length<1){
+	  		/* if($("#inputGender").val() == null || $("#inputGender").val().length<1){
 	  			alert("성별을 입력해주세요.");
 	  			break;
 	  		} 
@@ -240,7 +240,7 @@
 	  		if($("#inputDob").val() == null || $("#inputDob").val().length<1){
 	  			alert("생년월일을 입력해주세요.");
 	  			break;
-	  		} 
+	  		}  */
 			form.attr("action","/member/joinResult").submit(); 		
   		}
 	  

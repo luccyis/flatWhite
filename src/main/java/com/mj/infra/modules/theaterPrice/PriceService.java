@@ -13,4 +13,5 @@ public interface PriceService {
 	public int uelete(Price dto) throws Exception;
 	public int delete(PriceVo vo) throws Exception;
 
+	public List<Price> selectTdthList() throws Exception;
 }

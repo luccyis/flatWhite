@@ -12,6 +12,7 @@ public interface PlexService {
 	public int update(Plex dto) throws Exception;
 	public int uelete(Plex dto) throws Exception;
 	public int delete(PlexVo vo) throws Exception;
+	public List<Plex> selectTdthList()throws Exception;
 	
 	
 

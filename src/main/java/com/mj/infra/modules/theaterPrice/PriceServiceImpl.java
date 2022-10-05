@@ -48,6 +48,12 @@ public class PriceServiceImpl implements PriceService {
 		return dao.delete(vo);
 	}
 
+	@Override
+	public List<Price> selectTdthList() throws Exception {
+		return dao.selectTdthList();
+	}
+
+	
 
 	
 	

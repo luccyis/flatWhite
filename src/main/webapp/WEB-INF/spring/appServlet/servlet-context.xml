@@ -35,7 +35,8 @@
 			<exclude-mapping path="/member/checkId"/>
 			
 			<exclude-mapping path="/member/findIdPwdForm" />
-			<exclude-mapping path="/home" />
+			<exclude-mapping path="/home/home" />
+			<exclude-mapping path="/home/userMain"/>
 			<exclude-mapping path="/movie/main" />
 			<exclude-mapping path="/movie/view" />
 			

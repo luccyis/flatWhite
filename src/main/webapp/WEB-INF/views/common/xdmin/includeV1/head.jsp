@@ -44,9 +44,29 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+    <script>
+    /* $( function() {
+	    $( "#shDateStart" ).datepicker({
+	    	changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+	    	changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange: "1900:2023",
+	    	dateFormat: "yy-mm-dd"
+	    });
+	  } ); 
+	  $( function() {
+	    $( "#shDateEnd" ).datepicker({
+	    	changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+	    	changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange: "1900:2023",
+	    	dateFormat: "yy-mm-dd"
+	    });
+	  } );
+	   */
+    
+    /* $(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']);  
             $( "#shDateStart" ).datepicker({
                  changeMonth: true, 
                  changeYear: true,
@@ -83,5 +103,5 @@
                  }    
  
             });    
-    });
+    });  */
 </script>

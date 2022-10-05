@@ -58,6 +58,13 @@
 			AND thprSeq = #{thprSeq}
 	</select>
 	
+	<select id="selectTdthList" resultMap="resultMapObj">
+		SELECT 
+			tdthBranch
+		FROM tradTheater
+		WHERE 1=1
+	</select>
+	
 	<insert id="insert">
 	INSERT INTO tradTheaterPrice (
 		tradTheater_tdthSeq 

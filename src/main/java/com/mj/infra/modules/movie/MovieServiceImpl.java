@@ -49,6 +49,13 @@ public class MovieServiceImpl implements MovieService {
 	public int delete(MovieVo vo) throws Exception {
 		return dao.delete(vo);
 	}
+
+	@Override
+	public List<Movie> selectList() throws Exception {
+		return dao.selectList();
+	}
+
+
 	
 	
 }

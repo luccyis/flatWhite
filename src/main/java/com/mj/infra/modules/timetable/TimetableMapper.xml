@@ -33,6 +33,7 @@
 			,c.tdpxPlexName
 			,c.tdpxTotalSeatNum
 			,d.tdmvMovieTitle
+			,d.tdmvAge
 		<include refid="selectCommon"/>
 		<include refid="Base.orderByLimitForMysql"/>
 		<include refid="Base.selectListLowerForMysql"/>	
@@ -54,6 +55,24 @@
 		WHERE 
 			a.tdttSeq = #{tdttSeq}
 	</select>
+	
+	<select id="selectListFromMovie" resultMap="resultMapObj">
+	SELECT
+		b.tdthRegion
+		,b.tdthBranch
+		,a.tdttShowTime
+		,d.tdmvMovieTitle
+		,c.tdpxPlexName
+		,c.tdpxTotalSeatNum
+	FROM tradTimeTable a
+	JOIN tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
+	JOIN tradTheaterPlex c on c.tdpxSeq = a.tradTheaterPlex_tdpxSeq
+	JOIN tradMovie d on d.tdmvSeq = a.tradMovie_tdmvSeq
+	WHERE 1=1
+	AND a.tradMovie_tdmvSeq = #{tdmvSeq}
+	</select>
+	
+	
 	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(a.tdttSeq)

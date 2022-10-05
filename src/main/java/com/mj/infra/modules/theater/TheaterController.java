@@ -45,7 +45,7 @@ public class TheaterController {
 
 	@RequestMapping(value="theaterForm")
 	public String theaterForm(@ModelAttribute("vo") TheaterVo vo, Model model) throws Exception {
-		System.out.println("vo.getCgSeq(): " + vo.getTdthSeq());
+		System.out.println("vo.getTdthSeq(): " + vo.getTdthSeq());
 		Theater item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		return "infra/theater/xdmin/theaterForm";
@@ -90,7 +90,6 @@ public class TheaterController {
 		System.out.println("uelete result: "+ result);
 		return "redirect:/theater/theaterList";
 	}
-	
 	
 	
 	

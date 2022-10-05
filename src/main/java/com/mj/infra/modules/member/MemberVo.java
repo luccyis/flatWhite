@@ -9,7 +9,14 @@ public class MemberVo extends BaseVo {
 		private Integer shDelNy;
 		private String ifmmSeq;
 		
+		private Integer exDeleteType;
 		
+		public Integer getExDeleteType() {
+			return exDeleteType;
+		}
+		public void setExDeleteType(Integer exDeleteType) {
+			this.exDeleteType = exDeleteType;
+		}
 		public Integer getShOption() {
 			return shOption;
 		}

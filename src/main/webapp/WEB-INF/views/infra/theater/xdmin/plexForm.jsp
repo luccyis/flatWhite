@@ -44,6 +44,9 @@
 			<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">극장 /</span> 상영관 관리 </h4>
 			
 		<!-- 	Table -->
+		<form id="form" name="form" method="post">
+		<%@include file ="plexVo.jsp" %>
+		
 			<div class="card">
 				<h5 class="card-header">상영관 정보 추가</h5>
 				<div class="card-body">
@@ -56,60 +59,69 @@
 					<div class="row">
 						<div class="col p-2">
 							<label for="selectTheater" class="form-label">극장선택</label>
-							<select id="selectTheater" class="form-select">
-								<option value="">코엑스</option>
-								<option value="">성수</option>
-								<option value="">동대문</option>
+							<select id="selectTheater" class="form-select" name="tdthBranch">
+								<c:forEach items="${list}" var="list" varStatus="status">
+								<option value="${status.count}"<c:if test="${item.tradTheater_tdthSeq eq status.count}">selected</c:if>><c:out value="${list.tdthBranch} "/></option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="col p-2">
 							<label for="inputPlex" class="form-label">상영관이름</label>
-							<input type="text" class="form-control" id="inputPlex">
+							<input type="text" class="form-control" id="inputPlex" name="tdpxPlexName" value="<c:out value="${item.tdpxPlexName} "/>">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col p-2">
 							<label for="inputtotalSeatNum" class="form-label">총 좌석수</label>
-							<input type="text" class="form-control" id="inputtotalSeatNum">
+							<input type="text" class="form-control" id="inputtotalSeatNum" name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>">
 						</div>
 						<div class="col p-2">
 							<label for="inputSittingColNum" class="form-label">세로 좌석수(col)</label>
-							<input type="text" class="form-control" id="inputSittingColNum">
+							<input type="text" class="form-control" id="inputSittingColNum" name="tdpxSittingColNum" value="<c:out value="${item.tdpxSittingColNum} "/>">
 						</div>
 						<div class="col p-2">
 							<label for="inputSittingRowNum" class="form-label">가로 좌석수(row)</label>
-							<input type="text" class="form-control" id="inputSittingRowNum">
+							<input type="text" class="form-control" id="inputSittingRowNum" name="tdpxSittingRowNum" value="<c:out value="${item.tdpxSittingRowNum} "/>">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-6">
 						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary" onclick="location.href='plexList.html'">
+							<button type="button" class="btn btn-primary" id="btnList">
 								<i class="fa-solid fa-bars"></i>
 							</button>
 						</div>
 					</div>	
 					<div class="col-6 d-flex flex-row-reverse">
 						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" id="btnUelete">
 								<i class="fa-solid fa-xmark"></i>
 							</button>
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" id="btnDelete">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success">
+							<button type="button" class="btn btn-success" id="btnSave">
 								<i class="fa-solid fa-arrow-up-from-bracket"></i>
 							</button>	
 						</div>
 					</div>
 				</div>		
 			</div>
+			</form>
+			<form name="formVo" id="formVo" method="post">
+			<!-- *Vo.jsp s -->
+			<%@include file="plexVo.jsp" %>
+			<!-- *Vo.jsp e -->
+			</form>
 		</div>	
      
-          <!-- / Content -->
-          <%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
-
+     <!-- / Content -->
+     <%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
+	
+	<!-- modalBase s -->
+	<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
+	<!-- modalBase e -->
 
 
             <div class="content-backdrop fade"></div>
@@ -123,24 +135,25 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
+	 <script type="text/javascript">
+    
+    	var goUrlList = "/theaterPlex/plexList";
+    	var goUrlInst = "/theaterPlex/plexInst";
+    	var goUrlUpdt = "/theaterPlex/plexUpdt";
+    	var goUrlUele = "/theaterPlex/plexUele";
+    	var goUrlDele = "/theaterPlex/plexDele";
+    	var goUrlForm = "/theaterPlex/plexForm";
+    	
+    	var seq = $("input:hidden[name=tdpxSeq]");
+    	
+    	var form = $("form[name=form]");
+    	var formVo = $("form[name=formVo]");
+    	
+    </script>
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+    
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
