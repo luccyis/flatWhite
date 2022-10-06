@@ -28,14 +28,15 @@
 			<div class="inner-wrap">
 				<div class="location">
 					<span>Home</span>
-                	<a href="/booking/timeTable" title="예매 페이지로 이동">예매</a>
-                	<a href="/booking/timeTable" title="빠른예매 페이지로 이동">빠른예매</a>
+                	<a href="/movie/timeTable" title="예매 페이지로 이동">예매</a>
+                	<a href="/movie/timeTable" title="빠른예매 페이지로 이동">빠른예매</a>
 				</div>
 			</div>
 		</div>	
 		
 		<form method="post" name="formList" id="formList">
-        <input type="hidden" name="tdmvSeq">
+        <input type="hidden" name="tdmvSeq" id="tdmvSeq">
+        <input type="hidden" name="tdthSeq" id="tdthSeq">
 		<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
             <div class="quick-reserve">
             	<div class="tit-util">
@@ -192,7 +193,6 @@
 
                                 <!-- all : 전체 -->
                                 
-        					<c:set var="listCodeAge" value="${CodeServiceImpl.selectListCachedCode('6')}"/>                        
                                 <div class="all-list">
                                     <button type="button" class="btn-tab on" id="movieAll">전체</button>
                                     <div class="list">
@@ -202,7 +202,7 @@
                                         			<ul>
                                         				<c:forEach items="${list}" var="list" varStatus="status">
                                         					<li>
-                                        						<button type="button" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
+                                        						<button type="button" id="selectMovie" name="selectMovie" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
 	                                        					<span class="movie-grade 
 	                                        						<c:choose>
 	                                        							<c:when test="${list.tdmvAge eq 18}">small age-all</c:when>
@@ -212,7 +212,7 @@
 	                                        						</c:choose>"></span>
 	                                        					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
 	                                        					<span class="txt">${list.tdmvMovieTitle}</span>
-                                        					</button>
+                                        						</button>
                                        						</li>
                                        					</c:forEach>	
                                        				</ul>
@@ -280,17 +280,7 @@
 			                                            <div class="detail-list m-scroll area-cd10 mCustomScrollbar _mCS_4">
 			                                            	<div id="mCSB_4" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
 			                                            		<div id="mCSB_4_container" class="mCSB_container" style="position: relative; top: 0; left: 0;" dir="ltr">
-					                                            	<ul>
-							                                            <li>
-							                                            	<button id="btn" type="button" brch-no="1003" brch-nm="동대문" brch-eng-nm="Dong Dae Moon" form-at="Y" area-cd="10" area-cd-nm="서울" spclb-yn="N" brch-bokd-unable-at="N" brch-popup-at="Y" brch-popup-no="962" class="on">동대문</button>
-							                                           	</li>
-							                                            <li>
-							                                            	<button id="btn" type="button" brch-no="1331" brch-nm="성수" brch-eng-nm="SEOUNGSU" form-at="Y" area-cd="10" area-cd-nm="서울" spclb-yn="N" brch-bokd-unable-at="N" brch-popup-at="Y" brch-popup-no="1006">성수</button>
-							                                            </li>
-							                                            <li>
-							                                            	<button id="btn" type="button" brch-no="1351" brch-nm="코엑스" brch-eng-nm="COEX" form-at="Y" area-cd="10" area-cd-nm="서울" spclb-yn="N" brch-bokd-unable-at="N" brch-popup-at="Y" brch-popup-no="954">코엑스</button>
-							                                           	</li>
-						                                         	</ul>
+					                                            	<ul id="selectTheater"></ul>
 						                                        </div>	
 					                                         	<div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;">
 					                                         		<div class="mCSB_draggerContainer">
@@ -420,10 +410,10 @@
 	                            	<div class="scroll m-scroll mCustomScrollbar _mCS_18 mCS_no_scrollbar" id="playScheduleList" style="">
 	                            		<div id="mCSB_18" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
 	                            			<div id="mCSB_18_container" class="mCSB_container mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-	                            				<ul>
+	                            				<ul id="selectTime">
 	                            					<li>
-	                            						<button type="button" class="btn" id="2208051003055" onclick="location.href='/booking/seatSelect'"
-	                            							play-start-time="1815" play-de="20220805" play-seq="4" rpst-movie-no="22018401" brch-no="1003" theab-no="03" play-schdl-no="2208051003055" rest-seat-cnt="201" ctts-ty-div-cd="MVCT01" theab-popup-at="Y" theab-popup-no="1290">
+	                            						<button type="button" class="btn" id="" onclick="location.href='/booking/seatSelect'">
+	                            							
 		                            						<div class="legend"></div>
 		                            							<span class="time">
 			                            							<strong title="상영 시작">18:15</strong>
@@ -504,7 +494,17 @@
 <!-- scripte-e -->
 
 <script>
+	var selectTheater = $("#selectTheater");
+	
 	goTheater = function(tdmvSeq){
+		var j =$("button[name='selectMovie']").length;
+		
+		for(var k=0; k<j; k++){
+			document.getElementsByName('selectMovie')[k].classList.remove('on');
+		}
+		document.getElementsByName('selectMovie').classList.add('on');
+		$("#tdmvSeq").attr("value", tdmvSeq);
+		
 		$.ajax({
 			async: true
 			,cach: false
@@ -512,7 +512,18 @@
 			,url: "/timetable/selectTheater"
 			,data: 	{"tdmvSeq" : tdmvSeq}
 			,success: function(response) {
-				
+				if(response.rt=="success"){
+					var txt="";
+					for(var i=0; i<response.list.length; i++) {
+						txt += '<li>';
+						txt += '	<button type="button" id="btn'+response.list[i].tdthSeq+'" onclick="suntack('+response.list[i].tdthSeq+')" name="theaterBtn">'+response.list[i].tdthBranch+'</button>';
+						txt += '</li>';
+					}
+					selectTheater.html(txt);
+					$("#tdmvSeq").attr("value", tdmvSeq);
+				} else {
+					alert("땡 list가 null 입니다.");
+				}
 			}
 			,error : function(){
 				alert("error");
@@ -522,6 +533,73 @@
 	}
 
 </script>
+
+<script>
+	var selectTime = $("#selectTime");
+	suntack = function(index){
+		var j = $("button[name='theaterBtn']").length;
+		
+		for(var k=0; k<j; k++ ) {
+			document.getElementsByName('theaterBtn')[k].classList.remove('on');
+		}
+		document.getElementById('btn'+index).classList.add('on');
+		$("#tdthSeq").attr("value", index);
+		
+		$.ajax({
+			async: true
+			,cach: false
+			,type: "post"
+			,dataType: "json" 
+			,url: "/timetable/selectTime"
+			,data: 	{ tdmvSeq : $("#tdmvSeq").val(), tdthSeq : $("#tdthSeq").val() }
+			,success: function(response) {
+				if(response.rt=="success"){
+					
+					var txt="";
+					
+					for(var i=0; i<response.list.length; i++) {
+						txt += '<li>';
+						txt +=	'<button type="button" class="btn" id="btn'+i+'">';
+						txt +='<div class="legend"></div>';
+						txt +=	'<span class="time">';
+						txt +=		'<strong title="상영 시작">'+response.list[i].tdttShowTime+'</strong>';
+						txt +=		'<em title="상영 종료">~20:35</em>';
+						txt +=	'</span>';
+						txt +=	'<span class="title">';
+						txt +=		'<strong title=>'+response.list[i].tdmvMovieTitle+'</strong>';
+						txt +=		'<em>2D(자막)</em>';
+						txt +=	'</span>';
+						txt +=	'<div class="info">';
+						txt +=		'<span class="theater" title="극장">'+response.list[i].tdthBranch+'<br>'+response.list[i].tdpxPlexName+'</span>';
+						txt +=		'<span class="seat">';
+						txt +=			'<strong class="now" title="잔여 좌석">'+response.list[i].tdpxTotalSeatNum+'</strong>';
+						txt +=			'<span>/</span>';
+						txt +=			'<em class="all" title="전체 좌석">'+response.list[i].tdpxTotalSeatNum+'</em>';
+						txt +=		'</span>';
+						txt +='</div>';
+						txt +='</button>';
+						txt +='</li>';
+					
+					}
+					
+					
+					selectTime.html(txt);
+					
+				} else {
+					alert("땡 list가 null 입니다.");
+				}
+			}
+			,error : function(){
+				alert("error");
+			}
+		});
+	} 
+
+</script>
+
+
+
+
 
 </body>
 </html>	

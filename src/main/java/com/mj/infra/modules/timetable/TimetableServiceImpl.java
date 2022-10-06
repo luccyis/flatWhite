@@ -48,11 +48,18 @@ public class TimetableServiceImpl implements TimetableService {
 	}
 
 	@Override
-	public List<Timetable> selectListFromMovie(TimetableVo vo) throws Exception {
-		List<Timetable> list = dao.selectListFromMovie(vo);
+	public List<Timetable> selectListTimeFromMovie(TimetableVo vo) throws Exception {
+		List<Timetable> list = dao.selectListTimeFromMovie(vo);
 		return list;
 	}
 
+	@Override
+	public List<Timetable> selectListTime(TimetableVo vo) throws Exception {
+		List<Timetable> list = dao.selectListTime(vo);
+		return list;
+	}
+
+	
 	
 	
 }

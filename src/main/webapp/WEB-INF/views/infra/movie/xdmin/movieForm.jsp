@@ -126,6 +126,19 @@
 							</div>
 						</div>
 						<div class="row">
+							<div class="col p-2">
+								<label class="form-label input-file-button btn-lg btn-warning" for="ifmmUploadedImage">포스터/스틸컷</label>
+								<input type="file" class="form-control" id="ifmmUploadedImage" name="ifmmUploadedImage" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
+								<div class="addScroll">
+									<div style="display: inline-block; height: 95px;">
+									</div>
+									<ul id="ulFile1" class="list-group">
+									</ul>
+								</div>
+							</div>
+						
+						</div>
+						<div class="row">
 					<div class="col-6">
 						<div class="demo-inline-spacing">
 							<button type="button" class="btn btn-primary" id="btnList">

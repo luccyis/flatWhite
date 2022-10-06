@@ -13,5 +13,7 @@ public List<Timetable> selectList(TimetableVo vo) throws Exception;
 	public int uelete(Timetable dto) throws Exception;
 	public int delete(TimetableVo vo) throws Exception;
 	
-	public List<Timetable> selectListFromMovie(TimetableVo vo) throws Exception;
+	public List<Timetable> selectListTimeFromMovie(TimetableVo vo) throws Exception;
+	public List<Timetable> selectListTime(TimetableVo vo) throws Exception;
+	
 }

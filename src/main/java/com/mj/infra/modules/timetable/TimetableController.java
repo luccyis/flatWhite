@@ -57,13 +57,35 @@ public class TimetableController {
 	}
 
 
-	//영화예매 페이지
+	//영화예매 페이지 - 극장 선택
 	@ResponseBody
 	@RequestMapping(value="selectTheater")
 	public Map<String, Object> selectTheater(TimetableVo vo) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>();
-		List<Timetable> list = service.selectListFromMovie(vo);
-		System.out.println("==========" + list);
+		
+		List<Timetable> list = service.selectListTimeFromMovie(vo);
+		if(list != null) {
+			result.put("list", list);
+			result.put("rt", "success");
+		} else {
+			result.put("rt", "false");
+		}
+		return result;
+	}
+	
+	//영화예매 페이지 - 타임선택
+	@ResponseBody
+	@RequestMapping(value="selectTime")
+	public Map<String, Object> selectTime(TimetableVo vo) throws Exception{
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		List<Timetable> list = service.selectListTime(vo);
+		if(list != null) {
+			result.put("list", list);
+			result.put("rt", "success");
+		} else {
+			result.put("rt", "false");
+		}
 		return result;
 	}
 }
