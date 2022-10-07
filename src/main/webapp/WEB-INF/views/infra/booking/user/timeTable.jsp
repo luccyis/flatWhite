@@ -202,7 +202,7 @@
                                         			<ul>
                                         				<c:forEach items="${list}" var="list" varStatus="status">
                                         					<li>
-                                        						<button type="button" id="selectMovie" name="selectMovie" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
+                                        						<button type="button" id="" name="selectMovie" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
 	                                        					<span class="movie-grade 
 	                                        						<c:choose>
 	                                        							<c:when test="${list.tdmvAge eq 18}">small age-all</c:when>
@@ -265,17 +265,20 @@
 
                             <!-- list-area -->
                             <div class="list-area" id="brchTab">
+                            <c:set var="listCodeRegion" value="${CodeServiceImpl.selectListCachedCode('5')}"/>
 
                                 <!-- all-list : 전체 -->
                                 <div class="all-list">
                                     <button type="button" class="btn-tab on">전체</button>
                                     <div class="list">
                                         <div class="scroll" id="brchList">
-                                        	<ul>
-                                        		<li>
-		                                            <button type="button" class="btn on" id="10">
-			                                            <span calss="txt">서울(3)</span>
-		                                            </button>
+                                       		<ul>
+                                       			<li>
+                                     				<c:forEach items="${listCodeRegion}" var="listRegion" varStatus="statusRegion">
+	                                            		<button type="button" class="btn" id="10" >
+                                       						<span class="txt"><c:out value="${listRegion.cdName}"/></span>
+	                                            		</button>
+                                     				</c:forEach>
 		                                            <div class="depth on">
 			                                            <div class="detail-list m-scroll area-cd10 mCustomScrollbar _mCS_4">
 			                                            	<div id="mCSB_4" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
@@ -293,8 +296,8 @@
 					                                         </div>
 				                                        </div>
 			                                        </div>
-		                                        </li>
-                                        	</ul> 	
+	                                        	</li>
+                                       		</ul> 	
                                        	</div>
                                    	</div>
                                	</div>
@@ -501,8 +504,9 @@
 		
 		for(var k=0; k<j; k++){
 			document.getElementsByName('selectMovie')[k].classList.remove('on');
+			
 		}
-		document.getElementsByName('selectMovie').classList.add('on');
+		document.getElementsByName('selectMovie')[tdmvSeq-1].classList.add('on');
 		$("#tdmvSeq").attr("value", tdmvSeq);
 		
 		$.ajax({

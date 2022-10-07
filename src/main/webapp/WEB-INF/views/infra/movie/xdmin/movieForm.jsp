@@ -127,14 +127,13 @@
 						</div>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label input-file-button btn-lg btn-warning" for="ifmmUploadedImage">포스터/스틸컷</label>
-								<input type="file" class="form-control" id="ifmmUploadedImage" name="ifmmUploadedImage" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
-								<div class="addScroll">
-									<div style="display: inline-block; height: 95px;">
-									</div>
-									<ul id="ulFile1" class="list-group">
-									</ul>
-								</div>
+								<label class="form-label input-file-button btn-lg btn-warning" for="uploadedImage">포스터/스틸컷</label>
+								<img id="imgProfile" src="" alt="" style="width:300px; height:300px; border-radius:50%;">
+								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
+								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage2" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage2', 0, 1, 1, 0, 0, 1);">
+								<div class="addScroll" id="MovieUploadedImage1View"></div>
+									
+								
 							</div>
 						
 						</div>
@@ -154,7 +153,7 @@
 							<button type="button" class="btn btn-danger" id="btnDelete">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success" id="btnSave">
+							<button type="button" class="btn btn-success" onclick="uploadVailidation()"><!-- id="btnSave" -->
 								<i class="fa-solid fa-arrow-up-from-bracket"></i>
 							</button>	
 						</div>
@@ -205,6 +204,94 @@
     var formVo = $("form[name=formVo]");
     
     </script>
+     
+    <script>
+    uploadVailidation = function(){
+    	
+    	var obj = document.getElementById("uploadedImage").files;
+    	var totalSize = 0;
+    	alert(obj);
+    	alert(obj.length);
+    	for(var i=0; i<obj.length; i++){
+    		alert(obj[i].name + " : " + obj[i].size);
+    		totalSize += obj[i].size;
+    	}
+    	alert(totalSize);
+    }
+    
+    
+    </script>
+    
+    <script>
+	  //script에 추가
+	   // upload = function (objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+            //		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+            //		memberProfileImage: 1
+            //		memberImage: 2
+            //		memberFile : 3
+
+            var totalFileSize = 0;
+            var obj = $("#" + objName + "")[0].files;
+            var fileCount = obj.length;
+            
+            if (uiType == 1) {
+                /* 			
+                            $("#ulFile" + seq).children().remove();
+                        	
+                            for (var i = 0 ; i < fileCount ; i++) {
+                                addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+                            }
+                 */
+                for (var i = 0; i < fileCount; i++) {
+
+                    var divImage = "";
+                    divImage += '<div style="display: inline-block; height: 95px;">';
+                    /*divImage += '	<img src="' + obj[i] + '" class="rounded" width= "85px" height="85px">';*/
+                    divImage += '	<img id="aaa' + i + '" src="/" class="rounded" width= "85px" height="85px">';
+                    divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
+                    divImage += '</div> ';
+
+                    $("#ifmmUploadedImage1View").append(divImage);
+
+                    var fileReader = new FileReader();
+                    fileReader.readAsDataURL($("#" + objName + "")[0].files[i]);
+                    //alert($("#" + objName + "")[0].files[i]);
+                    fileReader.onload = function () {
+                        /* alert(i + " : " + fileReader.result); */
+                        //alert($("#aaa" + i + ""));
+
+                        if (i == 0) {
+                            $("#aaa"+i+"").attr("src", fileReader.result);		/* #-> */
+                        } else if (i == 1) {
+                            $("#aaa"+i+"").attr("src", fileReader.result);		/* #-> */
+                        } else {
+
+                        }
+                        /* $("#aaa"+i+"").attr("src", fileReader.result);		/* #-> */
+                        /* $("#aaa1").attr("src", fileReader.result);		/* #-> */
+                    }
+                }
+
+            } else if (uiType == 2) {
+                $("#ulFile" + seq).children().remove();
+
+                for (var i = 0; i < fileCount; i++) {
+                    addUploadLi(seq, i, $("#" + objName + "")[0].files[i].name);
+                }
+            } else if (uiType == 3) {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL($("#" + objName + "")[0].files[0]);
+
+                fileReader.onload = function () {
+                    $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+                }
+            } else {
+                return false;
+            }
+            return false;
+        }
+    </script>
+    
     <%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
     <!-- Place this tag in your head or just before your close body tag. -->
