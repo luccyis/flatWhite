@@ -41,7 +41,20 @@ public class MovieDao {
 	}
 
 	
+	public int selectLastSeq() {
+		return sqlSession.selectOne(namespace +".selectLastSeq");
+	}
 	
+	public int insertUpload(Movie dto) {
+		return sqlSession.insert(namespace +".insertUpload", dto);
+	}
+
+	public Movie selectMovieImage(Movie dto) {
+		
+		return sqlSession.selectOne(namespace +".selectMovieImage", dto);
+	}
+	
+
 	
 	
 }

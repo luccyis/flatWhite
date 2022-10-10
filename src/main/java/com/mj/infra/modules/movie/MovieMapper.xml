@@ -166,6 +166,57 @@
 			,a.tdmvReleaseDate
 	</select>
 	
+	<select id="selectLastSeq" resultType="Integer">
+	select
+		tdmvSeq
+	from tradMovie
+	order by tdmvSeq desc
+	limit 1
+	</select>
+	
+	<insert id="insertUpload">
+	insert into tradMovieUpload(
+		defaultNy
+	    ,type
+	    ,sort
+	    ,originalName
+	    ,uuIdName
+	    ,ext
+	    ,size
+	    ,delNy
+	    ,regDateTime
+	    ,pseq
+	    ,upPath
+	)
+	values (
+		#{defaultNy}
+	    ,#{type}
+	    ,#{sort}
+	    ,#{originalName}
+	    ,#{uuIdName}
+	    ,#{ext}
+	    ,#{size}
+	    ,#{delNy}
+	    ,now()
+	    ,#{pseq}
+	    ,#{upPath}
+	
+	)
+	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+		SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
+	<select id="selectMovieImage" resultMap="resultMapObj">
+	select
+		*
+	from tradMovieUpload
+	where seq = #{pseq}
+	
+	</select>
+	
+	
 	
 
 </mapper>	

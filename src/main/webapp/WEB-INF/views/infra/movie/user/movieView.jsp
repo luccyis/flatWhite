@@ -86,14 +86,14 @@
 					<div class="poster">
 						<div class="wrap">
 							<p class="movie-grade age-12">12세 이상 관람가</p>
-		 					<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_420.jpg" onerror="noImg(this)" alt="탑건: 매버릭">
+		 					<img src="${item.upPath}${item.uuIdName}" alt="탑건: 매버릭">
 						</div>
 					</div>
 					<div class="reserve screen-type col-2">
 						<div class="reserve">
 							<a href="/booking/timeTable" class="btn reserve" title="영화 예매하기">예매</a>
 							<a href="" class="btn dolby">
-								<img src="" alt="">
+								<img src="" name="" alt="">
 							</a>
 						</div>
 					</div>

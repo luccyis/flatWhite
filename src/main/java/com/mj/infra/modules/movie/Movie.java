@@ -1,6 +1,8 @@
 package com.mj.infra.modules.movie;
 
-public class Movie {
+import com.mj.infra.common.base.Base;
+
+public class Movie extends Base {
 
 	private String tdmvSeq;
 	private String tdmvMovieTitle;

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.mj.infra.common.util.UtilUpload;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -31,9 +34,30 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public int insert(Movie dto) throws Exception {
 		int result = dao.insert(dto);
-		System.out.println("service result: " + result);
-		return result;
+		
+        int tdmvSeq = dao.selectLastSeq();
+
+        int j = 0;
+        for(MultipartFile myFile : dto.getMultipartFile()) {
+
+            if(!myFile.isEmpty()) {
+                // postServiceImpl
+                String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+                UtilUpload.uploadPost(myFile, pathModule, dto);
+
+                dto.setType("1");
+                dto.setDefaultNy(j == 0 ? "1" : "0");
+                dto.setSort(j+1+"");
+                dto.setPseq(tdmvSeq+"");
+
+                dao.insertUpload(dto);
+                j++;
+            }
+        }
+        
+        return result;
 	}
+	
 
 	@Override
 	public int update(Movie dto) throws Exception {
@@ -54,6 +78,14 @@ public class MovieServiceImpl implements MovieService {
 	public List<Movie> selectList() throws Exception {
 		return dao.selectList();
 	}
+
+	@Override
+	public Movie selectMovieImage(Movie dto) throws Exception {
+		
+		return dao.selectMovieImage(dto);
+	}
+
+	
 
 
 	

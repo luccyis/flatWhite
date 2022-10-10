@@ -37,9 +37,13 @@ public class MovieController {
 	}
 
 	@RequestMapping(value="view")
-	public String MovieView(MovieVo vo, Model model) throws Exception {
-		Movie item = service.selectOne(vo);
+	public String MovieView(Movie dto, Model model) throws Exception {
+		
+		dto.setPseq("4");
+		Movie item = service.selectMovieImage(dto);
 		model.addAttribute("item", item);
+		
+		
 		return "infra/movie/user/movieView";
 	}
 	
@@ -59,9 +63,11 @@ public class MovieController {
 	
 	@RequestMapping(value="movieForm")
 	public String movieForm(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception{
+		
 		System.out.println("vo.getCgSeq(): " + vo.getTdmvSeq());
 		Movie item =service.selectOne(vo);
 		model.addAttribute("item", item);
+		
 		return "infra/movie/xdmin/movieForm";
 	}
 	
@@ -81,6 +87,9 @@ public class MovieController {
 	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value="movieInst")
 	public String movieInst(MovieVo vo, Movie dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		System.out.println(dto.getMultipartFile().length);
+		
 		service.insert(dto);
 		vo.setTdmvSeq(dto.getTdmvAge());
 		redirectAttributes.addFlashAttribute("vo", vo);
@@ -90,6 +99,7 @@ public class MovieController {
 		} else {
 			return "infra/movie/xdmin/movieList";
 		}
+	
 	}
 	
 	@RequestMapping(value="movieDele")
@@ -133,7 +143,6 @@ public class MovieController {
 	public String postListxdmin() throws Exception{
 		return "infra/movie/xdmin/postListxdmin";
 	}
-	
 	
 	
 	

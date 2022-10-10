@@ -48,7 +48,7 @@
 			<div class="card">
 				<h5 class="card-header">영화 정보 추가</h5>
 				<div class="card-body">
-					<form id="form" name="form" method="post">
+					<form id="form" name="form" method="post" enctype="multipart/form-data">
 					<%@include file ="movieVo.jsp" %>
 						<div class="row">
 							<div class="col p-2">
@@ -129,7 +129,7 @@
 							<div class="col p-2">
 								<label class="form-label input-file-button btn-lg btn-warning" for="uploadedImage">포스터/스틸컷</label>
 								<img id="imgProfile" src="" alt="" style="width:300px; height:300px; border-radius:50%;">
-								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
+								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="MultipartFile" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage2" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage2', 0, 1, 1, 0, 0, 1);">
 								<div class="addScroll" id="MovieUploadedImage1View"></div>
 									
@@ -153,7 +153,7 @@
 							<button type="button" class="btn btn-danger" id="btnDelete">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success" onclick="uploadVailidation()"><!-- id="btnSave" -->
+							<button type="button" class="btn btn-success" id="btnSave">  <!-- onclick="uploadVailidation()" -->
 								<i class="fa-solid fa-arrow-up-from-bracket"></i>
 							</button>	
 						</div>
@@ -179,13 +179,10 @@
             <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->
-        </div>
         <!-- / Layout page -->
-      </div>
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
     <!-- / Layout wrapper -->
 
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
