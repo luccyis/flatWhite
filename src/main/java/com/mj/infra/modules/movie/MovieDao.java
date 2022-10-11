@@ -54,6 +54,9 @@ public class MovieDao {
 		return sqlSession.selectOne(namespace +".selectMovieImage", dto);
 	}
 	
+	public List<Movie> selectListMain(MovieVo vo) {
+		return sqlSession.selectList(namespace + ".selectListMain", vo);
+	}
 
 	
 	

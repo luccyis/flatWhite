@@ -47,6 +47,14 @@
 		<include refid="Base.selectListLowerForMysql"/>	
 	</select>
 	
+	<select id="selectListAll" resultMap="resultMapObj">
+	SELECT
+		*
+	FROM tradMovie
+	WHERE tdmvDelNy = 0
+	</select>
+	
+	
 	<select id ="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.tdmvSeq
@@ -73,14 +81,7 @@
 		WHERE
 		 tdmvSeq = #{tdmvSeq}
 	</select>
-	
-	<select id="selectListAll" resultMap="resultMapObj">
-	SELECT
-	 *
-	FROM tradMovie
-	WHERE 1=1
-	
-	</select>
+
 	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
@@ -152,20 +153,6 @@
 	</delete>
 	
 	
-	<!-- user -->
-	<select id="homeselectList" resultMap="resultMapObj">
-		SELECT
-			a.tdmvRank
-			,a.tdmvMovieTitle
-			,a.tdmvLiked
-			,a.tdmvReleaseDate
-			
-		FROM tradMovie a
-		ORDER BY
-			a.tdmvRank
-			,a.tdmvReleaseDate
-	</select>
-	
 	<select id="selectLastSeq" resultType="Integer">
 	select
 		tdmvSeq
@@ -212,8 +199,19 @@
 	select
 		*
 	from tradMovieUpload
-	where seq = #{pseq}
+	where 1=1
+	and pseq = #{pseq}
+	and defaultNy = 1
+	</select>
 	
+	<select id="selectListMain" resultMap="resultMapObj">
+	SELECT 
+		movie.*
+   		,image.*
+	FROM tradMovie movie
+	JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
+	where image.defaultNy = 1 
+	order by movie.tdmvRank
 	</select>
 	
 	

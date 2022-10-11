@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mj.infra.common.constants.Constants;
-import com.mj.infra.common.util.UtilCookie;
 import com.mj.infra.common.util.UtilDateTime;
-import com.mj.infra.common.util.UtilSecurity;
 
 @Controller
 @RequestMapping(value = "/member/")

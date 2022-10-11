@@ -11,8 +11,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mj.infra.common.constants.Constants;
 import com.mj.infra.common.util.UtilDateTime;
-import com.mj.infra.modules.timetable.Timetable;
-import com.mj.infra.modules.timetable.TimetableVo;
 
 @Controller
 @RequestMapping(value="/movie/")
@@ -29,24 +27,30 @@ public class MovieController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
 	
+	//user
 	@RequestMapping(value="main")
-	public String MovieMain(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception{
-		List<Movie> list = service.selectList(vo);
+	public String MovieMain(@ModelAttribute("vo") MovieVo vo, Movie dto, Model model) throws Exception{
+		List<Movie> list = service.selectListMain(vo);
 		model.addAttribute("list", list);
+		
 		return "infra/movie/user/movieMain";
 	}
 
 	@RequestMapping(value="view")
-	public String MovieView(Movie dto, Model model) throws Exception {
+	public String MovieView(Movie dto, MovieVo vo, Model model) throws Exception {
+		Movie result = service.selectOne(vo);
+		model.addAttribute("result", result);
 		
-		dto.setPseq("4");
+		dto.setPseq(vo.getTdmvSeq());
 		Movie item = service.selectMovieImage(dto);
+		System.out.println("---------"+ dto.getPseq());
+		System.out.println("---------"+ item.getUuIdName());
 		model.addAttribute("item", item);
-		
 		
 		return "infra/movie/user/movieView";
 	}
 	
+	//xdmin
 	@RequestMapping(value="movieList")
 	public String movieList(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception{
 		setSearchAndPaging(vo);
@@ -116,7 +120,7 @@ public class MovieController {
 		return "redirect:/movie/movieList";
 	}
 	
-	//링크 바꿔야 됨.
+	//user
 	@RequestMapping(value="timeTable")
 	public String timeTable(Model model) throws Exception {
 			List<Movie> list = service.selectList();

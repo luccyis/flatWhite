@@ -37,6 +37,7 @@
 		<form method="post" name="formList" id="formList">
         <input type="hidden" name="tdmvSeq" id="tdmvSeq">
         <input type="hidden" name="tdthSeq" id="tdthSeq">
+        <input type="hidden" name="tdttSeq" id="tdttSeq">
 		<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
             <div class="quick-reserve">
             	<div class="tit-util">
@@ -181,7 +182,8 @@
                     </div>
                     <!--// time-schedule -->
 
-                    <!-- quick-reserve-area -->
+                    <!-- quick-reserve-area --> 
+                    	
                     <div class="quick-reserve-area">
 
                         <!-- movie-choice : 영화 선택  -->
@@ -227,33 +229,7 @@
                                 <!--// all : 전체 -->
                             </div>
                             <!--// list-area -->
-                            <!-- view-area -->
-                            <div class="view-area">
-
-                                <!-- 영화 선택 하지 않았을 때 -->
-                                <div class="choice-all" id="choiceMovieNone" style="display: none;">
-                                    <strong>모든영화</strong>
-                                    <span>목록에서 영화를 선택하세요.</span>
-                                </div>
-
-                                <!-- 영화를 한개라도 선택했을 때 -->
-                                <div class="choice-list" id="choiceMovieList" style="display: block;">
-                                    <!-- 비어있는 영역 -->
-                                    <div class="bg">
-	                                    <div class="wrap">    
-	                                    	<div class="img">
-	                                    		<img src="/resources/images/poster-topgun.jpg" alt="탑건: 매버릭" movie-no="22018400" onerror="noImg(this);">
-	                                   		</div>    
-	                                   		<button type="button" class="del" onclick="fn_deleteMovieChoice('22018400')">삭제</button>
-	                               		</div>
-                               		</div>
-                                    <div class="bg">
-                                    </div>
-                                    <div class="bg">
-                                    </div>
-                                </div>
-                            </div>
-                            <!--// view-area -->
+                            
                         </div>
                         <!--// movie-choice : 영화 선택  -->
 
@@ -526,7 +502,7 @@
 					selectTheater.html(txt);
 					$("#tdmvSeq").attr("value", tdmvSeq);
 				} else {
-					alert("땡 list가 null 입니다.");
+					alert("list가 null 입니다.");
 				}
 			}
 			,error : function(){
@@ -583,14 +559,11 @@
 						txt +='</div>';
 						txt +='</button>';
 						txt +='</li>';
-					
 					}
-					
-					
 					selectTime.html(txt);
 					
 				} else {
-					alert("땡 list가 null 입니다.");
+					alert("list가 null 입니다.");
 				}
 			}
 			,error : function(){

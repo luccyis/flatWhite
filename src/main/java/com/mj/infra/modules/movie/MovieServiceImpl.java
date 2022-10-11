@@ -81,9 +81,16 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public Movie selectMovieImage(Movie dto) throws Exception {
-		
 		return dao.selectMovieImage(dto);
 	}
+
+	@Override
+	public List<Movie> selectListMain(MovieVo vo) throws Exception {
+		List<Movie> list = dao.selectListMain(vo);
+		return list;
+	}
+	
+	
 
 	
 

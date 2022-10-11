@@ -33,6 +33,9 @@
 			</div>
 		</div>
 	<!-- contents -->
+		<form method="post" name="formList" id="formList">
+		<input type="hidden" name="tdmvSeq">
+		
 		<div id="contents" class="">
 			<!-- inner-wrap -->
 			<div class="inner-wrap">
@@ -48,160 +51,64 @@
 				</div>
 				<div class="movie-list-util mt40">
 					<div class="movie-search">
-						<input type="text" title="영화명을 입력하세요" id="ibxMovieNmSearch" name="ibxMovieNmSearch" placeholder="영화명 검색" class="input-text">
+						<input type="text" title="영화명을 입력하세요" id="shValue" name="shValue" value="${vo.shValue}" placeholder="영화명 검색" class="input-text">
 						<button type="button" class="btn-search-input" id="btnSearch">검색</button>
 					</div>
 				</div>	
-	
 				<div class="movie-list">
 					<ol class="list" id="movieList">
-						<li tabindex="0" class="no-img">
-							<div class="movie-list-info">    
-								<p class="rank" style="">1<span class="ir">위</span></p>
-								<a href="/movie/view">    
-									<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_420.jpg" alt="탑건: 매버릭" class="poster lozad" onerror="noImg(this)">  
-								</a>  
-				  				<div class="movie-score" style="opacity: 0;">        
-									<a class="wrap movieBtn" data-no="22023000" title="탑건: 매버릭 상세보기">            
-										<div class="summary">
-											한순간의 실수도 용납되지 않는 하늘 위, 가장 압도적인 비행이 시작된다!
-										</div>            
-										<div class="my-score big">                
-											<div class="preview">                    
-												<p class="tit">관람평</p>                   
-												<p class="number">9.1<span class="ir">점</span></p>                
+						<c:forEach items="${list}" var="list" varStatus="status">
+							<li tabindex="0" class="no-img">
+								<div class="movie-list-info">    
+										<p class="rank" style=""><c:out value="${list.tdmvRank}"/><span class="ir">위</span></p>
+									<a href="javascript: goView('${list.tdmvSeq}')">    
+										<img src="${list.upPath}${list.uuIdName}" alt="${list.tdmvMovieTitle}" class="poster lozad">  
+									</a>  
+					  				<div class="movie-score" style="opacity: 0;">        
+										<a class="wrap movieBtn" data-no="22023000" title="탑건: 매버릭 상세보기">            
+											<div class="summary">
+												<c:out value="${list.tdmvStory}"/>
 											</div>            
-										</div>        
-									</a>    
+											<div class="my-score big">                
+												<div class="preview">                    
+													<p class="tit">관람평</p>                   
+													<p class="number"><c:out value="${list.tdmvAudienceScore}"/><span class="ir">점</span></p>                
+												</div>            
+											</div>        
+										</a>    
+									</div>
 								</div>
-							</div>
-							<div class="tit-area">    
-								<p class="movie-grade age-12">,</p>    
-								<p title="탑건: 매버릭" class="tit">탑건: 매버릭</p>
-							</div>
-							<div class="rate-date">    
-								<span class="rate">예매율 43.4%</span>    
-								<span class="date">개봉일 2022.06.22</span>
-							</div>
-							<div class="btn-util">    
-								<button type="button" class="button btn-like" data-no="22023000">
-									<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
-									<span>1k</span>
-								</button>    
-								<div class="case movieStat4" style="">        
-									<a href="/booking/timeTable" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
-					  			</div>
-					  		</div>	
-				  		</li>
-				  		<li tabindex="0" class="no-img">
-							<div class="movie-list-info">    
-								<p class="rank" style="">2<span class="ir">위</span></p>    
-								<img src="https://img.megabox.co.kr/SharedImg/2022/06/07/S3GJQZbpshoIx0Lelerscl9rlI14FHqK_420.jpg" alt="헤어질 결심" href="" class="poster lozad" onerror="noImg(this)">    
-				  				<div class="movie-score" style="opacity: 0;">        
-									<a href="" class="wrap movieBtn" data-no="22023000" title="헤어질 결심 상세보기">            
-										<div class="summary">
-										</div>            
-										<div class="my-score big">                
-											<div class="preview">                    
-												<p class="tit">관람평</p>                   
-												<p class="number">9.1<span class="ir">점</span></p>                
-											</div>            
-										</div>        
-									</a>    
+								<div class="tit-area">    
+									<p class="movie-grade
+										<c:choose>
+											<c:when test="${list.tdmvAge eq 18}">small age-all</c:when>
+                            				<c:when test="${list.tdmvAge eq 19}">small age-12</c:when>
+                            				<c:when test="${list.tdmvAge eq 20}">small age-15</c:when>
+                            				<c:when test="${list.tdmvAge eq 21}">small age-19</c:when>	
+										</c:choose>
+									">,</p>    
+									<p title="${list.tdmvMovieTitle}" class="tit"><c:out value="${list.tdmvMovieTitle}"/></p>
 								</div>
-							</div>
-							<div class="tit-area">    
-								<p class="movie-grade age-15">,</p>    
-								<p title="헤어질 결심" class="tit">헤어질 결심</p>
-							</div>
-							<div class="rate-date">    
-								<span class="rate">예매율 3.5%</span>    
-								<span class="date">개봉일 2022.06.29</span>
-							</div>
-							<div class="btn-util">    
-								<button type="button" class="button btn-like" data-no="22023000">
-									<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
-									<span>1.6k</span>
-								</button>    
-								<div class="case movieStat4" style="">        
-									<a href="#" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
-					  			</div>
-					  		</div>	
-				  		</li>
-				  		<li tabindex="0" class="no-img">
-							<div class="movie-list-info">    
-								<p class="rank" style="">3<span class="ir">위</span></p>    
-								<img src="https://img.megabox.co.kr/SharedImg/2022/07/06/t0SyNNVrh4UBBxmdCqBVtehgd03NWpf7_420.jpg" alt="토르: 러브 앤 썬더" class="poster lozad" onerror="noImg(this)">
-				  				<div class="movie-score" style="opacity: 0;">        
-									<a href="#" class="wrap movieBtn" data-no="22023000" title="토르: 러브 앤 썬더 상세보기">            
-										<div class="summary">
-										</div>            
-										<div class="my-score big">                
-											<div class="preview">                    
-												<p class="tit">관람평</p>                   
-												<p class="number">7.9<span class="ir">점</span></p>                
-											</div>            
-										</div>        
-									</a>    
+								<div class="rate-date">    
+									<span class="rate">관람평 <c:out value="${list.tdmvAudienceScore}"/></span>    
+									<span class="date">개봉일 <c:out value="${list.tdmvReleaseDate}"/></span>
 								</div>
-							</div>
-							<div class="tit-area">    
-								<p class="movie-grade age-12">,</p>    
-								<p title="토르: 러브 엔 썬더" class="tit">토르: 러브 앤 썬더</p>
-							</div>
-							<div class="rate-date">    
-								<span class="rate">예매율 2.1%</span>    
-								<span class="date">개봉일 2022.07.06</span>
-							</div>
-							<div class="btn-util">    
-								<button type="button" class="button btn-like" data-no="22023000">
-									<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
-									<span>2.1k</span>
-								</button>    
-								<div class="case movieStat4" style="">        
-									<a href="#" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
-					  			</div>
-					  		</div>	
-				  		</li>
-				  		<li tabindex="0" class="no-img">
-							<div class="movie-list-info">    
-								<p class="rank" style="">4<span class="ir">위</span></p>   
-								<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/D7lzyEyxtVgY3wAQ2Lz9eRGiFHUZIHMh_420.jpg" alt="애프터 양" class="poster lozad" onerror="noImg(this)"> 
-				  				<div class="movie-score" style="opacity: 0;">        
-									<a href="#" class="wrap movieBtn" data-no="22023000" title="애프터 양 상세보기">            
-										<div class="summary">
-										</div>            
-										<div class="my-score big">                
-											<div class="preview">                    
-												<p class="tit">관람평</p>                   
-												<p class="number">8.3<span class="ir">점</span></p>                
-											</div>            
-										</div>        
-									</a>    
-								</div>
-							</div>
-							<div class="tit-area">    
-								<p class="movie-grade age-all">,</p>    
-								<p title="애프터 양" class="tit">애프터 양</p>
-							</div>
-							<div class="rate-date">    
-								<span class="rate">예매율 0.8%</span>    
-								<span class="date">개봉일 2022.06.01</span>
-							</div>
-							<div class="btn-util">    
-								<button type="button" class="button btn-like" data-no="22023000">
-									<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
-									<span>1k</span>
-								</button>    
-								<div class="case movieStat4" style="">        
-									<a href="#" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
-					  			</div>
-					  		</div>	
-				  		</li>
+								<div class="btn-util">    
+									<button type="button" class="button btn-like" data-no="22023000">
+										<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
+										<span><c:out value="${list.tdmvLiked}"/></span>
+									</button>    
+									<div class="case movieStat4" style="">        
+										<a href="/movie/timeTable" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
+						  			</div>
+						  		</div>	
+				  			</li>
+						</c:forEach>
 					</ol>
 				</div>
 			</div>	
 		</div>
+		</form>
 	</div>
 
     <!-- footer-s -->
@@ -209,14 +116,22 @@
 	<!-- footer-e -->
 </div>
 
-	<form id="mainForm"></form>
-	<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
-	<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
 <!-- scripte-e -->
 
+<script>
+	var goUrlView = "/movie/view";
+	var seq = $("input:hidden[name=tdmvSeq]");
+	
+	var form = $("form[name=formList]");
+	
+	goView = function(tdmvSeq){
+		seq.val(tdmvSeq);
+		form.attr("action",goUrlView).submit();
+	}
+
+</script>
+	
 </body>
 </html>

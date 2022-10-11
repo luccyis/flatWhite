@@ -29,207 +29,121 @@
     	<button type="button" class="btn-del">광고영역 닫기</button>
 	</div>
 	<header id="header" class="main-header no-bg">
-		    <h1 class="ci"><a href="/home/userMain" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
-		    <div class="util-area">
-		        <div class="right-link">
-		        	<c:if test="${sessSeq eq null}">
-		            <!-- 로그인전 -->
-			            <div class="before" style="">
-			                <a href="/member/login" title="로그인">로그인</a>
-			                <a href="/member/joinAuth" title="회원가입">회원가입</a>
-			            </div>
-		        	</c:if>
-		        	<c:if test="${sessSeq ne null}">
-			            <!-- 로그인후 -->
-			            <div class="after" style="">
-							<a><c:out value="${sessName}"/> 님 안녕하세요.</a>
-			                <a id="btnLogout" class="" title="로그아웃">로그아웃</a>
-			                <a href="" class="notice" title="알림">알림</a>
-			            </div>
-		            </c:if>
-		        </div>
-		    </div>
-		    <div class="link-area">
-		        <a href="" class="header-open-layer btn-layer-search" title="검색">검색</a>
-		        <a href="/movie/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
-		        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
-		    </div>
-		
-			<nav id="gnb" class="">
-		        <ul class="gnb-depth1">
-		            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-		            <li><a href="/movie/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
-		            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
-			        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
-			        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
-			        <li><a href="" class="gnb-txt-benefit" title="혜택">혜택</a></li>
-		        </ul>
-		    </nav>
-		    <!-- 레이어 : 검색 -->
-		    <div id="layer_header_search" class="header-layer layer-header-search"></div>
-		</header>
-		
-		<link rel="stylesheet" href="/resources/css/main.css" media="all">	
+	    <h1 class="ci"><a href="/userHome" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
+	    <div class="util-area">
+	        <div class="right-link">
+	        	<c:if test="${sessSeq eq null}">
+	            <!-- 로그인전 -->
+		            <div class="before" style="">
+		                <a href="/member/login" title="로그인">로그인</a>
+		                <a href="/member/joinAuth" title="회원가입">회원가입</a>
+		            </div>
+	        	</c:if>
+	        	<c:if test="${sessSeq ne null}">
+		            <!-- 로그인후 -->
+		            <div class="after" style="">
+						<a><c:out value="${sessName}"/> 님 안녕하세요.</a>
+		                <a id="btnLogout" class="" title="로그아웃">로그아웃</a>
+		                <a href="" class="notice" title="알림">알림</a>
+		            </div>
+	            </c:if>
+	        </div>
+	    </div>
+	    <div class="link-area">
+	        <a href="" class="header-open-layer btn-layer-search" title="검색">검색</a>
+	        <a href="/movie/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
+	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
+	    </div>
 	
-	
-		<form name="detailForm" id="detailForm" method="post">
-			<input type="hidden" name="rpstMovieNo" id="rpstMovieNo">
-		</form>
-		<form name="boxoForm" id="boxoForm" method="post" onsubmit="">
-			<input type="hidden" name="ibxMovieNmSearch" id="ibxMovieNmSearch">
-		</form>
-		
-		<div class="container main-container area-ad">
-			<div id="contents">
-				<!-- main-page -->
-				<div class="main-page">
-					<div id="main_section01" class="section main-movie">
-						<div class="bg">
-							<div class="bg-pattern"></div>
-							<img src="https://img.megabox.co.kr/SharedImg/2022/07/18/9VNzlQdAXthFNSO8dtfjE9E166E3sAve_380.jpg" alt="비상선언_칸 영화제 공식 포스터_한글 ver._8월3일대개봉.jpg" onerror="noImg(this, 'main');">
-						</div>
+		<nav id="gnb" class="">
+	        <ul class="gnb-depth1">
+	            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
+	            <li><a href="/movie/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
+	            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
+		        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
+		        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
+		        <li><a href="" class="gnb-txt-benefit" title="혜택">혜택</a></li>
+	        </ul>
+	    </nav>
+	    <!-- 레이어 : 검색 -->
+	    <div id="layer_header_search" class="header-layer layer-header-search"></div>
+	</header>
+	<link rel="stylesheet" href="/resources/css/main.css" media="all">	
 
-						<!-- cont-area  -->
-						<div class="cont-area">
-							<!-- tab-sorting -->
-							<div class="tab-sorting">
-								<button type="button" class="on" sort="boxoRankList" name="btnSort">박스오피스</button>
-							
-							</div>
+	<form name="detailForm" id="detailForm" method="post">
+		<input type="hidden" name="rpstMovieNo" id="rpstMovieNo">
+	</form>
+	<form name="boxoForm" id="boxoForm" method="post" onsubmit="">
+		<input type="hidden" name="ibxMovieNmSearch" id="ibxMovieNmSearch">
+	</form>
+		
+	<div class="container main-container area-ad">
+		<div id="contents">
+			<!-- main-page -->
+			<div class="main-page">
+				<div id="main_section01" class="section main-movie">
+					<div class="bg">
+						<div class="bg-pattern"></div>
+						<img src="https://img.megabox.co.kr/SharedImg/2022/07/18/9VNzlQdAXthFNSO8dtfjE9E166E3sAve_380.jpg" alt="비상선언_칸 영화제 공식 포스터_한글 ver._8월3일대개봉.jpg" onerror="noImg(this, 'main');">
+					</div>
+						
+					<!-- cont-area  -->
+					<div class="cont-area">
 						<!-- tab-sorting -->
-							<a href="/movie/main" class="more-movie" title="더 많은 영화보기">
-								더 많은 영화보기 <i class="iconset ico-more-corss gray"></i>
-							</a>
-							<!-- main-movie-list -->
+						<div class="tab-sorting">
+							<button type="button" class="on" sort="boxoRankList" name="btnSort">박스오피스</button>
+						
+						</div>
+						<!-- tab-sorting -->
+						<a href="/movie/main" class="more-movie" title="더 많은 영화보기">
+							더 많은 영화보기 <i class="iconset ico-more-corss gray"></i>
+						</a>
+							
+						<!-- main-movie-list -->
+						<form method="post" name="formList" id="formList">
+							<input type="hidden" name="tdmvSeq">
+							
 							<div class="main-movie-list">
 								<ol class="list">
-									<li name="li_boxoRankList" class="first">
-										<a href="/movie/view" class="movie-list-info" title="영화상세 보기">
-											<p class="rank">1<span class="ir">위</span></p>
-											<!-- to 개발 : alt 값에 영화 제목 출력 -->
-									      	<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_420.jpg" alt="탑건: 매버릭" class="poster" onerror="noImg(this, 'main');">
-						                      	<div class="wrap" style="display: none;">
-												<div class="summary"></div>
-												 
-												<div class="score">
-													<div class="preview">
-														<p class="tit">관람평</p>
-														<p class="number">9.1<span class="ir">점</span></p>
-													</div>
-												</div>
-											</div>
-										</a>
-										<div class="btn-util">
-		                                    <button type="button" class="button btn-like" rpst-movie-no="22023000">
-												<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>
-													1k
-											</button>
-		                                    <div class="case">
-		                                       <a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
-		                                   </div>
-		                               </div>
-									</li>
-		
-									<li name="li_boxoRankList" class="">
-										<a href="" class="movie-list-info" title="영화상세 보기">
-											<p class="rank">2<span class="ir">위</span></p>
-											<!-- to 개발 : alt 값에 영화 제목 출력 -->
-									      	<img src="https://img.megabox.co.kr/SharedImg/2022/06/07/S3GJQZbpshoIx0Lelerscl9rlI14FHqK_420.jpg" alt="헤어질 결심" class="poster" onerror="noImg(this, 'main');">
-						                      	<div class="wrap" style="display: none; opacity: 1;">
-												<div class="summary"></div>
-												
-												<div class="score">
-													<div class="preview">
-														<p class="tit">관람평</p>
-														<p class="number">9.1<span class="ir">점</span></p>
-													</div>
-												</div>
-											</div>
-										</a>
-										<div class="btn-util">
-		                                    <button type="button" class="button btn-like" rpst-movie-no="22023000">
-												<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>
-													1.6k
-											</button>
-		                                    <div class="case">
-		                                    	<a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
-		                                    </div>
-		                               </div>
-									</li>
-		
-									<li name="li_boxoRankList" class="">
-										<a href="" class="movie-list-info" title="영화상세 보기">
-											<p class="rank">3<span class="ir">위</span></p>
-											<!-- to 개발 : alt 값에 영화 제목 출력 -->
-									      	<img src="https://img.megabox.co.kr/SharedImg/2022/07/06/t0SyNNVrh4UBBxmdCqBVtehgd03NWpf7_420.jpg" alt="토르: 러브 앤 썬더" class="poster" onerror="noImg(this, 'main');">
-					                      	<div class="wrap" style="display: none; opacity: 1;">
-												<div class="summary"></div>
-											
-												<div class="score">
-													<div class="preview">
-														<p class="tit">관람평</p>
-														<p class="number">7.9<span class="ir">점</span></p>
-													</div>
-												</div>
-											</div>
-										</a>
-										<div class="btn-util">
-			                                <button type="button" class="button btn-like" rpst-movie-no="22018400">
-												<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>
-												2.1k
-											</button>
-		                                    <div class="case">
-		                                    	<a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
-		                                    </div>
-		                                </div>
-									</li>
-									
-									<li name="li_boxoRankList" class="">
-										<a href="" class="movie-list-info" title="영화상세 보기">
-											
-											<p class="rank">4<span class="ir">위</span></p>
-											<!-- to 개발 : alt 값에 영화 제목 출력 -->
-									      	<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/D7lzyEyxtVgY3wAQ2Lz9eRGiFHUZIHMh_420.jpg" alt="애프터 양" class="poster" onerror="noImg(this, 'main');">
-					                      	<div class="wrap">
-												<div class="summary"></div>
-												
-												<div class="score">
-													<div class="preview">
-														<p class="tit">관람평</p>
-														<p class="number">8.7<span class="ir">점</span></p>
-													</div>
-												</div>
-											</div>
-										</a>
-										<div class="btn-util">
-			                            	<button type="button" class="button btn-like" rpst-movie-no="22037300">
-												<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>
-												1k
-											</button>
-			                                 <div class="case">
-			                                   <a href="/booking/timeTable" class="button gblue" title="영화 예매하기">예매</a>
+									<c:forEach items="${list}" var="list" varStatus="status">
+										<li name="li_boxoRankList" <c:if test="${status.count eq 1}">class="first"</c:if>>
+											<a href="javascript: goView('${list.tdmvSeq}')" class="movie-list-info" title="영화상세 보기">
+												<div class="screen-type2"></div>
+												<p class="rank"><c:out value="${list.tdmvRank}"/><span class="ir">위</span></p>
+												<!-- to 개발 : alt 값에 영화 제목 출력 -->
+										      	<img src="${list.upPath}${list.uuIdName}" alt="${list.tdmvMovieTitle}" class="poster">
+											</a>
+											<div class="btn-util">
+			                                    <button type="button" class="button btn-like" rpst-movie-no="22023000">
+													<i title="보고싶어 설정 안함" class="iconset ico-heart-toggle-gray"></i>
+														<c:out value="${list.tdmvLiked}"/>
+												</button>
+			                                    <div class="case">
+			                                       <a href="/movie/timeTable" class="button gblue" title="영화 예매하기">예매</a>
+			                                   </div>
 			                               </div>
-		                               </div>
-									</li>
+										</li>
+									</c:forEach>	
 								</ol>	
 							</div>
-							<!--// main-movie-list -->
+						</form>
+						<!--// main-movie-list -->
 
-							<div class="search-link">
-								<div class="cell">
-									<div class="search">
-										<input type="text" placeholder="영화명을 입력해 주세요" title="영화 검색" class="input-text" id="movieName">
-										<button type="button" class="btn" id="btnSearch"><i class="iconset ico-search-w"></i> 검색</button>
-									</div>
+						<div class="search-link">
+							<div class="cell">
+								<div class="search">
+									<input type="text" placeholder="영화명을 입력해 주세요" title="영화 검색" class="input-text" id="movieName">
+									<button type="button" class="btn" id="btnSearch"><i class="iconset ico-search-w"></i> 검색</button>
 								</div>
-		
-								<div class="cell"><a href="/booking/timeTable" title="상영시간표 보기"><i class="iconset ico-schedule-main"></i> 상영시간표</a></div>
-								<div class="cell"><a href="/movie/main" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
-								<div class="cell"><a href="/booking/timeTable" title="빠른예매 보기"><i class="iconset ico-quick-reserve-main"></i> 빠른예매</a></div>
 							</div>
+	
+							<div class="cell"><a href="/booking/timeTable" title="상영시간표 보기"><i class="iconset ico-schedule-main"></i> 상영시간표</a></div>
+							<div class="cell"><a href="/movie/main" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
+							<div class="cell"><a href="/booking/timeTable" title="빠른예매 보기"><i class="iconset ico-quick-reserve-main"></i> 빠른예매</a></div>
 						</div>
-				<!--// cont-area  -->
 					</div>
+				<!--// cont-area  -->
+				</div>
 			<!--// section main-movie : 영화 -->
 
 			<!-- section main-benefit : 혜택 -->
@@ -472,16 +386,22 @@
 
 	</div>
 	
-
-	<form id="mainForm"></form>
-	<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
-	<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	
 	<!-- script-s -->
 	<%@include file="../../../common/user/includeV1/script.jsp" %>
 	<!-- scripte-e -->
 	
+	<script>
+	var goUrlView = "/movie/view";
+	var seq = $("input:hidden[name=tdmvSeq]");
+	
+	var form = $("form[name=formList]");
+	
+	goView = function(tdmvSeq){
+		seq.val(tdmvSeq);
+		form.attr("action",goUrlView).submit();
+	}
+
+</script>
 	
 </body>
 </html>

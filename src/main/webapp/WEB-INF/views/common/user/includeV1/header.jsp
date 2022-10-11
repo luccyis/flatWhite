@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="utf-8" %>
 
 <header id="header">
-    <h1 class="ci"><a href="/home/userMain" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
+    <h1 class="ci"><a href="/userHome" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
     <div class="util-area">
         <div class="right-link">
         	<c:if test="${sessSeq eq null}">

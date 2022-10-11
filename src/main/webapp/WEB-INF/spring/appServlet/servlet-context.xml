@@ -34,6 +34,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
+			<exclude-mapping path="/"/>
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/member/login" />
 			<exclude-mapping path="/member/loginProc" />
@@ -44,8 +45,7 @@
 			<exclude-mapping path="/member/checkId"/>
 			
 			<exclude-mapping path="/member/findIdPwdForm" />
-			<exclude-mapping path="/home/home" />
-			<exclude-mapping path="/home/userMain"/>
+			<exclude-mapping path="/userHome"/>
 			<exclude-mapping path="/movie/main" />
 			<exclude-mapping path="/movie/view" />
 			

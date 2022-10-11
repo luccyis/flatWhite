@@ -26,12 +26,12 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="text-center">
-							<img src="/resources/images/userMain.png" height="400" alt="userMainPage" onclick="location.href='/home/userMain'"/>
+							<img src="/resources/images/userMain.png" height="400" alt="userMainPage" onclick="location.href='/userHome'"/>
 						</div>
 					</div>
 					<div class="card-footer">
 						<div class="text-center">
-							<button class="btn btn-lg btn-outline-primary" type="button" onclick="location.href='/home/userMain'">사용자 페이지로</button>
+							<button class="btn btn-lg btn-outline-primary" type="button" onclick="location.href='/userHome'">사용자 페이지로</button>
 						</div>
 					</div>	
 				</div>
@@ -40,12 +40,12 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="text-center">
-							<img src="/resources/images/xdminMain.png" height="400" alt="userMainPage" onclick="location.href='/home/xdminMain'"/>
+							<img src="/resources/images/xdminMain.png" height="400" alt="userMainPage" onclick="location.href='/xdminHome'"/>
 						</div>
 					</div>
 					<div class="card-footer">
 						<div class="text-center">
-							<button class="btn btn-lg btn-outline-primary" type="button" onclick="location.href='/home/xdminMain'">관리자 페이지로</button>
+							<button class="btn btn-lg btn-outline-primary" type="button" onclick="location.href='/xdminHome'">관리자 페이지로</button>
 						</div>	
 					</div>
 				</div>

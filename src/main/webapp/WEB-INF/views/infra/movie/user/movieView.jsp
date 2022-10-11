@@ -6,6 +6,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,14 +49,14 @@
 			<div class="movie-detail-cont">
 	
 		        <p class="contents-type">#돌비시네마 #프리미어</p>
-				<p class="title">탑건: 매버릭</p>
-				<p class="title-eng">Top Gun: Maverick</p>
+				<p class="title"><c:out value="${result.tdmvMovieTitle}"/></p>
+				<p class="title-eng"><c:out value="${result.tdmvTitleEng}"/></p>
 
 					<div class="btn-util">
 						<button type="button" title="보고싶어 안함" class="btn btn-like" rpst-movie-no="22018400">
 							<i class="iconset ico-heart-line"></i>
 							<span title="보고싶어 한 명수" id="intrstCnt">
-								3.1k
+								<c:out value="${result.tdmvLiked}"/>
 							</span>
 						</button>
 						<div class="sns-share">
@@ -67,34 +69,38 @@
 						<div class="score">
 							<p class="tit">실관람 평점</p>
 							<div class="number gt" id="mainMegaScore">
-								<p title="실관람 평점" class="before"><em>9.7</em><span class="ir">점</span></p>
+								<p title="실관람 평점" class="before"><em><c:out value="${result.tdmvAudienceScore}"/></em><span class="ir">점</span></p>
 							</div>
 						</div>
 						<div class="rate">
 							<p class="tit">예매율</p>
-							<p class="cont"><em>1</em>위 (15.3%)</p>
+							<p class="cont"><em><c:out value="${result.tdmvRank}"/></em>위 (15.3%)</p>
 						</div>
 			            <div class="audience ">
 			                 <div class="tit ">
 			                        <span class="m-tooltip-wrap ">누적관객수</span>
 			                  </div>
-			                  <p class="cont"><em>6,705,374</em> 명</p>
+			                  <p class="cont"><em><c:out value="${result.tdmvAudienceNumber}"/></em> 명</p>
 			            </div>
 					</div>
-		<!--// info -->
+			<!--// info -->
 
 					<div class="poster">
 						<div class="wrap">
-							<p class="movie-grade age-12">12세 이상 관람가</p>
-		 					<img src="${item.upPath}${item.uuIdName}" alt="탑건: 매버릭">
+							<p class="movie-grade
+								<c:choose>
+									<c:when test="${result.tdmvAge eq 18}">small age-all</c:when>
+                        			<c:when test="${result.tdmvAge eq 19}">small age-12</c:when>
+                        			<c:when test="${result.tdmvAge eq 20}">small age-15</c:when>
+                        			<c:when test="${result.tdmvAge eq 21}">small age-19</c:when>	
+								</c:choose>
+							">,</p>    
+		 					<img src="${item.upPath}${item.uuIdName}" alt="${result.tdmvMovieTitle}">
 						</div>
 					</div>
 					<div class="reserve screen-type col-2">
 						<div class="reserve">
-							<a href="/booking/timeTable" class="btn reserve" title="영화 예매하기">예매</a>
-							<a href="" class="btn dolby">
-								<img src="" name="" alt="">
-							</a>
+							<a href="/movie/timeTable" class="btn reserve" title="영화 예매하기">예매</a>
 						</div>
 					</div>
 				</div>
@@ -105,27 +111,32 @@
 				<div class="inner-wrap">
 				    <div class="tab-list fixed">
 				        <ul>
-				            <li class="on"><a href="" title="주요정보 탭으로 이동">주요정보</a></li>
-				            <li><a href="" title="실관람평 탭으로 이동">실관람평</a></li>
-				            <li><a href="" title="무비포스트 탭으로 이동">무비포스트</a></li>
-				            <li><a href="" title="예고편/스틸컷 탭으로 이동">예고편/스틸컷</a></li>
+				            <li class="on"><a title="주요정보 탭으로 이동">주요정보</a></li>
+				            <li><a title="실관람평 탭으로 이동">실관람평</a></li>
+				            <li><a title="무비포스트 탭으로 이동">무비포스트</a></li>
+				            <li><a title="예고편/스틸컷 탭으로 이동">예고편/스틸컷</a></li>
 				        </ul>
 				    </div>
 				    <div class="movie-summary infoContent on" id="info">
-			            <div class="txt">한순간의 실수도 용납되지 않는 하늘 위, 가장 압도적인 비행이 시작된다!<br><br>최고의 파일럿이자 전설적인 인물 매버릭(톰 크루즈)은 자신이 졸업한 훈련학교 교관으로 발탁된다.<br>그의 명성을 모르던 팀원들은 매버릭의 지시를 무시하지만<br>실전을 방불케 하는 상공 훈련에서 눈으로 봐도 믿기 힘든 전설적인 조종 실력에 모두가 압도된다.<br><br>매버릭의 지휘 아래 견고한 팀워크를 쌓아가던 팀원들에게 국경을 뛰어넘는 위험한 임무가 주어지자<br>매버릭은 자신이 가르친 동료들과 함께 마지막이 될지 모를 하늘 위 비행에 나서는데…</div>
+			            <div class="txt"><c:out value="${result.tdmvStory}"/></div>
 			            <div class="btn-more toggle">
 			                <button type="button" class="btn"><span>더보기</span> <i class="iconset ico-btn-more-arr"></i></button>
 			            </div>
 				    </div>
+				    <c:set var="listCodeMovieAge" value="${CodeServiceImpl.selectListCachedCode('6')}"/>
 				    <div class="movie-info infoContent">
-				        <p>상영타입 : 2D ATMOS(자막), 2D Dolby(자막), 2D(자막)</p>
+				        <p>상영타입 : <c:out value="${result.tdmvShowType}"/></p>
 				        <div class="line">
-				           <p>감독&nbsp;: 조셉 코신스키</p>
-				           <p>장르&nbsp;: 액션 / 130 분</p>
-				           <p>등급&nbsp;: 12세이상관람가</p>
-				           <p>개봉일&nbsp;: 2022.06.22</p>
+				        	<p>감독&nbsp;: <c:out value="${result.tdmvDirector}"/></p>
+				         	<p>장르&nbsp;: <c:out value="${result.tdmvGenres}"/>/ <c:out value="${result.tdmvRunningTime}"/> 분</p>
+					     	<p>등급&nbsp;: 
+						     	<c:forEach items="${listCodeMovieAge}" var="listAge" varStatus="statusAge">
+				           			<c:if test="${result.tdmvAge eq listAge.cdSeq}"><c:out value="${listAge.cdName}"/></c:if>
+								</c:forEach>
+							</p>
+				          	<p>개봉일&nbsp;: <c:out value="${result.tdmvReleaseDate}"/></p>
 				        </div>
-				           <p>출연진&nbsp;: 톰 크루즈, 마일즈 텔러, 제니퍼 코넬리, 존 햄, 에드 해리스, 글렌 포웰, 제이 앨리스, 그렉 타잔 데이비스</p>
+				           <p>출연진&nbsp;: <c:out value="${result.tdmvCast}"/></p>
 				    </div>
     			</div>
     		</div>	
@@ -315,11 +326,6 @@
 	<!-- footer-e -->
 
 </div>
-
-<form id="mainForm"></form>
-<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
-<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>

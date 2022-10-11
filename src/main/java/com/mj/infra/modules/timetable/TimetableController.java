@@ -42,14 +42,6 @@ public class TimetableController {
 		return  "infra/booking/xdmin/timeTableForm";
 	}
 	
-	//링크 바꿔야 됨.
-	@RequestMapping(value="EEE")
-	public String timeTable(@ModelAttribute("vo") TimetableVo vo, Model model) throws Exception {
-			List<Timetable> list = service.selectList(vo);
-			model.addAttribute("list", list);
-		
-		return "infra/booking/user/timeTable";
-	}
 	
 	@RequestMapping(value="seatSelect")
 	public String seatSelect() throws Exception {
