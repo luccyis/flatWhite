@@ -33,9 +33,10 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public int insert(Movie dto) throws Exception {
-		int result = dao.insert(dto);
+		int result = dao.insert(dto); // 원래 데이터 인서트
 		
-        int tdmvSeq = dao.selectLastSeq();
+		//여기부터 파일
+        int tdmvSeq = dao.selectLastSeq(); //seq 자동으로 부여되기때문
 
         int j = 0;
         for(MultipartFile myFile : dto.getMultipartFile()) {
@@ -54,7 +55,6 @@ public class MovieServiceImpl implements MovieService {
                 j++;
             }
         }
-        
         return result;
 	}
 	

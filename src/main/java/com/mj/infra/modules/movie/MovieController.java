@@ -43,8 +43,6 @@ public class MovieController {
 		
 		dto.setPseq(vo.getTdmvSeq());
 		Movie item = service.selectMovieImage(dto);
-		System.out.println("---------"+ dto.getPseq());
-		System.out.println("---------"+ item.getUuIdName());
 		model.addAttribute("item", item);
 		
 		return "infra/movie/user/movieView";
@@ -120,14 +118,6 @@ public class MovieController {
 		return "redirect:/movie/movieList";
 	}
 	
-	//user
-	@RequestMapping(value="timeTable")
-	public String timeTable(Model model) throws Exception {
-			List<Movie> list = service.selectList();
-			model.addAttribute("list", list);
-		
-		return "infra/booking/user/timeTable";
-	}
 	
 	
 	

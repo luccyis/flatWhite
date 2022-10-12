@@ -23,14 +23,14 @@
     </div>
     <div class="link-area">
         <a href="#layer_header_search" class="header-open-layer btn-layer-search" title="검색">검색</a>
-        <a href="/movie/timeTable" class="link-ticket" title="상영시간표">상영시간표</a>
+        <a href="/timetable/choiceMovie" class="link-ticket" title="상영시간표">상영시간표</a>
         <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
     </div>
 
 	<nav id="gnb" class="">
         <ul class="gnb-depth1">
             <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
-            <li><a href="/movie/timeTable" class="gnb-txt-reserve" title="예매">예매</a></li>
+            <li><a href="/timetable/choiceMovie" class="gnb-txt-reserve" title="예매">예매</a></li>
             <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
 	        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
 	        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>

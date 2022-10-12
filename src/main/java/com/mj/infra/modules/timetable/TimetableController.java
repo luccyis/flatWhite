@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mj.infra.common.util.UtilDateTime;
+import com.mj.infra.modules.movie.Movie;
+import com.mj.infra.modules.movie.MovieServiceImpl;
+import com.mj.infra.modules.movie.MovieVo;
 
 @Controller
 @RequestMapping(value="/timetable/")
@@ -19,6 +22,8 @@ public class TimetableController {
 	
 	@Autowired
 	TimetableServiceImpl service;
+	@Autowired
+	MovieServiceImpl service2;
 	
 	public void setSearchAndPaging(TimetableVo vo) throws Exception{
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
@@ -46,6 +51,15 @@ public class TimetableController {
 	@RequestMapping(value="seatSelect")
 	public String seatSelect() throws Exception {
 		return "infra/booking/user/seatSelect";
+	}
+	
+	//user 영화 목록 
+	@RequestMapping(value="choiceMovie")
+	public String timeTable(Model model, MovieVo vo) throws Exception {
+		List<Movie> list = service2.selectList(vo);
+		model.addAttribute("list", list);
+		
+		return "infra/booking/user/timeTable";
 	}
 
 

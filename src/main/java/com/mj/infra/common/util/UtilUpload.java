@@ -23,13 +23,14 @@ public class UtilUpload {
 			
 			createPath(path);
 			  
+			//파일이동 짝..짝..
 			multipartFile.transferTo(new File(path + uuidFileName));
 			
 			dto.setUpPath(pathForView);
 			dto.setOriginalName(fileName);
 			dto.setUuIdName(uuidFileName);
 			dto.setExt(ext);
-			String size = ""+ multipartFile.getSize();
+			String size = ""+ multipartFile.getSize(); //String 으로 캐스팅
 			dto.setSize(size); 
 		}
 	

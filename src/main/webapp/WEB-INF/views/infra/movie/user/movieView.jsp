@@ -41,7 +41,7 @@
     <!-- contents -->
     	<div id="contents" class="no-padding">
 		<div class="movie-detail-page">
-			<div class="bg-img" style="background-image:url('https://img.megabox.co.kr/SharedImg/2022/06/07/FQQBP11X1tWexd9hBLS5SCMX2EWVzis8_570.jpg');"></div>
+			<div class="bg-img" style="background-image:url('${item.upPath}${item.uuIdName}');"></div>
 			<div class="bg-pattern"></div>
 			<div class="bg-mask"></div>
 
@@ -100,7 +100,7 @@
 					</div>
 					<div class="reserve screen-type col-2">
 						<div class="reserve">
-							<a href="/movie/timeTable" class="btn reserve" title="영화 예매하기">예매</a>
+							<a href="/timetable/choiceMovie" class="btn reserve" title="영화 예매하기">예매</a>
 						</div>
 					</div>
 				</div>

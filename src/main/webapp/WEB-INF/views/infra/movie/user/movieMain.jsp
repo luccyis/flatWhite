@@ -99,7 +99,7 @@
 										<span><c:out value="${list.tdmvLiked}"/></span>
 									</button>    
 									<div class="case movieStat4" style="">        
-										<a href="/movie/timeTable" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
+										<a href="/timetable/choiceMovie" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
 						  			</div>
 						  		</div>	
 				  			</li>

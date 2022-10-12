@@ -35,10 +35,10 @@
 		</div>	
 		
 		<form method="post" name="formList" id="formList">
-        <input type="hidden" name="tdmvSeq" id="tdmvSeq">
-        <input type="hidden" name="tdthSeq" id="tdthSeq">
-        <input type="hidden" name="tdttSeq" id="tdttSeq">
-		<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
+	        <input type="hidden" name="tdmvSeq" id="tdmvSeq">
+	        <input type="hidden" name="tdthSeq" id="tdthSeq">
+	        <input type="hidden" name="tdttSeq" id="tdttSeq">
+			<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
             <div class="quick-reserve">
             	<div class="tit-util">
             		<h2 class="tit">빠른예매</h2>
@@ -174,8 +174,7 @@
                             <!-- 달력보기 -->
                             <div class="bg-line">
                                 <input type="hidden" id="datePicker" value="2022.08.05" class="hasDatepicker">
-                                <button type="button" id="calendar" onclick="$('#datePicker').datepicker('show')" class="btn-calendar-large" title="달력보기"> 달력보기</button>
-
+                                <button type="button" id="calendar" class="btn-calendar-large" title="달력보기"> 달력보기</button><!-- onclick="$('#datePicker').datepicker('show')" -->
                             </div>
                             <!--// 달력보기 -->
                         </div>
@@ -183,7 +182,6 @@
                     <!--// time-schedule -->
 
                     <!-- quick-reserve-area --> 
-                    	
                     <div class="quick-reserve-area">
 
                         <!-- movie-choice : 영화 선택  -->
@@ -194,7 +192,6 @@
                             <div class="list-area">
 
                                 <!-- all : 전체 -->
-                                
                                 <div class="all-list">
                                     <button type="button" class="btn-tab on" id="movieAll">전체</button>
                                     <div class="list">
@@ -204,16 +201,16 @@
                                         			<ul>
                                         				<c:forEach items="${list}" var="list" varStatus="status">
                                         					<li>
-                                        						<button type="button" id="" name="selectMovie" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" img-path="" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-	                                        					<span class="movie-grade 
-	                                        						<c:choose>
-	                                        							<c:when test="${list.tdmvAge eq 18}">small age-all</c:when>
-	                                        							<c:when test="${list.tdmvAge eq 19}">small age-12</c:when>
-	                                        							<c:when test="${list.tdmvAge eq 20}">small age-15</c:when>
-	                                        							<c:when test="${list.tdmvAge eq 21}">small age-19</c:when>
-	                                        						</c:choose>"></span>
-	                                        					<i class="iconset ico-heart-small">보고싶어 설정안함</i>
-	                                        					<span class="txt">${list.tdmvMovieTitle}</span>
+                                        						<button type="button" id="choiceMovie" name="choiceMovie" class="btn" movie-nm="${list.tdmvMovieTitle}" onclick="goTheater('${list.tdmvSeq}')" movie-popup-at="N" movie-popup-no="0" form-at="Y">
+		                                        					<span class="movie-grade 
+		                                        						<c:choose>
+		                                        							<c:when test="${list.tdmvAge eq 18}">small age-all</c:when>
+		                                        							<c:when test="${list.tdmvAge eq 19}">small age-12</c:when>
+		                                        							<c:when test="${list.tdmvAge eq 20}">small age-15</c:when>
+		                                        							<c:when test="${list.tdmvAge eq 21}">small age-19</c:when>
+		                                        						</c:choose>"></span>
+		                                        					<i class="iconset ico-heart-small"></i>
+		                                        					<span class="txt">${list.tdmvMovieTitle}</span>
                                         						</button>
                                        						</li>
                                        					</c:forEach>	
@@ -229,7 +226,6 @@
                                 <!--// all : 전체 -->
                             </div>
                             <!--// list-area -->
-                            
                         </div>
                         <!--// movie-choice : 영화 선택  -->
 
@@ -250,11 +246,9 @@
                                         <div class="scroll" id="brchList">
                                        		<ul>
                                        			<li>
-                                     				<c:forEach items="${listCodeRegion}" var="listRegion" varStatus="statusRegion">
-	                                            		<button type="button" class="btn" id="10" >
-                                       						<span class="txt"><c:out value="${listRegion.cdName}"/></span>
+													<button type="button" class="btn" id="10" >
+                                       						<span class="txt">jghj</span>
 	                                            		</button>
-                                     				</c:forEach>
 		                                            <div class="depth on">
 			                                            <div class="detail-list m-scroll area-cd10 mCustomScrollbar _mCS_4">
 			                                            	<div id="mCSB_4" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
@@ -286,32 +280,6 @@
                                <!--// other-list : 특별관 -->
                            	</div>
                             <!--// list-area -->
-
-                            <!-- view-area -->
-                            <div class="view-area">
-
-                                <!-- 영화관 선택 하지 않았을 때 -->
-                                <div class="choice-all" id="choiceBrchNone" style="display: none;">
-                                    <strong>전체극장</strong>
-                                    <span>목록에서 극장을 선택하세요.</span>
-                                </div>
-
-                                <!-- 영화관을 한개라도 선택 했을때 -->
-                                <div class="choice-list" id="choiceBrchList" style="display: block;">
-                                    <div class="bg">
-	                                    <div class="wrap">
-	                                    	<p class="txt">동대문
-	                                    		<button type="button" class="del" onclick="fn_deleteBrchChoice('1351', '10')" brch-no="1351" area-cd="10" spclb-yn="N" theab-kind-cd="10">삭제</button>
-	                                    	</p>
-	                                   	</div>
-                                   	</div>
-                                    <div class="bg"></div>
-                                    <div class="bg"></div>
-                                </div>
-                            </div>
-                            <!--// view-area -->
-
-
                        	</div>
                         <!--// theater-choice : 영화관 선택  -->
 
@@ -325,63 +293,8 @@
                              	</div>
 	                         </div>
 
-                            <!-- hour-schedule : 시간 선택  : 00~30 시-->
-                            <div class="hour-schedule">
-                                <button type="button" class="btn-prev-time">이전 시간 보기</button>
-
-                                <div class="wrap">
-                                    <div class="view" style="position: absolute; width: 1015px; transition: none 0s ease 0s; left: -490px;">
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">00</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">01</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">02</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">03</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">04</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">05</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">06</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">07</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">08</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">09</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">10</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">11</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">12</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">13</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">14</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">15</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">16</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">17</button>
-                                        <button type="button" class="hour on" style="opacity: 1;">18</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">19</button>
-                                        <button type="button" class="hour" style="opacity: 1;">20</button>
-                                        <button type="button" class="hour" style="opacity: 0.5" disabled="disabled">21</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">22</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">23</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">24</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">25</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">26</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">27</button>
-                                        <button type="button" class="hour" disabled="disabled" style="opacity: 0.5">28</button>
-                                        
-                                    </div>
-                                </div>
-
-                                <button type="button" class="btn-next-time">다음 시간 보기</button>
-                            </div>
-                            <!--// hour-schedule : 시간 선택  : 00~30 시-->
-
                             <!-- movie-schedule-area : 시간표 출력 영역-->
                             <div class="movie-schedule-area">
-
-                                <!-- 영화, 영화관 선택 안했을때 -->
-                                <!---->
-                                <div class="no-result" id="playScheduleNonList" style="display: none;">
-                                    <i class="iconset ico-movie-time"></i>
-
-                                    <p class="txt">
-                                        영화와 극장을 선택하시면<br>
-                                        상영시간표를 비교하여 볼 수 있습니다.
-                                    </p>
-                                </div>
-
 
                                 <!-- 영화, 영화관 선택 했을때 -->
                             <!--// movie-schedule-area : 시간표 출력 영역-->
@@ -391,7 +304,7 @@
 	                            			<div id="mCSB_18_container" class="mCSB_container mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
 	                            				<ul id="selectTime">
 	                            					<li>
-	                            						<button type="button" class="btn" id="" onclick="location.href='/booking/seatSelect'">
+	                            						<button type="button" class="btn" id="">
 	                            							
 		                            						<div class="legend"></div>
 		                            							<span class="time">
@@ -412,27 +325,6 @@
 		                            							</div>
 	                            						</button>
 	                            					</li>
-	                            					<li>
-	                            						<button type="button" class="btn" id="2208051003054" play-start-time="2055" play-de="20220805" play-seq="5" rpst-movie-no="22018401" brch-no="1003" theab-no="03" play-schdl-no="2208051003054" rest-seat-cnt="224" ctts-ty-div-cd="MVCT01" theab-popup-at="Y" theab-popup-no="1290">
-		                         							<div class="legend"></div>
-		                         							<span class="time">
-			                         							<strong title="상영 시작">20:55</strong>
-			                         							<em title="상영 종료">~23:15</em>
-		                         							</span>
-		                         							<span class="title">
-			                         							<strong title="탑건: 매버릭">탑건: 매버릭</strong>
-			                         							<em>2D(자막)</em>
-		                         							</span>
-		                         							<div class="info">
-		                         								<span class="theater" title="극장">동대문<br>3관</span>
-		                         								<span class="seat">
-			                         								<strong class="now" title="잔여 좌석">224</strong>
-			                         								<span>/</span>
-			                         								<em class="all" title="전체 좌석">240</em>
-		                         								</span>
-		                       								</div>
-	                       								</button>
-	                   								</li>
 	               								</ul>
 	          								</div>
 	          								<div id="mCSB_18_scrollbar_vertical" class="mCSB_scrollTools mCSB_18_scrollbar mCS-light mCSB_scrollTools_vertical">
@@ -462,27 +354,23 @@
 	<!-- footer-e -->
 
 </div>
-
-<form id="mainForm"></form>
-<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
-<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- body wrap -->
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
 <!-- scripte-e -->
-
-<script>
+ 
+ <script>
 	var selectTheater = $("#selectTheater");
 	
 	goTheater = function(tdmvSeq){
-		var j =$("button[name='selectMovie']").length;
+		var j =$("button[name='choiceMovie']").length;
 		
 		for(var k=0; k<j; k++){
-			document.getElementsByName('selectMovie')[k].classList.remove('on');
+			document.getElementsByName('choiceMovie')[k].classList.remove('on');
 			
 		}
-		document.getElementsByName('selectMovie')[tdmvSeq-1].classList.add('on');
+		document.getElementsByName('choiceMovie')[tdmvSeq-1].classList.add('on');
 		$("#tdmvSeq").attr("value", tdmvSeq);
 		
 		$.ajax({
@@ -514,7 +402,8 @@
 
 </script>
 
-<script>
+
+ <script>
 	var selectTime = $("#selectTime");
 	suntack = function(index){
 		var j = $("button[name='theaterBtn']").length;
@@ -573,7 +462,6 @@
 	} 
 
 </script>
-
 
 
 
