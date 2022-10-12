@@ -59,7 +59,7 @@ public class TimetableController {
 		List<Movie> list = service2.selectList(vo);
 		model.addAttribute("list", list);
 		
-		return "infra/booking/user/timeTable";
+		return "infra/booking/user/timetable";
 	}
 
 
