@@ -28,6 +28,7 @@
 		SELECT
 			a.tdttSeq
 			,a.tdttShowTime
+			,a.tdttEndTime
 			,a.tdttMorningNy
 			,b.tdthBranch
 			,c.tdpxPlexName
@@ -43,6 +44,7 @@
 		SELECT
 			a.tdttSeq
 			,a.tdttShowTime
+			,a.tdttEndTime
 			,a.tdttMorningNy
 			,b.tdthBranch
 			,c.tdpxPlexName
@@ -58,9 +60,11 @@
 	
 	<select id="selectListTime" resultMap="resultMapObj">
 	SELECT
-		b.tdthBranch
+		a.tdttSeq
+		,b.tdthBranch
         ,c.tdpxPlexName
 		,a.tdttShowTime
+		,a.tdttEndTime
 		,d.tdmvMovieTitle
 		,c.tdpxTotalSeatNum
         ,a.tdttMorningNy
@@ -83,6 +87,38 @@
 		where a.tradMovie_tdmvSeq = #{tdmvSeq}
 		group by b.tdthBranch
 	</select>
+	
+	<select id="selectOneChoiceSeat" resultMap="resultMapObj">
+	SELECT
+		tb.*
+	    ,th.*
+	    ,px.*
+	    ,mv.*
+	FROM tradTimeTable tb
+	JOIN tradTheater th on th.tdthSeq = tb.tradTheater_tdthSeq
+	JOIN tradTheaterPlex px on px.tdpxSeq = tb.tradTheaterPlex_tdpxSeq
+	JOIN tradMovie mv on mv.tdmvSeq = tb.tradMovie_tdmvSeq
+	WHERE 1=1
+	and tb.tdttSeq = #{tdttSeq}
+	;
+	
+	</select>
+	
+	<select id="selectListPrice" resultMap="resultMapObj">
+	SELECT
+		pr.*
+    	,tb.*
+	FROM tradTheaterPrice pr 
+	join tradTimeTable tb on tb.tradTheater_tdthSeq = pr.tradTheater_tdthSeq
+	WHERE 1=1
+	and pr.thprMorningNy = tb.tdttMorningNy
+	and pr.tradTheater_tdthSeq = #{tdthSeq}
+	and tb.tdttSeq = #{tdttSeq}
+	and pr.thprWeekendNy = 0
+	;
+	</select>
+	
+	
 	
 	
 	

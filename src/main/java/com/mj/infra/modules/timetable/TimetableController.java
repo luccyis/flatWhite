@@ -47,12 +47,6 @@ public class TimetableController {
 		return  "infra/booking/xdmin/timeTableForm";
 	}
 	
-	
-	@RequestMapping(value="seatSelect")
-	public String seatSelect() throws Exception {
-		return "infra/booking/user/seatSelect";
-	}
-	
 	//user 영화 목록 
 	@RequestMapping(value="choiceMovie")
 	public String timeTable(Model model, MovieVo vo) throws Exception {
@@ -61,8 +55,7 @@ public class TimetableController {
 		
 		return "infra/booking/user/timetable";
 	}
-
-
+	
 	//영화예매 페이지 - 극장 선택
 	@ResponseBody
 	@RequestMapping(value="selectTheater")
@@ -94,4 +87,18 @@ public class TimetableController {
 		}
 		return result;
 	}
+
+	@RequestMapping(value="seatSelect")
+	public String seatSelect(TimetableVo vo, Model model) throws Exception {
+		
+		Timetable item = service.selectOneChoiceSeat(vo);
+		model.addAttribute("item", item);
+		
+		List<Timetable> list = service.selectListPrice(vo);
+		model.addAttribute("list", list);
+		
+		return "infra/booking/user/seatSelect";
+	}
+	
+
 }

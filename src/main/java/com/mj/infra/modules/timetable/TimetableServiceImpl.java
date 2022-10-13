@@ -59,6 +59,23 @@ public class TimetableServiceImpl implements TimetableService {
 		return list;
 	}
 
+	@Override
+	public Timetable selectOneChoiceSeat(TimetableVo vo) throws Exception {
+		Timetable result = dao.selectOneChoiceSeat(vo);
+		return result;
+	}
+
+	@Override
+	public List<Timetable> selectListPrice(TimetableVo vo) throws Exception {
+		List<Timetable> list = dao.selectListPrice(vo);
+		return list;
+	}
+	
+
+	
+	
+
+
 	
 	
 	

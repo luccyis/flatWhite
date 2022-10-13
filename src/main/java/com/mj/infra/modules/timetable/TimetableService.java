@@ -16,4 +16,7 @@ public List<Timetable> selectList(TimetableVo vo) throws Exception;
 	public List<Timetable> selectListTimeFromMovie(TimetableVo vo) throws Exception;
 	public List<Timetable> selectListTime(TimetableVo vo) throws Exception;
 	
+	public Timetable selectOneChoiceSeat(TimetableVo vo) throws Exception;
+	public List<Timetable> selectListPrice(TimetableVo vo) throws Exception;
+	
 }

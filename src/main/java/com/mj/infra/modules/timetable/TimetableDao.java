@@ -43,5 +43,15 @@ public class TimetableDao {
 		return list;
 	}
 
+	public Timetable selectOneChoiceSeat(TimetableVo vo) {
+		Timetable result =sqlSession.selectOne(namespace + ".selectOneChoiceSeat", vo);
+		return result;
+	}
+
+	public List<Timetable> selectListPrice(TimetableVo vo) {
+		List<Timetable> result = sqlSession.selectList(namespace +".selectListPrice", vo);
+		return result;
+	}
+
 	
 }

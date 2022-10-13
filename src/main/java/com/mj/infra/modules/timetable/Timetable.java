@@ -9,7 +9,7 @@ public class Timetable {
 	private String tradTheaterPlex_tdpxSeq;
 	private String tradMovie_tdmvSeq;
 	private String tdttDelNy;
-	
+	private String tdttEndTime;
 	
 	private String tdthSeq;
 	private String tdthBranch;
@@ -32,7 +32,65 @@ public class Timetable {
 	private String tdmvReleaseDate;
 	private String tdmvRank;
 	
+	//가격 추가
+	private String thprSeq;
+	private String thprWeekendNy;
+	private String thprMorningNy;
+	private String thprTeenagerNy;
+	private String thprPrice;
+	private String thprDelNy;
+	private String thprUseNy;
 	
+	
+	
+	public String getThprSeq() {
+		return thprSeq;
+	}
+	public void setThprSeq(String thprSeq) {
+		this.thprSeq = thprSeq;
+	}
+	public String getThprWeekendNy() {
+		return thprWeekendNy;
+	}
+	public void setThprWeekendNy(String thprWeekendNy) {
+		this.thprWeekendNy = thprWeekendNy;
+	}
+	public String getThprMorningNy() {
+		return thprMorningNy;
+	}
+	public void setThprMorningNy(String thprMorningNy) {
+		this.thprMorningNy = thprMorningNy;
+	}
+	public String getThprTeenagerNy() {
+		return thprTeenagerNy;
+	}
+	public void setThprTeenagerNy(String thprTeenagerNy) {
+		this.thprTeenagerNy = thprTeenagerNy;
+	}
+	public String getThprPrice() {
+		return thprPrice;
+	}
+	public void setThprPrice(String thprPrice) {
+		this.thprPrice = thprPrice;
+	}
+	public String getThprDelNy() {
+		return thprDelNy;
+	}
+	public void setThprDelNy(String thprDelNy) {
+		this.thprDelNy = thprDelNy;
+	}
+	public String getThprUseNy() {
+		return thprUseNy;
+	}
+	public void setThprUseNy(String thprUseNy) {
+		this.thprUseNy = thprUseNy;
+	}
+	public String getTdttEndTime() {
+		return tdttEndTime;
+	}
+	public void setTdttEndTime(String tdttEndTime) {
+		this.tdttEndTime = tdttEndTime;
+	}
 	
 	
 	public String getTdttDelNy() {

@@ -67,97 +67,97 @@
 	                                	<div class="wrap" style="position: relative; width: 2100px; border: none; left: -70px;">
 		                                	<button class="disabled" type="button" date-data="2022.08.04" month="7" tabindex="-1">
 			                                	<span class="ir">2022년 8월</span>
-			                                	<em style="pointer-events:none;">2<span style="pointer-events:none;" class="ir">일</span></em>
+			                                	<em style="pointer-events:none;">1<span style="pointer-events:none;" class="ir">일</span></em>
 			                                	<span class="day-kr" style="pointer-events:none;display:inline-block">목</span>
 			                                	<span class="day-en" style="pointer-events:none;display:none">Thu</span>
 		                                	</button>
 		                                	<button class="on" type="button" date-data="2022.08.05" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">3<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">2<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">오늘</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Fri</span>
 		                                	</button>
 		                                	<button class="sat" type="button" date-data="2022.08.06" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">4<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">3<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">내일</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Sat</span>
 		                                	</button>
 		                                		<button class="holi" type="button" date-data="2022.08.07" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">5<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">4<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">일</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Sun</span>
 		                                	</button>
 		                                	<button class="" type="button" date-data="2022.08.08" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">6<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">5<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">월</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Mon</span>
 		                                	</button>
 		                                	<button class="" type="button" date-data="2022.08.09" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">7<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">6<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">화</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Tue</span>
 		                                	</button>
 		                                		<button class="disabled" type="button" date-data="2022.08.10" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">8<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">7<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">수</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Wed</span>
 		                                	</button>
 		                                		<button class="disabled" type="button" date-data="2022.08.11" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">9<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">8<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">목</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Thu</span>
 		                                	</button>
 		                                	<button class="disabled" type="button" date-data="2022.08.12" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">10<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">9<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">금</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Fri</span>
 		                                	</button>
 		                                	<button class="sat" type="button" date-data="2022.08.13" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">11<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">10<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">토</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Sat</span>
 		                                	</button>
 		                                	<button class="disabled holi" type="button" date-data="2022.08.14" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">12<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">11<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">일</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Sun</span>
 		                                	</button>
 		                                	<button class="disabled" type="button" date-data="2022.08.15" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">13<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">12<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">월</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Mon</span>
 		                                	</button>
 		                                	<button class="disabled" type="button" date-data="2022.08.16" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">14<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">13<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">화</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Tue</span>
 		                                	</button>
 		                                	<button class="disabled" type="button" date-data="2022.08.17" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">15<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">14<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">수</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Wed</span>
 		                                	</button>
 		                                	<button class="disabled" type="button" date-data="2022.08.18" month="7">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">16<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">15<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">목</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Thu</span>
 		                                	</button>
 		                                	<button class="disabled" type="button" date-data="2022.08.19" month="7" tabindex="-1">
 		                                		<span class="ir">2022년 8월</span>
-		                                		<em style="pointer-events:none;">17<span style="pointer-events:none;" class="ir">일</span></em>
+		                                		<em style="pointer-events:none;">16<span style="pointer-events:none;" class="ir">일</span></em>
 		                                		<span class="day-kr" style="pointer-events:none;display:inline-block">금</span>
 		                                		<span class="day-en" style="pointer-events:none;display:none">Fri</span>
 		                                	</button>
@@ -409,11 +409,11 @@
 					
 					for(var i=0; i<response.list.length; i++) {
 						txt += '<li>';
-						txt +=	'<button type="button" class="btn" id="btn'+i+'">';
+						txt +=	'<button type="button" class="btn" id="btn'+i+'"onclick="goSeat('+response.list[i].tdttSeq+')">';
 						txt +='<div class="legend"></div>';
 						txt +=	'<span class="time">';
 						txt +=		'<strong title="상영 시작">'+response.list[i].tdttShowTime.substring(10, 16)+'</strong>';
-						txt +=		'<em title="상영 종료">~20:35</em>';
+						txt +=		'<em title="상영 종료">~'+response.list[i].tdttEndTime.substring(10,16)+'</em>';
 						txt +=	'</span>';
 						txt +=	'<span class="title">';
 						txt +=		'<strong title=>'+response.list[i].tdmvMovieTitle+'</strong>';
@@ -442,6 +442,18 @@
 		});
 	} 
 
+</script>
+
+<script>
+	var goUrlSeat = "/timetable/seatSelect";
+	var seq = $("#tdttSeq");
+	
+	var form=$("form[name=formList]");
+	
+	goSeat=function(tdttSeq){
+		seq.val(tdttSeq);
+		form.attr("action", goUrlSeat).submit();
+	}
 </script>
 
 
