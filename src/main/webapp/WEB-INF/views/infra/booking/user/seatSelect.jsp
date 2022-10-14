@@ -27,8 +27,8 @@
 			<div class="inner-wrap">
 				<div class="location">
 					<span>Home</span>
-                	<a href="/booking/timeTable" title="예매 페이지로 이동">예매</a>
-                	<a href="/booking/timeTable" title="빠른예매 페이지로 이동">빠른예매</a>
+                	<a href="/timetable/choiceMovie" title="예매 페이지로 이동">예매</a>
+                	<a href="/timetable/choiceMovie" title="빠른예매 페이지로 이동">빠른예매</a>
 				</div>
 			</div>
 		</div>	
@@ -85,21 +85,41 @@
                             </div>
                             <div class="seat-layout">
                                 <div class="alert" style="display: none;"></div>
-                                <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시요</div>
+                                <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시오</div>
                                 <div class="scroll m-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
                                 	<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
                                 		<div id="mCSB_1_container" class="mCSB_container mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; height: 270px;" dir="ltr">
                                     		<div id="seatLayout" style="width: 100%; height: 270px;">
                                         		<img src="/resources/images/theaterScreen.png" alt="screen" style="position: absolute; left: 62px; top: 10px;" class="mCS_img_loaded">
-                                        			<div class'row'="">  
-                                        				<button type="button" class="btn-seat-row" title="A 행" style="position:absolute; left:330px; top:50px;">A</button>
-		                                        		<button type="button" title="A3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:351px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100401" rownm="A" seatno="3" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="A4 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:371px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100501" rownm="A" seatno="4" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
+                                        			<div class'row'="" id="seatChoice">
+                                        				<c:set var="rowTop" value="50"/>
+                                        				
+														<c:forEach var="rowTop" begin="50" end="${item.tdpxSittingRowNum }" step="20" varStatus="varStatusRowTop">
+															<c:forEach var="colLeft" begin="351" end="${item.tdpxSittingColNum}" step="20" varStatus="varStatusColLeft">
+																<c:forEach var="colTop" begin="50" end="${item.tdpxSittingColNum}" step="20" varStatus="varStatusColTop">
+																<c:forEach var="row" begin="1" end="${item.tdpxSittingRowNum }" step="1" varStatus="varStatusRow">
+                                        						<button type="button" class="btn-seat-row" title="A 행" style="position:absolute; left:330px; top:<c:out value="${varStatusRowTop}"/>px; width:20px;"><c:out value="${varStatusRow.index}"/></button>
+																<c:forEach var="col" begin="1" end="${item.tdpxSittingColNum }" step="1" varStatus="varStatuscol">
+                                       				
+															</c:forEach>
+					                                        		<button type="button" title="A3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:<c:out value="${varStatusColLeft}"/>; top:<c:out value="${colTop+20}"/>; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" rownm="A" seatno="3" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
+					                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
+					                                        			<span class="kind">스탠다드</span>
+					                                        			<span class="condition">판매가능</span>
+					                                        			<span class="rank">일반</span>
+					                                        		</button>
+																</c:forEach>
+															</c:forEach>	
+														</c:forEach>
+													</c:forEach>
+														
+														                                       				
+                                        				
+                                        				
+                                        				
+                                        				
+                                        				
+		                                        		<!-- <button type="button" title="A4 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:371px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100501" rownm="A" seatno="4" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
 		                                        			<span class="num">2</span>
 		                                        			<span class="kind">스탠다드</span>
 		                                        			<span class="condition">판매가능</span>
@@ -116,7 +136,8 @@
 		                                        			<span class="kind">스탠다드</span>
 		                                        			<span class="condition">판매가능</span>
 		                                        			<span class="rank">일반</span>
-		                                        		</button>
+		                                        		</button> -->
+		                                        		<!-- 
 		                                        		<button type="button" class="btn-seat-row" title="B 행" style="position:absolute; left:330px; top:72px;">B</button>
 		                                        		<button type="button" title="B3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:351px; top:70px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00200401" rownm="B" seatno="3" seatchoidircval="0" seatchoigrpno="5" seatchoigrpnm="B5" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
 		                                        			<span class="num">1</span>
@@ -291,7 +312,7 @@
 		                                        			<span class="kind">스탠다드</span>
 		                                        			<span class="condition">판매가능</span>
 		                                        			<span class="rank">일반</span>
-		                                        		</button>
+		                                        		</button> -->
 	                                        		<img src="/resources/images/doorTop.png" alt="좌우측 출입구" style="position:absolute; left:491px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
                                         		</div>
                                 			</div>
@@ -358,7 +379,7 @@
                                 </div>
                             </div>
                             <div class="btn-group">
-                                <a href="/booking/timeTable" class="button" id="pagePrevious" title="이전">이전</a>
+                                <a href="/timetable/choiceMovie" class="button" id="pagePrevious" title="이전">이전</a>
                                 <a href="/booking/bookingPay" class="button active" id="pageNext" title="다음">다음</a>
                             </div>
                         </div>
@@ -375,14 +396,18 @@
 
 
 </div>
-
-<form id="mainForm"></form>
-<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
-<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
-<!-- scripte-e -->
+<!-- script-e -->
+<!-- <script>
+$(document).ready(function(){
+	var txt ="";
+	
+	
+});
+
+</script>
+ -->
+
 </body>
 </html>

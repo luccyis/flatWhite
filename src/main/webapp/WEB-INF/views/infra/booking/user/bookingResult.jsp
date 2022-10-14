@@ -27,7 +27,7 @@
 			<div class="inner-wrap">
 				<div class="location">
 					<span>Home</span>
-                	<a href="/booking/timeTable" title="예매 페이지로 이동">예매</a>
+                	<a href="/movie/timeTable" title="예매 페이지로 이동">예매</a>
                 	<a href="" title="빠른예매 페이지로 이동">예매완료</a>
 				</div>
 			</div>

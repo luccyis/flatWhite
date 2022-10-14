@@ -47,7 +47,7 @@ public class TimetableController {
 		return  "infra/booking/xdmin/timeTableForm";
 	}
 	
-	//user 영화 목록 
+	//영화예매 페이지 - 영화 목록 
 	@RequestMapping(value="choiceMovie")
 	public String timeTable(Model model, MovieVo vo) throws Exception {
 		List<Movie> list = service2.selectList(vo);
@@ -88,6 +88,7 @@ public class TimetableController {
 		return result;
 	}
 
+	//영화예매 페이지 - 좌석 선택
 	@RequestMapping(value="seatSelect")
 	public String seatSelect(TimetableVo vo, Model model) throws Exception {
 		
