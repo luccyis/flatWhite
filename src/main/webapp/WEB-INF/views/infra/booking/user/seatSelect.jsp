@@ -92,227 +92,26 @@
                                     		<div id="seatLayout" style="width: 100%; height: 270px;">
                                         		<img src="/resources/images/theaterScreen.png" alt="screen" style="position: absolute; left: 62px; top: 10px;" class="mCS_img_loaded">
                                         			<div class'row'="" id="seatChoice">
-                                        				<c:set var="rowTop" value="50"/>
+                                        				<c:set var="left" value="351"/>
+                                        				<c:set var="top" value="50"/>
+                                        				<c:set var="addY" value="0"/>
+                                        				<c:set var="alphabet" value="${fn:split('A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z','/')}"/>
                                         				
-														<c:forEach var="rowTop" begin="50" end="${item.tdpxSittingRowNum }" step="20" varStatus="varStatusRowTop">
-															<c:forEach var="colLeft" begin="351" end="${item.tdpxSittingColNum}" step="20" varStatus="varStatusColLeft">
-																<c:forEach var="colTop" begin="50" end="${item.tdpxSittingColNum}" step="20" varStatus="varStatusColTop">
-																<c:forEach var="row" begin="1" end="${item.tdpxSittingRowNum }" step="1" varStatus="varStatusRow">
-                                        						<button type="button" class="btn-seat-row" title="A 행" style="position:absolute; left:330px; top:<c:out value="${varStatusRowTop}"/>px; width:20px;"><c:out value="${varStatusRow.index}"/></button>
-																<c:forEach var="col" begin="1" end="${item.tdpxSittingColNum }" step="1" varStatus="varStatuscol">
-                                       				
-															</c:forEach>
-					                                        		<button type="button" title="A3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:<c:out value="${varStatusColLeft}"/>; top:<c:out value="${colTop+20}"/>; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" rownm="A" seatno="3" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-					                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
-					                                        			<span class="kind">스탠다드</span>
-					                                        			<span class="condition">판매가능</span>
-					                                        			<span class="rank">일반</span>
-					                                        		</button>
-																</c:forEach>
-															</c:forEach>	
-														</c:forEach>
-													</c:forEach>
-														
-														                                       				
+                                        				<c:forEach var="row" begin="1" end="${item.tdpxSittingRowNum}" step="1" varStatus="varStatusRow">
+                                        					<c:set var="addX" value="0"/>
+                                        					<button type="button" class="btn-seat-row" title="<c:out value="${alphabet[varStatusRow.index-1]}"/>행" style="position:absolute; left:330px; top:<c:out value="${top+addY}"/>px; width:20px;"><c:out value="${alphabet[varStatusRow.index-1]}"/></button>
+                                        					<c:forEach var="col" begin="1" end="${item.tdpxSittingColNum}" step="1" varStatus="varStatuscol">
+                                        						<c:set var="addX" value="${addX+20}"/>
+                                        						<button type="button" title="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/> (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:<c:out value="${left+addX}"/>px; top:<c:out value="${top+addY}"/>px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" rownm="<c:out value="${alphabet[varStatusRow.index-1]}"/>" seatno="<c:out value="${varStatuscol.index}"/>" seatchoigrpnm="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/>">
+				                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
+				                                        			<span class="kind">스탠다드</span>
+				                                        			<span class="condition">판매가능</span>
+				                                        			<span class="rank">일반</span>
+				                                        		</button>
+                                        					</c:forEach>
+                                        					<c:set var="addY" value="${addY+20}"/>
+                                        				</c:forEach>
                                         				
-                                        				
-                                        				
-                                        				
-                                        				
-		                                        		<!-- <button type="button" title="A4 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:371px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100501" rownm="A" seatno="4" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        			<button type="button" title="A5 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:391px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100601" rownm="A" seatno="5" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="A6 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:411px; top:50px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00100701" rownm="A" seatno="6" seatchoidircval="0" seatchoigrpno="2" seatchoigrpnm="A2" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button> -->
-		                                        		<!-- 
-		                                        		<button type="button" class="btn-seat-row" title="B 행" style="position:absolute; left:330px; top:72px;">B</button>
-		                                        		<button type="button" title="B3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:351px; top:70px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00200401" rownm="B" seatno="3" seatchoidircval="0" seatchoigrpno="5" seatchoigrpnm="B5" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="B4 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:371px; top:70px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00200501" rownm="B" seatno="4" seatchoidircval="0" seatchoigrpno="5" seatchoigrpnm="B5" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="B5 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:391px; top:70px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00200601" rownm="B" seatno="5" seatchoidircval="0" seatchoigrpno="5" seatchoigrpnm="B5" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="B6 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:411px; top:70px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00200701" rownm="B" seatno="6" seatchoidircval="0" seatchoigrpno="5" seatchoigrpnm="B5" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-                                        				<button type="button" class="btn-seat-row" title="C 행" style="position:absolute; left:330px; top:92px;">C</button>
-		                                        		<button type="button" title="C3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:351px; top:90px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00300401" rownm="C" seatno="3" seatchoidircval="0" seatchoigrpno="8" seatchoigrpnm="C8" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-	                                        			<button type="button" title="C4 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:371px; top:90px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00300501" rownm="C" seatno="4" seatchoidircval="0" seatchoigrpno="8" seatchoigrpnm="C8" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-	                                        			<button type="button" title="C5 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:391px; top:90px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00300601" rownm="C" seatno="5" seatchoidircval="0" seatchoigrpno="8" seatchoigrpnm="C8" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="C6 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:411px; top:90px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00300701" rownm="C" seatno="6" seatchoidircval="0" seatchoigrpno="8" seatchoigrpnm="C8" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" class="btn-seat-row" title="D 행" style="position:absolute; left:330px; top:112px;">D</button>
-	                                        			<button type="button" title="D3 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:351px; top:110px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00400401" rownm="D" seatno="3" seatchoidircval="0" seatchoigrpno="11" seatchoigrpnm="D11" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="D4 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:371px; top:110px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00400501" rownm="D" seatno="4" seatchoidircval="0" seatchoigrpno="11" seatchoigrpnm="D11" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="D5 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:391px; top:110px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00400601" rownm="D" seatno="5" seatchoidircval="0" seatchoigrpno="11" seatchoigrpnm="D11" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="D6 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:411px; top:110px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00400701" rownm="D" seatno="6" seatchoidircval="0" seatchoigrpno="11" seatchoigrpnm="D11" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" class="btn-seat-row" title="E 행" style="position:absolute; left:330px; top:132px;">E</button>
-		                                        		<button type="button" title="E3 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:351px; top:130px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00500401" rownm="E" seatno="3" seatchoidircval="0" seatchoigrpno="14" seatchoigrpnm="E14" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="E4 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:371px; top:130px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00500501" rownm="E" seatno="4" seatchoidircval="0" seatchoigrpno="14" seatchoigrpnm="E14" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="E5 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:391px; top:130px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00500601" rownm="E" seatno="5" seatchoidircval="0" seatchoigrpno="14" seatchoigrpnm="E14" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="E6 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:411px; top:130px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00500701" rownm="E" seatno="6" seatchoidircval="0" seatchoigrpno="14" seatchoigrpnm="E14" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-	                                        			<button type="button" class="btn-seat-row" title="F 행" style="position:absolute; left:330px; top:152px;">F</button>
-		                                        		<button type="button" title="F3 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:351px; top:150px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00600401" rownm="F" seatno="3" seatchoidircval="0" seatchoigrpno="17" seatchoigrpnm="F17" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="F4 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:371px; top:150px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00600501" rownm="F" seatno="4" seatchoidircval="0" seatchoigrpno="17" seatchoigrpnm="F17" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="F5 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:391px; top:150px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00600601" rownm="F" seatno="5" seatchoidircval="0" seatchoigrpno="17" seatchoigrpnm="F17" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="F6 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:411px; top:150px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00600701" rownm="F" seatno="6" seatchoidircval="0" seatchoigrpno="17" seatchoigrpnm="F17" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" class="btn-seat-row" title="G 행" style="position:absolute; left:330px; top:172px;">G</button>
-		                                        		<button type="button" title="G3(스탠다드/선택됨)" class="jq-tooltip seat-condition standard common on choice" style="position:absolute; left:351px; top:170px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00700401" rownm="G" seatno="3" seatchoidircval="0" seatchoigrpno="20" seatchoigrpnm="G20" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1" seatnextuniqno="00700501" selected="selected">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">선택됨</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="G4(스탠다드/선택됨)" class="jq-tooltip seat-condition standard common on choice" style="position:absolute; left:371px; top:170px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00700501" rownm="G" seatno="4" seatchoidircval="0" seatchoigrpno="20" seatchoigrpnm="G20" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1" seatnextuniqno="00700401" selected="selected">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">선택됨</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-	                                        			<button type="button" title="G5 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:391px; top:170px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00700601" rownm="G" seatno="5" seatchoidircval="0" seatchoigrpno="20" seatchoigrpnm="G20" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="G6 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:411px; top:170px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00700701" rownm="G" seatno="6" seatchoidircval="0" seatchoigrpno="20" seatchoigrpnm="G20" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" class="btn-seat-row" title="H 행" style="position:absolute; left:330px; top:190px;">H</button>
-		                                        		<button type="button" title="H3 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:351px; top:190px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00800401" rownm="H" seatno="3" seatchoidircval="0" seatchoigrpno="23" seatchoigrpnm="H23" seatchoirowcnt="4" seatchoigrpseq="1" seattocnt="1">
-		                                        			<span class="num">1</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="H4 (스탠다드/일반)" class="jq-tooltip seat-condition standard common view" style="position:absolute; left:371px; top:190px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00800501" rownm="H" seatno="4" seatchoidircval="0" seatchoigrpno="23" seatchoigrpnm="H23" seatchoirowcnt="4" seatchoigrpseq="2" seattocnt="1">
-		                                        			<span class="num">2</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="H5 (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:391px; top:190px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00800601" rownm="H" seatno="5" seatchoidircval="0" seatchoigrpno="23" seatchoigrpnm="H23" seatchoirowcnt="4" seatchoigrpseq="3" seattocnt="1">
-		                                        			<span class="num">3</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button>
-		                                        		<button type="button" title="H6 (스탠다드/일반)" class="jq-tooltip seat-condition standard finish" style="position:absolute; left:411px; top:190px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" seatuniqno="00800701" rownm="H" seatno="6" seatchoidircval="0" seatchoigrpno="23" seatchoigrpnm="H23" seatchoirowcnt="4" seatchoigrpseq="4" seattocnt="1">
-		                                        			<span class="num">4</span>
-		                                        			<span class="kind">스탠다드</span>
-		                                        			<span class="condition">판매가능</span>
-		                                        			<span class="rank">일반</span>
-		                                        		</button> -->
 	                                        		<img src="/resources/images/doorTop.png" alt="좌우측 출입구" style="position:absolute; left:491px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
                                         		</div>
                                 			</div>
