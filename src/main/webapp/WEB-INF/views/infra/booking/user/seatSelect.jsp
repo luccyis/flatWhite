@@ -55,35 +55,36 @@
                             	<div class="cell">
                             		<p class="txt">성인</p>
                             		<div class="count">
-                            			<button type="button" class="down" title="성인 좌석 선택 감소">-</button>
+                            			<button type="button" class="down" onclick="adultCount('down')" value="-" title="성인 좌석 선택 감소">-</button>
                             			<div class="number">
-                            				<button type="button" class="now" title="성인 현재 좌석 선택 수" ticketgrpcd="TKA">2</button>
+                            				<button type="button" class="now" id="adultTicket" name="adultCount" title="성인 현재 좌석 선택 수">0</button>
                             				<ul class="num-choice">
                             					<li>
                             						<button type="button" class="btn">0</button>
                             					</li>
                             				</ul>
                            				</div>
-                            			<button type="button" class="up" title="성인 좌석 선택 증가">+</button>
+                            			<button type="button" class="up" onclick="adultCount('up')" value="+" title="성인 좌석 선택 증가">+</button>
                             		</div>
                             	</div>
                             	<div class="cell">
                             		<p class="txt">청소년</p>
                             		<div class="count">
-                            			<button type="button" class="down" title="청소년 좌석 선택 감소">-</button>
+                            			<button type="button" class="down" onclick="teenCount('down')" value="-" title="청소년 좌석 선택 감소">-</button>
                             			<div class="number">
-                            				<button type="button" class="now" title="청소년 현재 좌석 선택 수" ticketgrpcd="TKY">0</button>
+                            				<button type="button" class="now" id="teenTicket" name="teenCount" title="청소년 현재 좌석 선택 수" >0</button>
                             				<ul class="num-choice">
                             					<li>
                             						<button type="button" class="btn on">0</button>
                             					</li>
                             				</ul>
                             			</div>
-                            			<button type="button" class="up" title="청소년 좌석 선택 증가">+</button>
+                            			<button type="button" class="up" onclick="teenCount('up')" value="+"  title="청소년 좌석 선택 증가">+</button>
                             		</div>
                             	</div>
                             </div>
                             <div class="seat-layout">
+                            <input type="hidden" name="thprPrice" value="${list[0].thprPrice}"/>
                                 <div class="alert" style="display: none;"></div>
                                 <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시오</div>
                                 <div class="scroll m-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
@@ -102,11 +103,15 @@
                                         					<button type="button" class="btn-seat-row" title="<c:out value="${alphabet[varStatusRow.index-1]}"/>행" style="position:absolute; left:330px; top:<c:out value="${top+addY}"/>px; width:20px;"><c:out value="${alphabet[varStatusRow.index-1]}"/></button>
                                         					<c:forEach var="col" begin="1" end="${item.tdpxSittingColNum}" step="1" varStatus="varStatuscol">
                                         						<c:set var="addX" value="${addX+20}"/>
-                                        						<button type="button" title="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/> (스탠다드/일반)" class="jq-tooltip seat-condition standard common" style="position:absolute; left:<c:out value="${left+addX}"/>px; top:<c:out value="${top+addY}"/>px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" rownm="<c:out value="${alphabet[varStatusRow.index-1]}"/>" seatno="<c:out value="${varStatuscol.index}"/>" seatchoigrpnm="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/>">
-				                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
-				                                        			<span class="kind">스탠다드</span>
-				                                        			<span class="condition">판매가능</span>
-				                                        			<span class="rank">일반</span>
+                                        						<button type="button" title="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/> (스탠다드/일반)" 
+	                                        						class="jq-tooltip seat-condition standard common" id="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"
+	                                        						onclick="choiceSeat('${alphabet[varStatusRow.index-1]}${varStatuscol.index}')"
+	     															style="position:absolute; left:<c:out value="${left+addX}"/>px; top:<c:out value="${top+addY}"/>px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" 
+	     															rownm="<c:out value="${alphabet[varStatusRow.index-1]}"/>" seatno="<c:out value="${varStatuscol.index}"/>" seatchoigrpnm="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/>">
+					                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
+					                                        			<span class="kind">스탠다드</span>
+					                                        			<span class="condition">판매가능</span>
+					                                        			<span class="rank">일반</span>
 				                                        		</button>
                                         					</c:forEach>
                                         					<c:set var="addY" value="${addY+20}"/>
@@ -135,18 +140,18 @@
                         <div class="wrap">
                             <div class="tit-area">
                                 <span class="movie-grade small age-all age-12">12세이상관람가</span>
-                                <p class="tit">탑건: 매버릭</p>
+                                <p class="tit"><c:out value="${item.tdmvMovieTitle}"/></p>
                                 <p class="cate">2D(자막)</p>
                             </div>
                             <div class="info-area">
-                                <p class="theater">코엑스</p>
-                                <p class="special">더부티크 105호</p>
-                                <p class="date"><span>2022.08.02</span><em>(수)</em></p>
+                                <p class="theater"><c:out value="${item.tdthBranch}"/></p>
+                                <p class="special"><c:out value="${item.tdpxPlexName}"/></p>
+                                <p class="date"><span><c:out value="${item.tdttShowTime.substring(0, 10)}"/></span><em>(수)</em></p>
                                 <div class="other-time">
-                                    <button type="button" class="now">12:00~14:20<i class="arr"></i></button>
+                                    <button type="button" class="now"><c:out value="${item.tdttShowTime.substring(10, 16)}"/><i class="arr"></i></button>
                                 </div>
                                 <p class="poster">
-                                    <img src="/resources/images/poster1.jpg" onerror="noImg(this);" alt="탑건: 매버릭">
+                                	<img src="${imageItem.upPath}${imageItem.uuIdName}" alt="${item.tdmvMovieTitle}">
                                 </p>
                             </div>
                             <div class="choice-seat-area">
@@ -157,14 +162,7 @@
                                 <div class="seat-num">
                                     <p class="tit">선택좌석</p>
                                     <div class="my-seat">
-                                        <div class="seat choice" title="선택한 좌석">G1</div>
-                                        <div class="seat choice" title="선택한 좌석">G2</div>
-                                        <div class="seat all" title="구매가능 좌석">-</div>
-                                        <div class="seat all" title="구매가능 좌석">-</div>
-                                        <div class="seat all" title="구매가능 좌석">-</div>
-                                        <div class="seat all" title="구매가능 좌석">-</div>
-                                        <div class="seat all" title="구매가능 좌석">-</div>
-                                        <div class="seat all" title="구매가능 좌석">-</div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +171,7 @@
                                 <div class="pay">
                                     <p class="tit">최종결제금액</p>
                                     <div class="money">
-                                        <em>30,000</em> <span>원</span>
+                                        <em id="finalPrice">0</em> <span>원</span>
                                     </div>
                                 </div>
                             </div>
@@ -198,15 +196,51 @@
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
 <!-- script-e -->
-<!-- <script>
-$(document).ready(function(){
-	var txt ="";
-	
-	
-});
+
+ <script>
+
+ adultCount = function(key){
+	 if(key == 'up'){
+		 $("#adultTicket").html(Number($("#adultTicket").html())+1);
+	 } else {
+		 if( $("#adultTicket").html() == 0)
+			 return ;
+		 $("#adultTicket").html(Number($("#adultTicket").html())-1);
+	 }
+ }
+ 
+ teenCount = function(key){
+	 if(key == 'up'){
+		 $("#teenTicket").html(Number($("#teenTicket").html())+1);
+	 } else {
+		 if( $("#teenTicket").html() == 0)
+			 return ;
+		 $("#teenTicket").html(Number($("#teenTicket").html())-1);
+	 }
+ }
+ 
+ 
+ choiceSeat =function(seatNum){
+	 var price=Number($("input:hidden[name=thprPrice]").val());
+	 
+	 if ($("#"+seatNum).hasClass('on choice')) {
+		 $("#"+seatNum).removeClass('on choice');
+		 $("#btn"+seatNum).remove();
+		 $("#finalPrice").html(Number($("#finalPrice").html())-price);
+	 } else {
+		 $("#"+seatNum).addClass('on choice');
+		 document.querySelector('.my-seat').innerHTML += '<div class="seat choice" title="선택한 좌석" id="btn'+seatNum+'">'+ seatNum +'</div>';
+		 $("#finalPrice").html(Number($("#finalPrice").html())+price);
+		  
+	 }
+ }
+
+
+
+
+
 
 </script>
- -->
 
 </body>
 </html>

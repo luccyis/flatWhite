@@ -115,7 +115,7 @@
 	and pr.tradTheater_tdthSeq = #{tdthSeq}
 	and tb.tdttSeq = #{tdttSeq}
 	and pr.thprWeekendNy = 0
-	;
+	and pr.thprTeenagerNy = 0
 	</select>
 	
 	

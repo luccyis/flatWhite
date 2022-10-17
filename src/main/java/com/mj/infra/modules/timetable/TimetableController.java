@@ -90,13 +90,17 @@ public class TimetableController {
 
 	//영화예매 페이지 - 좌석 선택
 	@RequestMapping(value="seatSelect")
-	public String seatSelect(TimetableVo vo, Model model) throws Exception {
+	public String seatSelect(TimetableVo vo, Model model, Movie dto) throws Exception {
 		
 		Timetable item = service.selectOneChoiceSeat(vo);
 		model.addAttribute("item", item);
 		
 		List<Timetable> list = service.selectListPrice(vo);
 		model.addAttribute("list", list);
+		
+		dto.setPseq(vo.getTdmvSeq());
+		Movie imageItem = service2.selectMovieImage(dto);
+		model.addAttribute("imageItem", imageItem);
 		
 		return "infra/booking/user/seatSelect";
 	}
