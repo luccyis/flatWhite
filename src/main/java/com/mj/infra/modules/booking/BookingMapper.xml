@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mj.infra.modules.booking.BookingMapper">
+
+    <resultMap id="resultMapObj" type="com.mj.infra.modules.booking.Booking"></resultMap>
+    
+    <select id="selectList" resultMap="resultMapObj">
+    	SELECT 
+    		a.tdbkSeq
+    		,a.tdbkPayment
+    		,a.tdbkBookingDate
+    		,a.infrMember_ifmmSeq as ifmmSeq
+    		,a.tradTimeTable_tdttSeq as tdttSeq
+    	FROM tradBooking a
+    	ORDER BY a.tdbkSeq
+    </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+    	SELECT
+    		a.tdbkSeq
+    		,a.tdbkPayment
+    		,a.tdbkBookingDate
+    		,a.infrMember_ifmmSeq as ifmmSeq
+    		,a.tradTimeTable_tdttSeq as tdttSeq
+    	FROM tradBooking
+    	WHERE 1=1
+    		AND a.tdbkSeq = #{tdbkSeq}
+    </select>
+    
+    <insert id="insertBooking">
+	    insert INTO tradBooking (
+			tdbkBookingDate
+			,tdbkPayment
+			,infrMember_ifmmSeq
+			,tradTimeTable_tdttSeq
+			,tdbkTotalCost
+		)
+		VALUES (
+			now()
+		    ,#{tdbkPayment}
+		    ,#{ifmmSeq}
+		    ,#{tdttSeq}
+		    ,#{tdbkTotalCost}
+		)
+		<selectKey resultType="String" keyProperty="tdbkSeq" order="AFTER">
+				SELECT last_insert_id()
+		</selectKey>
+    </insert>
+    
+    <insert id="insertBookingSeat">
+	    INSERT INTO tradBookingSeat (
+			tradBooking_tdbkSeq
+			,tdbsSeatNum
+			,tdbsTeenagerNy
+		    ,tradTheaterPrice_thprSeq
+		)
+		VALUES (
+			#{tdbkSeq}
+			,#{tdbsSeatNum}
+			,0
+			,#{thprSeq}
+		)
+    	<selectKey resultType="String" keyProperty="tdbsSeq" order="AFTER">
+				SELECT last_insert_id()
+		</selectKey>
+    
+    </insert>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</mapper>    

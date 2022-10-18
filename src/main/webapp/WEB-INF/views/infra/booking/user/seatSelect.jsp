@@ -41,148 +41,157 @@
                         <button type="button" class="button gray-line" onclick="parent.setLangChg()">English</button>
                     </div>
             	</div>
-            
-                <div class="seat-select-section">
-                    <div class="seat-section">
-                        <div class="tit-util">
-                            <h3 class="tit small"> 관람인원선택</h3>
-                            <div class="right">
-                                <button type="button" class="button gray-line small" id="seatMemberCntInit"> <i class="iconset ico-reset-small"></i>초기화</button>
-                            </div>
-                        </div>
-                        <div class="seat-area">
-                            <div class="seat-count" style="min-height: 52px">
-                            	<div class="cell">
-                            		<p class="txt">성인</p>
-                            		<div class="count">
-                            			<button type="button" class="down" onclick="adultCount('down')" value="-" title="성인 좌석 선택 감소">-</button>
-                            			<div class="number">
-                            				<button type="button" class="now" id="adultTicket" name="adultCount" title="성인 현재 좌석 선택 수">0</button>
-                            				<ul class="num-choice">
-                            					<li>
-                            						<button type="button" class="btn">0</button>
-                            					</li>
-                            				</ul>
-                           				</div>
-                            			<button type="button" class="up" onclick="adultCount('up')" value="+" title="성인 좌석 선택 증가">+</button>
-                            		</div>
-                            	</div>
-                            	<div class="cell">
-                            		<p class="txt">청소년</p>
-                            		<div class="count">
-                            			<button type="button" class="down" onclick="teenCount('down')" value="-" title="청소년 좌석 선택 감소">-</button>
-                            			<div class="number">
-                            				<button type="button" class="now" id="teenTicket" name="teenCount" title="청소년 현재 좌석 선택 수" >0</button>
-                            				<ul class="num-choice">
-                            					<li>
-                            						<button type="button" class="btn on">0</button>
-                            					</li>
-                            				</ul>
-                            			</div>
-                            			<button type="button" class="up" onclick="teenCount('up')" value="+"  title="청소년 좌석 선택 증가">+</button>
-                            		</div>
-                            	</div>
-                            </div>
-                            <div class="seat-layout">
-                            <input type="hidden" name="thprPrice" value="${list[0].thprPrice}"/>
-                                <div class="alert" style="display: none;"></div>
-                                <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시오</div>
-                                <div class="scroll m-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
-                                	<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
-                                		<div id="mCSB_1_container" class="mCSB_container mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; height: 270px;" dir="ltr">
-                                    		<div id="seatLayout" style="width: 100%; height: 270px;">
-                                        		<img src="/resources/images/theaterScreen.png" alt="screen" style="position: absolute; left: 62px; top: 10px;" class="mCS_img_loaded">
-                                        			<div class'row'="" id="seatChoice">
-                                        				<c:set var="left" value="351"/>
-                                        				<c:set var="top" value="50"/>
-                                        				<c:set var="addY" value="0"/>
-                                        				<c:set var="alphabet" value="${fn:split('A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z','/')}"/>
-                                        				
-                                        				<c:forEach var="row" begin="1" end="${item.tdpxSittingRowNum}" step="1" varStatus="varStatusRow">
-                                        					<c:set var="addX" value="0"/>
-                                        					<button type="button" class="btn-seat-row" title="<c:out value="${alphabet[varStatusRow.index-1]}"/>행" style="position:absolute; left:330px; top:<c:out value="${top+addY}"/>px; width:20px;"><c:out value="${alphabet[varStatusRow.index-1]}"/></button>
-                                        					<c:forEach var="col" begin="1" end="${item.tdpxSittingColNum}" step="1" varStatus="varStatuscol">
-                                        						<c:set var="addX" value="${addX+20}"/>
-                                        						<button type="button" title="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/> (스탠다드/일반)" 
-	                                        						class="jq-tooltip seat-condition standard common" id="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"
-	                                        						onclick="choiceSeat('${alphabet[varStatusRow.index-1]}${varStatuscol.index}')"
-	     															style="position:absolute; left:<c:out value="${left+addX}"/>px; top:<c:out value="${top+addY}"/>px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" 
-	     															rownm="<c:out value="${alphabet[varStatusRow.index-1]}"/>" seatno="<c:out value="${varStatuscol.index}"/>" seatchoigrpnm="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/>">
-					                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
-					                                        			<span class="kind">스탠다드</span>
-					                                        			<span class="condition">판매가능</span>
-					                                        			<span class="rank">일반</span>
-				                                        		</button>
-                                        					</c:forEach>
-                                        					<c:set var="addY" value="${addY+20}"/>
-                                        				</c:forEach>
-                                        				
-	                                        		<img src="/resources/images/doorTop.png" alt="좌우측 출입구" style="position:absolute; left:491px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
-                                        		</div>
-                                			</div>
-                                			<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;">
-                                				<div class="mCSB_draggerContainer">
-                                					<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: none; height: 569px; top: 0px; max-height: 382px;">
-                                						<div class="mCSB_dragger_bar" style="line-height: 30px;">
-                                						</div>
-                                					</div>
-                                					<div class="mCSB_draggerRail">
-                             					</div>
-                                			</div>
-                                		</div>
-                                	</div>
-                                </div>
-                            </div>
-                            <div class="zone-legend" style="display: none"></div>
-                        </div>
-                    </div>
-                    <div class="seat-result">
-                        <div class="wrap">
-                            <div class="tit-area">
-                                <span class="movie-grade small age-all age-12">12세이상관람가</span>
-                                <p class="tit"><c:out value="${item.tdmvMovieTitle}"/></p>
-                                <p class="cate">2D(자막)</p>
-                            </div>
-                            <div class="info-area">
-                                <p class="theater"><c:out value="${item.tdthBranch}"/></p>
-                                <p class="special"><c:out value="${item.tdpxPlexName}"/></p>
-                                <p class="date"><span><c:out value="${item.tdttShowTime.substring(0, 10)}"/></span><em>(수)</em></p>
-                                <div class="other-time">
-                                    <button type="button" class="now"><c:out value="${item.tdttShowTime.substring(10, 16)}"/><i class="arr"></i></button>
-                                </div>
-                                <p class="poster">
-                                	<img src="${imageItem.upPath}${imageItem.uuIdName}" alt="${item.tdmvMovieTitle}">
-                                </p>
-                            </div>
-                            <div class="choice-seat-area">
-                                <div class="legend">
-                                    <ul class="list"> <li><div class="seat-condition choice" title="선택한 좌석"></div>
-                                    <em>선택</em></li> <li><div class="seat-condition finish" title="예매 완료"></div> <em>예매완료</em></li> <li><div class="seat-condition impossible" title="선택 불가"></div> <em>선택불가</em></li> <li><div class="seat-condition common" title="일반"></div> <em> 일반</em></li></ul>
-                                </div>
-                                <div class="seat-num">
-                                    <p class="tit">선택좌석</p>
-                                    <div class="my-seat">
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pay-area">
-                                <p class="count"><span>성인 <em>2</em></span></p>
-                                <div class="pay">
-                                    <p class="tit">최종결제금액</p>
-                                    <div class="money">
-                                        <em id="finalPrice">0</em> <span>원</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-group">
-                                <a href="/timetable/choiceMovie" class="button" id="pagePrevious" title="이전">이전</a>
-                                <a href="/booking/bookingPay" class="button active" id="pageNext" title="다음">다음</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            	<form id="formList" method="post" name="formList">
+	                <div class="seat-select-section">
+	                    <div class="seat-section">
+	                        <div class="tit-util">
+	                            <h3 class="tit small"> 관람인원선택</h3>
+	                            <div class="right">
+	                                <button type="button" class="button gray-line small" id="seatMemberCntInit"> <i class="iconset ico-reset-small"></i>초기화</button>
+	                            </div>
+	                        </div>
+	                        <div class="seat-area">
+	                            <div class="seat-count" style="min-height: 52px">
+	                            	<div class="cell">
+	                            		<p class="txt">성인</p>
+	                            		<div class="count">
+	                            			<button type="button" class="down" onclick="adultCount('down')" value="-" title="성인 좌석 선택 감소">-</button>
+	                            			<div class="number">
+	                            				<button type="button" class="now" id="adultTicket" name="adultCount" title="성인 현재 좌석 선택 수">0</button>
+	                            				<ul class="num-choice">
+	                            					<li>
+	                            						<button type="button" class="btn">0</button>
+	                            					</li>
+	                            				</ul>
+	                           				</div>
+	                            			<button type="button" class="up" onclick="adultCount('up')" value="+" title="성인 좌석 선택 증가">+</button>
+	                            		</div>
+	                            	</div>
+	                            	<div class="cell">
+	                            		<p class="txt">청소년</p>
+	                            		<div class="count">
+	                            			<button type="button" class="down" onclick="teenCount('down')" value="-" title="청소년 좌석 선택 감소">-</button>
+	                            			<div class="number">
+	                            				<button type="button" class="now" id="teenTicket" name="teenCount" title="청소년 현재 좌석 선택 수" >0</button>
+	                            				<ul class="num-choice">
+	                            					<li>
+	                            						<button type="button" class="btn on">0</button>
+	                            					</li>
+	                            				</ul>
+	                            			</div>
+	                            			<button type="button" class="up" onclick="teenCount('up')" value="+"  title="청소년 좌석 선택 증가">+</button>
+	                            		</div>
+	                            	</div>
+	                            </div>
+	                            <div class="seat-layout">
+	                            
+	                            <input type="hidden" name="thprPrice" value="${list[0].thprPrice}"/>
+	                            <input type="hidden" name="tdttSeq" value="${item.tdttSeq}">
+	                            
+	                                <div class="alert" style="display: none;"></div>
+	                                <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시오</div>
+	                                <div class="scroll m-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+	                                	<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+	                                		<div id="mCSB_1_container" class="mCSB_container mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; height: 270px;" dir="ltr">
+	                                    		<div id="seatLayout" style="width: 100%; height: 270px;">
+	                                        		<img src="/resources/images/theaterScreen.png" alt="screen" style="position: absolute; left: 62px; top: 10px;" class="mCS_img_loaded">
+	                                        			<div class'row'="" id="seatChoice">
+	                                        				<c:set var="left" value="351"/>
+	                                        				<c:set var="top" value="50"/>
+	                                        				<c:set var="addY" value="0"/>
+	                                        				<c:set var="alphabet" value="${fn:split('A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z','/')}"/>
+	                                        				
+	                                        				<c:forEach var="row" begin="1" end="${item.tdpxSittingRowNum}" step="1" varStatus="varStatusRow">
+	                                        					<c:set var="addX" value="0"/>
+	                                        					<button type="button" class="btn-seat-row" title="<c:out value="${alphabet[varStatusRow.index-1]}"/>행" style="position:absolute; left:330px; top:<c:out value="${top+addY}"/>px; width:20px;"><c:out value="${alphabet[varStatusRow.index-1]}"/></button>
+	                                        					<c:forEach var="col" begin="1" end="${item.tdpxSittingColNum}" step="1" varStatus="varStatuscol">
+	                                        						<c:set var="addX" value="${addX+20}"/>
+	                                        						<button type="button" title="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/> (스탠다드/일반)" 
+		                                        						class="jq-tooltip seat-condition standard common" id="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"
+		                                        						onclick="choiceSeat('${alphabet[varStatusRow.index-1]}${varStatuscol.index}')"
+		     															style="position:absolute; left:<c:out value="${left+addX}"/>px; top:<c:out value="${top+addY}"/>px; width:20px;" seatclasscd="GERN_CLS" seatzonecd="GERN_ZONE" 
+		     															rownm="<c:out value="${alphabet[varStatusRow.index-1]}"/>" seatno="<c:out value="${varStatuscol.index}"/>" seatchoigrpnm="<c:out value="${alphabet[varStatusRow.index-1]}${varStatuscol.index}"/>">
+						                                        			<span class="num"><c:out value="${varStatuscol.index}"/></span>
+						                                        			<span class="kind">스탠다드</span>
+						                                        			<span class="condition">판매가능</span>
+						                                        			<span class="rank">일반</span>
+					                                        		</button>
+	                                        					</c:forEach>
+	                                        					<c:set var="addY" value="${addY+20}"/>
+	                                        				</c:forEach>
+	                                        				
+		                                        		<img src="/resources/images/doorTop.png" alt="좌우측 출입구" style="position:absolute; left:491px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
+	                                        		</div>
+	                                			</div>
+	                                			<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;">
+	                                				<div class="mCSB_draggerContainer">
+	                                					<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: none; height: 569px; top: 0px; max-height: 382px;">
+	                                						<div class="mCSB_dragger_bar" style="line-height: 30px;">
+	                                						</div>
+	                                					</div>
+	                                					<div class="mCSB_draggerRail">
+	                             					</div>
+	                                			</div>
+	                                		</div>
+	                                	</div>
+	                                </div>
+	                            </div>
+	                            <div class="zone-legend" style="display: none"></div>
+	                        </div>
+	                    </div>
+	                    <div class="seat-result">
+	                        <div class="wrap">
+	                            <div class="tit-area">
+	                                <span class="movie-grade small 
+	                                	<c:choose>
+	                                		<c:when test="${item.tdmvAge eq 18}">age-all</c:when>
+	                                		<c:when test="${item.tdmvAge eq 19}">age-12</c:when>
+	                                		<c:when test="${item.tdmvAge eq 20}">age-15</c:when>
+	                                		<c:when test="${item.tdmvAge eq 21}">age-19</c:when>
+	                                	</c:choose>
+	                                "></span>
+	                                <p class="tit"><c:out value="${item.tdmvMovieTitle}"/></p>
+	                                <p class="cate">2D(자막)</p>
+	                            </div>
+	                            <div class="info-area">
+	                                <p class="theater"><c:out value="${item.tdthBranch}"/></p>
+	                                <p class="special"><c:out value="${item.tdpxPlexName}"/></p>
+	                                <p class="date"><span><c:out value="${item.tdttShowTime.substring(0, 10)}"/></span><em>(수)</em></p>
+	                                <div class="other-time">
+	                                    <button type="button" class="now"><c:out value="${item.tdttShowTime.substring(10, 16)}"/></button>
+	                                </div>
+	                                <p class="poster">
+	                                	<img src="${imageItem.upPath}${imageItem.uuIdName}" alt="${item.tdmvMovieTitle}">
+	                                </p>
+	                            </div>
+	                            <div class="choice-seat-area">
+	                                <div class="legend">
+	                                    <ul class="list"> <li><div class="seat-condition choice" title="선택한 좌석"></div>
+	                                    <em>선택</em></li> <li><div class="seat-condition finish" title="예매 완료"></div> <em>예매완료</em></li> <li><div class="seat-condition impossible" title="선택 불가"></div> <em>선택불가</em></li> <li><div class="seat-condition common" title="일반"></div> <em> 일반</em></li></ul>
+	                                </div>
+	                                <div class="seat-num">
+	                                    <p class="tit">선택좌석</p>
+	                                    <div class="my-seat"></div>
+	                                </div>
+	                            </div>
+	                            <div class="pay-area">
+	                                <p class="count"><span>성인 <em>2</em></span></p>
+	                                <div class="pay">
+	                                    <p class="tit">최종결제금액</p>
+	                                    <div class="money">
+	                                        <em id="finalPrice" name="tdbsTotalPrice">0</em> <span>원</span>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="btn-group">
+	                                <a class="button" id="pagePrevious" title="이전">이전</a>
+	                                <a class="button active" id="pageNext" title="다음">다음</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	     	</form>
         </div>
      </div>
   </div>   
@@ -229,15 +238,28 @@
 		 $("#finalPrice").html(Number($("#finalPrice").html())-price);
 	 } else {
 		 $("#"+seatNum).addClass('on choice');
-		 document.querySelector('.my-seat').innerHTML += '<div class="seat choice" title="선택한 좌석" id="btn'+seatNum+'">'+ seatNum +'</div>';
+		 document.querySelector('.my-seat').innerHTML += '<div class="seat choice" title="선택한 좌석" id="btn'+seatNum+'" name="tdbsSeatNum">'+ seatNum +'</div>';
 		 $("#finalPrice").html(Number($("#finalPrice").html())+price);
 		  
 	 }
  }
+</script>
 
-
-
-
+<script>
+	var goUrlChoiceMovie = "/timetable/choiceMovie";
+	var goUrlPay = "/booking/bookingPay";
+	var form=$("form[name=formList]");
+	var seq = $("input:hidden[name=tdttSeq]");
+	
+	$("#pageNext").on("click", function(){
+		form.attr("action",goUrlPay).submit();
+	});
+	
+	$("#pagePrevious").on("click", function(){
+		form.attr("action", goUrlChoiceMovie);
+	});
+	
+	
 
 
 </script>
