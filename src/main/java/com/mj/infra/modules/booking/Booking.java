@@ -4,6 +4,7 @@ import com.mj.infra.common.base.Base;
 
 public class Booking extends Base {
 	
+	//결제 테이블
 	private String tdbkSeq;
 	private String tdbkPayment;
 	private String tdbkBookingDate;
@@ -11,21 +12,43 @@ public class Booking extends Base {
 	private String tdttSeq;
 	private String tdbkTotalCost;
 	
+	//결제seat 
 	private String[] tdbsSeq;
-	private String[] tdbsSeatNum;
+	private String tdbsSeatNum;
 	private String[] tdbsTeenagerNy;
-	private String[] thprSeq;
+	private String thprSeq;
+	private String[] tdbsSeatNums;
 	
+	//영화
 	private String tdmvSeq;
 	private String tdmvMovieTitle;
+	private String tdmvAge;
+	private String tdmvTitleEng;
+	private String tdmvShowType;
 	
+	//극장
 	private String tdthSeq;
 	private String tdthRegion;
+	private String tdthBranch;
 	
+	//상영관
 	private String tdpxSeq;
 	private String tdpxPlexName;
 	private String tdpxSittingColNum;
 	private String tdpxSittingRowNum;
+	private String tdpxTotalSeatNum;
+	
+	//타임테이블
+	private String tdttShowTime;
+	private String tdttEndTime;
+	private String tdttMorningNy;
+	
+	//가격
+	private String thprPrice;
+	private String thprWeekendNy;
+	private String thprMorningNy;
+	private String thprTeenagerNy;
+	
 	
 	public String getTdbkSeq() {
 		return tdbkSeq;
@@ -69,10 +92,10 @@ public class Booking extends Base {
 	public void setTdbsSeq(String[] tdbsSeq) {
 		this.tdbsSeq = tdbsSeq;
 	}
-	public String[] getTdbsSeatNum() {
+	public String getTdbsSeatNum() {
 		return tdbsSeatNum;
 	}
-	public void setTdbsSeatNum(String[] tdbsSeatNum) {
+	public void setTdbsSeatNum(String tdbsSeatNum) {
 		this.tdbsSeatNum = tdbsSeatNum;
 	}
 	public String[] getTdbsTeenagerNy() {
@@ -81,11 +104,17 @@ public class Booking extends Base {
 	public void setTdbsTeenagerNy(String[] tdbsTeenagerNy) {
 		this.tdbsTeenagerNy = tdbsTeenagerNy;
 	}
-	public String[] getThprSeq() {
+	public String getThprSeq() {
 		return thprSeq;
 	}
-	public void setThprSeq(String[] thprSeq) {
+	public void setThprSeq(String thprSeq) {
 		this.thprSeq = thprSeq;
+	}
+	public String[] getTdbsSeatNums() {
+		return tdbsSeatNums;
+	}
+	public void setTdbsSeatNums(String[] tdbsSeatNums) {
+		this.tdbsSeatNums = tdbsSeatNums;
 	}
 	public String getTdmvSeq() {
 		return tdmvSeq;
@@ -99,6 +128,24 @@ public class Booking extends Base {
 	public void setTdmvMovieTitle(String tdmvMovieTitle) {
 		this.tdmvMovieTitle = tdmvMovieTitle;
 	}
+	public String getTdmvAge() {
+		return tdmvAge;
+	}
+	public void setTdmvAge(String tdmvAge) {
+		this.tdmvAge = tdmvAge;
+	}
+	public String getTdmvTitleEng() {
+		return tdmvTitleEng;
+	}
+	public void setTdmvTitleEng(String tdmvTitleEng) {
+		this.tdmvTitleEng = tdmvTitleEng;
+	}
+	public String getTdmvShowType() {
+		return tdmvShowType;
+	}
+	public void setTdmvShowType(String tdmvShowType) {
+		this.tdmvShowType = tdmvShowType;
+	}
 	public String getTdthSeq() {
 		return tdthSeq;
 	}
@@ -110,6 +157,12 @@ public class Booking extends Base {
 	}
 	public void setTdthRegion(String tdthRegion) {
 		this.tdthRegion = tdthRegion;
+	}
+	public String getTdthBranch() {
+		return tdthBranch;
+	}
+	public void setTdthBranch(String tdthBranch) {
+		this.tdthBranch = tdthBranch;
 	}
 	public String getTdpxSeq() {
 		return tdpxSeq;
@@ -135,6 +188,68 @@ public class Booking extends Base {
 	public void setTdpxSittingRowNum(String tdpxSittingRowNum) {
 		this.tdpxSittingRowNum = tdpxSittingRowNum;
 	}
+	public String getTdpxTotalSeatNum() {
+		return tdpxTotalSeatNum;
+	}
+	public void setTdpxTotalSeatNum(String tdpxTotalSeatNum) {
+		this.tdpxTotalSeatNum = tdpxTotalSeatNum;
+	}
+	public String getTdttShowTime() {
+		return tdttShowTime;
+	}
+	public void setTdttShowTime(String tdttShowTime) {
+		this.tdttShowTime = tdttShowTime;
+	}
+	public String getTdttEndTime() {
+		return tdttEndTime;
+	}
+	public void setTdttEndTime(String tdttEndTime) {
+		this.tdttEndTime = tdttEndTime;
+	}
+	public String getTdttMorningNy() {
+		return tdttMorningNy;
+	}
+	public void setTdttMorningNy(String tdttMorningNy) {
+		this.tdttMorningNy = tdttMorningNy;
+	}
+	public String getThprPrice() {
+		return thprPrice;
+	}
+	public void setThprPrice(String thprPrice) {
+		this.thprPrice = thprPrice;
+	}
+	public String getThprWeekendNy() {
+		return thprWeekendNy;
+	}
+	public void setThprWeekendNy(String thprWeekendNy) {
+		this.thprWeekendNy = thprWeekendNy;
+	}
+	public String getThprMorningNy() {
+		return thprMorningNy;
+	}
+	public void setThprMorningNy(String thprMorningNy) {
+		this.thprMorningNy = thprMorningNy;
+	}
+	public String getThprTeenagerNy() {
+		return thprTeenagerNy;
+	}
+	public void setThprTeenagerNy(String thprTeenagerNy) {
+		this.thprTeenagerNy = thprTeenagerNy;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

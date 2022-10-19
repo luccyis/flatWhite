@@ -85,8 +85,17 @@
 	                            </div>
 	                            <div class="seat-layout">
 	                            
-	                            <input type="hidden" name="thprPrice" value="${list[0].thprPrice}"/>
-	                            <input type="hidden" name="tdttSeq" value="${item.tdttSeq}">
+		                            <input type="hidden" name="thprPrice" value="${list[0].thprPrice}"/>
+		                            <input type="hidden" name="thprSeq" value="${list[0].thprSeq}"/>
+		                            <input type="hidden" name="tdttSeq" value="${item.tdttSeq}">
+		                            <input type="hidden" id="tdbkTotalCost" name="tdbkTotalCost" value="${dtoBk.tdbkTotalCost}">
+		                            <input type="hidden" name="tdmvSeq" value="${item.tdmvSeq}">
+		                            <input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
+		                            <input type="hidden" name="tdthBranch" value="${item.tdthBranch}">
+		                            <input type="hidden" name="tdmvMovieTitle" value="${item.tdmvMovieTitle}">
+		                            
+		                           
+		                            
 	                            
 	                                <div class="alert" style="display: none;"></div>
 	                                <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시오</div>
@@ -175,11 +184,11 @@
 	                                </div>
 	                            </div>
 	                            <div class="pay-area">
-	                                <p class="count"><span>성인 <em>2</em></span></p>
+	                                <!-- <p class="count"><span>성인 <em>2</em></span></p> -->
 	                                <div class="pay">
 	                                    <p class="tit">최종결제금액</p>
 	                                    <div class="money">
-	                                        <em id="finalPrice" name="tdbsTotalPrice">0</em> <span>원</span>
+	                                        <em id="finalPrice">0</em> <span>원</span>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -236,11 +245,14 @@
 		 $("#"+seatNum).removeClass('on choice');
 		 $("#btn"+seatNum).remove();
 		 $("#finalPrice").html(Number($("#finalPrice").html())-price);
+		 $("#tdbsSeatNums"+seatNum).remove();
+		 
 	 } else {
 		 $("#"+seatNum).addClass('on choice');
 		 document.querySelector('.my-seat').innerHTML += '<div class="seat choice" title="선택한 좌석" id="btn'+seatNum+'" name="tdbsSeatNum">'+ seatNum +'</div>';
 		 $("#finalPrice").html(Number($("#finalPrice").html())+price);
-		  
+		 $("#formList").append("<input type='hidden' name='tdbsSeatNums' id='tdbsSeatNums"+ seatNum +"' value='" + seatNum + "'>");
+		 
 	 }
  }
 </script>
@@ -252,6 +264,7 @@
 	var seq = $("input:hidden[name=tdttSeq]");
 	
 	$("#pageNext").on("click", function(){
+		$("#tdbkTotalCost").val($("#finalPrice").html());
 		form.attr("action",goUrlPay).submit();
 	});
 	

@@ -62,11 +62,8 @@
 			#{tdbkSeq}
 			,#{tdbsSeatNum}
 			,0
-			,#{thprSeq}
+			,#{thprSeq} 
 		)
-    	<selectKey resultType="String" keyProperty="tdbsSeq" order="AFTER">
-				SELECT last_insert_id()
-		</selectKey>
     
     </insert>
     

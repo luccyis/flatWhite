@@ -33,8 +33,19 @@
 			</div>
 		</div>
 		<form method="post" id="formList" name="formList">
-		<input type="hidden" name="tdttSeq" value="${item.tdttSeq}">
-		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+			<input type="hidden" name="tdttSeq" value="${dtoBk.tdttSeq}">
+			<input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
+			<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+			
+			<input type="hidden" name="thprSeq" value="${dtoBk.thprSeq}">
+			
+		  	<input type="hidden" name="thprPrice" value="${dtoBk.thprPrice}"/>
+	        <input type="hidden" id="tdbkTotalCost" name="tdbkTotalCost" value="${dtoBk.tdbkTotalCost}">
+	        <input type="hidden" name="tdmvSeq" value="${dtoBk.tdmvSeq}">
+	        <input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
+	        <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
+		        <input type="hidden" name="tdbsSeatNums" value="${list}">        
+	        </c:forEach>
 		
 			<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;"> 
 				<div class="quick-reserve">
@@ -69,13 +80,13 @@
 			
 								<div class="radio-group">
 									<span class="bg-chk small">
-										<input type="radio" name="radio_payment_easypay" id="rdo_pay_easypay" value="easypay">
+										<input type="radio" name="radio_payment_easypay" id="rdo_pay_easypay" value="easypay" checked>
 										<label for="rdo_pay_easypay">간편결제</label>
 									</span>
 								</div>
 			
 								<div class="select-payment-easypay" style="">
-									<input type="radio" name="tdbkPayment" id="rdo_pay_kakaopay" value="kakaopay">
+									<input type="radio" name="tdbkPayment" id="rdo_pay_kakaopay" value="kakaopay" checked>
 									<label for="rdo_pay_kakaopay">카카오페이</label>
 								</div>
 			
@@ -158,9 +169,8 @@
 										<p class="tit">최종결제금액</p>
 			
 										<div class="money">
-											<em>30,000</em>
-											<span>원 </span>
-										</div>
+	                                        <em id="finalPrice">0</em> <span>원</span>
+	                                    </div>
 									</div>
 									<div class="payment-thing">
 										<span class="tit">결제수단</span>

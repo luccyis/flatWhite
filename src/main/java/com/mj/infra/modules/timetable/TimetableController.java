@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mj.infra.common.util.UtilDateTime;
+import com.mj.infra.modules.booking.Booking;
 import com.mj.infra.modules.movie.Movie;
 import com.mj.infra.modules.movie.MovieServiceImpl;
 import com.mj.infra.modules.movie.MovieVo;
@@ -90,7 +91,7 @@ public class TimetableController {
 
 	//영화예매 페이지 - 좌석 선택
 	@RequestMapping(value="seatSelect")
-	public String seatSelect(TimetableVo vo, Model model, Movie dto) throws Exception {
+	public String seatSelect(TimetableVo vo, Model model, Movie dto, @ModelAttribute("dtoBk") Booking dtoBk) throws Exception {
 		
 		Timetable item = service.selectOneChoiceSeat(vo);
 		model.addAttribute("item", item);

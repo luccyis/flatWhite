@@ -90,10 +90,35 @@
 	
 	<select id="selectOneChoiceSeat" resultMap="resultMapObj">
 	SELECT
-		tb.*
-	    ,th.*
-	    ,px.*
-	    ,mv.*
+		tb.tdttSeq
+		,tb.tdttShowTime
+		,tb.tdttEndTime
+		,tb.tdttMorningNy
+		,tb.tradTheater_tdthSeq as tdthSeq
+		,tb.tradTheaterPlex_tdpxSeq as tdpxSeq
+		,tb.tradMovie_tdmvSeq as tdmvSeq
+		,tb.tdttDelNy
+	    ,th.tdthSeq
+	    ,th.tdthRegion
+	    ,th.tdthBranchEng
+	    ,th.tdthBranch
+	    ,th.tdthAddress
+	    ,th.tdthZipCode
+	    ,th.tdthDelNy
+	    ,th.tdthUseNy
+	    ,px.tdpxSeq
+	    ,px.tradTheater_tdthSeq as tdthSeq
+	    ,px.tdpxPlexName
+	    ,px.tdpxTotalSeatNum
+	    ,px.tdpxSittingColNum
+	    ,px.tdpxSittingRowNum
+	    ,px.tdpxDelNy
+	    ,px.tdpxUseNy
+	    ,mv.tdmvSeq
+	    ,mv.tdmvMovieTitle
+	    ,mv.tdmvAge
+	    ,mv.tdmvTitleEng
+	    ,mv.tdmvShowType
 	FROM tradTimeTable tb
 	JOIN tradTheater th on th.tdthSeq = tb.tradTheater_tdthSeq
 	JOIN tradTheaterPlex px on px.tdpxSeq = tb.tradTheaterPlex_tdpxSeq
@@ -106,8 +131,22 @@
 	
 	<select id="selectListPrice" resultMap="resultMapObj">
 	SELECT
-		pr.*
-    	,tb.*
+		pr.thprSeq
+		,pr.tradTheater_tdthSeq as tdthSeq
+		,pr.thprWeekendNy
+		,pr.thprMorningNy
+		,pr.thprTeenagerNy
+		,pr.thprPrice
+		,pr.thprDelNy
+		,pr.thprUseNy
+    	,tb.tdttSeq
+		,tb.tdttShowTime
+		,tb.tdttEndTime
+		,tb.tdttMorningNy
+		,tb.tradTheater_tdthSeq as tdthSeq
+		,tb.tradTheaterPlex_tdpxSeq as tdpxSeq
+		,tb.tradMovie_tdmvSeq as tdmvSeq
+		,tb.tdttDelNy
 	FROM tradTheaterPrice pr 
 	join tradTimeTable tb on tb.tradTheater_tdthSeq = pr.tradTheater_tdthSeq
 	WHERE 1=1
