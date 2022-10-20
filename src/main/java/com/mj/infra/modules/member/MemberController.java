@@ -115,6 +115,7 @@ public class MemberController {
 				httpSession.setAttribute("sessId", rtMember2.getIfmmId());
 				httpSession.setAttribute("sessName", rtMember2.getIfmmName());
 				httpSession.setAttribute("sessGrade", rtMember2.getIfmmGrade());
+				httpSession.setAttribute("sessPhone", rtMember2.getIfmmPhone());
 
 				System.out.println(httpSession.getAttribute("sessName"));
 				returnMap.put("rt", "success");
@@ -138,14 +139,6 @@ public class MemberController {
 		return returnMap;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//user
 	

@@ -34,91 +34,112 @@
 		</div>	
 		
 		<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
-			<div class="quick-reserve">
-				<h2 class="tit purple">예매완료</h2>
-	
-					<!-- reserve-finish -->
-					<div class="reserve-finish">
-						<!-- reserve-ininfomation-box -->
-						<div class="reserve-ininfomation-box">
-							<div class="movie-poster-area">
-								<p>
-									티켓 예매번호 
-									<span class="roboto">9825-103-47885</span>
-								</p>
-								<img src="https://img.megabox.co.kr/SharedImg/2022/05/09/6zfAYe6IrZ8BWnruqEfafwakt5cUjWgX_316.jpg" alt="탑건: 매버릭" onerror="noImg(this)">
-							</div>
-	
-							<!-- movie-infomation-area -->
-							<div class="movie-infomation-area">
-								<div class="movie-info-top">
-									<p class="tit">
-										<strong>예매가 완료되었습니다<i>!</i></strong>
-									</p>
+			<form method="post" id="formList" name="formList">
+				<input type="hidden" name="tdttSeq" value="${dtoBk.tdttSeq}">
+				<input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
+				<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+				<input type="hidden" name="ifmmPhone" value="${sessPhone}">
+				
+				<input type="hidden" name="thprSeq" value="${dtoBk.thprSeq}">
+			  	<input type="hidden" name="thprPrice" value="${dtoBk.thprPrice}"/>
+		        <input type="hidden" id="tdbkTotalCost" name="tdbkTotalCost" value="${dtoBk.tdbkTotalCost}">
+		        <input type="hidden" name="tdmvSeq" value="${dtoBk.tdmvSeq}">
+		        <input type="hidden" name="tdmvMovieTitle" value="${dtoBk.tdmvMovieTitle}">
+		        <input type="hidden" name="tdthBranch" value="${dtoBk.tdthBranch}">
+		        <input type="hidden" name="tdpxPlexName" value="${dtoBk.tdpxPlexName}">
+		        <input type="hidden" name="tdttShowTime" value="${dtoBk.tdttShowTime}">
+		         
+		        <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
+			        <input type="hidden" name="tdbsSeatNums" value="${list}">        
+		        </c:forEach>
+		        
+				<div class="quick-reserve">
+					<h2 class="tit purple">예매완료</h2>
+		
+						<!-- reserve-finish -->
+						<div class="reserve-finish">
+							<!-- reserve-ininfomation-box -->
+							<div class="reserve-ininfomation-box">
+								<div class="movie-poster-area">
+									<img src="${imageItem.upPath}${imageItem.uuIdName}" alt="${item.tdmvMovieTitle}">
 								</div>
-	
-								<div class="movie-info-middle">
-									<ul class="dot-list gray">
-										<li><span>예매영화</span> 탑건: 매버릭 / 2D(자막)</li>
-										<li><span>관람극장/상영관</span> 코엑스 / 더부티크 105호</li>
-										<li><span>관람일시</span> &nbsp;2022.08.02 (수) 12:00</li>
-										<li><span>관람인원</span> &nbsp;성인 2명</li>
-										<li><span>좌석번호</span> &nbsp;G열 1, G열 2</li>
-										<li><span>전화번호</span> &nbsp;010-4156-5879</li>
-										<li>
-											<span>결제정보</span>
-											<strong class="roboto">30,000</strong> 원<br>
-											<em></em>
-										</li>
-									</ul>
-								</div>
-								<!-- movie-info-bottom -->
-								
-								<div class="movie-info-bottom">
-									<div class="add-send">
-										예매정보 추가 발송
-										<a href="#tooltip01_01" class="tooltip hover" title="입력하신 번호로 예매정보를 추가발송합니다.">
-											<span><i class="iconset ico-question-white">&nbsp;</i></span>
-											<div class="ir" id="tooltip01_01" data-width="220">
-												입력하신 번호로 예매정보를 추가발송합니다.
-											</div>
-										</a>
-										<input type="text" title="연락처 입력" class="input-text w150px ml10" maxlength="11" id="inp_sms_rcv_no">
-										<button type="button" class="button" id="btn_re_send_sms">전송</button>
+		
+								<!-- movie-infomation-area -->
+								<div class="movie-infomation-area">
+									<div class="movie-info-top">
+										<p class="tit">
+											<strong>예매가 완료되었습니다<i>!</i></strong>
+										</p>
 									</div>
+		
+									<div class="movie-info-middle">
+										<ul class="dot-list gray">
+											<li><span>예매영화</span> <c:out value="${dtoBk.tdmvMovieTitle}"/> / 2D(자막)</li>
+											<li><span>관람극장/상영관</span> <c:out value="${dtoBk.tdthBranch}"/> / <c:out value="${dtoBk.tdpxPlexName}"/></li>
+											<li><span>관람일시</span> &nbsp;<c:out value="${dtoBk.tdttShowTime.substring(0, 16)}"/></li>
+											<li><span>관람인원</span> &nbsp;성인 <c:out value="${fn:length(dtoBk.tdbsSeatNums)}"/></li>
+											<li><span>좌석번호</span> &nbsp;
+											 <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
+										        <c:out value="${list}"/>       
+									        </c:forEach>
+											</li>
+											<li><span>전화번호</span> &nbsp;<c:out value="${sessPhone}"/></li>
+											<li>
+												<span>결제정보</span>
+												<strong class="roboto"><c:out value="${dtoBk.tdbkTotalCost}"/></strong> 원<br>
+												
+												<em></em>
+											</li>
+										</ul>
+									</div>
+									<!-- movie-info-bottom -->
+									
+									<div class="movie-info-bottom">
+										<div class="add-send">
+											예매정보 추가 발송
+											<a href="#tooltip01_01" class="tooltip hover" title="입력하신 번호로 예매정보를 추가발송합니다.">
+												<span><i class="iconset ico-question-white">&nbsp;</i></span>
+												<div class="ir" id="tooltip01_01" data-width="220">
+													입력하신 번호로 예매정보를 추가발송합니다.
+												</div>
+											</a>
+											<input type="text" title="연락처 입력" class="input-text w150px ml10" maxlength="11" id="inp_sms_rcv_no">
+											<button type="button" class="button" id="btn_re_send_sms">전송</button>
+										</div>
+									</div>
+									<!--// movie-info-bottom -->
 								</div>
-								<!--// movie-info-bottom -->
+								<!--// movie-infomation-area -->
 							</div>
-							<!--// movie-infomation-area -->
+							<!--// reserve-ininfomation-box -->
 						</div>
-						<!--// reserve-ininfomation-box -->
+						<!--// reserve-finish -->
+						<div class="btn-group pt30">
+							<a href="#" class="button large" w-data="600" h-data="600" id="btn_ticket_print" title="교환권출력">교환권출력</a>
+							<a href="#" class="button large" id="btn_bill_print" title="영수증출력" style="display: none;">영수증출력 </a>
+							<a href="/mypage/bookingList" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
+						</div>
+						<div class="box-border v1 mt10">
+							<ul class="dot-list gray">
+								<li>
+									상영안내
+									<ul class="dash-list">
+										<li>쾌적한 관람 환경을 위해 상영시간 이전에 입장 부탁드립니다.</li>
+										<li>지연입장에 의한 관람불편을 최소화하고자 본 영화는 10분 후 시작됩니다.</li>
+										<li>상영시간 20분전까지 취소 가능하며, 캡쳐화면으로는 입장하실 수 없습니다.</li>
+									</ul>
+								</li>
+								<li class="mt20">
+									주차안내
+									<ul class="dash-list">
+										<li>코엑스몰 주차장 이용</li>
+										<li>매표소 주차안내 데스크에서  당일 영화 티켓 제시 후 주차 할인 인증 가능 (주간 4시간 4,800원/야간 22시 이후 2,400원) /출차시 정산</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<!--// reserve-finish -->
-					<div class="btn-group pt30">
-						<a href="#" class="button large" w-data="600" h-data="600" id="btn_ticket_print" title="교환권출력">교환권출력</a>
-						<a href="#" class="button large" id="btn_bill_print" title="영수증출력" style="display: none;">영수증출력 </a>
-						<a href="/mypage/bookingList" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
-					</div>
-					<div class="box-border v1 mt10">
-						<ul class="dot-list gray">
-							<li>
-								상영안내
-								<ul class="dash-list">
-									<li>쾌적한 관람 환경을 위해 상영시간 이전에 입장 부탁드립니다.</li>
-									<li>지연입장에 의한 관람불편을 최소화하고자 본 영화는 10분 후 시작됩니다.</li>
-									<li>상영시간 20분전까지 취소 가능하며, 캡쳐화면으로는 입장하실 수 없습니다.</li>
-								</ul>
-							</li>
-							<li class="mt20">
-								주차안내
-								<ul class="dash-list">
-									<li>코엑스몰 주차장 이용</li>
-									<li>매표소 주차안내 데스크에서  당일 영화 티켓 제시 후 주차 할인 인증 가능 (주간 4시간 4,800원/야간 22시 이후 2,400원) /출차시 정산</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 		

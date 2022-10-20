@@ -1,6 +1,5 @@
 package com.mj.infra.modules.booking;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mj.infra.modules.movie.Movie;
 import com.mj.infra.modules.movie.MovieServiceImpl;
+import com.mj.infra.modules.movie.MovieVo;
 import com.mj.infra.modules.timetable.Timetable;
 import com.mj.infra.modules.timetable.TimetableServiceImpl;
 import com.mj.infra.modules.timetable.TimetableVo;
@@ -49,7 +50,7 @@ public class BookingController {
 	}
 	
 	@RequestMapping(value="bookingResult")
-	public String bookingResult(@ModelAttribute("dtoBk") Booking dto, Model model) throws Exception {
+	public String bookingResult(@ModelAttribute("dtoBk") Booking dto, Model model, Movie dto1) throws Exception {
 		dto.setTdbkTotalCost(dto.getTdbkTotalCost());
 		service.insertBooking(dto);
 		 
@@ -58,7 +59,10 @@ public class BookingController {
 			dto.setTdbsSeatNum(dto.getTdbsSeatNums()[i]);
 			service.insertBookingSeat(dto);
 		 }
-		 
+		
+		dto1.setPseq(dto.getTdmvSeq());
+		Movie imageItem = serviceMovie.selectMovieImage(dto1);
+		model.addAttribute("imageItem", imageItem);
 		
 		return "infra/booking/user/bookingResult";
 	}

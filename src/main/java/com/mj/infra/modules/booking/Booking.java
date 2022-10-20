@@ -49,7 +49,15 @@ public class Booking extends Base {
 	private String thprMorningNy;
 	private String thprTeenagerNy;
 	
+	//회원
+	private String ifmmPhone;
 	
+	public String getIfmmPhone() {
+		return ifmmPhone;
+	}
+	public void setIfmmPhone(String ifmmPhone) {
+		this.ifmmPhone = ifmmPhone;
+	}
 	public String getTdbkSeq() {
 		return tdbkSeq;
 	}

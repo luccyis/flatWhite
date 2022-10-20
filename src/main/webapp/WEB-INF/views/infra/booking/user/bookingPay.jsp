@@ -38,11 +38,14 @@
 			<input type="hidden" name="ifmmSeq" value="${sessSeq}">
 			
 			<input type="hidden" name="thprSeq" value="${dtoBk.thprSeq}">
-			
 		  	<input type="hidden" name="thprPrice" value="${dtoBk.thprPrice}"/>
 	        <input type="hidden" id="tdbkTotalCost" name="tdbkTotalCost" value="${dtoBk.tdbkTotalCost}">
 	        <input type="hidden" name="tdmvSeq" value="${dtoBk.tdmvSeq}">
-	        <input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
+	        <input type="hidden" name="tdmvMovieTitle" value="${dtoBk.tdmvMovieTitle}">
+	        <input type="hidden" name="tdthBranch" value="${dtoBk.tdthBranch}">
+	        <input type="hidden" name="tdpxPlexName" value="${dtoBk.tdpxPlexName}">
+	        <input type="hidden" name="tdttShowTime" value="${dtoBk.tdttShowTime}">
+	        
 	        <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
 		        <input type="hidden" name="tdbsSeatNums" value="${list}">        
 	        </c:forEach>
@@ -93,20 +96,20 @@
 							<dl class="term-list" id="terms" style="display: block;">
 								<dt>
 									<span class="bg-chk small">
-										<input type="checkbox" id="agree"><label for="agree">결제대행 서비스 약관 필수 동의</label>
+										<input type="checkbox" id="agree" checked><label for="agree">결제대행 서비스 약관 필수 동의</label>
 									</span>
 								</dt>
 								<dd class="tit">
 									전자금융거래 이용약관
-									<a href="" onclick="openTermsPop('one')">내용보기</a>
+									<a>내용보기</a>
 								</dd>
 								<dd class="tit">
 									개인정보 수집 및 이용 안내
-									<a href="" onclick="openTermsPop('two')">내용보기</a>
+									<a>내용보기</a>
 								</dd>
 								<dd class="tit">
 									개인정보 제공 및 위탁 안내
-									<a href="" onclick="openTermsPop('three')">내용보기</a>
+									<a>내용보기</a>
 								</dd>
 							</dl>
 						</div>
@@ -132,21 +135,10 @@
 									<p class="date"><span id="playDe"><c:out value="${item.tdttShowTime.substring(0, 10)}"/></span><em id="dowNm">(수)</em> <span class="time" id="playTime"><i class="iconset ico-clock-white"></i><c:out value="${item.tdttShowTime.substring(10, 16)}"/>~<c:out value="${item.tdttEndTime.substring(10, 16)}"/></span></p>
 								</div>
 								<div class="price-process">
-									<div class="box"><div class="data"><span class="tit">성인 <em>2</em></span><span class="price">30,000</span></div>
-										<!--
-										<div class="data">
-											<span class="tit">일반 <em>1</em></span>
-											<span class="price">20,000</span>
-										</div>
-			
-										<div class="data">
-											<span class="tit">어린이 <em>2</em></span>
-											<span class="price">6,000</span>
-										</div>
-										-->
+									<div class="box"><div class="data"><span class="tit">성인 <em>2</em></span><span class="price"><c:out value="${dtoBk.tdbkTotalCost}"/></span></div>
 										<div class="all">
 											<span class="tit">금액 </span>
-											<span class="price"><em>30,000</em> <span>원 </span></span>
+											<span class="price"><em><c:out value="${dtoBk.tdbkTotalCost}"/></em> <span>원 </span></span>
 										</div>
 									</div>
 			
@@ -169,7 +161,7 @@
 										<p class="tit">최종결제금액</p>
 			
 										<div class="money">
-	                                        <em id="finalPrice">0</em> <span>원</span>
+	                                        <em id="finalPrice"><c:out value="${dtoBk.tdbkTotalCost}"/></em> <span>원</span>
 	                                    </div>
 									</div>
 									<div class="payment-thing">

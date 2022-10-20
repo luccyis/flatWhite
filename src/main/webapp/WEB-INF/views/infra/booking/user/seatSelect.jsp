@@ -87,11 +87,15 @@
 	                            
 		                            <input type="hidden" name="thprPrice" value="${list[0].thprPrice}"/>
 		                            <input type="hidden" name="thprSeq" value="${list[0].thprSeq}"/>
+		                            <input type="hidden" name="tdthSeq" value="${item.tdthSeq}">
+		                            <input type="hidden" name="tdthBranch" value="${item.tdthBranch}">
 		                            <input type="hidden" name="tdttSeq" value="${item.tdttSeq}">
 		                            <input type="hidden" id="tdbkTotalCost" name="tdbkTotalCost" value="${dtoBk.tdbkTotalCost}">
 		                            <input type="hidden" name="tdmvSeq" value="${item.tdmvSeq}">
-		                            <input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
-		                            <input type="hidden" name="tdthBranch" value="${item.tdthBranch}">
+		                            <input type="hidden" name="tdpxSeq" value="${item.tdpxSeq}">
+		                            <input type="hidden" name="tdpxPlexName" value="${item.tdpxPlexName}">
+		                            <input type="hidden" name="tdttShowTime" value="${item.tdttShowTime}">
+		                            
 		                            <input type="hidden" name="tdmvMovieTitle" value="${item.tdmvMovieTitle}">
 		                            
 		                           
@@ -264,8 +268,12 @@
 	var seq = $("input:hidden[name=tdttSeq]");
 	
 	$("#pageNext").on("click", function(){
-		$("#tdbkTotalCost").val($("#finalPrice").html());
-		form.attr("action",goUrlPay).submit();
+		if( $("#finalPrice").html() == 0){
+			swal("좌석을 선택해주세요.");
+		} else {
+			$("#tdbkTotalCost").val($("#finalPrice").html());
+			form.attr("action",goUrlPay).submit();
+		}
 	});
 	
 	$("#pagePrevious").on("click", function(){
