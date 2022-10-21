@@ -263,11 +263,11 @@
 						<!-- 혜택 종료 -->
 	
 						<div class="menu-link">
-							<div class="cell vip"><a href="" title="VIP LOUNGE 페이지로 이동">VIP LOUNGE</a></div>
-							<div class="cell membership"><a href="" title="멤버십 페이지로 이동">멤버십</a></div>
-							<div class="cell card"><a href="" title="할인카드안내 페이지로 이동">할인카드안내</a></div>
-							<div class="cell event"><a href="" onclick="" title="이벤트 페이지로 이동">이벤트</a></div>
-							<div class="cell store"><a href="" onclick="" title="스토어 페이지로 이동">스토어</a></div>
+							<div class="cell vip"><a title="VIP LOUNGE 페이지로 이동">VIP LOUNGE</a></div>
+							<div class="cell membership"><a title="멤버십 페이지로 이동">멤버십</a></div>
+							<div class="cell card"><a title="할인카드안내 페이지로 이동">할인카드안내</a></div>
+							<div class="cell event"><a onclick="" title="이벤트 페이지로 이동">이벤트</a></div>
+							<div class="cell store"><a onclick="" title="스토어 페이지로 이동">스토어</a></div>
 						</div>
 	
 						<!-- grand-open -->

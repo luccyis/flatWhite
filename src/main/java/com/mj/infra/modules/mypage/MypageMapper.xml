@@ -8,15 +8,34 @@
 
     <resultMap id="resultMapObj" type="com.mj.infra.modules.mypage.Mypage"></resultMap>
     
-    <select id="selectList" resultMap="resultMapObj">
-    <!-- 	SELECT 
-    	FROM
-    	
-     -->
-    </select>
-    
-    
-    
+	<select id="selectListMypageHistory" resultMap="resultMapObj">
+	SELECT 
+		mv.tdmvSeq
+	    ,mv.tdmvMovieTitle
+	    ,(select tdthBranch from tradTheater th where th.tdthSeq = tt.tradTheater_tdthSeq) as tdthBranch
+	    ,(select tdpxPlexName from tradTheaterPlex px where px.tdpxSeq = tt.tradTheaterPlex_tdpxSeq) as tdpxPlexName
+	    ,tt.tdttShowTime
+	    ,bk.tdbkBookingDate
+	FROM infrMember mm
+	JOIN tradBooking bk on mm.ifmmSeq = bk.infrMember_ifmmSeq
+	JOIN tradBookingSeat bs on bs.tradBooking_tdbkSeq = bk.tdbkSeq
+	JOIN tradTimeTable tt on tt.tdttSeq =  bk.tradTimeTable_tdttSeq
+	JOIN tradMovie mv on mv.tdmvSeq = tt.tradMovie_tdmvSeq
+	WHERE 1=1
+	AND mm.ifmmSeq = #{ifmmSeq}
+	</select>
+	
+	<select id="selectListFavoritTheater" resultMap="resultMapObj">
+	SELECT
+		(select tdthBranch from tradTheater th where th.tdthSeq = ft.tradTheater_tdthSeq) as tdthBranch
+	FROM infrMember mm 
+	JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq 
+	WHERE 1=1 
+	and mm.ifmmSeq = #{ifmmSeq}
+	</select>
+	
+	
+	
     
     
     

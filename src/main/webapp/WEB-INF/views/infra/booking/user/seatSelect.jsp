@@ -97,9 +97,6 @@
 		                            <input type="hidden" name="tdttShowTime" value="${item.tdttShowTime}">
 		                            
 		                            <input type="hidden" name="tdmvMovieTitle" value="${item.tdmvMovieTitle}">
-		                            
-		                           
-		                            
 	                            
 	                                <div class="alert" style="display: none;"></div>
 	                                <div class="seat-count-before off" style="top: 0px">관람인원을 선택하십시오</div>
