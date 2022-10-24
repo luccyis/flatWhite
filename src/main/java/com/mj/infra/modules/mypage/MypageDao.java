@@ -36,6 +36,10 @@ public class MypageDao {
 	public int insertFavoriteTheater(Mypage dto) {
 		return sqlSession.insert(namespace +".insertFavoriteTheater", dto);
 	}
+
+	public int selectOneCountFavoriteTheater(MypageVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCountFavoriteTheater", vo);
+	}
 	
 
 }
