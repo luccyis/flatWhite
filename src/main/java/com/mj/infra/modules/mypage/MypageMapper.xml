@@ -8,7 +8,18 @@
 
     <resultMap id="resultMapObj" type="com.mj.infra.modules.mypage.Mypage"></resultMap>
     
-	<select id="selectListMypageHistory" resultMap="resultMapObj">
+    <select id="selectOneFavoritTheater" resultMap="resultMapObj">
+    SELECT
+    	ft.tdftSort
+   		,th.tdthBranch
+	FROM infrMember mm
+	JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
+	JOIN tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
+	WHERE 1=1
+	and mm.ifmmSeq = #{ifmmSeq}
+    </select>
+    
+	<select id="selectOneMypageHistory" resultMap="resultMapObj">
 	SELECT 
 		mv.tdmvSeq
 	    ,mv.tdmvMovieTitle
@@ -25,18 +36,42 @@
 	AND mm.ifmmSeq = #{ifmmSeq}
 	</select>
 	
-	<select id="selectListFavoritTheater" resultMap="resultMapObj">
-	SELECT
-		(select tdthBranch from tradTheater th where th.tdthSeq = ft.tradTheater_tdthSeq) as tdthBranch
-	FROM infrMember mm 
-	JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq 
-	WHERE 1=1 
-	and mm.ifmmSeq = #{ifmmSeq}
-	</select>
+	<update id="updateMypage">
+	UPDATE infrMember 
+	SET
+		ifmmEmailAddress = CONCAT(#{ifmmEmailAddress},'@',(SELECT cc.cdName FROM infrCode cc where cc.cdSeq = #{ifmmEmailDomain}))
+		,ifmmEmailDomain = #{ifmmEmailDomain}
+		,ifmmPhone = #{ifmmPhone}
+		,ifmmDob = #{ifmmDob}
+		,ifmmDobLoginNy = #{ifmmDobLoginNy}
+		,ifmmSnsLogin = #{ifmmSnsLogin}
+	WHERE 1=1
+	AND ifmmSeq = #{ifmmSeq}
+	</update>
 	
+	<update id="updateAddInfo">
+	UPDATE infrMember
+	SET 
+		ifmmEmailNy = #{ifmmEmailNy}
+		,ifmmSmsNy = #{ifmmSmsNy}
+	WHERE
+	AND ifmmSeq = #{ifmmSeq}
+	</update>
 	
+	<insert id="insertFavoriteTheater">
+	 INSERT INTO tradFavoriteTheater (
+		infrMember_ifmmSeq
+		,tradTheater_tdthSeq
+		,tdftSort
+	)
+	VALUES(
+		#{ifmmSeq}
+		,#{tdthSeq}
+		,#{tdftSort}
+	)
 	
-    
+	</insert>
+
     
     
     
