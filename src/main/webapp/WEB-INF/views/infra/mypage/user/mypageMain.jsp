@@ -23,6 +23,9 @@
 <div class="body-wrap">
 	<%@include file="../../../common/user/includeV1/header.jsp" %>
 	
+	<form name="formList" id="formList">
+	<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+	
 	<div class="container has-lnb">
     	<div class="page-util">
         	<div class="inner-wrap" id="myLoaction">
@@ -95,7 +98,7 @@
 							<div class="theater" id="myFaverBrch">
 								<div class="tit-area">
 									<p class="tit">선호극장</p>
-									<a href="" class="right" title="선호극장 변경">변경 <i class="iconset ico-arr-right-reverse"></i></a>
+									<a href="/mypage/additionalInfo" class="right" title="선호극장 변경">변경 <i class="iconset ico-arr-right-reverse"></i></a>
 								</div>
 			
 								<div class="list">
@@ -193,7 +196,8 @@
 				<!--// my-megabox-main -->
 			</div>
 		</div>
-	</div>	
+	</div>
+	</form>	
 	
 	<!-- footer-s -->
 	<%@include file="../../../common/user/includeV1/footer.jsp" %>
@@ -201,12 +205,6 @@
 	
 	
 </div>
-
-
-<form id="mainForm"></form>
-<div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
-<div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>

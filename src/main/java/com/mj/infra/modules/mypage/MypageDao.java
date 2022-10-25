@@ -1,5 +1,7 @@
 package com.mj.infra.modules.mypage;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -20,9 +22,9 @@ public class MypageDao {
 		return result;
 	}
 	
-	public Mypage selectOneMypageHistory(MypageVo vo) {
-		Mypage result = sqlSession.selectOne(namespace + ".selectOneMypageHistory", vo);
-		return result;
+	public List <Mypage> selectListMypageHistory(MypageVo vo) {
+		List<Mypage> list= sqlSession.selectList(namespace + ".selectListMypageHistory", vo);
+		return list;
 	}
  	
 	public int updateMypage(Mypage dto) {
@@ -39,6 +41,10 @@ public class MypageDao {
 
 	public int selectOneCountFavoriteTheater(MypageVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCountFavoriteTheater", vo);
+	}
+
+	public int deleteFavoriteTheater(MypageVo vo) {
+		return sqlSession.delete(namespace +".deleteFavoriteTheater", vo);
 	}
 	
 

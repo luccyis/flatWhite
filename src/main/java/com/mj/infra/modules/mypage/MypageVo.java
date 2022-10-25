@@ -13,7 +13,14 @@ public class MypageVo extends BaseVo {
 	private String tdmvSeq;
 	private String tdttSeq;
 	private String tdftSeq;
+	private String tdthSeq;
 	
+	public String getTdthSeq() {
+		return tdthSeq;
+	}
+	public void setTdthSeq(String tdthSeq) {
+		this.tdthSeq = tdthSeq;
+	}
 	public Integer getShOption() {
 		return shOption;
 	}

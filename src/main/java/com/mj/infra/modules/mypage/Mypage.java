@@ -43,9 +43,10 @@ public class Mypage extends Base {
 	//선호극장 tradFavoriteTheater
 	private String tdftSeq;
 	private String tdftSort;
+	private String tdthSeq;
 	private String tdthBranch;
 	private String tdpxPlexName;
-	private String[] aaa;
+	private String[] xtheaterSort;
 	
 	
 	public String getIfmmSeq() {
@@ -228,6 +229,12 @@ public class Mypage extends Base {
 	public void setTdftSort(String tdftSort) {
 		this.tdftSort = tdftSort;
 	}
+	public String getTdthSeq() {
+		return tdthSeq;
+	}
+	public void setTdthSeq(String tdthSeq) {
+		this.tdthSeq = tdthSeq;
+	}
 	public String getTdthBranch() {
 		return tdthBranch;
 	}
@@ -240,6 +247,13 @@ public class Mypage extends Base {
 	public void setTdpxPlexName(String tdpxPlexName) {
 		this.tdpxPlexName = tdpxPlexName;
 	}
+	public String[] getXtheaterSort() {
+		return xtheaterSort;
+	}
+	public void setXtheaterSort(String[] xtheaterSort) {
+		this.xtheaterSort = xtheaterSort;
+	}
+	
 	
 	
 

@@ -22,6 +22,9 @@
 <div class="body-wrap">
 	<%@include file="../../../common/user/includeV1/header.jsp" %>
 	
+	<form name="formList" id="formList">
+		<input type="hidden" name="ifmmSeq">
+	
 	<div class="container has-lnb">
     	<div class="page-util">
         	<div class="inner-wrap" id="myLoaction">
@@ -133,7 +136,7 @@
 						<p>
 							<span>1순위</span>
 							<div class="dropdown bootstrap-select w150px ml30 favorBrch bs3">
-								<input type="hidden" name="aaa" value="1"/>
+								<input type="hidden" name="xtheaterSort" value="1"/>
 								<select title="1순위 지역 선택" class="w150px ml30 favorBrch" tabindex="-98">
 									<option class="bs-title-option" value=""></option>
 									<option value="">지역선택</option>
@@ -156,7 +159,7 @@
 								</div>
 							</div>
 							<div class="dropdown bootstrap-select w150px ml10 favorBrch2 bs3">
-								<select name="bbb" title="1순위 극장 선택" class="w150px ml10 favorBrch2" tabindex="-98">
+								<select name="tdthSeq" title="1순위 극장 선택" class="w150px ml10 favorBrch2" tabindex="-98">
 									<option class="bs-title-option" value=""></option>
 									<option>극장선택</option>
 									<option value="1003">동대문</option>
@@ -183,7 +186,7 @@
 						<p>
 							<span>2순위</span>
 							<div class="dropdown bootstrap-select w150px ml30 favorBrch bs3">
-								<input type="hidden" name="aaa" value="2"/>
+								<input type="hidden" name="theaterSort" value="2"/>
 								<select title="2순위 지역 선택" class="w150px ml30 favorBrch" tabindex="-98">
 									<option class="bs-title-option" value=""></option>	
 									<option value="">지역선택</option>
@@ -289,6 +292,7 @@
        		
       </div>
 	</div>
+	</form>
 	
 	<!-- footer-s -->
 	<%@include file="../../../common/user/includeV1/footer.jsp" %>

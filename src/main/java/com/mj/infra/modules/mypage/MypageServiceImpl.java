@@ -1,13 +1,18 @@
 package com.mj.infra.modules.mypage;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mj.infra.modules.member.MemberVo;
 
 @Service
 public class MypageServiceImpl implements MypageService {
 	
 	@Autowired 
 	MypageDao dao;
+	
 
 	@Override
 	public Mypage selectOneFavoritTheater(MypageVo vo) throws Exception {
@@ -16,9 +21,15 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public Mypage selectOneMypageHistory(MypageVo vo) throws Exception {
-		Mypage result = dao.selectOneMypageHistory(vo);
+	public int selectOneCountFavoriteTheater(MypageVo vo) throws Exception {
+		int result = dao.selectOneCountFavoriteTheater(vo);
 		return result;
+	}
+
+
+	@Override
+	public List<Mypage> selectListMypageHistory(MypageVo vo) throws Exception {
+		return dao.selectListMypageHistory(vo);
 	}
 
 	@Override
@@ -32,7 +43,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int insertFavoriteTheater(Mypage dto, MypageVo vo) throws Exception {
+	public void insertFavoriteTheater(Mypage dto, MypageVo vo) throws Exception {
 		
 		// 좋아하는 극장이 등록 되어 있는지 확인
 		int result = dao.selectOneCountFavoriteTheater(vo);
@@ -41,39 +52,16 @@ public class MypageServiceImpl implements MypageService {
 			// insert
 			dao.insertFavoriteTheater(dto);
 		} else {
+			dao.deleteFavoriteTheater(vo);
 			
-			dao.delete(dto);
-			
-			for(int i=0; i<dto.getAaa().length; i++) {
+			for(int i=0; i<dto.getXtheaterSort().length; i++) {
 				// delete 전체
-				if(dto.getBbb() != 0) {
+				if(dto.getTdthSeq() != null) {
 					// insert
 					dao.insertFavoriteTheater(dto);
-				
 				}
-	
 			}
 		}
-		
-		
-		
-		
-		String tdftSeq = vo.getTdftSeq();
-		
-		if (tdftSeq == null) {
-			for (int i=1; i<=3; i++) {
-				dto.setTdftSort(i+"");
-				return dao.insertFavoriteTheater(dto);
-			}
-			
-		} else {
-			dto.setTdftSeq(null);
-			for (int i =1; i<= 3; i++) {
-				dto.setTdftSort(i+"");
-				return dao.insertFavoriteTheater(dto);
-			}
-		}
-		return dao.insertFavoriteTheater(dto);
 		
 	}
 	
