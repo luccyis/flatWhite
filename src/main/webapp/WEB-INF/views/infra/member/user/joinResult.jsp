@@ -20,7 +20,7 @@
 <body>
 	<div class="body-wrap">
 		<div class="member-wrap">
-			<h1 class="ci"><a href="/home/main" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
+			<h1 class="ci"><a href="/userHome" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
 			<!-- col-wrap -->
 			<div class="col-wrap">
 				<div class="col">
@@ -35,7 +35,7 @@
 								<p class="step">
 									<em>STEP2.</em> <span>정보입력</span>
 								</p>
-							</li>
+							</li> 
 							<li>
 								<p class="step on">
 									<em>STEP3.</em> <span>가입완료</span>
@@ -47,7 +47,7 @@
 						<strong>회원가입이 완료되었습니다</strong>
 					</p>
 					<div class="join-chk-me col-1">
-						<a href="/booking/timeTable" title="예매페이지로 이동" id="">
+						<a href="/userHome" title="예매페이지로 이동" id="">
 							<i class="fa-solid fa-clapperboard"></i>
 							<span>영화예매하러가기
 								<i class="fa-solid fa-angle-right"></i>

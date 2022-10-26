@@ -6,7 +6,7 @@ public interface MypageService {
 	
 	public int selectOneCountFavoriteTheater(MypageVo vo) throws Exception;
 	
-	public Mypage selectOneFavoritTheater(MypageVo vo) throws Exception;
+	public List<Mypage> selectListFavoritTheater(MypageVo vo) throws Exception;
 	
 	public List<Mypage> selectListMypageHistory(MypageVo vo) throws Exception;
 	

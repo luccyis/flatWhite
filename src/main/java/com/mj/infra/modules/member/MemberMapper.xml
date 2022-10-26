@@ -90,7 +90,7 @@
 			,#{ifmmEmailDomain}
 			,#{ifmmPhone}
 			<choose>
-				<when test="ifmmDob.equlas('')">,NULL</when>
+				<when test="ifmmDob ==''">,NULL</when>
 				<otherwise>,#{ifmmDob}</otherwise>
 			</choose>
 			,4

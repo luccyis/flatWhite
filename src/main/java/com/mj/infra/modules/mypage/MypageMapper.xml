@@ -15,15 +15,15 @@
 		where infrMember_ifmmSeq = #{ifmmSeq}
    </select>
     
-    <select id="selectOneFavoritTheater" resultMap="resultMapObj">
-    SELECT
-    	ft.tdftSort
-   		,th.tdthBranch
-	FROM infrMember mm
-	JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
-	JOIN tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
-	WHERE 1=1
-	and mm.ifmmSeq = #{ifmmSeq}
+    <select id="selectListFavoritTheater" resultMap="resultMapObj">
+	    SELECT
+	    	ft.tdftSort
+	   		,th.tdthBranch
+		FROM infrMember mm
+		JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
+		JOIN tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
+		WHERE 1=1
+		and mm.ifmmSeq = #{ifmmSeq}
     </select>
     
 	<select id="selectListMypageHistory" resultMap="resultMapObj">

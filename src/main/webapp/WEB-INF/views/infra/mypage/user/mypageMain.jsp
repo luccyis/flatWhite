@@ -64,14 +64,12 @@
 							<div class="photo" id="myPhoto">
 								<div class="wrap">
 									<form name="fileForm" style="display: none;">
-										<input type="file" name="file">
-										<input type="hidden" name="fileMbNo" value="704656">
 									</form>
 			
 									<i class="iconset ico-add-photo"></i>
 			
 									<button type="button" class="img">
-										<img src="" alt="" onerror="noImg(this, 'human')">
+										<img src="" alt="">
 									</button>
 								</div>
 							</div>
@@ -151,7 +149,7 @@
 		
 						<div class="box-border link-movie-story">
 							<a href="" title="본 영화 탭으로 이동">
-								<em>39</em>
+								<em>0</em>
 								<span>본 영화</span>
 							</a>
 		

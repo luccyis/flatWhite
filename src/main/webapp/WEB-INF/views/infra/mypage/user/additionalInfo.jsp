@@ -23,8 +23,8 @@
 	<%@include file="../../../common/user/includeV1/header.jsp" %>
 	
 	<form name="formList" id="formList">
-		<input type="hidden" name="ifmmSeq">
-	
+		<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+		
 	<div class="container has-lnb">
     	<div class="page-util">
         	<div class="inner-wrap" id="myLoaction">
@@ -304,6 +304,12 @@
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
 <!-- scripte-e -->
+
+<script>
+	var form = $("#formList");
+	
+
+</script>
 
 </body>
 </html>

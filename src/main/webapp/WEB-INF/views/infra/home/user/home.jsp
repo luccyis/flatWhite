@@ -245,13 +245,13 @@
 										</div>
 										<div class="size small">
 											<a href="#" data-no="11263" data-netfunnel="N" class="eventBtn" title="할인쿠폰 받기">
-												<img src="https://img.megabox.co.kr/SharedImg/event/2022/05/19/5JwwahPffOCxijnBBFDo0Uja7kD3vwWQ.jpg" alt="내 차 보험료 확인하고 영화 1만원 할인쿠폰 받으세요!" onerror="noImg(this, 'main');">
+												<img src="https://img.megabox.co.kr/SharedImg/event/2022/05/19/5JwwahPffOCxijnBBFDo0Uja7kD3vwWQ.jpg" alt="내 차 보험료 확인하고 영화 1만원 할인쿠폰 받으세요!" >
 												</a>
 										</div>
 									</div>
 							<!-- 광고영역 -->
 							<div class="ad-img">
-								<!-- <img src="../../../static/pc/images/main/@img-main-ad.png" alt="블루멤버스 포인트로" /> -->
+								<img src="https://mlink-cdn.netinsight.co.kr/2022/05/19/e4360c233c12b3ca0f16462cf7e59329.png" alt="" />
 								<script data-id="M_rwl-o8QV2xFMa0Oy93qQ" name="megabox_p/main/main@main_middle_event_415x530?mlink=341" src="" async=""></script>
 								<script src=""></script>
 								<div id="M_rwl-o8QV2xFMa0Oy93qQ">

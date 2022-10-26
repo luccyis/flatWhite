@@ -28,10 +28,10 @@ public class MypageController {
 	public String mypageMain(HttpSession httpSession, MypageVo vo, Model model) throws Exception {
 		
 		vo.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
-		Mypage favTh = service.selectOneFavoritTheater(vo);
+		List<Mypage> favTh = service.selectListFavoritTheater(vo);
 		model.addAttribute("favTh", favTh);
 		
-		List <Mypage> history = service.selectListMypageHistory(vo);
+		List<Mypage> history = service.selectListMypageHistory(vo);
 		model.addAttribute("history", history);
 		
 		return "infra/mypage/user/mypageMain";
@@ -61,15 +61,20 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="additionalInfo")
-	public String additionalInfo(MemberVo vo) throws Exception {
+	public String additionalInfo(HttpSession httpSession, Model model, MemberVo vo, MypageVo vo1) throws Exception {
+		vo.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
+		Member AddInfo = memberService.selectOne(vo);
+		model.addAttribute("AddInfo", AddInfo);
 		
+		List<Mypage> list = service.selectListFavoritTheater(vo1);
+		model.addAttribute("list", list);
 		
 		return "infra/mypage/user/additionalInfo";
 	}
 	
 	@RequestMapping(value="additinalInfoUpdt")
 	public String additinalInfoUpdt(Mypage dto, MypageVo vo, RedirectAttributes redirectAttributes) throws Exception {
-		
+		service.updateAddInfo(dto);
 		service.insertFavoriteTheater(dto, vo);
 		return "redirect:/mypage/additionalInfo";
 	}

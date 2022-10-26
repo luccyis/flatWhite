@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mj.infra.modules.member.MemberVo;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -15,10 +14,11 @@ public class MypageServiceImpl implements MypageService {
 	
 
 	@Override
-	public Mypage selectOneFavoritTheater(MypageVo vo) throws Exception {
-		Mypage result = dao.selectOneFavoritTheater(vo);
-		return result;
+	public List<Mypage> selectListFavoritTheater(MypageVo vo) throws Exception {
+		List<Mypage> list = dao.selectListFavoritTheater(vo);
+		return list;
 	}
+
 
 	@Override
 	public int selectOneCountFavoriteTheater(MypageVo vo) throws Exception {

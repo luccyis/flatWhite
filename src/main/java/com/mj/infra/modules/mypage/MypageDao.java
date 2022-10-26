@@ -17,9 +17,9 @@ public class MypageDao {
 	
 	private static String namespace = "com.mj.infra.modules.mypage.MypageMapper";
 	
-	public Mypage selectOneFavoritTheater(MypageVo vo) {
-		Mypage result = sqlSession.selectOne(namespace + ".selectOneFavoritTheater", vo);
-		return result;
+	public List<Mypage> selectListFavoritTheater(MypageVo vo){
+		List<Mypage> list= sqlSession.selectList(namespace + ".selectListFavoritTheater", vo);
+		return list;
 	}
 	
 	public List <Mypage> selectListMypageHistory(MypageVo vo) {

@@ -23,7 +23,7 @@
 <body>
 	<div class="body-wrap">
 		<div class="member-wrap">
-			<h1 class="ci"><a href="/home" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
+			<h1 class="ci"><a href="/userHome" title="메인 페이지로 이동">MEGABOX : Life Theater</a></h1>
 			<!-- col-wrap -->
 			<div class="col-wrap">
 				<div class="col">
