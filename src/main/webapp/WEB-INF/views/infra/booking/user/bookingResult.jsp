@@ -92,22 +92,7 @@
 											</li>
 										</ul>
 									</div>
-									<!-- movie-info-bottom -->
 									
-									<div class="movie-info-bottom">
-										<div class="add-send">
-											예매정보 추가 발송
-											<a href="#tooltip01_01" class="tooltip hover" title="입력하신 번호로 예매정보를 추가발송합니다.">
-												<span><i class="iconset ico-question-white">&nbsp;</i></span>
-												<div class="ir" id="tooltip01_01" data-width="220">
-													입력하신 번호로 예매정보를 추가발송합니다.
-												</div>
-											</a>
-											<input type="text" title="연락처 입력" class="input-text w150px ml10" maxlength="11" id="inp_sms_rcv_no">
-											<button type="button" class="button" id="btn_re_send_sms">전송</button>
-										</div>
-									</div>
-									<!--// movie-info-bottom -->
 								</div>
 								<!--// movie-infomation-area -->
 							</div>
@@ -115,8 +100,6 @@
 						</div>
 						<!--// reserve-finish -->
 						<div class="btn-group pt30">
-							<a href="#" class="button large" w-data="600" h-data="600" id="btn_ticket_print" title="교환권출력">교환권출력</a>
-							<a href="#" class="button large" id="btn_bill_print" title="영수증출력" style="display: none;">영수증출력 </a>
 							<a href="/mypage/bookingList" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
 						</div>
 						<div class="box-border v1 mt10">
@@ -132,7 +115,7 @@
 								<li class="mt20">
 									주차안내
 									<ul class="dash-list">
-										<li>코엑스몰 주차장 이용</li>
+										<li>극장 건물내 주차장 이용</li>
 										<li>매표소 주차안내 데스크에서  당일 영화 티켓 제시 후 주차 할인 인증 가능 (주간 4시간 4,800원/야간 22시 이후 2,400원) /출차시 정산</li>
 									</ul>
 								</li>

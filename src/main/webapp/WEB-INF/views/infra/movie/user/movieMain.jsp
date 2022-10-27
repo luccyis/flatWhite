@@ -27,8 +27,8 @@
 			<div class="inner-wrap">
 				<div class="location">
 					<span>Home</span>
-                	<a href="/movie/main" title="영화 페이지로 이동">영화</a>
-                	<a href="" title="전체영화 페이지로 이동">전체영화</a>
+                	<a title="영화 페이지로 이동">영화</a>
+                	<a title="전체영화 페이지로 이동">전체영화</a>
 				</div>
 			</div>
 		</div>
@@ -42,16 +42,16 @@
 				<h2 class="tit">전체영화</h2>
 				<div class="tab-list fixed">
 					<ul id="topMenu">
-						<li class="on"><a href="" title="박스오피스 탭으로 이동">박스오피스</a></li>
-						<li><a href="" title="">상영예정작</a></li>
-						<li><a href="" title="">특별상영</a></li>
-						<li><a href="" title="">필름소사이어티</a></li>
-						<li><a href="" title="">클래식소사이어티</a></li>
+						<li class="on"><a title="박스오피스 탭으로 이동">박스오피스</a></li>
+						<li><a title="">상영예정작</a></li>
+						<li><a title=""></a></li>
+						<li><a title=""></a></li>
+						<li><a title=""></a></li>
 					</ul>
 				</div>
 				<div class="movie-list-util mt40">
 					<div class="movie-search">
-						<input type="text" title="영화명을 입력하세요" id="shValue" name="shValue" value="${vo.shValue}" placeholder="영화명 검색" class="input-text">
+						<input type="text" title="영화명을 입력하세요" id="shValue" name="shValue" value="${vo.shValue}" placeholder="영화명 검색" autocomplete="off" class="input-text">
 						<button type="button" class="btn-search-input" id="btnSearch">검색</button>
 					</div>
 				</div>	
@@ -65,7 +65,7 @@
 										<img src="${list.upPath}${list.uuIdName}" alt="${list.tdmvMovieTitle}" class="poster lozad">  
 									</a>  
 					  				<div class="movie-score" style="opacity: 0;">        
-										<a class="wrap movieBtn" data-no="22023000" title="탑건: 매버릭 상세보기">            
+										<a class="wrap movieBtn" data-no="22023000" title="">            
 											<div class="summary">
 												<c:out value="${list.tdmvStory}"/>
 											</div>            

@@ -114,7 +114,6 @@
 										<th>순번</th>
 										<th>시퀸스</th>
 										<th>아이디 </th>
-										<th>패스워드 </th>
 										<th>이름 </th>
 										<th>성별 </th>
 										<th>등급</th>
@@ -146,7 +145,6 @@
 												<td>${status.count}</td>
 												<td><c:out value="${list.ifmmSeq}"/></td>
 												<td><c:out value="${list.ifmmId}"/></td>
-												<td><c:out value="${list.ifmmPassword}"/></td>
 												<td><c:out value="${list.ifmmName}"/></td>
 												<td>
 													<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
@@ -232,25 +230,11 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+    
+    
+<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
-
+   
 <script>
 		var goUrlList = "/member/memberList";
 		var goUrlInst = "/member/memberInst";
@@ -287,9 +271,6 @@
 		}
 		
 </script>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
   </body>
 </html>

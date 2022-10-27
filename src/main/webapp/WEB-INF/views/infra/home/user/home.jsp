@@ -44,13 +44,11 @@
 		            <div class="after" style="">
 						<a><c:out value="${sessName}"/> 님 안녕하세요.</a>
 		                <a id="btnLogout" class="" title="로그아웃">로그아웃</a>
-		                <a href="" class="notice" title="알림">알림</a>
 		            </div>
 	            </c:if>
 	        </div>
 	    </div>
 	    <div class="link-area">
-	        <a href="" class="header-open-layer btn-layer-search" title="검색">검색</a>
 	        <a href="/timetable/choiceMovie" class="link-ticket" title="상영시간표">상영시간표</a>
 	        <a href="/mypage/main" class="header-open-layer btn-layer-mymega" title="나의 메가박스">나의 메가박스</a>
 	    </div>
@@ -59,23 +57,12 @@
 	        <ul class="gnb-depth1">
 	            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
 	            <li><a href="/timetable/choiceMovie" class="gnb-txt-reserve" title="예매">예매</a></li>
-	            <li><a href="" class="gnb-txt-theater" title="극장">극장</a></li>
-		        <li><a href="" onclick="" class="gnb-txt-event" title="이벤트">이벤트</a></li>
-		        <li><a href="" onclick="" class="gnb-txt-store" title="스토어">스토어</a></li>
-		        <li><a href="" class="gnb-txt-benefit" title="혜택">혜택</a></li>
 	        </ul>
 	    </nav>
 	    <!-- 레이어 : 검색 -->
 	    <div id="layer_header_search" class="header-layer layer-header-search"></div>
 	</header>
 	<link rel="stylesheet" href="/resources/css/main.css" media="all">	
-
-	<form name="detailForm" id="detailForm" method="post">
-		<input type="hidden" name="rpstMovieNo" id="rpstMovieNo">
-	</form>
-	<form name="boxoForm" id="boxoForm" method="post" onsubmit="">
-		<input type="hidden" name="ibxMovieNmSearch" id="ibxMovieNmSearch">
-	</form>
 		
 	<div class="container main-container area-ad">
 		<div id="contents">
@@ -92,7 +79,6 @@
 						<!-- tab-sorting -->
 						<div class="tab-sorting">
 							<button type="button" class="on" sort="boxoRankList" name="btnSort">박스오피스</button>
-						
 						</div>
 						<!-- tab-sorting -->
 						<a href="/movie/main" class="more-movie" title="더 많은 영화보기">
@@ -130,13 +116,7 @@
 						<!--// main-movie-list -->
 
 						<div class="search-link">
-							<div class="cell">
-								<div class="search">
-									<input type="text" placeholder="영화명을 입력해 주세요" title="영화 검색" class="input-text" id="movieName">
-									<button type="button" class="btn" id="btnSearch"><i class="iconset ico-search-w"></i> 검색</button>
-								</div>
-							</div>
-	
+							<div class="cell"><div class="search"></div></div>
 							<div class="cell"><a href="/timetable/choiceMovie" title="상영시간표 보기"><i class="iconset ico-schedule-main"></i> 상영시간표</a></div>
 							<div class="cell"><a href="/movie/main" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
 							<div class="cell"><a href="/timetable/choiceMovie" title="빠른예매 보기"><i class="iconset ico-quick-reserve-main"></i> 빠른예매</a></div>
@@ -153,7 +133,7 @@
 						<!-- 혜택 시작 -->
 						<div class="tit-util">
 							<h2 class="tit">혜택</h2>
-							<a href="" onclick="" class="btn-more-cross purple" title="혜택 더보기">더보기</a>
+							<a class="btn-more-cross purple" title="혜택 더보기">더보기</a>
 						</div>
 							<!--
 								왼쪽 글씨 이미지 사이즈 300 * 230, 오른쪽 이미지 635 * 325
@@ -162,50 +142,50 @@
 							<div class="slider-view" style="width: 1100px;">
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/08/01/hBPtMdOJzpuPAtgYiRzA27HiJEUso7ia.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/08/01/PkqUJY2rla9nNB3IlZxfSGPB29H2PV1b.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/08/01/hBPtMdOJzpuPAtgYiRzA27HiJEUso7ia.jpg" alt="" ></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/08/01/PkqUJY2rla9nNB3IlZxfSGPB29H2PV1b.jpg" alt=""></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/07/18/EyLPMszA2h5hgsW99Lv2mxZ2jDg2wrWi.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/07/18/sUTcCl6Wm3mMRobMIWHixMelcznv9U8D.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/07/18/EyLPMszA2h5hgsW99Lv2mxZ2jDg2wrWi.jpg" alt=""></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/07/18/sUTcCl6Wm3mMRobMIWHixMelcznv9U8D.jpg" alt="" ></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title="이벤트페이지 바로가기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/24/6sb4dWdd8y1njIzzRxrzRqeUYKreanON.png" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title="이벤트페이지 바로가기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/24/e0J0ZfB5njye346I2UzHL0tUIjmxot2f.png" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title="이벤트페이지 바로가기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/24/6sb4dWdd8y1njIzzRxrzRqeUYKreanON.png" alt=""></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title="이벤트페이지 바로가기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/24/e0J0ZfB5njye346I2UzHL0tUIjmxot2f.png" alt=""></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/07/6GT9suCtq4nejcuEINJC4IxvKGZy0hTT.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/07/SIeNdNGwmOKgIKPCraVEJYVSoaEaH1gT.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/07/6GT9suCtq4nejcuEINJC4IxvKGZy0hTT.jpg" alt="" ></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/06/07/SIeNdNGwmOKgIKPCraVEJYVSoaEaH1gT.jpg" alt="" ></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/04/25/xjBVzi25V6oLS7Q7i1ZRgqK3CZUnuRzE.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/04/25/f509FdJABFDs6erpBAUqJx0uNColbDOs.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/04/25/xjBVzi25V6oLS7Q7i1ZRgqK3CZUnuRzE.jpg" alt="" ></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/04/25/f509FdJABFDs6erpBAUqJx0uNColbDOs.jpg" alt="" ></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title="할인쿠폰 받기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/05/19/6iBsf8ASsvehkEBk7uq91bxsmINHAAT6.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title="할인쿠폰 받기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/05/19/pATmXt3mU6XP9F2hYWslUkpllWa1cxJ4.png" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title="할인쿠폰 받기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/05/19/6iBsf8ASsvehkEBk7uq91bxsmINHAAT6.jpg" alt="" ></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title="할인쿠폰 받기"><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/05/19/pATmXt3mU6XP9F2hYWslUkpllWa1cxJ4.png" alt="" ></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: block; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 0px; opacity: 1;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/01/14/mmitS7eSkiQVzZL1paP0NxK5m6j3uVKT.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 300px; opacity: 1;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/01/14/yDRjd4ejz8oirC4wLrukvHK3KIWH1tCY.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 0px; opacity: 1;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/01/14/mmitS7eSkiQVzZL1paP0NxK5m6j3uVKT.jpg" alt="" ></a></div>
+										<div class="bg" style="left: 300px; opacity: 1;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2022/01/14/yDRjd4ejz8oirC4wLrukvHK3KIWH1tCY.jpg" alt="" ></a></div>
 									</div>
 								</div>
 								<div class="cell" style="display: none; position: absolute; float: none;">
 									<div class="position">
-										<div class="txt" style="top: 100px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2021/02/01/f7RPSplY1eWEFFhKNBDJK4JIXKv9NBZK.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
-										<div class="bg" style="left: 450px; opacity: 0;"><a href="" target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2021/02/01/fZ8glF2ggujTRrF5vtRuE1iE2UjjV1oF.jpg" alt="" onerror="noImg(this, 'main');"></a></div>
+										<div class="txt" style="top: 100px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2021/02/01/f7RPSplY1eWEFFhKNBDJK4JIXKv9NBZK.jpg" alt="" ></a></div>
+										<div class="bg" style="left: 450px; opacity: 0;"><a target="_self" title=""><img src="https://img.megabox.co.kr/SharedImg/BnftMng/2021/02/01/fZ8glF2ggujTRrF5vtRuE1iE2UjjV1oF.jpg" alt="" ></a></div>
 									</div>
 								</div>
 								</div>
@@ -229,9 +209,6 @@
 									<button type="button" class="btn-pause on">일시정지</button>
 									<button type="button" class="btn-play">자동재생</button>
 								</div>
-	
-								<div class="page-count">7 / 8</div>
-	
 							</div>
 						</div>
 	
@@ -239,14 +216,14 @@
 						<div class="brn-ad" style="height:204px;">
 							<div class="banner">
 								<div class="size">
-											<a href="#" data-no="10868" data-netfunnel="N" class="eventBtn" title="">
-												<img src="https://img.megabox.co.kr/SharedImg/event/2022/01/14/PaafbTzHLzAZslfTq3eRZS19bGTV7sG7.jpg" alt="신규 &amp; 휴면회원 만.반.잘.부! 모두 혜택 받아가세요" onerror="noImg(this, 'main');">
+											<a data-no="10868" data-netfunnel="N" class="eventBtn" title="">
+												<img src="https://img.megabox.co.kr/SharedImg/event/2022/01/14/PaafbTzHLzAZslfTq3eRZS19bGTV7sG7.jpg" alt="신규 &amp; 휴면회원 만.반.잘.부! 모두 혜택 받아가세요">
 												</a>
 										</div>
 										<div class="size small">
-											<a href="#" data-no="11263" data-netfunnel="N" class="eventBtn" title="할인쿠폰 받기">
+											<a data-no="11263" data-netfunnel="N" class="eventBtn" title="할인쿠폰 받기">
 												<img src="https://img.megabox.co.kr/SharedImg/event/2022/05/19/5JwwahPffOCxijnBBFDo0Uja7kD3vwWQ.jpg" alt="내 차 보험료 확인하고 영화 1만원 할인쿠폰 받으세요!" >
-												</a>
+											</a>
 										</div>
 									</div>
 							<!-- 광고영역 -->
@@ -297,7 +274,7 @@
 								<div class="open-swiper swiper-container-initialized swiper-container-horizontal">
 									<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
 										<div class="cell swiper-slide swiper-slide-active" style="width: 242.333px;">
-											<a href="#" data-no="11524" data-netfunnel="" class="eventBtn new" title="[광명소하지점] 오픈 이벤트 페이지로 이동">
+											<a data-no="11524" data-netfunnel="" class="eventBtn new" title="[광명소하지점] 오픈 이벤트 페이지로 이동">
 											<span class="label">
 													<!-- 지점 상태에 따른 노출 문구 설정-->
 													<em>신규오픈</em><!-- 코드선택일 경우 (신규오픈,리뉴얼오픈,오픈예정)-->
@@ -310,11 +287,11 @@
 	
 												<p class="date">2022.07.05</p>
 	
-												<img src="" alt="[광명소하지점] 오픈 이벤트" onerror="noImg(this, 'main');">
+												<img src="" alt="[광명소하지점] 오픈 이벤트">
 											</a>
 										</div>
 										<div class="cell swiper-slide swiper-slide-next" style="width: 242.333px;">
-											<a href="#" data-no="11531" data-netfunnel="" class="eventBtn new" title="[금정AK플라자지점] 오픈 이벤트 페이지로 이동">
+											<a data-no="11531" data-netfunnel="" class="eventBtn new" title="[금정AK플라자지점] 오픈 이벤트 페이지로 이동">
 											<span class="label">
 													<!-- 지점 상태에 따른 노출 문구 설정-->
 													<em>신규오픈</em><!-- 코드선택일 경우 (신규오픈,리뉴얼오픈,오픈예정)-->
@@ -327,7 +304,7 @@
 	
 												<p class="date">2022.07.13</p>
 	
-												<img src="" alt="[금정AK플라자지점] 오픈 이벤트" onerror="noImg(this, 'main');">
+												<img src="" alt="[금정AK플라자지점] 오픈 이벤트" >
 											</a>
 										</div>
 									</div>
@@ -347,25 +324,25 @@
 					<div class="swiper-container info-special swiper-container-initialized swiper-container-horizontal">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide special-cell swiper-slide-active" style="width: 170px; margin-right: 16px;">
-								<a href="" title="DOLBY CINEMA 페이지로 이동" class="bg-dolby">DOLBY CINEMA</a>
+								<a title="DOLBY CINEMA 페이지로 이동" class="bg-dolby">DOLBY CINEMA</a>
 							</div>
 							<div class="swiper-slide special-cell swiper-slide-next" style="width: 170px; margin-right: 16px;">
-								<a href="" title="THE BOUTIQUE PRIVATE 페이지로 이동" class="bg-private">THE BOUTIQUE PRIVATE</a>
+								<a title="THE BOUTIQUE PRIVATE 페이지로 이동" class="bg-private">THE BOUTIQUE PRIVATE</a>
 							</div>
 							<div class="swiper-slide special-cell" style="width: 170px; margin-right: 16px;">
-								<a href="" title="THE BOUTIQUE 페이지로 이동" class="bg-boutique">THE BOUTIQUE</a>
+								<a title="THE BOUTIQUE 페이지로 이동" class="bg-boutique">THE BOUTIQUE</a>
 							</div>
 							<div class="swiper-slide special-cell" style="width: 170px; margin-right: 16px;">
-								<a href="" title="MX 페이지로 이동" class="bg-mx">MX</a>
+								<a title="MX 페이지로 이동" class="bg-mx">MX</a>
 							</div>
 							<div class="swiper-slide special-cell" style="width: 170px; margin-right: 16px;">
-								<a href="" title="COMFORT 페이지로 이동" class="bg-comfort">COMFORT</a>
+								<a title="COMFORT 페이지로 이동" class="bg-comfort">COMFORT</a>
 							</div>
 							<div class="swiper-slide special-cell" style="width: 170px; margin-right: 16px;">
-								<a href="" title="PUPPY CINEMA 페이지로 이동" class="bg-puppy new">PUPPY CINEMA</a>
+								<a title="PUPPY CINEMA 페이지로 이동" class="bg-puppy new">PUPPY CINEMA</a>
 							</div>
 							<div class="swiper-slide special-cell" style="width: 170px; margin-right: 16px;">
-								<a href="" title="MEGABOX KIDS 페이지로 이동" class="bg-kids">MEGABOX KIDS</a>
+								<a title="MEGABOX KIDS 페이지로 이동" class="bg-kids">MEGABOX KIDS</a>
 							</div>
 						</div>
 						<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>

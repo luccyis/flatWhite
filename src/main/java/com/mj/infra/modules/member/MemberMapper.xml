@@ -18,7 +18,7 @@
 			<when test="shOption == 2">AND ifmmName LIKE CONCAT('%', #{shValue},'%')</when>
 			<when test="shOption == 3">AND ifmmId LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
-		ORDER BY a.ifmmSeq
+		ORDER BY a.ifmmSeq desc
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -26,7 +26,6 @@
 		SELECT
 			a.ifmmSeq
 			,a.ifmmId
-			,a.ifmmPassword
 			,a.ifmmName
 			,a.ifmmGender
 			,a.ifmmGrade

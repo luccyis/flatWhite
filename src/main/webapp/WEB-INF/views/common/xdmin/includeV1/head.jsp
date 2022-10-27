@@ -28,6 +28,19 @@
     <link rel="stylesheet" href="/resources/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="/resources/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="/resources/assets/css/demo.css" />
+    
+    <style type="text/css">
+	  	@font-face {
+	    font-family: 'SUIT-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+		}
+		.content-wrapper{
+		font-family: 'SUIT-Regular';
+		}
+  </style>
+    
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
