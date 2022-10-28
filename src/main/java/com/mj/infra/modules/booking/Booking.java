@@ -25,7 +25,14 @@ public class Booking extends Base {
 	private String tdmvAge;
 	private String tdmvTitleEng;
 	private String tdmvShowType;
+	private String tdmvState;
 	
+	public String getTdmvState() {
+		return tdmvState;
+	}
+	public void setTdmvState(String tdmvState) {
+		this.tdmvState = tdmvState;
+	}
 	//극장
 	private String tdthSeq;
 	private String tdthRegion;

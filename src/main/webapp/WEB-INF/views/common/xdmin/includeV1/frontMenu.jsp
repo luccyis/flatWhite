@@ -7,7 +7,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-          	<a href="" class="app-brand-link">
+          	<a href="/xdminHome" class="app-brand-link">
        			<span class="app-brand-text demo menu-text fw-bolder ms-2 d-block" style="color: #42326b;">MEGABOX</span>
        			<span class="fw-semibold text-muted">admin</span>
           	</a>
@@ -76,11 +76,6 @@
                 <li class="menu-item">
                   <a href="/theaterPrice/priceList" class="menu-link">
                     <div data-i18n="Container">관람료</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Fluid">극장 공지사항</div>
                   </a>
                 </li>
               </ul>
@@ -163,7 +158,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="/resources/assets/img/avatars/profile-default.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -172,7 +167,7 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="/resources/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="/resources/assets/img/avatars/profile-default.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -186,22 +181,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" id="btnLogout">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>

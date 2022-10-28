@@ -24,8 +24,15 @@ public class Movie extends Base {
 	private String tdmvModDate;
 	private Integer tdmvUseNy;
 	private Integer tdmvDelNy;
+	private String tdmvState; 
 	
 	
+	public String getTdmvState() {
+		return tdmvState;
+	}
+	public void setTdmvState(String tdmvState) {
+		this.tdmvState = tdmvState;
+	}
 	public Integer getTdmvUseNy() {
 		return tdmvUseNy;
 	}

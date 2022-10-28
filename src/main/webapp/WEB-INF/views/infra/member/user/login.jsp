@@ -144,7 +144,7 @@
 			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
 			,success: function(response) {
 				if(response.rt == "success") {
-					location.href='/userHome';
+					location.href='/';
 				} else {
 					alert("회원없음");
 				}
