@@ -143,33 +143,39 @@
 					  	
 					  		<c:choose>
 				           		<c:when test="${fn:length(review) eq 0}">
-				           			<h2 class="tit small mt70">아직 남겨진 한줄평이 없어요.</h2>
-				           			
-				           			<ul>
-							            <li class="type03">
-							                <div class="story-area">
-							                    <!-- 프로필영역 -->
-							                    <div class="user-prof">
-							                        <div class="prof-img"><img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-mega-profile.png" alt="MEGABOX"></div>
-							                        <p class="user-id"><c:out value="${sessId}"/></p>
-							                    </div>
-							                    <!-- // 프로필영역 -->
-							
-							                    <!-- 내용 영역 -->
-							                    <div class="story-box">
-							                        <div class="story-wrap">
-							                            <div class="story-cont">
-							                                첫번째 <span class="font-gblue">관람평</span>의 주인공이 되어 보세요.
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </li>
-							        </ul>
+				           			<div class="tit-util mt70 mb15 oneContent">
+				           				<h2 class="tit small mt70">아직 남겨진 한줄평이 없어요.</h2>
+				           			</div>
+				           			<div class="movie-idv-story oneContent">
+					           			<ul>
+								            <li class="type03">
+								                <div class="story-area">
+								                    <!-- 프로필영역 -->
+								                    <div class="user-prof">
+								                        <div class="prof-img"><img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-mega-profile.png" alt="MEGABOX"></div>
+								                        <p class="user-id"><c:out value="${sessId}"/></p>
+								                    </div>
+								                    <!-- // 프로필영역 -->
+								
+								                    <!-- 내용 영역 -->
+								                    <div class="story-box">
+								                        <div class="story-wrap">
+								                            <div class="story-cont">
+								                                첫번째 <span class="font-gblue">관람평</span>의 주인공이 되어 보세요.
+								                            </div>
+								                            <div class="story-write">
+								                               <a href="#modalInsert" id="btnModalWrite" data-bs-toggle="modal" data-bs-target="#modalInsert" class="btn-modal-open oneWrtBtn" w-data="500" h-data="680" data-cd="PREV" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</a>
+								                           </div>
+								                        </div>
+								                    </div>
+								                </div>
+								            </li>
+								        </ul>
+							        </div>
 				           		</c:when>
 							    <c:otherwise>
 						    		<div class="tit-util mt70 mb15 oneContent">
-						                <h2 class="tit small"><c:out value="${result.tdmvMovieTitle}"/>에 대한 <span class="font-gblue">2,822</span>개의 이야기가 있어요!</h2>
+						                <h2 class="tit small"><c:out value="${result.tdmvMovieTitle}"/>에 대한 <span class="font-gblue"><c:out value="${fn:length(review)}"/></span>개의 이야기가 있어요!</h2>
 						            </div>
 						            <div class="movie-idv-story oneContent">
 								        <ul>
@@ -190,12 +196,9 @@
 								                       <div class="story-wrap">
 								                           <div class="story-cont">
 								                               <span class="font-gblue"><c:out value="${sessName}"/></span>님 <span class="font-gblue"><c:out value="${result.tdmvMovieTitle}"/></span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
-								                           <br><input type="text" name="tdmcContent" id="tdmcContent">
-								                           <input type="text" name="tdmcRate" id="tdmcRate" placeholder="1~10 사이에 숫자를 입력하세요 ">
 								                           </div>
 								                           <div class="story-write">
-								                               <a href="#none" class="btn-modal-open oneWrtBtn" w-data="500" h-data="680" data-cd="PREV" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</a>
-								                               <button type="button" class="btn btn-sm-purple" id="btnMovieComent" onclick="submitReview()"> 제출하기 </button>
+								                               <button id="btnModalWrite" data-bs-toggle="modal" data-bs-target="#modalInsert" class="btn-modal-open oneWrtBtn" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</button>
 								                           </div>
 								                       </div>
 								                   </div>
@@ -229,11 +232,11 @@
 						       							</div>        
 						      						</div>
 						       					</li>
-						       					</c:forEach>
-						       				</ul>	
-					    				</div>
-							   		</c:otherwise>
-							  </c:choose>
+					       					</c:forEach>
+					       				</ul>	
+				    				</div>
+						   		</c:otherwise>
+						  </c:choose>
 		    			</form>		
 	    			</div>
 	<!--// inner-wrap -->
@@ -247,6 +250,35 @@
 	<!-- footer-s -->
 	<%@include file="../../../common/user/includeV1/footer.jsp" %>
 	<!-- footer-e -->
+	
+	<div class="modal fade" id="modalInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">한줄평 작성 </h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <form name="formModal" id="formModal">
+	      	<input type="hidden" name="ifmmSeq" value="${sessSeq}">   
+			<input type="hidden" name="tdmvSeq" value="${result.tdmvSeq}" id="tdmvSeq">
+		      <div class="modal-body">
+		          <div class="mb-3">
+		            <label for="tdmcRate" class="col-form-label">평점 </label>
+		            <input type="text" class="form-control" name="tdmcRate" id="tdmcRate" placeholder="1~10 사이에 숫자를 입력하세요 ">
+		          </div>
+		          <div class="mb-3">
+		            <label for="tdmcContent" class="col-form-label">관람평 </label>
+		            <textarea class="form-control" id="message-text" name="tdmcContent" id="tdmcContent"></textarea>
+		          </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기 </button>
+		        <button type="button" class="btn btn-primary" id="btnMovieComent" onclick="submitReview()">제출하기</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
 
 </div>
 
@@ -257,10 +289,12 @@
 <!-- scripte-e -->
 
 <script>
-var form = $("[name=formList]");
+var form = $("[name=formModal]");
 var goUrlReview= "/movie/MovieComment";
 
-submitReview = function(){
+
+
+/* submitReview = function(){
 	$.ajax({
 
         url : goUrlReview,
@@ -274,33 +308,35 @@ submitReview = function(){
         datatype : "json",
         success:function(result){
         	
-        tet += ??
-        	<li class="type01 oneContentTag">
-        	<div class="story-area">
-        		<div class="user-prof">
-        			<div class="prof-img">
-        				<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
-        			</div>
-        			<p class="user-id"><c:out value="${review.ifmmId }"/></p>
-    			</div>
-        		<div class="story-box">
-        			<div class="story-wrap review">
-        				<div class="tit">관람평</div>
-        				<div class="story-cont">
-        					<div class="story-point">                        
-        						<span><c:out value="${review.tdmcRate}"/></span>                    
-        					</div>                    
-        					<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
-							</div>                    
-   					</div>                
-   				</div>            
-   			</div>        
-				<div class="story-date">            
-					<div class="review on">                
-						<span><c:out value="${review.tdmcCreatDate}"/></span>            
-					</div>        
-				</div>
-			</li>
+        	var txt = "";
+        	// 여기 작성 해야됨
+        	
+        	txt += <li class="type01 oneContentTag">
+        	txt += <div class="story-area">
+        	txt += 	<div class="user-prof">
+        	txt += 		<div class="prof-img">
+        	txt += 			<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
+        	txt += 		</div>
+        	txt += 		<p class="user-id"><c:out value="${review.ifmmId }"/></p>
+        	txt += 	</div>
+        	txt += 	<div class="story-box">
+        	txt += 		<div class="story-wrap review">
+        	txt += 			<div class="tit">관람평</div>
+        	txt += 			<div class="story-cont">
+        	txt += 				<div class="story-point">                        
+        	txt += 					<span><c:out value="${review.tdmcRate}"/></span>                    
+        	txt += 				</div>                    
+        	txt += 				<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
+        	txt += 				</div>                    
+        	txt += 		</div>                
+        	txt += 	</div>            
+        	txt += </div>        
+        	txt += 	<div class="story-date">            
+        	txt += 		<div class="review on">                
+        	txt += 			<span><c:out value="${review.tdmcCreatDate}"/></span>            
+        	txt += 		</div>        
+        	txt += 	</div>
+        	txt += </li>
 			
 			
         },
@@ -309,7 +345,7 @@ submitReview = function(){
         }
     });
 	
-}
+} */
 
 </script>
 
