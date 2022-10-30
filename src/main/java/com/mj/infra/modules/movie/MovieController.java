@@ -1,12 +1,15 @@
 package com.mj.infra.modules.movie;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mj.infra.common.constants.Constants;
@@ -45,8 +48,28 @@ public class MovieController {
 		Movie item = service.selectMovieImage(dto);
 		model.addAttribute("item", item);
 		
+		
+		List<Movie> review = service.selectListMovieComment(vo);
+		model.addAttribute("review", review);
+		
 		return "infra/movie/user/movieView";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="MovieComment")
+	public Map<String, Object> MovieComment(Movie dto) throws Exception {
+		Map<String, Object> review = new HashMap<String, Object>();
+		
+		service.insertMovieComment(dto);
+		return review;
+	}
+
+	
+	
+
+	
+	
+	
 	
 	//xdmin
 	@RequestMapping(value="movieList")
@@ -119,24 +142,6 @@ public class MovieController {
 	}
 	
 	
-	
-	
-	
-	
-	@RequestMapping(value="postList")
-	public String MoviePostList() throws Exception{
-		return "infra/movie/user/moviePostList";
-	}
-	
-	@RequestMapping(value="postForm")
-	public String postForm() throws Exception{
-		return "infra/movie/user/postForm";
-	}
-	
-	@RequestMapping(value="postListxdmin")
-	public String postListxdmin() throws Exception{
-		return "infra/movie/xdmin/postListxdmin";
-	}
 	
 	
 	

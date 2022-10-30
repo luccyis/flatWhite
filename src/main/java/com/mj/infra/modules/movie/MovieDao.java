@@ -58,6 +58,12 @@ public class MovieDao {
 		return sqlSession.selectList(namespace + ".selectListMain", vo);
 	}
 
+	public int insertMovieComment(Movie dto) {
+		return sqlSession.insert(namespace + ".insertMovieComment", dto);
+	}
 	
+	public List<Movie> selectListMovieComment (MovieVo vo) {
+		return sqlSession.selectList(namespace + ".selectListMovieComment", vo);
+	}
 	
 }

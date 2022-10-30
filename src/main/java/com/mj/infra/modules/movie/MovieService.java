@@ -17,7 +17,10 @@ public interface MovieService {
 	public Movie selectMovieImage(Movie dto) throws Exception;
 	
 	public List<Movie> selectListMain(MovieVo vo) throws Exception;
+	
+	public int insertMovieComment(Movie dto) throws Exception;
 
+	public List<Movie> selectListMovieComment(MovieVo vo) throws Exception;
 	
 
 	

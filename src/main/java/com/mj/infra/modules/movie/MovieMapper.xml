@@ -213,6 +213,37 @@
 	order by movie.tdmvRank
 	</select>
 	
+	<insert id="insertMovieComment">
+		insert into tradMovieComment (
+			tdmcCreatDate
+		    ,infrMember_ifmmSeq
+		    ,tradMovie_tdmvSeq
+		    ,tdmcContent
+		    ,tdmcRate
+		)
+		values (
+			now()
+		    ,#{ifmmSeq}
+		    ,#{tdmvSeq}
+		    ,#{tdmcContent}
+		    ,#{tdmcRate}
+		)	
+	</insert>
+	
+	<select id="selectListMovieComment" resultMap="resultMapObj">
+		select
+			mc.tdmcSeq
+		    ,mc.tdmcCreatDate
+		    ,mm.ifmmId 
+			,mc.tradMovie_tdmvSeq
+		    ,mc.tdmcContent
+		    ,mc.tdmcRate
+		from tradMovieComment mc
+		JOIN infrMember mm on mc.infrMember_ifmmSeq = mm.ifmmSeq
+		where 1=1
+		and mc.tradMovie_tdmvSeq = #{tdmvSeq}
+	</select>
+	
 	
 	
 

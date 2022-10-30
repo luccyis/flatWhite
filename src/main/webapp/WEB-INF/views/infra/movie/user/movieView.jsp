@@ -136,67 +136,105 @@
 					        </div>
 					           <p>출연진&nbsp;: <c:out value="${result.tdmvCast}"/></p>
 					    </div>
-			    		<div class="tit-util mt70 mb15 oneContent">
-			                <h2 class="tit small"><c:out value="${result.tdmvMovieTitle}"/>에 대한 <span class="font-gblue">2,822</span>개의 이야기가 있어요!</h2>
-			            </div>
-			            <div class="movie-idv-story oneContent">
-					        <ul>
-					       <!-- 로그인 시 -->
-					           <li class="type03">
-					               <div class="story-area">
-					                   <!-- 프로필영역 -->
-					                   <div class="user-prof">
-					                       <div class="prof-img">
-					                       		<img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-mega-profile.png" alt="MEGABOX">
-					                       </div>
-					                       <p class="user-id"><c:out value="${sessId}"/></p>
-					                   </div>
-					                   <!-- // 프로필영역 -->
-					
-					                   <!-- 내용 영역 -->
-					                   <div class="story-box">
-					                       <div class="story-wrap">
-					                           <div class="story-cont">
-					                               <span class="font-gblue"><c:out value="${sessName}"/></span>님 <span class="font-gblue"><c:out value="${result.tdmvMovieTitle}"/></span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
-					                           </div>
-					                           <div class="story-write">
-					                               <a href="#none" class="btn-modal-open oneWrtBtn" w-data="500" h-data="680" data-cd="PREV" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</a>
-					                           </div>
-					                       </div>
-					                   </div>
-					                   <!-- // 내용 영역 -->
-					               </div>
-					           </li>
-					            
-						        <li class="type01 oneContentTag">
-						        	<div class="story-area">
-						        		<div class="user-prof">
-						        			<div class="prof-img">
-						        				<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
-						        			</div>
-						        			<p class="user-id">chldnd**</p>
-					        			</div>
-						        		<div class="story-box">
-						        			<div class="story-wrap review">
-						        				<div class="tit">관람평</div>
-						        				<div class="story-cont">
-						        					<div class="story-point">                        
-						        						<span>10</span>                    
-						        					</div>                    
-						        					<div class="story-recommend"><em>스토리</em><em>배우</em></div>                     
-						        					<div class="story-txt">인생의 분기점에서 또다른 나 재밌었다</div>                    
-				       							</div>                    
-					       					</div>                
-					       				</div>            
-					       			</div>        
-		       						<div class="story-date">            
-		       							<div class="review on">                
-		       								<span>14 분전</span>            
-		       							</div>        
-		      						</div>
-		       					</li>
-		       				</ul>	
-	    				</div>	
+					    
+					  	<form name="formList" id="formList">
+					  		<input type="hidden" name="ifmmSeq" value="${sessSeq}">   
+					  		<input type="hidden" name="tdmvSeq" value="${result.tdmvSeq}" id="tdmvSeq">
+					  	
+					  		<c:choose>
+				           		<c:when test="${fn:length(review) eq 0}">
+				           			<h2 class="tit small mt70">아직 남겨진 한줄평이 없어요.</h2>
+				           			
+				           			<ul>
+							            <li class="type03">
+							                <div class="story-area">
+							                    <!-- 프로필영역 -->
+							                    <div class="user-prof">
+							                        <div class="prof-img"><img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-mega-profile.png" alt="MEGABOX"></div>
+							                        <p class="user-id"><c:out value="${sessId}"/></p>
+							                    </div>
+							                    <!-- // 프로필영역 -->
+							
+							                    <!-- 내용 영역 -->
+							                    <div class="story-box">
+							                        <div class="story-wrap">
+							                            <div class="story-cont">
+							                                첫번째 <span class="font-gblue">관람평</span>의 주인공이 되어 보세요.
+							                            </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </li>
+							        </ul>
+				           		</c:when>
+							    <c:otherwise>
+						    		<div class="tit-util mt70 mb15 oneContent">
+						                <h2 class="tit small"><c:out value="${result.tdmvMovieTitle}"/>에 대한 <span class="font-gblue">2,822</span>개의 이야기가 있어요!</h2>
+						            </div>
+						            <div class="movie-idv-story oneContent">
+								        <ul>
+								       <!-- 로그인 시 -->
+								           <li class="type03">
+								               <div class="story-area">
+								                   <!-- 프로필영역 -->
+								                   <div class="user-prof">
+								                       <div class="prof-img">
+								                       		<img src="https://img.megabox.co.kr/static/pc/images/common/ico/ico-mega-profile.png" alt="MEGABOX">
+								                       </div>
+								                       <p class="user-id"><c:out value="${sessId}"/></p>
+								                   </div>
+								                   <!-- // 프로필영역 -->
+								
+								                   <!-- 내용 영역 -->
+								                   <div class="story-box">
+								                       <div class="story-wrap">
+								                           <div class="story-cont">
+								                               <span class="font-gblue"><c:out value="${sessName}"/></span>님 <span class="font-gblue"><c:out value="${result.tdmvMovieTitle}"/></span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
+								                           <br><input type="text" name="tdmcContent" id="tdmcContent">
+								                           <input type="text" name="tdmcRate" id="tdmcRate" placeholder="1~10 사이에 숫자를 입력하세요 ">
+								                           </div>
+								                           <div class="story-write">
+								                               <a href="#none" class="btn-modal-open oneWrtBtn" w-data="500" h-data="680" data-cd="PREV" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</a>
+								                               <button type="button" class="btn btn-sm-purple" id="btnMovieComent" onclick="submitReview()"> 제출하기 </button>
+								                           </div>
+								                       </div>
+								                   </div>
+								                   <!-- // 내용 영역 -->
+								               </div>
+								           </li>
+									       <c:forEach items="${review}" var="review" varStatus="status">
+										        <li class="type01 oneContentTag">
+										        	<div class="story-area">
+										        		<div class="user-prof">
+										        			<div class="prof-img">
+										        				<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
+										        			</div>
+										        			<p class="user-id"><c:out value="${review.ifmmId}"/></p>
+									        			</div>
+										        		<div class="story-box">
+										        			<div class="story-wrap review">
+										        				<div class="tit">관람평</div>
+										        				<div class="story-cont">
+										        					<div class="story-point">                        
+										        						<span><c:out value="${review.tdmcRate}"/></span>                    
+										        					</div>                    
+										        					<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
+								       							</div>                    
+									       					</div>                
+									       				</div>            
+									       			</div>        
+						       						<div class="story-date">            
+						       							<div class="review on">                
+						       								<span><c:out value="${review.tdmcCreatDate}"/></span>            
+						       							</div>        
+						      						</div>
+						       					</li>
+						       					</c:forEach>
+						       				</ul>	
+					    				</div>
+							   		</c:otherwise>
+							  </c:choose>
+		    			</form>		
 	    			</div>
 	<!--// inner-wrap -->
 				</div>
@@ -212,9 +250,69 @@
 
 </div>
 
+
+
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
 <!-- scripte-e -->
+
+<script>
+var form = $("[name=formList]");
+var goUrlReview= "/movie/MovieComment";
+
+submitReview = function(){
+	$.ajax({
+
+        url : goUrlReview,
+        type : "POST",
+        data : {
+			ifmmSeq : ${sessSeq},
+			tdmcContent : $("#tdmcContent").val(),
+			tdmcRate : $("#tdmcRate").val(),
+			tdmvSeq : $("#tdmvSeq").val()
+        },
+        datatype : "json",
+        success:function(result){
+        	
+        tet += ??
+        	<li class="type01 oneContentTag">
+        	<div class="story-area">
+        		<div class="user-prof">
+        			<div class="prof-img">
+        				<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
+        			</div>
+        			<p class="user-id"><c:out value="${review.ifmmId }"/></p>
+    			</div>
+        		<div class="story-box">
+        			<div class="story-wrap review">
+        				<div class="tit">관람평</div>
+        				<div class="story-cont">
+        					<div class="story-point">                        
+        						<span><c:out value="${review.tdmcRate}"/></span>                    
+        					</div>                    
+        					<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
+							</div>                    
+   					</div>                
+   				</div>            
+   			</div>        
+				<div class="story-date">            
+					<div class="review on">                
+						<span><c:out value="${review.tdmcCreatDate}"/></span>            
+					</div>        
+				</div>
+			</li>
+			
+			
+        },
+        error:function(){
+            alert("error...");
+        }
+    });
+	
+}
+
+</script>
+
 
 </body>
 </html>

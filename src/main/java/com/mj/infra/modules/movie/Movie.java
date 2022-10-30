@@ -26,7 +26,51 @@ public class Movie extends Base {
 	private Integer tdmvDelNy;
 	private String tdmvState; 
 	
+	//movie comment
+	private String tdmcSeq;
+	private String tdmcCreatDate;
+	private String ifmmSeq;
+	private String tdmcContent;
+	private String tdmcRate;
+	private String ifmmId;
 	
+	
+	public String getIfmmId() {
+		return ifmmId;
+	}
+	public void setIfmmId(String ifmmId) {
+		this.ifmmId = ifmmId;
+	}
+	public String getTdmcSeq() {
+		return tdmcSeq;
+	}
+	public void setTdmcSeq(String tdmcSeq) {
+		this.tdmcSeq = tdmcSeq;
+	}
+	public String getTdmcCreatDate() {
+		return tdmcCreatDate;
+	}
+	public void setTdmcCreatDate(String tdmcCreatDate) {
+		this.tdmcCreatDate = tdmcCreatDate;
+	}
+	public String getIfmmSeq() {
+		return ifmmSeq;
+	}
+	public void setIfmmSeq(String ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
+	}
+	public String getTdmcContent() {
+		return tdmcContent;
+	}
+	public void setTdmcContent(String tdmcContent) {
+		this.tdmcContent = tdmcContent;
+	}
+	public String getTdmcRate() {
+		return tdmcRate;
+	}
+	public void setTdmcRate(String tdmcRate) {
+		this.tdmcRate = tdmcRate;
+	}
 	public String getTdmvState() {
 		return tdmvState;
 	}

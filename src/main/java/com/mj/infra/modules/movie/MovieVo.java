@@ -9,6 +9,15 @@ public class MovieVo extends BaseVo {
 	private Integer shDelNy;
 	
 	private String tdmvSeq;
+	private String ifmmSeq;
+
+	public String getIfmmSeq() {
+		return ifmmSeq;
+	}
+
+	public void setIfmmSeq(String ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
+	}
 
 	public Integer getShOption() {
 		return shOption;
