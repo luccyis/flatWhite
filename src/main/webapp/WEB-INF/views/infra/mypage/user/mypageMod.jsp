@@ -76,7 +76,7 @@
 	                                      <input type="file" id="profileTarget" name="file" style="display: none;">
 	                                  </form>
 		                                  <div class="profile-img">
-		                                      <img src="" alt="프로필 사진 샘플">
+		                                      <img src="/resources/images/profile-default.png" alt="프로필 사진 샘플">
 		                                  </div>
 	                                  		<button type="button" class="button small gray-line" id="addProfileImgBtn">이미지 등록</button>
 	                                  		<a href="" class="button small member-out" title="회원탈퇴">회원탈퇴</a>

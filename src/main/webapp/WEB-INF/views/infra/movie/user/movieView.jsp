@@ -198,19 +198,21 @@
 								                               <span class="font-gblue"><c:out value="${sessName}"/></span>님 <span class="font-gblue"><c:out value="${result.tdmvMovieTitle}"/></span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
 								                           </div>
 								                           <div class="story-write">
-								                               <button id="btnModalWrite" data-bs-toggle="modal" data-bs-target="#modalInsert" class="btn-modal-open oneWrtBtn" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</button>
+								                               <button data-bs-toggle="modal" data-bs-target="#modalWrite">
+								                               	<i class="iconset ico-story-write"></i> 관람평쓰기</button>
 								                           </div>
 								                       </div>
 								                   </div>
 								                   <!-- // 내용 영역 -->
 								               </div>
 								           </li>
+								           <li class="type01 oneContentTag" id="newReview"></li>
 									       <c:forEach items="${review}" var="review" varStatus="status">
 										        <li class="type01 oneContentTag">
 										        	<div class="story-area">
 										        		<div class="user-prof">
 										        			<div class="prof-img">
-										        				<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
+										        				<img src="/resources/images/profile-default.png" alt="프로필사진">
 										        			</div>
 										        			<p class="user-id"><c:out value="${review.ifmmId}"/></p>
 									        			</div>
@@ -250,8 +252,30 @@
 	<!-- footer-s -->
 	<%@include file="../../../common/user/includeV1/footer.jsp" %>
 	<!-- footer-e -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Understood</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<%-- 
 	
-	<div class="modal fade" id="modalInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	
+	
+	<div class="modal fade" id="modalWrite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -264,7 +288,7 @@
 		      <div class="modal-body">
 		          <div class="mb-3">
 		            <label for="tdmcRate" class="col-form-label">평점 </label>
-		            <input type="text" class="form-control" name="tdmcRate" id="tdmcRate" placeholder="1~10 사이에 숫자를 입력하세요 ">
+		            <input type="text" class="form-control" name="tdmcRate" id="tdmcRate" placeholder="1~10 사이에 숫자를 입력하세요">
 		          </div>
 		          <div class="mb-3">
 		            <label for="tdmcContent" class="col-form-label">관람평 </label>
@@ -278,7 +302,7 @@
 	      </form>
 	    </div>
 	  </div>
-	</div>
+	</div> --%>
 
 </div>
 
@@ -289,12 +313,31 @@
 <!-- scripte-e -->
 
 <script>
+const exampleModal = document.getElementById('modalWrite')
+exampleModal.addEventListener('show.bs.modal', event => {
+  // Button that triggered the modal
+  const button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  const recipient = button.getAttribute('data-bs-whatever')
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+  const modalTitle = exampleModal.querySelector('.modal-title')
+  const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+  modalTitle.textContent = `New message to ${recipient}`
+  modalBodyInput.value = recipient
+})
+</script>
+
+<script>
 var form = $("[name=formModal]");
 var goUrlReview= "/movie/MovieComment";
+var newReview = $("#newReview");
 
 
-
-/* submitReview = function(){
+submitReview = function(){
 	$.ajax({
 
         url : goUrlReview,
@@ -306,46 +349,48 @@ var goUrlReview= "/movie/MovieComment";
 			tdmvSeq : $("#tdmvSeq").val()
         },
         datatype : "json",
-        success:function(result){
-        	
-        	var txt = "";
-        	// 여기 작성 해야됨
-        	
-        	txt += <li class="type01 oneContentTag">
-        	txt += <div class="story-area">
-        	txt += 	<div class="user-prof">
-        	txt += 		<div class="prof-img">
-        	txt += 			<img src="/static/pc/images/mypage/bg-photo.png" alt="" title="">
-        	txt += 		</div>
-        	txt += 		<p class="user-id"><c:out value="${review.ifmmId }"/></p>
-        	txt += 	</div>
-        	txt += 	<div class="story-box">
-        	txt += 		<div class="story-wrap review">
-        	txt += 			<div class="tit">관람평</div>
-        	txt += 			<div class="story-cont">
-        	txt += 				<div class="story-point">                        
-        	txt += 					<span><c:out value="${review.tdmcRate}"/></span>                    
-        	txt += 				</div>                    
-        	txt += 				<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
-        	txt += 				</div>                    
-        	txt += 		</div>                
-        	txt += 	</div>            
-        	txt += </div>        
-        	txt += 	<div class="story-date">            
-        	txt += 		<div class="review on">                
-        	txt += 			<span><c:out value="${review.tdmcCreatDate}"/></span>            
-        	txt += 		</div>        
-        	txt += 	</div>
-        	txt += </li>
+        success:function(response){
+        	if(response.rt=="success"){
+	        	var txt = "";
+	        	
+	        	for(var i=0; i<response.list.length; i++) {
+		        	txt +='<div class="story-area">'
+		        	txt += 	'<div class="user-prof">'
+		        	txt += 		'<div class="prof-img">'
+		        	txt += 			'<img src="/static/pc/images/mypage/bg-photo.png" alt="프로필사진">'
+		        	txt += 		'</div>'
+		        	txt += 		'<p class="user-id">'+response.list[i].ifmmId+'</p>'
+		        	txt += 	'</div>'
+		        	txt += 	'<div class="story-box">'
+		        	txt += 		'<div class="story-wrap review">'
+		        	txt += 			'<div class="tit">관람평</div>'
+		        	txt += 			'<div class="story-cont">'
+		        	txt += 				'<div class="story-point">'                        
+		        	txt += 					'<span>'+response.list[i].tdmcRate+'</span>'                 
+		        	txt += 				'</div>'                   
+		        	txt += 				'<div class="story-txt">'+response.list[i].tdmcContent+'</div>'                
+		        	txt += 				'</div>'                    
+		        	txt += 		'</div>'            
+		        	txt += 	'</div>'            
+		        	txt += '</div>'        
+		        	txt += '<div class="story-date">'            
+		        	txt += 		'<div class="review on">'                
+		        	txt += 			'<span>'+response.list[i].tdmcCreatDate+'</span>'            
+		        	txt += 		'</div>' 
+		        	txt += 	'</div>'
+	        	}
+	        	newReview.html(txt);
+        	} else {
+        		aleat("null");
+        	}
 			
-			
-        },
-        error:function(){
-            alert("error...");
+        }
+        ,error:function(){
+            alert("error");
         }
     });
 	
-} */
+} 
 
 </script>
 

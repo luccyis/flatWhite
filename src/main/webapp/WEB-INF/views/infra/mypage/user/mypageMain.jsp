@@ -63,13 +63,8 @@
 						<div class="top">
 							<div class="photo" id="myPhoto">
 								<div class="wrap">
-									<form name="fileForm" style="display: none;">
-									</form>
-			
-									<i class="iconset ico-add-photo"></i>
-			
 									<button type="button" class="img">
-										<img src="" alt="">
+										<img src="/resources/images/profile-default.png" alt="">
 									</button>
 								</div>
 							</div>
