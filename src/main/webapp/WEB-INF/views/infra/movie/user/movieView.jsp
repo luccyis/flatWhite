@@ -164,7 +164,7 @@
 								                                첫번째 <span class="font-gblue">관람평</span>의 주인공이 되어 보세요.
 								                            </div>
 								                            <div class="story-write">
-								                               <a href="#modalInsert" id="btnModalWrite" data-bs-toggle="modal" data-bs-target="#modalInsert" class="btn-modal-open oneWrtBtn" w-data="500" h-data="680" data-cd="PREV" title="관람평쓰기"><i class="iconset ico-story-write"></i> 관람평쓰기</a>
+								                               <a href="#modalWrite" id="btnModalWrite" data-bs-toggle="modal" data-bs-target="#modalWrite" ><i class="iconset ico-story-write"></i> 관람평쓰기</a>
 								                           </div>
 								                        </div>
 								                    </div>
@@ -198,7 +198,7 @@
 								                               <span class="font-gblue"><c:out value="${sessName}"/></span>님 <span class="font-gblue"><c:out value="${result.tdmvMovieTitle}"/></span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
 								                           </div>
 								                           <div class="story-write">
-								                               <button data-bs-toggle="modal" data-bs-target="#modalWrite">
+								                               <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalWrite">
 								                               	<i class="iconset ico-story-write"></i> 관람평쓰기</button>
 								                           </div>
 								                       </div>
