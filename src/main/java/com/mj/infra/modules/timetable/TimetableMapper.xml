@@ -84,7 +84,8 @@
 	    	,b.tdthSeq
 		from tradTimeTable a 
 		join tradTheater b on b.tdthSeq = a.tradTheater_tdthSeq
-		where a.tradMovie_tdmvSeq = #{tdmvSeq}
+		where 1=1
+		and a.tradMovie_tdmvSeq = #{tdmvSeq}
 		group by b.tdthBranch
 	</select>
 	

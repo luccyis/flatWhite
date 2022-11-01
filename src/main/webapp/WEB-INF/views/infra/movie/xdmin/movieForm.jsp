@@ -120,7 +120,7 @@
 								<label class="form-label" for="tdmvAge">등급</label>
 								<select id="tdmvAge" name="tdmvAge" class="form-select" value="<c:out value="${item.tdmvAge} "/>">
 									<c:forEach items="${listCodeAge}" var="listAge" varStatus="status">
-										<option value="${list.tdmvAge eq listAge.cdSeq }">${listAge.cdName}</option>
+										<option value="${listAge.cdSeq}">${listAge.cdName}</option>
 									</c:forEach>
 								</select>
 							</div>

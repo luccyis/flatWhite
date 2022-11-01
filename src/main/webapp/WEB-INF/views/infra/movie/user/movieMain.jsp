@@ -42,8 +42,8 @@
 				<h2 class="tit">전체영화</h2>
 				<div class="tab-list fixed">
 					<ul id="topMenu">
-						<li class="on"><a title="박스오피스 탭으로 이동">박스오피스</a></li>
-						<li><a title="">상영예정작</a></li>
+						<li class="on"><a title="박스오피스 탭으로 이동">박스오피스</a></li> 
+						<li><a title="" value="1">상영예정작</a></li>
 						<li><a title=""></a></li>
 						<li><a title=""></a></li>
 						<li><a title=""></a></li>

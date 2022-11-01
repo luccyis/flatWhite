@@ -33,7 +33,7 @@ public class MovieController {
 	//user
 	@RequestMapping(value="main")
 	public String MovieMain(@ModelAttribute("vo") MovieVo vo, Movie dto, Model model) throws Exception{
-		List<Movie> list = service.selectListMain(vo);
+		List<Movie> list = service.selectListMoviePage(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/movie/user/movieMain";
@@ -64,12 +64,7 @@ public class MovieController {
 		return review;
 	}
 
-	
-	
 
-	
-	
-	
 	
 	//xdmin
 	@RequestMapping(value="movieList")

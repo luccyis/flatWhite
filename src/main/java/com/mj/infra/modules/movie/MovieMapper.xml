@@ -102,6 +102,7 @@
 		,tdmvReleaseDate
 		,tdmvTrailer
 		,tdmvRegDate
+		,tdmvState
 	)
 	VALUES(
 		#{tdmvMovieTitle}
@@ -116,6 +117,7 @@
 		,#{tdmvReleaseDate}
 		,#{tdmvTrailer}
 		,now()
+		,#{tdmvState}
 	)
 		<selectKey resultType="String" keyProperty="tdmvSeq" order="AFTER">
 		SELECT last_insert_id()
@@ -136,6 +138,7 @@
 		,tdmvReleaseDate = #{tdmvReleaseDate}
 		,tdmvTrailer = #{tdmvTrailer}
 		,tdmvModDate = now() 
+		,tdmvState = #{tdmvState}
 	WHERE
 		tdmvSeq = #{tdmvSeq}
 	</update>
@@ -154,11 +157,11 @@
 	
 	
 	<select id="selectLastSeq" resultType="Integer">
-	select
-		tdmvSeq
-	from tradMovie
-	order by tdmvSeq desc
-	limit 1
+		select
+			tdmvSeq
+		from tradMovie
+		order by tdmvSeq desc
+		limit 1
 	</select>
 	
 	<insert id="insertUpload">
@@ -195,22 +198,40 @@
 	
 	
 	<select id="selectMovieImage" resultMap="resultMapObj">
-	select
-		*
-	from tradMovieUpload
-	where 1=1
-	and pseq = #{pseq}
-	and defaultNy = 1
+		select
+			*
+		from tradMovieUpload
+		where 1=1
+		and pseq = #{pseq}
+		and defaultNy = 1
 	</select>
 	
+	<!-- 홈 -->
 	<select id="selectListMain" resultMap="resultMapObj">
-	SELECT 
-		movie.*
-   		,image.*
-	FROM tradMovie movie
-	JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
-	where image.defaultNy = 1 
-	order by movie.tdmvRank
+		SELECT 
+			movie.*
+	   		,image.*
+		FROM tradMovie movie
+		JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
+		where image.defaultNy = 1 
+		order by movie.tdmvRank
+		limit 4
+	</select>
+	
+	<!-- 영화메인페이지 -->
+	<select id="selectListMoviePage" resultMap="resultMapObj">
+			SELECT 
+			movie.*
+			,image.*
+		FROM tradMovie movie
+		JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
+		where 1=1
+		and image.defaultNy = 1 
+		<choose>
+			<when test="shOption == 1">AND movie.tdmvState = 1</when>
+			<when test="shOption == 2">AND movie.tdmvState = 2</when>
+		</choose>
+		order by movie.tdmvRank
 	</select>
 	
 	<insert id="insertMovieComment">
