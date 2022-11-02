@@ -263,6 +263,7 @@
 		JOIN infrMember mm on mc.infrMember_ifmmSeq = mm.ifmmSeq
 		where 1=1
 		and mc.tradMovie_tdmvSeq = #{tdmvSeq}
+		order by mc.tdmcSeq desc
 	</select>
 	
 	

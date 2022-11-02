@@ -43,7 +43,7 @@
 				<div class="tab-list fixed">
 					<ul id="topMenu">
 						<li class="on"><a title="박스오피스 탭으로 이동">박스오피스</a></li> 
-						<li><a title="" value="1">상영예정작</a></li>
+						<li><a title="" value="2">상영예정작</a></li>
 						<li><a title=""></a></li>
 						<li><a title=""></a></li>
 						<li><a title=""></a></li>
@@ -58,7 +58,8 @@
 				<div class="movie-list">
 					<ol class="list" id="movieList">
 						<c:forEach items="${list}" var="list" varStatus="status">
-							<li tabindex="0" class="no-img">
+							
+							<li tabindex="0" class="no-img" name="movieCard">
 								<div class="movie-list-info">    
 										<p class="rank" style=""><c:out value="${list.tdmvRank}"/><span class="ir">위</span></p>
 									<a href="javascript: goView('${list.tdmvSeq}')">    
@@ -89,19 +90,41 @@
 									">,</p>    
 									<p title="${list.tdmvMovieTitle}" class="tit"><c:out value="${list.tdmvMovieTitle}"/></p>
 								</div>
-								<div class="rate-date">    
-									<span class="rate">관람평 <c:out value="${list.tdmvAudienceScore}"/></span>    
-									<span class="date">개봉일 <c:out value="${list.tdmvReleaseDate}"/></span>
-								</div>
-								<div class="btn-util">    
-									<button type="button" class="button btn-like" data-no="22023000">
-										<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
-										<span><c:out value="${list.tdmvLiked}"/></span>
-									</button>    
-									<div class="case movieStat4" style="">        
-										<a href="/timetable/choiceMovie" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
-						  			</div>
-						  		</div>	
+								<c:choose>
+									<c:when test="${list.tdmvState eq 1}">
+										<div class="rate-date">    
+											<span class="rate">관람평 <c:out value="${list.tdmvAudienceScore}"/></span>    
+											<span class="date">개봉일 <c:out value="${list.tdmvReleaseDate}"/></span>
+										</div>
+										<div class="btn-util">    
+											<button type="button" class="button btn-like" data-no="22023000">
+												<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
+												<span><c:out value="${list.tdmvLiked}"/></span>
+											</button>    
+											<div class="case movieStat4" style="">        
+												<a href="/timetable/choiceMovie" class="button purple bokdBtn" data-no="22022900" title="영화 예매하기">예매</a>  
+								  			</div>
+								  		</div>
+									</c:when>
+									<c:otherwise>
+										<c:when test="${list.tdmvState eq 2}">
+											<div class="rate-date">    
+												<span class="rate">관람평 <c:out value="${list.tdmvAudienceScore}"/></span>    
+												<span class="date">개봉일 <c:out value="${list.tdmvReleaseDate}"/></span>
+											</div>
+											<div class="btn-util">    
+												<button type="button" class="button btn-like" data-no="22023000">
+													<i title="보고싶어 안함" class="iconset ico-heart-toggle-gray intrstType"></i> 
+													<span><c:out value="${list.tdmvLiked}"/></span>
+												</button>  
+												<p class="txt movieStat1" style="">상영예정</p>    
+										    </div>
+								  		</c:when>	
+									</c:otherwise>
+								</c:choose>
+								
+								
+								
 				  			</li>
 						</c:forEach>
 					</ol>
