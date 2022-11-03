@@ -1,6 +1,8 @@
 package com.mj.infra.modules.member;
 
-public class Member {
+import com.mj.infra.common.base.Base;
+
+public class Member extends Base {
 	
 	private String ifmmSeq;
 	private String ifmmId;
@@ -19,8 +21,9 @@ public class Member {
 	private String ifmmDelNy;
 	private String ifmmUseNy;
 	
+
 	
-	
+
 	public String getIfmmDelNy() {
 		return ifmmDelNy;
 	}

@@ -85,16 +85,24 @@ public class CodeServiceImpl implements CodeService {
 		return dao.selectCodeGroupList();
 	}
 	
-	/*
-	 * public static String selectOneCachedCode(int code) throws Exception { String
-	 * rt = ""; for(Code codeRow : Code.cachedCodeArrayList) { if
-	 * (codeRow.getCdSeq().equals(Integer.toString(code))) { rt =
-	 * codeRow.getCdName(); } else { // by pass } } return rt; }
-	 * 
-	 * public static void clear() throws Exception {
-	 * Code.cachedCodeArrayList.clear(); }
-	 * 
-	 */
+	
+  public static String selectOneCachedCode(String code) throws Exception {
+	  String rt ="";
+	  for(Code codeRow : Code.cachedCodeArrayList) {
+		  if (codeRow.getCdSeq().equals(code)) {
+			  rt = codeRow.getCdName();
+		  } else {
+			  // by pass
+		  }
+	  }
+	  return rt;
+  }
+	  
+
+  public static void clear() throws Exception {
+	  Code.cachedCodeArrayList.clear();
+  }
+  
 	
 	
 		

@@ -24,6 +24,8 @@ public interface MovieService {
 
 	public List<Movie> selectListMovieComment(MovieVo vo) throws Exception;
 	
+	public List<Movie> selectListChoiceMovie(MovieVo vo) throws Exception;
+	
 
 	
 }

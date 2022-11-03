@@ -107,10 +107,9 @@
 								  		</div>
 									</c:when>
 									<c:otherwise>
-										<c:when test="${list.tdmvState eq 2}">
 											<div class="rate-date">    
-												<span class="rate">관람평 <c:out value="${list.tdmvAudienceScore}"/></span>    
-												<span class="date">개봉일 <c:out value="${list.tdmvReleaseDate}"/></span>
+												<span class="rate">관람평 </span>    
+												<span class="date">상영예정</span>
 											</div>
 											<div class="btn-util">    
 												<button type="button" class="button btn-like" data-no="22023000">
@@ -119,7 +118,6 @@
 												</button>  
 												<p class="txt movieStat1" style="">상영예정</p>    
 										    </div>
-								  		</c:when>	
 									</c:otherwise>
 								</c:choose>
 								

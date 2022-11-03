@@ -51,7 +51,7 @@ public class TimetableController {
 	//영화예매 페이지 - 영화 목록 
 	@RequestMapping(value="choiceMovie")
 	public String timeTable(Model model, MovieVo vo) throws Exception {
-		List<Movie> list = service2.selectList(vo);
+		List<Movie> list = service2.selectListChoiceMovie(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/booking/user/timetable";

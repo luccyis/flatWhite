@@ -42,6 +42,8 @@
 			,a.tdmvModDate
 			,a.tdmvDelNy
 			,a.tdmvUseNy
+			,a.tdmvState
+			,a.tdmvPercent
 		<include refid="selectCommon"/>
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql"/>	
@@ -103,6 +105,7 @@
 		,tdmvTrailer
 		,tdmvRegDate
 		,tdmvState
+		,tdmvPercent
 	)
 	VALUES(
 		#{tdmvMovieTitle}
@@ -118,6 +121,7 @@
 		,#{tdmvTrailer}
 		,now()
 		,#{tdmvState}
+		,#{tdmvPercent}
 	)
 		<selectKey resultType="String" keyProperty="tdmvSeq" order="AFTER">
 		SELECT last_insert_id()
@@ -220,7 +224,7 @@
 	
 	<!-- 영화메인페이지 -->
 	<select id="selectListMoviePage" resultMap="resultMapObj">
-			SELECT 
+		SELECT 
 			movie.*
 			,image.*
 		FROM tradMovie movie
@@ -266,6 +270,35 @@
 		order by mc.tdmcSeq desc
 	</select>
 	
+	
+	<!-- 예매.영화 선택 리스트 -->
+	<select id="selectListChoiceMovie" resultMap="resultMapObj">
+		SELECT
+			a.tdmvSeq
+			,a.tdmvMovieTitle
+			,a.tdmvTitleEng
+			,a.tdmvAudienceScore
+			,a.tdmvRank
+			,a.tdmvStory
+			,a.tdmvShowType
+			,a.tdmvDirector
+			,a.tdmvCast
+			,a.tdmvGenres
+			,a.tdmvRunningTime
+			,a.tdmvAge
+			,a.tdmvReleaseDate
+			,a.tdmvAudienceNumber
+			,a.tdmvTrailer
+			,a.tdmvLiked
+			,a.tdmvRegDate
+			,a.tdmvModDate
+			,a.tdmvDelNy
+			,a.tdmvUseNy
+		FROM tradMovie a
+		WHERE 1=1	
+		AND a.tdmvDelNy = 0
+		AND a.tdmvState = 1
+	</select>
 	
 	
 

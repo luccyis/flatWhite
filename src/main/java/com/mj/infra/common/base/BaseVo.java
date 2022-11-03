@@ -21,8 +21,19 @@ public class BaseVo {
 	
 	private Integer shOptionDate;
 	
+	// 엑셀다운
+	private String search;
+	
 	
 
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
 	public Integer getShOptionDate() {
 		return shOptionDate;

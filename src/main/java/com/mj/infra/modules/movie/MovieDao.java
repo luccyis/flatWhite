@@ -70,4 +70,8 @@ public class MovieDao {
 		return sqlSession.selectList(namespace + ".selectListMovieComment", vo);
 	}
 	
+	public List<Movie> selectListChoiceMovie (MovieVo vo) {
+		List<Movie> list = sqlSession.selectList(namespace + ".selectListChoiceMovie", vo);
+		return list;
+	}
 }

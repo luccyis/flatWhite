@@ -1,7 +1,9 @@
 package com.mj.infra.common.util;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class UtilDateTime {
 
@@ -19,5 +21,11 @@ public class UtilDateTime {
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String localDateTimeString = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		return localDateTimeString;
+	}
+
+	public static String dateTimeToString(Date dateTimeParam) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateTimeRt = simpleDateFormat.format(dateTimeParam);
+		return dateTimeRt;
 	}
 }

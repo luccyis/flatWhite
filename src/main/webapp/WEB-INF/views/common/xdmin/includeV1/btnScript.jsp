@@ -89,6 +89,10 @@ $("#btnLogout").on("click", function(){
 	});
 });
 
+$("#btnExcel").click(function() {
+	form.attr("action", excelUri).submit();
+});
+
 
 
 </script>
