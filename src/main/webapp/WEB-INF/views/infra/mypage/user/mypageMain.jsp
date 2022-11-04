@@ -52,7 +52,8 @@
 					</ul>
 				</nav>
 			</div>
-
+			
+		
 			<div id="contents" class="">
 				<c:set var="listCodeGrade" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
 				<!-- my-megabox-main -->
@@ -94,13 +95,25 @@
 									<a href="/mypage/additionalInfo" class="right" title="선호극장 변경">변경 <i class="iconset ico-arr-right-reverse"></i></a>
 								</div>
 			
-								<div class="list">
-									<div class="no-list" style="display: none;">
-										<span>선호극장</span>을  설정하세요.
-									</div>
-									<ol><li>	<em>1</em>	<span>코엑스</span></li></ol>
+								<c:choose>
+									<c:when test="${fn:length(favTh) eq 0}">
+										<div class="no-list">
+											<span>선호극장</span>을  설정하세요.
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="list">
+											<ol>
+												<li>	
+													<em><c:out value="${tdftSort}"/></em>	
+													<span><c:out value="${favTh.tdthBranch}"/></span>
+												</li>
+											</ol>
+										</div>	
+									</c:otherwise>
+								</c:choose>
+							
 								</div>
-							</div>
 							<!--// theater -->
 			
 							<!-- coupon -->
@@ -136,15 +149,11 @@
 					<div id="myStory">
 						<div class="tit-util mt70">
 							<h2 class="tit small">나의 무비스토리</h2>
-		
-							<div class="right">
-								<a href="#saw_movie_regi" class="button gray-line small btn-modal-open" w-data="600" h-data="470" title="본 영화 등록">본 영화 등록</a>
-							</div>
 						</div>
 		
 						<div class="box-border link-movie-story">
 							<a href="" title="본 영화 탭으로 이동">
-								<em>0</em>
+								<em><c:out value="${fn:length(history)}"/></em>
 								<span>본 영화</span>
 							</a>
 		
@@ -170,17 +179,40 @@
 						<div class="tit-util mt70">
 							<h2 class="tit small">나의 예매내역</h2>
 			
-							<a href="/mypage/BookingList" class="more" title="나의 예매내역 더보기">더보기 <i class="iconset ico-arr-right-gray"></i></a>
+							<a href="/mypage/bookingList" class="more" title="나의 예매내역 더보기">더보기 <i class="iconset ico-arr-right-gray"></i></a>
 						</div>
 			
 						<!-- my-reserve-history -->
 						<div class="my-reserve-history">
 							<ul>
-								<li class="no-result">
-									<div class="no-history-reservation">
-										예매 내역이 없습니다.
-									</div>
-								</li>
+								<c:choose>
+									<c:when test="${fn:length(history) eq 0}">
+										<li class="no-result">
+											<div class="no-history-reservation">
+												예매 내역이 없습니다.
+											</div>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${history}" var="history" varStatus="statusHistory">
+											<li class="result">
+												<div class="reserve-history">
+													<p class="img">
+														<img src="${history.upPath}${history.uuIdName}" alt="${history.tdmvMovieTitle}">
+													</p>	
+													<div class="cont">		
+														<p class="pay">결제 일시 : <c:out value="${history.tdbkBookingDate}"/></p>		
+														<p class="ticket">			
+															<span><c:out value="${history.tdmvMovieTitle}"/></span>		
+														</p>		
+														<p class="theater"><c:out value="${history.tdthBranch}"/></p>		
+														<p class="date"><c:out value="${history.tdttShowTime}"/></p>	
+													</div>	
+												</div>
+											</li>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</ul>
 						</div>
 						<!--// my-reserve-history -->

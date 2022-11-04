@@ -56,7 +56,11 @@ public class MypageController {
 	
 	
 	@RequestMapping(value="bookingList")
-	public String mypageBookingList() throws Exception {
+	public String mypageBookingList(HttpSession httpSession, MypageVo vo, Model model) throws Exception {
+		vo.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
+		
+		List<Mypage> history = service.selectListMypageHistory(vo);
+		model.addAttribute("history", history);
 		return "infra/mypage/user/mypageBookingList";
 	}
 	
