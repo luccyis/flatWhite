@@ -39,7 +39,6 @@
 	    ,up.defaultNy
 	FROM infrMember mm
 	JOIN tradBooking bk on mm.ifmmSeq = bk.infrMember_ifmmSeq
-	JOIN tradBookingSeat bs on bs.tradBooking_tdbkSeq = bk.tdbkSeq
 	JOIN tradTimeTable tt on tt.tdttSeq =  bk.tradTimeTable_tdttSeq
 	JOIN tradMovie mv on mv.tdmvSeq = tt.tradMovie_tdmvSeq
 	JOIN tradMovieUpload up on up.pseq = mv.tdmvSeq

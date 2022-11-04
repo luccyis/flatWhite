@@ -20,10 +20,24 @@ public class Member extends Base {
 	private String ifmmGrade;
 	private String ifmmDelNy;
 	private String ifmmUseNy;
+	private String ifmmSnsImg;
+	private String token;
 	
 
 	
 
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getIfmmSnsImg() {
+		return ifmmSnsImg;
+	}
+	public void setIfmmSnsImg(String ifmmSnsImg) {
+		this.ifmmSnsImg = ifmmSnsImg;
+	}
 	public String getIfmmDelNy() {
 		return ifmmDelNy;
 	}

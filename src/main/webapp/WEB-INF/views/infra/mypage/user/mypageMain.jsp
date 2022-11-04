@@ -25,6 +25,8 @@
 	
 	<form name="formList" id="formList">
 	<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+	<input type="hidden" name="ifmmGrade" value="${sessGrade}">
+	
 	
 	<div class="container has-lnb">
     	<div class="page-util">
@@ -40,10 +42,8 @@
 				<nav id="lnb">
 					<p class="tit on"><a href="/mypage/main" title="나의 메가박스">나의 메가박스</a></p>
 					<ul>
-						<li class=""><a href="/mypage/bookingList" title="예매/구매내역">예매내역</a></li>
-						
 						<li>
-							<a href="/mypage/Main" title="회원정보">회원정보</a>
+							<a href="/mypage/main" title="회원정보">회원정보</a>
 							<ul class="depth3">
 								<li><a href="/mypage/mod" title="개인정보 수정">개인정보 수정</a></li>
 								<li><a href="/mypage/additionalInfo" title="선택정보 수정">선택정보 수정</a></li>
@@ -64,9 +64,18 @@
 						<div class="top">
 							<div class="photo" id="myPhoto">
 								<div class="wrap">
-									<button type="button" class="img">
-										<img src="/resources/images/profile-default.png" alt="">
-									</button>
+									<c:choose>
+										<c:when test="${sessImg != null}">
+											<button type="button" class="img">
+												<img src="${sessImg}" alt="프로필사진">
+											</button>	
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="img">
+												<img src="/resources/images/profile-default.png" alt="">
+											</button>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 			

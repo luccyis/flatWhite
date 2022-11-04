@@ -71,7 +71,7 @@
 				<div id="main_section01" class="section main-movie">
 					<div class="bg">
 						<div class="bg-pattern"></div>
-						<img src="https://img.megabox.co.kr/SharedImg/2022/07/18/9VNzlQdAXthFNSO8dtfjE9E166E3sAve_380.jpg" alt="비상선언_칸 영화제 공식 포스터_한글 ver._8월3일대개봉.jpg" onerror="noImg(this, 'main');">
+						<img src="https://img.megabox.co.kr/SharedImg/2022/07/18/9VNzlQdAXthFNSO8dtfjE9E166E3sAve_380.jpg" alt="비상선언_칸 영화제 공식 포스터_한글 ver._8월3일대개봉.jpg">
 					</div>
 						
 					<!-- cont-area  -->
@@ -229,8 +229,6 @@
 							<!-- 광고영역 -->
 							<div class="ad-img">
 								<img src="https://mlink-cdn.netinsight.co.kr/2022/05/19/e4360c233c12b3ca0f16462cf7e59329.png" alt="" />
-								<script data-id="M_rwl-o8QV2xFMa0Oy93qQ" name="megabox_p/main/main@main_middle_event_415x530?mlink=341" src="" async=""></script>
-								<script src=""></script>
 								<div id="M_rwl-o8QV2xFMa0Oy93qQ">
 									<iframe src="" title="메인 혜택 우측배너영역" height="530px" width="415px" name="mliframe" scrolling="no" frameborder="0" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0"></iframe>
 								</div>
@@ -239,13 +237,6 @@
 						</div>
 						<!-- 혜택 종료 -->
 	
-						<div class="menu-link">
-							<div class="cell vip"><a title="VIP LOUNGE 페이지로 이동">VIP LOUNGE</a></div>
-							<div class="cell membership"><a title="멤버십 페이지로 이동">멤버십</a></div>
-							<div class="cell card"><a title="할인카드안내 페이지로 이동">할인카드안내</a></div>
-							<div class="cell event"><a onclick="" title="이벤트 페이지로 이동">이벤트</a></div>
-							<div class="cell store"><a onclick="" title="스토어 페이지로 이동">스토어</a></div>
-						</div>
 	
 						<!-- grand-open -->
 						<div class="grand-open">
@@ -287,7 +278,7 @@
 	
 												<p class="date">2022.07.05</p>
 	
-												<img src="" alt="[광명소하지점] 오픈 이벤트">
+												<img src="" >
 											</a>
 										</div>
 										<div class="cell swiper-slide swiper-slide-next" style="width: 242.333px;">
@@ -304,7 +295,7 @@
 	
 												<p class="date">2022.07.13</p>
 	
-												<img src="" alt="[금정AK플라자지점] 오픈 이벤트" >
+												<img src="" >
 											</a>
 										</div>
 									</div>

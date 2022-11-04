@@ -101,6 +101,37 @@
 		</selectKey>
 	</insert>
 	
+	<insert id="kakaoInst">
+		INSERT INTO infrMember (
+			ifmmId
+			,ifmmName
+			,ifmmEmailAddress
+			,ifmmGender
+			,ifmmDob
+			,ifmmRegDate
+			,ifmmSnsLogin
+			,ifmmDelNy
+			,ifmmSnsImg
+			,ifmmGrade
+		)
+		VALUES (
+			#{ifmmId}
+			,#{ifmmName}
+			,#{ifmmEmailAddress}
+			,#{ifmmGender}
+			,#{ifmmDob}
+			,now()
+			,13
+			,0
+			,#{ifmmSnsImg}
+			,4
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
 	<update id="update">
 		UPDATE infrMember
 		SET
@@ -146,6 +177,9 @@
 		SELECT
 			a.ifmmSeq
 			,a.ifmmId
+			,a.ifmmName
+			,a.ifmmGrade
+			,a.ifmmSnsImg
 		FROM
 			infrMember a
 		WHERE 1=1 
@@ -162,6 +196,26 @@
 			<if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if> 
 	</select>
 	
+	<select id="snsLoginSelectOne" resultMap="resultMapObj">
+		select 
+			a.ifmmSeq
+			,a.ifmmId
+			,a.ifmmPassword
+			,a.ifmmName
+			,a.ifmmGender
+			,a.ifmmGrade
+			,a.ifmmEmailAddress
+			,a.ifmmEmailDomain
+			,a.ifmmPhone
+			,a.ifmmDob
+			,a.ifmmSnsLogin
+			,a.ifmmSnsImg
+			,a.ifmmDelNy
+		from infrMember a
+		where 1=1
+			and a.ifmmId=#{ifmmId}
+			<if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if>
+	</select>
 	
 	
 	

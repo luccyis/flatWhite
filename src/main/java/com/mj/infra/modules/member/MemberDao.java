@@ -51,6 +51,16 @@ public class MemberDao {
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);
 	}
+	
+	public int kakaoInst (Member dto) {
+		return sqlSession.insert(namespace +".kakaoInst", dto);
+	}
+	
+	public Member snsLoginSelectOne(Member dto) {
+		return sqlSession.selectOne(namespace + ".snsLoginSelectOne", dto);
+	}
+	
+	
 		
 	
 }

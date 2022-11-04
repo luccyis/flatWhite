@@ -2,6 +2,8 @@ package com.mj.infra.modules.home;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +36,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "userHome")
-	public String homeList(@ModelAttribute("vo") MovieVo vo, Movie dto, Model model) throws Exception{
+	public String homeList(HttpSession httpSession, @ModelAttribute("vo") MovieVo vo, Movie dto, Model model) throws Exception{
 		List<Movie> list = service.selectListMain(vo);
 		model.addAttribute("list", list);
+		System.out.println(httpSession.getAttribute("sessName"));
 		return "infra/home/user/home";
 	}
 	

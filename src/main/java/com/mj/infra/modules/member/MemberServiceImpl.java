@@ -74,6 +74,15 @@ public class MemberServiceImpl implements MemberService {
 		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
 		return dao.selectOneLogin(dto);
 	}
+	@Override
+	public int kakaoInst(Member dto) throws Exception {
+		return dao.kakaoInst(dto);
+	}
+
+	@Override
+	public Member snsLoginSelectOne(Member dto) throws Exception {
+		return dao.snsLoginSelectOne(dto);
+	}
 
 	
 	

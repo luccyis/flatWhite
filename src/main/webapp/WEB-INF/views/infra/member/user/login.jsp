@@ -86,8 +86,8 @@
 
 										<div class="sns-login">
 											<a href="" lnkgty="FACEBOOK" title="페이스북으로 로그인 선택"><img src="/resources/images/ico-facebook.png" alt="페이스북">페이스북으로 로그인</a>
-											<a href="" lnkgty="NAVER" title="네이버로 로그인 선택"><img src="/resources/images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
-											<a href="" lnkgty="KAKAO" title="카카오톡으로 로그인 선택"><img src="/resources/images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
+											<a title="네이버로 로그인 선택"><img src="/resources/images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
+											<a id="kakaoBtn" lnkgty="KAKAO" title="카카오톡으로 로그인 선택"><img src="/resources/images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
 										</div>
 									</div>
 								</div>
@@ -102,6 +102,16 @@
 							</div>
 							</form>
 							<!--// col-wrap -->
+							<form name="form">
+								<input type="hidden" name="ifmmName"/>
+								<input type="hidden" name="ifmmId"/>
+								<input type="hidden" name="ifmmPhone"/>
+								<input type="hidden" name="ifmmEmailAddress"/>
+								<input type="hidden" name="ifmmGender"/>
+								<input type="hidden" name="ifmmDob"/>
+								<input type="hidden" name="snsImg"/>
+								<input type="hidden" name="token"/>
+							</form>
 						</div>
 					</div>
 					<!--// tab 회원 로그인 -->
@@ -120,7 +130,81 @@
 
 <div class="normalStyle" style="display:none;position:fixed;top:0;left:0;background:#000;opacity:0.7;text-indent:-9999px;width:100%;height:100%;z-index:100;">닫기</div>
 <div class="alertStyle" style="display:none;position:fixed;top:0px;left:0px;background:#000;opacity:0.7;width:100%;height:100%;z-index:5005;"></div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script>
+Kakao.init('ae2d588a9908efcae4b7f462eb1258db'); // test 용
+console.log(Kakao.isInitialized());
+
+$("#kakaoBtn").on("click", function() {
+	/* Kakao.Auth.authorize({
+	      redirectUri: 'http://localhost:8080/member/kakaoCallback',
+	    }); */
+	
+	Kakao.Auth.login({
+	      success: function (response) {
+	        Kakao.API.request({
+	          url: '/v2/user/me',
+	          success: function (response) {
+	        	  
+	        	  var accessToken = Kakao.Auth.getAccessToken();
+	        	  Kakao.Auth.setAccessToken(accessToken);
+
+	        	  var account = response.kakao_account;
+	        	  
+	        	  console.log(response)
+	        	  console.log("email : " + account.email);
+	        	  console.log("name : " + account.name);
+	        	  console.log("nickname : " + account.profile.nickname);
+	        	  console.log("picture : " + account.profile.thumbnail_image_url);
+	        	  console.log("picture : " + account.gender);
+	        	  console.log("picture : " + account.birthday);
+	        	  console.log("picture : " + account.birthday.substring(0,2) + "-" + account.birthday.substring(2,account.birthday.length));
+      	  
+	        	  
+	        	 /*  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit(); */
+			
+	        	  $.ajax({
+				async: true
+				,cache: false
+				,type:"POST"
+				,url: "/member/kakaoLoginProc"
+				,data:{
+					ifmmId : account.email
+					,ifmmEmailAddress : account.email
+					,ifmmName : account.profile.nickname
+					,ifmmGender : account.gender == 'male'? 1: 2
+					,ifmmDob : account.birthday
+					,ifmmSnsImg : account.profile.thumbnail_image_url
+					
+					
+				}
+				,success : function(response) {
+					if (response.rt == "fail") {
+						alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+						return false;
+					} else {
+						window.location.href = "/";
+					}
+				},
+				error : function(jqXHR, status, error) {
+					alert("알 수 없는 에러 [ " + error + " ]");
+				}
+			});
+	          },
+	          fail: function (error) {
+	            console.log(error)
+	          },
+	        })
+	      },
+	      fail: function (error) {
+	        console.log(error)
+	      },
+	    })
+});
+
+</script>
  
  <script>
  

@@ -141,6 +141,42 @@ public class MemberController {
 		return returnMap;
 		}
 	
+	@ResponseBody
+	@RequestMapping(value = "kakaoLoginProc")
+	public Map<String, Object> kakaoLoginProc(Member dto, HttpSession httpSession) throws Exception {
+	    Map<String, Object> returnMap = new HashMap<String, Object>();
+	    
+		Member kakaoLogin = service.selectOneId(dto);
+		
+		 System.out.println("test : " + dto.getToken());
+		
+		if (kakaoLogin == null) {
+			service.kakaoInst(dto);
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			// session(dto.getSeq(), dto.getId(), dto.getName(), dto.getEmail(), dto.getUser_div(), dto.getSnsImg(), dto.getSns_type(), httpSession);
+            session(dto, httpSession); 
+			returnMap.put("rt", "success");
+		} else {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			
+			// session(kakaoLogin.getSeq(), kakaoLogin.getId(), kakaoLogin.getName(), kakaoLogin.getEmail(), kakaoLogin.getUser_div(), kakaoLogin.getSnsImg(), kakaoLogin.getSns_type(), httpSession);
+			session(kakaoLogin, httpSession);
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+
+	 public void session(Member dto, HttpSession httpSession) {
+	     httpSession.setAttribute("sessSeq", dto.getIfmmSeq());    
+	     httpSession.setAttribute("sessId", dto.getIfmmId());
+	     httpSession.setAttribute("sessName", dto.getIfmmName());
+	     httpSession.setAttribute("sessEmail", dto.getIfmmEmailAddress());
+	     httpSession.setAttribute("sessImg", dto.getIfmmSnsImg());
+	     httpSession.setAttribute("sessSns", dto.getIfmmSnsLogin());
+	     httpSession.setAttribute("sessGrade", dto.getIfmmGrade());
+	 }
+	
 
 	@ResponseBody
 	@RequestMapping(value = "logoutProc")
