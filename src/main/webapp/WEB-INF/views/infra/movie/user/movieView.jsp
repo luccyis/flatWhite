@@ -30,7 +30,7 @@
 			<div class="inner-wrap">
 				<div class="location">
 					<span>Home</span>
-                	<a href="/movie/main title="영화 페이지로 이동">영화</a>
+                	<a href="/movie/main" title="영화 페이지로 이동">영화</a>
                 	<a title="전체영화 페이지로 이동">전체영화</a>
                 	<a title="박스오피스 페이지로 이동">박스오피스</a>
 				</div>
@@ -187,8 +187,11 @@
 								                    </div>
 								                </div>
 								            </li>
-								        </ul>
-							        </div>
+								            <li>
+						           				<div id="CommentList"></div>
+						           			</li>	
+						           		</ul>
+						           	</div>
 				           		</c:when>
 						    <c:otherwise>
 					    		<div class="tit-util mt70 mb15 oneContent" id="reviewList">
@@ -239,44 +242,43 @@
 							                   <!-- // 내용 영역 -->
 							               </div>
 							           </li>
-							         </ul>
+							       		<li>
+								           <div id="CommentList">
+										       <c:forEach items="${review}" var="review" varStatus="status">
+											        <li class="type01 oneContentTag">
+											        	<div class="story-area">
+											        		<div class="user-prof">
+											        			<div class="prof-img">
+											        				<img src="/resources/images/profile-default.png" alt="프로필사진">
+											        			</div>
+											        			<p class="user-id"><c:out value="${review.ifmmId}"/></p>
+										        			</div>
+											        		<div class="story-box">
+											        			<div class="story-wrap review">
+											        				<div class="tit">관람평</div>
+											        				<div class="story-cont">
+											        					<div class="story-point">                        
+											        						<span><c:out value="${review.tdmcRate}"/></span>                    
+											        					</div>                    
+											        					<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
+									       							</div>                    
+										       					</div>                
+										       				</div>            
+										       			</div>        
+							       						<div class="story-date">            
+							       							<div class="review on">                
+							       								<span><c:out value="${review.tdmcCreatDate}"/></span>            
+							       							</div>        
+							      						</div>
+							       					</li>
+						       					</c:forEach>
+							       			</div>
+							       		</li>	
+						       		  </ul>	
 							       </div> 
 					           </c:otherwise>
 			 				</c:choose>
-			 				<div class="movie-idv-story oneContent">
-					           <div id="CommentList">
-						           	<ul>
-								       <c:forEach items="${review}" var="review" varStatus="status">
-									        <li class="type01 oneContentTag">
-									        	<div class="story-area">
-									        		<div class="user-prof">
-									        			<div class="prof-img">
-									        				<img src="/resources/images/profile-default.png" alt="프로필사진">
-									        			</div>
-									        			<p class="user-id"><c:out value="${review.ifmmId}"/></p>
-								        			</div>
-									        		<div class="story-box">
-									        			<div class="story-wrap review">
-									        				<div class="tit">관람평</div>
-									        				<div class="story-cont">
-									        					<div class="story-point">                        
-									        						<span><c:out value="${review.tdmcRate}"/></span>                    
-									        					</div>                    
-									        					<div class="story-txt"><c:out value="${review.tdmcContent}"/></div>                    
-							       							</div>                    
-								       					</div>                
-								       				</div>            
-								       			</div>        
-					       						<div class="story-date">            
-					       							<div class="review on">                
-					       								<span><c:out value="${review.tdmcCreatDate}"/></span>            
-					       							</div>        
-					      						</div>
-					       					</li>
-				       					</c:forEach>
-					       			</ul>	
-				       			</div>
-			       			</div>	
+			 					
 		    			</form>		
 	    			</div>
 	<!--// inner-wrap -->
@@ -298,7 +300,7 @@
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
-<!-- scripte-e -->
+<!-- script-e -->
 
 
 
@@ -323,7 +325,6 @@ submitReview = function(){
         success:function(){
 	        	var txt = "";
 	        	
-	        	txt += '<ul>';
 	        	txt += '<li class="type01 oneContentTag">';
 	        	txt += '<div class="story-area">';
 	        	txt += '<div class="user-prof">';
@@ -350,7 +351,6 @@ submitReview = function(){
 	        	txt += '</div>';
 	        	txt += '</div>';
 	        	txt += '</li>';
-	        	txt += '</ul>';
 	        	
 		        CommentList.prepend(txt);
 		        $("#tdmcContent").val("");
