@@ -94,10 +94,10 @@
 			
 						<div class="chk-box">
 							<strong class="label w80px">이메일</strong>
-							<input type="radio" name="marketEmailRcvAgreeAt" id="chk3" value="Y">
+							<input type="radio" name="ifmmEmailNy" id="chk3" value="1">
 							<label for="chk3" class="w80px">수신동의</label>
 			
-							<input type="radio" name="marketEmailRcvAgreeAt" id="chk4" value="N" checked="">
+							<input type="radio" name="ifmmEmailNy" id="chk4" value="0" checked="">
 							<label for="chk4" class="w80px">수신거부</label>
 			
 							
@@ -105,13 +105,11 @@
 			
 						<div class="chk-box mt05">
 							<strong class="label w80px">SMS</strong>
-							<input type="radio" name="marketSmsRcvAgreeAt" id="chk5" value="Y">
+							<input type="radio" name="ifmmSmsNy" id="chk5" value="1">
 							<label for="chk5" class="w80px">수신동의</label>
 			
-							<input type="radio" name="marketSmsRcvAgreeAt" id="chk6" value="N" checked="">
+							<input type="radio" name="ifmmSmsNy" id="chk6" value="0" checked="">
 							<label for="chk6" class="w80px">수신거부</label>
-			
-							
 						</div>
 			
 					</div>
@@ -130,150 +128,28 @@
 				<tr>
 					<th scope="row">선호극장</th>
 					<td>
-						<span>선호 영화관은 최대 3개까지 등록 가능합니다.</span>
-						<p>
-							<span>1순위</span>
-							<div class="dropdown bootstrap-select w150px ml30 favorBrch bs3">
-								<input type="hidden" name="xtheaterSort" value="1"/>
-								<select title="1순위 지역 선택" class="w150px ml30 favorBrch" tabindex="-98">
-									<option class="bs-title-option" value=""></option>
-									<option value="">지역선택</option>
-									<option value="10" selected="">서울</option>
-								</select>
-								<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="서울">
-									<div class="filter-option">
-										<div class="filter-option-inner">
-											<div class="filter-option-inner-inner">서울</div>
-										</div>
-									</div>
-									<span class="bs-caret">
-										<span class="caret"></span>
-									</span>
-								</button>
-								<div class="dropdown-menu open" role="combobox">
-									<div class="inner open" role="listbox" aria-expanded="false" tabindex="-1">
-										<ul class="dropdown-menu inner "></ul>
+						<span>선호 영화관은 최대 3개까지 등록 가능합니다.</span><br>
+						<c:forEach var="sort" begin="1" end="3" step="1" varStatus="sortNum">
+							<span><c:out value="${sortNum.index}"/>순위</span>
+							<input type="hidden" name="xtheaterSort" value="${sortNum.index}"/>
+								<div class="row">
+									<div class="col p-2" style="display: inline;">
+										<select title="${sortNum.index}순위 지역 선택" class="w150px" tabindex="-98">
+											<option class="bs-title-option" value=""></option>
+											<option value="">지역선택</option>
+											<option value="" selected="">서울</option>
+										</select>
+									</div>	
+									<div class="col p-2" style="display: inline;">
+										<select name="tdthSeq" title="${sortNum.index}순위 극장 선택" class="w150px" tabindex="-98">
+											<option>극장선택</option>
+											<c:forEach items="${thList}" var="list" varStatus="statusThList">
+											<option value="${list.tdthSeq}" checked><c:out value="${list.tdthBranch}"/></option>
+											</c:forEach>
+										</select>
 									</div>
 								</div>
-							</div>
-							<div class="dropdown bootstrap-select w150px ml10 favorBrch2 bs3">
-								<select name="tdthSeq" title="1순위 극장 선택" class="w150px ml10 favorBrch2" tabindex="-98">
-									<option class="bs-title-option" value=""></option>
-									<option>극장선택</option>
-									<option value="1003">동대문</option>
-									<option value="1331">성수</option>
-									<option value="1351" selected="">코엑스</option>
-								</select>
-								<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="코엑스">
-									<div class="filter-option">
-										<div class="filter-option-inner">
-											<div class="filter-option-inner-inner">코엑스</div>
-										</div>
-									</div>
-									<span class="bs-caret">
-										<span class="caret"></span>
-									</span>
-								</button>
-								<div class="dropdown-menu open" role="combobox">
-									<div class="inner open" role="listbox" aria-expanded="false" tabindex="-1">
-										<ul class="dropdown-menu inner "></ul>
-									</div>
-								</div>
-							</div>
-						</p>
-						<p>
-							<span>2순위</span>
-							<div class="dropdown bootstrap-select w150px ml30 favorBrch bs3">
-								<input type="hidden" name="theaterSort" value="2"/>
-								<select title="2순위 지역 선택" class="w150px ml30 favorBrch" tabindex="-98">
-									<option class="bs-title-option" value=""></option>	
-									<option value="">지역선택</option>
-									<option value="10">서울</option>
-								</select>
-								<button type="button" class="btn dropdown-toggle btn-default bs-placeholder" data-toggle="dropdown" role="button" title="2순위 지역 선택">
-									<div class="filter-option">
-										<div class="filter-option-inner">
-											<div class="filter-option-inner-inner">2순위 지역 선택</div>
-										</div>
-									</div>
-									<span class="bs-caret">
-										<span class="caret"></span>
-									</span>
-								</button>
-								<div class="dropdown-menu open" role="combobox">
-									<div class="inner open" role="listbox" aria-expanded="false" tabindex="-1">
-										<ul class="dropdown-menu inner "></ul>
-									</div>
-								</div>
-							</div>
-							<div class="dropdown bootstrap-select w150px ml10 favorBrch2 bs3">
-								<select title="순위 극장 선택" class="w150px ml10 favorBrch2" tabindex="-98">
-									<option class="bs-title-option" value=""></option>
-									<option>극장선택</option>
-								</select>
-								<button type="button" class="btn dropdown-toggle btn-default bs-placeholder" data-toggle="dropdown" role="button" title="순위 극장 선택">
-									<div class="filter-option">
-										<div class="filter-option-inner">
-											<div class="filter-option-inner-inner">순위 극장 선택</div>
-										</div>
-									</div>
-									<span class="bs-caret">
-										<span class="caret"></span>
-									</span>
-								</button>
-								<div class="dropdown-menu open" role="combobox">
-									<div class="inner open" role="listbox" aria-expanded="false" tabindex="-1">
-										<ul class="dropdown-menu inner "></ul>
-									</div>
-								</div>
-							</div>
-						</p>
-						<p>
-							<span>3순위</span>
-							<div class="dropdown bootstrap-select w150px ml30 favorBrch bs3">
-								<select title="3순위 지역 선택" class="w150px ml30 favorBrch" tabindex="-98">
-									<option class="bs-title-option" value=""></option>	
-									<option value="">지역선택</option>
-									<option value="10">서울</option>
-								</select>
-								<button type="button" class="btn dropdown-toggle btn-default bs-placeholder" data-toggle="dropdown" role="button" title="3순위 지역 선택">
-									<div class="filter-option">
-										<div class="filter-option-inner">
-											<div class="filter-option-inner-inner">3순위 지역 선택</div>
-										</div>
-									</div>
-									<span class="bs-caret">
-										<span class="caret"></span>
-									</span>
-								</button>
-								<div class="dropdown-menu open" role="combobox">
-									<div class="inner open" role="listbox" aria-expanded="false" tabindex="-1">
-										<ul class="dropdown-menu inner "></ul>
-									</div>
-								</div>
-							</div>
-							<div class="dropdown bootstrap-select w150px ml10 favorBrch2 bs3">
-								<select title="3순위 극장 선택" class="w150px ml10 favorBrch2" tabindex="-98">
-									<option class="bs-title-option" value=""></option>
-									<option>극장선택</option>
-								</select>
-								<button type="button" class="btn dropdown-toggle btn-default bs-placeholder" data-toggle="dropdown" role="button" title="3순위 극장 선택">
-									<div class="filter-option">
-										<div class="filter-option-inner">
-											<div class="filter-option-inner-inner">3순위 극장 선택</div>
-										</div>
-									</div>
-									<span class="bs-caret">
-										<span class="caret"></span>
-									</span>
-								</button>
-								<div class="dropdown-menu open" role="combobox">
-									<div class="inner open" role="listbox" aria-expanded="false" tabindex="-1">
-										<ul class="dropdown-menu inner "></ul>
-									</div>
-								</div>
-							</div>
-						</p>
+						</c:forEach>
 					</td>
 				</tr>
 			</tbody>

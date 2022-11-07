@@ -13,6 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mj.infra.modules.member.Member;
 import com.mj.infra.modules.member.MemberServiceImpl;
 import com.mj.infra.modules.member.MemberVo;
+import com.mj.infra.modules.theater.Theater;
+import com.mj.infra.modules.theater.TheaterServiceImpl;
+import com.mj.infra.modules.theater.TheaterVo;
 
 @Controller
 @RequestMapping(value = "/mypage/")
@@ -23,6 +26,9 @@ public class MypageController {
 	
 	@Autowired
 	MemberServiceImpl memberService;
+	
+	@Autowired
+	TheaterServiceImpl theaterService;
 	
 	@RequestMapping(value="main")
 	public String mypageMain(HttpSession httpSession, MypageVo vo, Model model) throws Exception {
@@ -56,13 +62,13 @@ public class MypageController {
 	
 	
 	@RequestMapping(value="additionalInfo")
-	public String additionalInfo(HttpSession httpSession, Model model, MemberVo vo, MypageVo vo1) throws Exception {
+	public String additionalInfo(HttpSession httpSession, Model model, MemberVo vo, TheaterVo vo1) throws Exception {
 		vo.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
 		Member AddInfo = memberService.selectOne(vo);
 		model.addAttribute("AddInfo", AddInfo);
 		
-		List<Mypage> list = service.selectListFavoritTheater(vo1);
-		model.addAttribute("list", list);
+		List<Theater> thList = theaterService.selectList(vo1);
+		model.addAttribute("thList", thList);
 		
 		return "infra/mypage/user/additionalInfo";
 	}
