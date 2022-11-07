@@ -47,8 +47,15 @@ public class Mypage extends Base {
 	private String tdthBranch;
 	private String tdpxPlexName;
 	private String[] xtheaterSort;
+	private String[] xtdthSeq;
 	
 	
+	public String[] getXtdthSeq() {
+		return xtdthSeq;
+	}
+	public void setXtdthSeq(String[] xtdthSeq) {
+		this.xtdthSeq = xtdthSeq;
+	}
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}

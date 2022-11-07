@@ -45,23 +45,15 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void insertFavoriteTheater(Mypage dto, MypageVo vo) throws Exception {
 		
-		// 좋아하는 극장이 등록 되어 있는지 확인
-		int result = dao.selectOneCountFavoriteTheater(vo);
+		dao.deleteFavoriteTheater(vo);
 		
-		if(result == 0) {
-			// insert
-			dao.insertFavoriteTheater(dto);
-		} else {
-			dao.deleteFavoriteTheater(vo);
-			
 			for(int i=0; i<dto.getXtheaterSort().length; i++) {
-				// delete 전체
-				if(dto.getTdthSeq() != null) {
-					// insert
-					dao.insertFavoriteTheater(dto);
-				}
+				dto.setTdftSort(dto.getXtheaterSort()[i]);
+				dto.setTdthSeq(dto.getXtdthSeq()[i]);
+				dao.insertFavoriteTheater(dto);
+				
 			}
-		}
+		
 		
 	}
 	

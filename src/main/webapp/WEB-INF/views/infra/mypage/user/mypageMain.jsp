@@ -113,10 +113,12 @@
 									<c:otherwise>
 										<div class="list">
 											<ol>
-												<li>	
-													<em><c:out value="${tdftSort}"/></em>	
-													<span><c:out value="${favTh.tdthBranch}"/></span>
-												</li>
+												<c:forEach items="${favTh}" var="favTh" varStatus="statusFav">
+													<li>	
+														<em><c:out value="${favTh.tdftSort}"/></em>	
+														<span><c:out value="${favTh.tdthBranch}"/></span>
+													</li>
+												</c:forEach>
 											</ol>
 										</div>	
 									</c:otherwise>

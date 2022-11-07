@@ -94,10 +94,10 @@
 			
 						<div class="chk-box">
 							<strong class="label w80px">이메일</strong>
-							<input type="radio" name="ifmmEmailNy" id="chk3" value="1">
+							<input type="radio" name="ifmmEmailNy" id="chk3" value="1" checked>
 							<label for="chk3" class="w80px">수신동의</label>
 			
-							<input type="radio" name="ifmmEmailNy" id="chk4" value="0" checked="">
+							<input type="radio" name="ifmmEmailNy" id="chk4" value="0">
 							<label for="chk4" class="w80px">수신거부</label>
 			
 							
@@ -105,10 +105,10 @@
 			
 						<div class="chk-box mt05">
 							<strong class="label w80px">SMS</strong>
-							<input type="radio" name="ifmmSmsNy" id="chk5" value="1">
+							<input type="radio" name="ifmmSmsNy" id="chk5" value="1" checked>
 							<label for="chk5" class="w80px">수신동의</label>
 			
-							<input type="radio" name="ifmmSmsNy" id="chk6" value="0" checked="">
+							<input type="radio" name="ifmmSmsNy" id="chk6" value="0" >
 							<label for="chk6" class="w80px">수신거부</label>
 						</div>
 			
@@ -135,16 +135,15 @@
 								<div class="row">
 									<div class="col p-2" style="display: inline;">
 										<select title="${sortNum.index}순위 지역 선택" class="w150px" tabindex="-98">
-											<option class="bs-title-option" value=""></option>
 											<option value="">지역선택</option>
 											<option value="" selected="">서울</option>
 										</select>
 									</div>	
 									<div class="col p-2" style="display: inline;">
-										<select name="tdthSeq" title="${sortNum.index}순위 극장 선택" class="w150px" tabindex="-98">
+										<select name="xtdthSeq" title="${sortNum.index}순위 극장 선택" class="w150px" tabindex="-98">
 											<option>극장선택</option>
 											<c:forEach items="${thList}" var="list" varStatus="statusThList">
-											<option value="${list.tdthSeq}" checked><c:out value="${list.tdthBranch}"/></option>
+												<option value="${list.tdthSeq}" checked><c:out value="${list.tdthBranch}"/></option>
 											</c:forEach>
 										</select>
 									</div>
@@ -181,6 +180,11 @@
 
 <script>
 	var form = $("#formList");
+	var goUrlUpdt = "/mypage/additinalInfoUpdt";
+	
+	$("#updateBtn").on("click", function(){
+		form.attr("action", goUrlUpdt).submit();
+	});
 	
 
 </script>

@@ -107,8 +107,8 @@
 							<div class="col p-2">
 								<label for="delNy" class="form-label">삭제여부</label>
 								<select id="delNy" class="form-select" name="cdDelNy">
-									<option value="0" <c:if test="${item.cdDelNy eq 0}">selected</c:if>>>N</option>
-									<option value="1" <c:if test="${item.cdDelNy eq 1}">selected</c:if>>>Y</option>
+									<option value="0" <c:if test="${item.cdDelNy eq 0}">selected</c:if>>N</option>
+									<option value="1" <c:if test="${item.cdDelNy eq 1}">selected</c:if>>Y</option>
 								</select>
 							</div>
 						</div>

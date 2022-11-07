@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -62,7 +63,7 @@ public class MypageController {
 	
 	
 	@RequestMapping(value="additionalInfo")
-	public String additionalInfo(HttpSession httpSession, Model model, MemberVo vo, TheaterVo vo1) throws Exception {
+	public String additionalInfo(@ModelAttribute("dtoMy") Mypage dto, HttpSession httpSession, Model model, MemberVo vo, TheaterVo vo1) throws Exception {
 		vo.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
 		Member AddInfo = memberService.selectOne(vo);
 		model.addAttribute("AddInfo", AddInfo);
@@ -74,9 +75,11 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="additinalInfoUpdt")
-	public String additinalInfoUpdt(Mypage dto, MypageVo vo, RedirectAttributes redirectAttributes) throws Exception {
+	public String additinalInfoUpdt(Mypage dto,  MypageVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.updateAddInfo(dto);
+		
 		service.insertFavoriteTheater(dto, vo);
+		
 		return "redirect:/mypage/additionalInfo";
 	}
 
