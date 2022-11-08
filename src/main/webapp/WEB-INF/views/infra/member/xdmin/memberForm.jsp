@@ -213,9 +213,6 @@
     <!-- / Content -->
     <%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
 
-	<!-- modalBase s -->
-	<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
-	<!-- modalBase e -->
             <div class="content-backdrop fade"></div>
           <!-- Content wrapper -->
         <!-- / Layout page -->
@@ -223,7 +220,9 @@
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     <!-- / Layout wrapper -->
+    <%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
  <script type="text/javascript">
     
@@ -239,7 +238,6 @@
     	var formVo = $("form[name=formVo]");
     	
     </script>
-	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

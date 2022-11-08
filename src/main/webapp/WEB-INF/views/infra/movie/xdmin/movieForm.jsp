@@ -132,8 +132,6 @@
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="MultipartFile" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage2" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage2', 0, 1, 1, 0, 0, 1);">
 								<div class="addScroll" id="MovieUploadedImage1View"></div>
-									
-								
 							</div>
 						
 						</div>
@@ -153,7 +151,7 @@
 							<button type="button" class="btn btn-danger" id="btnDelete">
 								<i class="fa-solid fa-trash-can"></i>
 							</button>
-							<button type="button" class="btn btn-success" id="btnSave">  <!-- onclick="uploadVailidation()" -->
+							<button type="button" class="btn btn-success" id="btnSave"> 
 								<i class="fa-solid fa-arrow-up-from-bracket"></i>
 							</button>	
 						</div>
@@ -173,7 +171,6 @@
        <!-- / Content -->
  	<%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
  	<!-- modalBase s -->
-	<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
 	<!-- modalBase e -->
 
             <div class="content-backdrop fade"></div>
@@ -184,8 +181,9 @@
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
     <!-- / Layout wrapper -->
-
+	<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
     
     <script>
     var goUrlList = "/movie/movieList";
@@ -289,7 +287,6 @@
         }
     </script>
     
-    <%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

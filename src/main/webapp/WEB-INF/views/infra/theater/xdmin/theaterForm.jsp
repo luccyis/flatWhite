@@ -115,29 +115,29 @@
 						</div>	
 					</div>	
 			
-				<div class="row">
-					<div class="col-6">
-						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary" id="btnList">
-								<i class="fa-solid fa-bars"></i>
-							</button>
+					<div class="row">
+						<div class="col-6">
+							<div class="demo-inline-spacing">
+								<button type="button" class="btn btn-primary" id="btnList">
+									<i class="fa-solid fa-bars"></i>
+								</button>
+							</div>
+						</div>	
+						<div class="col-6 d-flex flex-row-reverse">
+							<div class="demo-inline-spacing">
+								<button type="button" class="btn btn-danger" id="btnUelete">
+									<i class="fa-solid fa-xmark"></i>
+								</button>
+								<button type="button" class="btn btn-danger" id="btnDelete">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+								<button type="button" class="btn btn-success" id="btnSave">
+									<i class="fa-solid fa-arrow-up-from-bracket"></i>
+								</button>	
+							</div>
 						</div>
-					</div>	
-					<div class="col-6 d-flex flex-row-reverse">
-						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-danger" id="btnUelete">
-								<i class="fa-solid fa-xmark"></i>
-							</button>
-							<button type="button" class="btn btn-danger" id="btnDelete">
-								<i class="fa-solid fa-trash-can"></i>
-							</button>
-							<button type="button" class="btn btn-success" id="btnSave">
-								<i class="fa-solid fa-arrow-up-from-bracket"></i>
-							</button>	
-						</div>
-					</div>
-				</div>		
-			</div>
+					</div>		
+				</div>
 			</form>
 			<form name="formVo" id="formVo" method="post">
 				<!-- *Vo.jsp s -->
@@ -147,10 +147,6 @@
 		</div>	
         <!-- / Content -->
 		 <%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
-		 
-		 <!-- modalBase s -->
-		<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
-		<!-- modalBase e -->
 
             <div class="content-backdrop fade"></div>
           </div>
@@ -163,8 +159,11 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+    
+    <%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
+	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
-<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
     
     <script type="text/javascript">
     
@@ -291,7 +290,6 @@
     }
     
 </script>
-<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

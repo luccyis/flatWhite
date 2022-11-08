@@ -61,107 +61,84 @@
 							</div>
 						</div>
 						<div class="table-responsive text-nowrap">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>요일</th>
-									<th>상영시간</th>
-									<th>일반 가격</th>
-									<th>청소년 가격</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td rowspan="2">주중</td>
-									<td>조조</td>
-									<td>
-										<input type="text" class="form-control"  name="thprPrice" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
-									</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
-									</td>
-								</tr>
-								<tr>
-									<!-- <td>월~목</td> -->
-									<td>일반</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
-									</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
-									</td>
-								</tr>
-								<tr>
-									<td rowspan="2">주말<br>공휴일</td>
-									<td>조조</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
-									</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
-									</td>
-								</tr>
-								<tr>
-									<!-- <td>금~일<br>공휴일</td> -->
-									<td>일반</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>" id="inputPrice">
-									</td>
-									<td>
-										<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>" id="inputPrice">
-									</td>
-								</tr>
-							</tbody>	
-						</table>
-					</div>
-						
-					
-						
-					</div>
-				
-					
-					</form>	
-				</div>	
-				
-				
-				<div class="row">
-					<div class="col-6">
-						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-primary">
-								<i class="fa-solid fa-bars"></i>
-							</button>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>요일</th>
+										<th>상영시간</th>
+										<th>일반 가격</th>
+										<th>청소년 가격</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td rowspan="2">주중</td>
+										<td>조조</td>
+										<td>
+											<input type="text" class="form-control"  name="thprPrice" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
+										</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
+										</td>
+									</tr>
+									<tr>
+										<!-- <td>월~목</td> -->
+										<td>일반</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
+										</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="2">주말<br>공휴일</td>
+										<td>조조</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
+										</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.thprPrice} "/>" id="inputPrice">
+										</td>
+									</tr>
+									<tr>
+										<!-- <td>금~일<br>공휴일</td> -->
+										<td>일반</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>" id="inputPrice">
+										</td>
+										<td>
+											<input type="text" class="form-control"  name="tdpxTotalSeatNum" value="<c:out value="${item.tdpxTotalSeatNum} "/>" id="inputPrice">
+										</td>
+									</tr>
+								</tbody>	
+							</table>
 						</div>
-					</div>	
-					<div class="col-6 d-flex flex-row-reverse">
-						<div class="demo-inline-spacing">
-							<button type="button" class="btn btn-danger">
-								<i class="fa-solid fa-xmark"></i>
-							</button>
-							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
-								<i class="fa-solid fa-trash-can"></i>
-							</button>
-							<button type="button" class="btn btn-success">
-								<i class="fa-solid fa-arrow-up-from-bracket"></i>
-							</button>	
+						<div class="row">
+							<div class="col-6">
+								<div class="demo-inline-spacing">
+									<button type="button" class="btn btn-primary" id="btnList">
+										<i class="fa-solid fa-bars"></i>
+									</button>
+								</div>
+							</div>	
+							<div class="col-6 d-flex flex-row-reverse">
+								<div class="demo-inline-spacing">
+									<button type="button" class="btn btn-danger" id="btnUelete">
+										<i class="fa-solid fa-xmark"></i>
+									</button>
+									<button type="button" class="btn btn-danger" id="btnDelete">
+										<i class="fa-solid fa-trash-can"></i>
+									</button>
+									<button type="button" class="btn btn-success" id="btnSave">
+										<i class="fa-solid fa-arrow-up-from-bracket"></i>
+									</button>	
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>		
-				<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">정말 삭제하시겠습니까?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-danger">삭제</button>
-							</div>
-						</div>	
-					</div>
-				</div>
-			</div>
+				</form>	
+			</div>	
 
      
           <!-- / Content -->
@@ -178,27 +155,29 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+    
+    <%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
+	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
+	<script type="text/javascript">
+    
+    	var goUrlList = "/theaterPrice/priceList";
+    	var goUrlInst = "/theaterPrice/priceInst";
+    	var goUrlUpdt = "/theaterPrice/priceUpdt";
+    	var goUrlUele = "/theaterPrice/priceUele";
+    	var goUrlDele = "/theaterPrice/priceDele";
+    	var goUrlForm = "/theaterPrice/priceForm";
+    	
+    	var seq = $("input:hidden[name=tdpxSeq]");
+    	
+    	var form = $("form[name=form]");
+    	var formVo = $("form[name=formVo]");
+    	
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </body>
 </html>

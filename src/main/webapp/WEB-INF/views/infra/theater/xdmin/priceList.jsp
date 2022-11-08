@@ -170,35 +170,23 @@
 					<!-- pagination s -->
 					<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
 					<!-- pagination e -->
-				</div>
-				
-				<div class="demo-inline-spacing">
-					<button type="button" class="btn btn-primary">
-						<i class="fa-solid fa-file-arrow-down"></i>
-					</button>
-					<button type="button" class="btn btn-success" id="btnForm">
-						<i class="fa-solid fa-plus"></i>
-					</button>
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#backDropModal">
-						<i class="fa-solid fa-minus"></i>
-					</button>
-				</div>
-				<div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="backDropModalTitle">삭제</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">정말 삭제하시겠습니까?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-danger">삭제</button>
-							</div>
-						</div>	
+					<div class="demo-inline-spacing">
+						<button type="button" class="btn btn-primary" id="btnExcel">
+							<i class="fa-solid fa-file-arrow-down"></i>
+						</button>
+						<button type="button" class="btn btn-success" id="btnForm">
+							<i class="fa-solid fa-plus"></i>
+						</button>
+						<button type="button" class="btn btn-danger" id="btnUelete">
+							<i class="fa-solid fa-minus"></i>
+						</button>
+						<button type="button" class="btn btn-danger" id="btnDelete">
+							<i class="fa-solid fa-trash-can"></i>
+						</button>
 					</div>
 				</div>
 			</div>
+		</form>
 
      
           <!-- / Content -->
@@ -215,25 +203,12 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script> //컨트롤러 수정해야됨
+    
+    <%@include file = "../../../common/xdmin/includeV1/modalBase.jsp" %> 
+    <%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+    <%@include file="../../../common/xdmin/includeV1/btnScript.jsp" %>
+    
+    <script> 
 	var goUrlList = "/theaterPrice/priceList";
 	var goUrlInst = "/theaterPrice/priceInst";
 	var goUrlUpdt = "/theaterPrice/priceUpdt";
@@ -246,31 +221,7 @@
 	var form = $("form[name=formList]");
 	var formVo = $("form[name=formVo]");
 	
-	$("#btnSearch").on("click", function(){
-		form.attr("action", goUrlList).submit();
-	});
 	
-	$("#btnReset").on("click", function(){
-		$(location).attr("href", goUrlList);
-	});
-	
-	$("#btnForm").on("click", function(){
-		goForm(0);
-	});
-	
-	goList = function(thisPage){
-		$("input:hidden[name=thisPage]").val(thisPage);
-		form.attr("action", goUrlList).submit();
-	}
-	
-	goForm = function(keyValue){
-		seq.val(keyValue);
-		form.attr("action", goUrlForm).submit();
-	}
-	
-	
-	
-	</script>
     
 
     <!-- Place this tag in your head or just before your close body tag. -->

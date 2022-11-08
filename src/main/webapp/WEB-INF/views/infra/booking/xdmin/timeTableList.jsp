@@ -100,6 +100,7 @@
 		<div class="card">
 			<h5 class="card-header">상영 시간표</h5>
 			<div class="card-body">
+				<span>total: </span><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }"/>
 				<div class="table-responsive text-nowrap">
 					<table class="table table-bordered">
 						<thead>
@@ -127,23 +128,23 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${list}" var="list" varStatus="status">
-								<tr style="cursor:pointer;" onclick="goForm('${list.tdttSeq}')">
-									<td>
-										<div class="form-check g-2">
-											<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" name="checkboxSeq" value="<c:out value="${list.tdttSeq}"/>" id="listCheck">
-										</div>
-									</td>
-									<td>${status.count}</td>
-									<td><c:out value="${list.tdttSeq}"/></td>
-									<td><c:out value="${list.tdmvMovieTitle}"/></td>
-									<td><c:out value="${list.tdthBranch}"/></td>
-									<td><c:out value="${list.tdpxPlexName}"/></td>
-									<td><c:out value="${list.tdttShowTime}"/></td>
-									<td>
-										<c:if test="${list.tdttMorningNy eq 0}">일반</c:if>
-										<c:if test="${list.tdttMorningNy eq 1}">조조</c:if>
-									</td>				
-								</tr>
+									<tr style="cursor:pointer;" onclick="goForm('${list.tdttSeq}')">
+										<td>
+											<div class="form-check g-2">
+												<input class="form-check-input" onclick="event.stopPropagation()" type="checkbox" name="checkboxSeq" value="<c:out value="${list.tdttSeq}"/>" id="listCheck">
+											</div>
+										</td>
+										<td>${status.count}</td>
+										<td><c:out value="${list.tdttSeq}"/></td>
+										<td><c:out value="${list.tdmvMovieTitle}"/></td>
+										<td><c:out value="${list.tdthBranch}"/></td>
+										<td><c:out value="${list.tdpxPlexName}"/></td>
+										<td><c:out value="${list.tdttShowTime}"/></td>
+										<td>
+											<c:if test="${list.tdttMorningNy eq 0}">일반</c:if>
+											<c:if test="${list.tdttMorningNy eq 1}">조조</c:if>
+										</td>				
+									</tr>
 								</c:forEach>
 							</c:otherwise>	
 						</c:choose>		
@@ -153,26 +154,27 @@
 			</div>
 			
 			<div class="card-footer">
-			<!-- pagination s -->
-			<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
-			<!-- pagination e -->	
-			</div>	
-			
-			<div class="demo-inline-spacing">
-				<button type="button" class="btn btn-primary">
-					<i class="fa-solid fa-file-arrow-down"></i>
-				</button>
-				<button type="button" class="btn btn-success" id="btnForm">
-					<i class="fa-solid fa-plus"></i>
-				</button>
-				<button type="button" class="btn btn-danger">
-					<i class="fa-solid fa-minus"></i>
-				</button>
+				<!-- pagination s -->
+				<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+				<!-- pagination e -->
+				<div class="demo-inline-spacing">
+					<button type="button" class="btn btn-primary" id="btnExcel">
+						<i class="fa-solid fa-file-arrow-down"></i>
+					</button>
+					<button type="button" class="btn btn-success" id="btnForm">
+						<i class="fa-solid fa-plus"></i>
+					</button>
+					<button type="button" class="btn btn-danger" id="btnUelete">
+						<i class="fa-solid fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-danger" id="btnDelete">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
+				</div>
 			</div>
 		</div>
-	
-		</form>
-	</div>
+	</form>
+</div>
 
        
     <!-- / Content --> 
@@ -191,23 +193,9 @@
     </div>
     <!-- / Layout wrapper -->
 
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
+    <%@include file = "../../../common/xdmin/includeV1/modalBase.jsp" %> 
+    <%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+    <%@include file="../../../common/xdmin/includeV1/btnScript.jsp" %>
     
 <script>
 	var goUrlList = "/timetable/timetableList";
@@ -217,38 +205,15 @@
 	var goUrlDele = "/timetable/timetableDele";
 	var goUrlForm = "/timetable/timetableForm";
 	
-	var seq = $("input:hidden[name=tdthSeq]");
+	var seq = $("input:hidden[name=tdttSeq]");
 	
 	var form = $("form[name=formList]");
 	var formVo = $("form[name=formVo]");
-	
-	$("#btnSearch").on("click", function(){
-		form.attr("action", goUrlList).submit();
-	});
-	
-	$("#btnReset").on("click", function(){
-		$(location).attr("href", goUrlList);
-	});
-	
-	goList = function(thisPage) {
-		$("input:hidden[name=thisPage]").val(thisPage);
-		form.attr("action", goUrlList).submit();
-	}
-	
-	$("#btnForm").on("click", function(){
-		goForm(0);
-	});
-	
-	goForm = function(keyValue){
-		seq.val(keyValue);
-		form.attr("action", goUrlForm).submit();
-	}
 	
 </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>  
   </body>
 </html>

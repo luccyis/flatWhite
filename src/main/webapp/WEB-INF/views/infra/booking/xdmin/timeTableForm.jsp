@@ -47,11 +47,12 @@
 			<div class="card">
 				<h5 class="card-header">상영 시간 추가</h5>
 				<div class="card-body">
-					<form>
+					<form id="form" name="form" method="post">
+						<%@include file ="timeTableVo.jsp" %>
 						<div class="row mb-3">
 							<div class="col-6 p-2">
 								<label class="col-md-2 col-form-label" for="ttSelectMovie">영화 선택</label>
-								<select id="ttSelectMovie" class="form-select">
+								<select id="ttSelectMovie" class="form-select" name="tdmvSeq">
 									<option value="">탑건: 매버릭</option>
 									<option value="">헤어질 결심</option>
 									<option value="">토르: 러브 앤 썬더</option>
@@ -62,7 +63,7 @@
 						<div class="row mb-3">	
 							<div class="col p-2">	
 								<label class="col-md-2 col-form-label" for="ttSelectTheater">극장 선택</label>
-								<select id="ttSelectTheater" class="form-select">
+								<select id="ttSelectTheater" class="form-select" name="tdthSeq">
 									<option value="">코엑스</option>
 									<option value="">성수</option>
 									<option value="">동대문</option>
@@ -70,7 +71,7 @@
 							</div>	
 							<div class="col p-2">
 								<label class="col-md-2 col-form-label" for="ttSelectPlex">상영관 선택</label>
-								<select id="ttSelectPlex" class="form-select">
+								<select id="ttSelectPlex" class="form-select" name="tdpxSeq">
 									<option value="">1관</option>
 									<option value="">2관</option>
 									<option value="">3관</option>
@@ -80,20 +81,43 @@
 						<div class="row mb-3">	
 							<div class="col p-2">
 								<label class="col-md-2 col-form-label" for="ttInputTime">시간 입력</label>
-								<input type="text" class="form-control" id="ttInputTime">
+								<input type="text" class="form-control" id="ttInputTime" name="tdttShowTime">
 							</div>	
 							<div class="col p-2">
 								<label class="col-md-2 col-form-label" for="ttMorningNy">조조여부</label>
-								<select id="ttMorningNy" class="form-select">
+								<select id="ttMorningNy" class="form-select" name="tdttMorningNy">
 									<option value="1">Y</option>
 									<option value="2">N</option>
 								</select>	
 							</div>
 						</div>
-						<button type="submit" class="btn btn-primary">제출</button>
-						<button type="button" class="btn btn-dark" onclick="location.href='../movie/movieTimetable.html'">
-							<i class="fa-solid fa-arrow-left"></i>
-						</button>	
+						<div class="row">
+							<div class="col-6">
+								<div class="demo-inline-spacing">
+									<button type="button" class="btn btn-primary" id="btnList">
+										<i class="fa-solid fa-bars"></i>
+									</button>
+								</div>
+							</div>	
+							<div class="col-6 d-flex flex-row-reverse">
+								<div class="demo-inline-spacing">
+									<button type="button" class="btn btn-danger" id="btnUelete">
+										<i class="fa-solid fa-xmark"></i>
+									</button>
+									<button type="button" class="btn btn-danger" id="btnDelete">
+										<i class="fa-solid fa-trash-can"></i>
+									</button>
+									<button type="button" class="btn btn-success" id="btnSave">
+										<i class="fa-solid fa-arrow-up-from-bracket"></i>
+									</button>	
+								</div>
+							</div>
+						</div>
+					</form>
+					<form name="formVo" id="formVo" method="post">
+						<!-- *Vo.jsp s -->
+						<%@include file="timeTableVo.jsp" %>
+						<!-- *Vo.jsp e -->
 					</form>
 				</div>	
 			</div>
@@ -106,36 +130,33 @@
             <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->
-        </div>
         <!-- / Layout page -->
-      </div>
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
     <!-- / Layout wrapper -->
 
+    <%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
+	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/resources/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/resources/assets/vendor/js/bootstrap.js"></script>
-    <script src="/resources/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/resources/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/resources/assets/vendor/libs/masonry/masonry.js"></script>
-
-    <!-- Main JS -->
-    <script src="/resources/assets/js/main.js"></script>
-
-    <!-- Page JS -->
-
+ 	<script>
+		var goUrlList = "/timetable/timetableList";
+		var goUrlInst = "/timetable/timetableInst";
+		var goUrlUpdt = "/timetable/timetableUpdt";
+		var goUrlUele = "/timetable/timetableUele";
+		var goUrlDele = "/timetable/timetableDele";
+		var goUrlForm = "/timetable/timetableForm";
+		
+		var seq = $("input:hidden[name=tdttSeq]");
+		
+		var form = $("form[name=formList]");
+		var formVo = $("form[name=formVo]");
+    	
+    </script>
+    
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </body>
 </html>

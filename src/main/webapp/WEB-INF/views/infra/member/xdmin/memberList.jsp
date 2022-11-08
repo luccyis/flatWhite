@@ -184,21 +184,22 @@
 						<!-- pagination s -->
 						<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
 						<!-- pagination e -->
-					</div>	
-					<div class="demo-inline-spacing">
-						<button type="button" class="btn btn-primary" id="btnExcel">
-							<i class="fa-solid fa-file-arrow-down"></i>
-						</button>
-						<button type="button" class="btn btn-success" id="btnForm">
-							<i class="fa-solid fa-plus"></i>
-						</button>
-						<button type="button" class="btn btn-danger" id="btnUelete">
-							<i class="fa-solid fa-minus"></i>
-						</button>
-						<button type="button" class="btn btn-danger" id="btnDelete">
-							<i class="fa-solid fa-trash-can"></i>
-						</button>
-					</div>
+					
+						<div class="demo-inline-spacing">
+							<button type="button" class="btn btn-primary" id="btnExcel">
+								<i class="fa-solid fa-file-arrow-down"></i>
+							</button>
+							<button type="button" class="btn btn-success" id="btnForm">
+								<i class="fa-solid fa-plus"></i>
+							</button>
+							<button type="button" class="btn btn-danger" id="btnUelete">
+								<i class="fa-solid fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-danger" id="btnDelete">
+								<i class="fa-solid fa-trash-can"></i>
+							</button>
+						</div>
+					</div>		
 				</div>
 			</form>
 		</div>	

@@ -1,6 +1,8 @@
 package com.mj.infra.modules.timetable;
 
-public class Timetable {
+import com.mj.infra.common.base.Base;
+
+public class Timetable extends Base{
 	
 	private String tdttSeq;
 	private String tdttShowTime;

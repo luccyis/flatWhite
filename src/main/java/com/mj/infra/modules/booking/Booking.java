@@ -27,12 +27,6 @@ public class Booking extends Base {
 	private String tdmvShowType;
 	private String tdmvState;
 	
-	public String getTdmvState() {
-		return tdmvState;
-	}
-	public void setTdmvState(String tdmvState) {
-		this.tdmvState = tdmvState;
-	}
 	//극장
 	private String tdthSeq;
 	private String tdthRegion;
@@ -59,6 +53,13 @@ public class Booking extends Base {
 	//회원
 	private String ifmmPhone;
 	
+	
+	public String getTdmvState() {
+		return tdmvState;
+	}
+	public void setTdmvState(String tdmvState) {
+		this.tdmvState = tdmvState;
+	}
 	public String getIfmmPhone() {
 		return ifmmPhone;
 	}

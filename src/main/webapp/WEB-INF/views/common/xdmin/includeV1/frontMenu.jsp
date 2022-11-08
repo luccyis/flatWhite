@@ -50,11 +50,6 @@
                     <div data-i18n="Container">무비포스트</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Fluid">영화 컨텐츠</div>
-                  </a>
-                </li>
               </ul>
             </li>
             <li class="menu-item">

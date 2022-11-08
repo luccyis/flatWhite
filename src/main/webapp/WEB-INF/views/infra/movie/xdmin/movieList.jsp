@@ -182,11 +182,9 @@
 				</div>
 				<div class="card-footer">
 					<!-- pagination s -->
-						<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
-						<!-- pagination e -->
-					</div>
-				</div>	
-				<div class="demo-inline-spacing">
+					<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+					<!-- pagination e -->
+					<div class="demo-inline-spacing">
 						<button type="button" class="btn btn-primary" id="btnExcel">
 							<i class="fa-solid fa-file-arrow-down"></i>
 						</button>
@@ -200,8 +198,9 @@
 							<i class="fa-solid fa-trash-can"></i>
 						</button>
 					</div>
-				</form>
-			</div>
+				</div>	
+			</form>
+		</div>
 
      
           <!-- / Content -->
