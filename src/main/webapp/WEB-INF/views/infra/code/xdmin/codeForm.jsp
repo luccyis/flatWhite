@@ -71,9 +71,10 @@
 								<label for="inputCgSeq" class="form-label">코드그룹 코드</label>
 								<select class="form-select" id="inputCgSeq" name="infrCodeGroup_cgSeq">
 									<c:forEach items="${list}" var="list" varStatus="status">
-										<option value="${list.cgSeq}">${list.cgName}</option>
+										<option value="${list.cgSeq}" <c:if test="${list.cgSeq eq item.infrCodeGroup_cgSeq}">selected</c:if>>${list.cgName}</option>
 									</c:forEach> 
 								</select>
+								
 							</div>
 						</div>
 						<div class="row">
