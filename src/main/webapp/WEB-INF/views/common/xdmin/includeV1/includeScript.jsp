@@ -19,3 +19,27 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="https://kit.fontawesome.com/47516a9c09.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+$("#btnLogout").on("click", function(){
+	$.ajax({
+		async: true
+		,cach: false
+		,type: "post"
+		,url: "/member/logoutProc"
+		,data: {}
+		,success: function(response) {
+			if(response.rt == "success"){
+				location.href = "/";
+			} else {
+				// by pass
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate" + jqXHR.textStatus + ": " + jqXHR.errorThrown);
+		}
+		
+	});
+});
+
+</script>

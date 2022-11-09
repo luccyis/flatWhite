@@ -19,7 +19,6 @@
 	<link rel="stylesheet" href="/resources/css/megabox.min.css" media="all">
 
 
-
 </head>
 <body>
 <div class="body-wrap">
@@ -44,7 +43,7 @@
 				<div class="bg-pattern"></div>
 				<div class="bg-mask"></div>
 
-		<!-- movie-detail-cont -->
+				<!-- movie-detail-cont -->
 				<div class="movie-detail-cont">
 			    	<p class="contents-type">#돌비시네마 #프리미어</p>
 					<p class="title"><c:out value="${result.tdmvMovieTitle}"/></p>
@@ -96,9 +95,16 @@
 			 					<img src="${item.upPath}${item.uuIdName}" alt="${result.tdmvMovieTitle}">
 							</div>
 						</div>
-						<div class="reserve screen-type col-2">
+						<div class="reserve screen-type col-1">
 							<div class="reserve">
-								<a href="/timetable/choiceMovie" class="btn reserve" title="영화 예매하기">예매</a>
+								<c:choose>
+									<c:when test = "${result.tdmvState eq 1}">
+										<a href="/timetable/choiceMovie" class="btn reserve" title="영화 예매하기">예매</a>
+									</c:when>
+									<c:otherwise>
+										<a class="btn soon" title="상영예정">상영예정</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
@@ -132,7 +138,15 @@
 					           			<c:if test="${result.tdmvAge eq listAge.cdSeq}"><c:out value="${listAge.cdName}"/></c:if>
 									</c:forEach>
 								</p>
-					          	<p>개봉일&nbsp;: <c:out value="${result.tdmvReleaseDate}"/></p>
+					          	<p>개봉일&nbsp;:
+					          		<c:choose>
+					          			<c:when test ="${result.tdmvState eq 1}">
+					          	 			<c:out value="${result.tdmvReleaseDate}"/></p>
+					          			</c:when>
+					          			<c:otherwise>
+					          				상영예정</p>
+					          			</c:otherwise>
+					          		</c:choose>
 					        </div>
 					           <p>출연진&nbsp;: <c:out value="${result.tdmvCast}"/></p>
 					    </div>
@@ -285,10 +299,8 @@
 				</div>
 	<!--// contentData -->
 			</div>
-		</div>	
 						
 <!--// movie-detail-poster -->
-
 
 
 	<!-- footer-s -->

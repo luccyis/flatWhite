@@ -11,14 +11,14 @@
 <script>
 $("#btnLogout").on("click", function(){
 	$.ajax({
-		async: true
+		async: trues
 		,cach: false
 		,type: "post"
 		,url: "/member/logoutProc"
 		,data: {}
 		,success: function(response) {
 			if(response.rt == "success"){
-				location.href = "/userHome";
+				location.href = "/";
 			} else {
 				// by pass
 			}

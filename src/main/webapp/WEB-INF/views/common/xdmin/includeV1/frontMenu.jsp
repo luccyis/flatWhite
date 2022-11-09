@@ -45,11 +45,6 @@
                     <div data-i18n="Without navbar">상영시간표</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Container">무비포스트</div>
-                  </a>
-                </li>
               </ul>
             </li>
             <li class="menu-item">
@@ -166,7 +161,7 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
+                            <span class="fw-semibold d-block"><c:out value="${sessName}"/></span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>

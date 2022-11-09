@@ -79,6 +79,8 @@
 			,a.tdmvModDate
 			,a.tdmvDelNy
 			,a.tdmvUseNy
+			,a.tdmvPercent
+			,a.tdmvState
 		FROM tradMovie a
 		WHERE
 		 tdmvSeq = #{tdmvSeq}
@@ -294,6 +296,8 @@
 			,a.tdmvModDate
 			,a.tdmvDelNy
 			,a.tdmvUseNy
+			,a.tdmvPercent
+			,a.tdmvState
 		FROM tradMovie a
 		WHERE 1=1	
 		AND a.tdmvDelNy = 0

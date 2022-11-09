@@ -59,8 +59,8 @@
 							<div class="col-wrap">
 								<div class="col left">
 									<div class="login-input-area">
-										<input autocomplete="off" id="ifmmId" name="ifmmId" maxlength="20" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim">
-										<input autocomplete="off" id="ifmmPassword" name="ifmmPassword" maxlength="20" type="password"  onkeyup="enterKey()" placeholder="비밀번호" title="비밀번호를 입력하세요" class="input-text mt15">
+										<input autocomplete="off" id="ifmmId" name="ifmmId" maxlength="20" type="text" placeholder="아이디" title="아이디를 입력하세요" class="input-text strTrim" value="hiii">
+										<input autocomplete="off" id="ifmmPassword" name="ifmmPassword" maxlength="20" type="password"  onkeyup="enterKey()" placeholder="비밀번호" title="비밀번호를 입력하세요" value="123" class="input-text mt15">
 										<div class="alert"></div>
 
 										<!-- chk-util -->
