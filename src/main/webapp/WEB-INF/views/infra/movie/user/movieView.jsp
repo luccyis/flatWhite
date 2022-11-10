@@ -117,8 +117,7 @@
 					        <ul>
 					            <li class="on"><a title="주요정보 탭으로 이동">주요정보</a></li>
 					            <li><a href="#reviewList" title="실관람평 탭으로 이동">실관람평</a></li>
-					            <li><a title="무비포스트 탭으로 이동">무비포스트</a></li>
-					            <li><a title="예고편/스틸컷 탭으로 이동">예고편/스틸컷</a></li>
+					            <li><a href="#movieTrailer" title="예고편 탭으로 이동">예고편</a></li>
 					        </ul>
 					    </div>
 					    <div class="movie-summary infoContent on" id="info">
@@ -292,23 +291,31 @@
 							       </div> 
 					           </c:otherwise>
 			 				</c:choose>
-			 					
-		    			</form>		
-	    			</div>
-	<!--// inner-wrap -->
+		 				</form>
+	 				</div>	
 				</div>
-	<!--// contentData -->
-			</div>
-						
-<!--// movie-detail-poster -->
+				<!--// contentData -->
+ 				<div class="movie-detail-poster mt70 moviepostContent" id="movieTrailer" >
+					<div class="inner-wrap">
+		                <div class="tit-util mb15">
+		                    <h2 class="tit small white">메인 예고편</h2>
+		                </div>
+						<iframe width="560" height="315" src="${result.tdmvTrailer}" title="YouTube video player" 
+						frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		            </div> 
+	            </div>   
+   			</div>
+		
+		
+
 
 
 	<!-- footer-s -->
 	<%@include file="../../../common/user/includeV1/footer.jsp" %>
 	<!-- footer-e -->
-	
 	</div>
-	<!-- Button trigger modal -->
+</div>
+	<!-- bodywrap -->
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>

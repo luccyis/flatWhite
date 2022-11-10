@@ -32,6 +32,13 @@ public class BookingServiceImpl implements BookingService {
 	public int insertBookingSeat(Booking dto) throws Exception {
 		return dao.insertBookingSeat(dto);
 	}
+
+	@Override
+	public List<Booking> monthListBooking(BookingVo vo) throws Exception {
+		List<Booking> list = dao.monthListBooking(vo);
+		return list;
+	}
+	
 	
 	
 

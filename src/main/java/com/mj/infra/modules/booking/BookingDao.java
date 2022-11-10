@@ -35,5 +35,9 @@ public class BookingDao {
 		return sqlSession.insert(namespace + ".insertBookingSeat", dto);
 	}
 	
+	public List<Booking> monthListBooking(BookingVo vo) {
+		List<Booking> list = sqlSession.selectList(namespace + ".monthListBooking", vo);
+		return list;
+	}
 	
 }

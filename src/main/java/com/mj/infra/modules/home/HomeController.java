@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mj.infra.modules.booking.Booking;
+import com.mj.infra.modules.booking.BookingServiceImpl;
+import com.mj.infra.modules.booking.BookingVo;
 import com.mj.infra.modules.member.MemberServiceImpl;
 import com.mj.infra.modules.member.MemberVo;
 import com.mj.infra.modules.movie.Movie;
@@ -30,6 +33,9 @@ public class HomeController {
 	@Autowired
 	TheaterServiceImpl theaterService;
 	
+	@Autowired
+	BookingServiceImpl bookingService;
+	
 	@RequestMapping(value="/")
 	public String home() throws Exception{
 		return "infra/home/home";
@@ -44,15 +50,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="xdminHome")
-	public String xdminHome(MemberVo mm, MovieVo mv, TheaterVo th, Model model) throws Exception {
+	public String xdminHome(MemberVo mm, MovieVo mv, TheaterVo th, BookingVo bk,Model model) throws Exception {
 		int memberCount = memberService.selectOneCount(mm);
 		model.addAttribute("memberCount", memberCount);
 		
 		int theaterCount = theaterService.selectOneCount(th);
 		model.addAttribute("theaterCount", theaterCount);
 		
-		List<Movie> list = service.selectListMain(mv);
-		model.addAttribute("list", list);
+		List<Movie> mvList = service.selectListMain(mv);
+		model.addAttribute("list", mvList);
+		
+		List<Booking> bkList = bookingService.monthListBooking(bk);
+		model.addAttribute("bkList", bkList);
+		
 		
 		
 		return "infra/home/xdmin/home";
