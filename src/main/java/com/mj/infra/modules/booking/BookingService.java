@@ -10,7 +10,7 @@ public interface BookingService {
 	public int insertBooking(Booking dto) throws Exception;
 	public int insertBookingSeat(Booking dto) throws Exception;
 	
-	public List<Booking> monthListBooking(BookingVo vo) throws Exception;
+	public List<Booking> monthListBooking() throws Exception;
 	
 	
 	

@@ -68,10 +68,10 @@
     </insert>
     
     <select id="monthListBooking" resultMap="resultMapObj">
-    	SELECT month(`tdbkBookingDate`) AS `date`, 
-		       sum(`tdbkTotalCost`)
+    	SELECT month(`tdbkBookingDate`) as `bkDate`, 
+		       sum(`tdbkTotalCost`) as `bkSum`
 		FROM tradBooking
-		GROUP BY `date`;
+		GROUP BY `bkDate`;
     </select>
     
     

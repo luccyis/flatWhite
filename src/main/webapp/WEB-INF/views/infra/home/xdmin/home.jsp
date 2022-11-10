@@ -97,30 +97,20 @@
                         				</div>
                         			</div>		
 		                		</div>
-		                		<div class="col-lg-6 col-md-12 col-6 mb-4">
+		                		<div class="col-lg-12 col-md-12 col-6 mb-4">
                      				<div class="card">
                         				<div class="card-body">
                         					<div class="card-title text-center">
-                       							<span class="fw-semibold d-block mb-1">시작이</span>
+                       							<span class="fw-semibold d-block mb-1">월별 결제금액</span>
                          						<h1 class="text-warning fw-semibold">
                          						<i class="fa-solid fa-cat"></i></h1>
-                        						<h3 class="card-title mb-2"> <c:out value="${theaterCount}"/></h3>
+                        						<h3 class="card-title mb-2"> <c:out value="${bkList.bkDate}"/></h3>
+                        						<h3 class="card-title mb-2"> <c:out value="${bkList.bkSum}"/></h3>
                         					</div>
                         				</div>
                         			</div>		
 		                		</div>
-		                		<div class="col-lg-6 col-md-12 col-6 mb-4">
-                     				<div class="card">
-                        				<div class="card-body">
-                        					<div class="card-title text-center">
-                       							<span class="fw-semibold d-block mb-1">반이다</span>
-                         						<h1 class="text-success fw-semibold">
-                         						<i class="fa-solid fa-seedling"></i></h1>
-                        						<h3 class="card-title mb-2"> <c:out value="${theaterCount}"/></h3>
-                        					</div>
-                        				</div>
-                        			</div>		
-		                		</div>
+		                		
 		                	</div>	
 		                </div>
 		            </div>    		

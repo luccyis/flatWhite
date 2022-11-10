@@ -53,7 +53,23 @@ public class Booking extends Base {
 	//회원
 	private String ifmmPhone;
 	
+	//관리자 결제 관리
+	private String bkDate;
+	private Integer bkSum;
 	
+	public Integer getBkSum() {
+		return bkSum;
+	}
+	public void setBkSum(Integer bkSum) {
+		this.bkSum = bkSum;
+	}
+	public String getBkDate() {
+		return bkDate;
+	}
+	public void setBkDate(String bkDate) {
+		this.bkDate = bkDate;
+	}
+
 	public String getTdmvState() {
 		return tdmvState;
 	}
