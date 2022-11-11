@@ -50,7 +50,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="xdminHome")
-	public String xdminHome(MemberVo mm, MovieVo mv, TheaterVo th,Model model) throws Exception {
+	public String xdminHome(MemberVo mm, MovieVo mv, TheaterVo th, Booking bk, Model model) throws Exception {
 		int memberCount = memberService.selectOneCount(mm);
 		model.addAttribute("memberCount", memberCount);
 		
@@ -62,7 +62,6 @@ public class HomeController {
 		
 		List<Booking> bkList = bookingService.monthListBooking();
 		model.addAttribute("bkList", bkList);
-		
 		
 		
 		return "infra/home/xdmin/home";

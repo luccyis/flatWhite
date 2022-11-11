@@ -62,9 +62,9 @@
 										    </div>  	
 										</c:forEach>	
 									</div>
-									<div class="row gx-1 ">
-										<div class="d-flex align-items-center">
-	                      					<button href="" class="btn btn-md btn-outline-primary" style="width: 300px;">영화정보관리로 이동</button>
+									<div class="row gx-1 justfy-content-center">
+										<div class="col-12 mt-4 text-center">
+	                      					<button type="button" class="btn btn-md btn-outline-primary" style="width: 300px;" onclick="location.href='/movie/movieList'">영화정보관리로 이동</button>
 										</div>
 									</div>
 	                      		</div>
@@ -104,8 +104,10 @@
                        							<span class="fw-semibold d-block mb-1">월별 결제금액</span>
                          						<h1 class="text-warning fw-semibold">
                          						<i class="fa-solid fa-cat"></i></h1>
-                        						<h3 class="card-title mb-2"> <c:out value="${bkList.bkDate}"/></h3>
-                        						<h3 class="card-title mb-2"> <c:out value="${bkList.bkSum}"/></h3>
+                         							<c:forEach items="${bkList}" var="bkList" varStatus="status">
+                        								<h3 class="card-title mb-2"> <c:out value="${bkList.bkDate}"/> 월 </h3> 
+                        								<h3 class="card-title mb-2"> <c:out value="${bkList.bkSum}"/>원 </h3>
+                        						</c:forEach>
                         					</div>
                         				</div>
                         			</div>		
