@@ -112,6 +112,7 @@
 										<th>극장코드</th>
 										<th>지역</th>
 										<th>지점</th>
+										<th>지점Eng</th>
 										<th>주소</th>
 										<th>우편번호</th>
 										<th>사용여부</th>
@@ -141,6 +142,7 @@
 													</c:forEach>
 												</td>
 												<td><c:out value="${list.tdthBranch}"/></td>
+												<td><c:out value="${list.tdthBranchEng}"/></td>
 												<td><c:out value="${list.tdthAddress}"/></td>
 												<td><c:out value="${list.tdthZipCode}"/></td>
 												<td><c:out value="${list.tdthUseNy}"/></td>
@@ -194,7 +196,7 @@
 	<%@include file = "../../../common/xdmin/includeV1/modalBase.jsp" %> 
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
-
+	<%@include file = "../../../common/xdmin/includeV1/datePicker.jsp" %>
 	<script>
 	var goUrlList = "/theater/theaterList";
 	var goUrlInst = "/theater/theaterInst";
@@ -202,6 +204,8 @@
 	var goUrlUele = "/theater/theaterUele";
 	var goUrlDele = "/theater/theaterDele";
 	var goUrlForm = "/theater/theaterForm";
+	
+	var excelUri = "/theater/excelDownload";
 	
 	var seq = $("input:hidden[name=tdthSeq]");
 	

@@ -79,7 +79,7 @@
 						<div class="col-6 p-2">
 							<label for="sample4_postcode" class="form-label">주소</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="sample3_postcode" name="tdthZipCode" placeholder="우편번호" aria-describedby="btnAddress">
+								<input type="text" class="form-control" id="sample3_postcode" name="tdthZipCode" placeholder="우편번호" aria-describedby="btnAddress" readonly>
 								<button type="button" class="btn btn-outline-dark" id="btnAddress">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
@@ -93,23 +93,23 @@
 						</div>
 						<div class="col-6 p-2">		
 							<div class="row p-1">	
-								<input type="text" class="form-control" id="sample3_roadAddress" name="tdthAddress" placeholder="도로명주소" disabled>
+								<input type="text" class="form-control" id="sample3_roadAddress" name="tdthAddress" placeholder="도로명주소" value="${item.tdthAddress}"readonly>
 							</div>	
 							<div class="row p-1">		
-								<input type="text" class="form-control" id="sample3_jibunAddress" name="" placeholder="지번주소" disabled>
+								<input type="text" class="form-control" id="sample3_jibunAddress" name="" placeholder="지번주소" readonly>
 							</div>
 							<div class="row p-1">		
 								<input type="text" class="form-control" id="sample3_detailAddress" name="" placeholder="상세주소">
 							</div>
 							<div class="row p-1">
-								<input type="text" class="form-control" id="sample3_extraAddress" placeholder="참고항목" disabled>
+								<input type="text" class="form-control" id="sample3_extraAddress" placeholder="참고항목" readonly>
 							</div>
 							<div class="row p-1">
 								<div class="col">
-									<input type="text" class="form-control" id="ifmaLatArray0" placeholder="위도" disabled>
+									<input type="text" class="form-control" id="ifmaLatArray0" placeholder="위도" readonly>
 								</div>
 								<div class="col">
-									<input type="text" class="form-control" id="ifmaLngArray0" placeholder="경도" disabled>
+									<input type="text" class="form-control" id="ifmaLngArray0" placeholder="경도" readonly>
 								</div>
 							</div>
 						</div>	
@@ -163,6 +163,7 @@
     <%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/datePicker.jsp" %>
 
     
     <script type="text/javascript">

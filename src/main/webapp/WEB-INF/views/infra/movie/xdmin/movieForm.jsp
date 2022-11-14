@@ -104,7 +104,7 @@
 						<div class="row">
 							<div class="col p-2">
 								<label class="form-label" for="tdmvReleaseDate">개봉일</label>
-								<input type="text" class="form-control" id="tdmvReleaseDate" value="<c:out value="${item.tdmvReleaseDate} "/>" name="tdmvReleaseDate">
+								<input type="text" class="form-control" id="inputReleaseDay" value="<c:out value="${item.tdmvReleaseDate} "/>" name="tdmvReleaseDate">
 							</div>
 							<div class="col p-2">
 								<label class="form-label" for="tdmvAudienceNumber">누적관람자수</label>
@@ -127,7 +127,7 @@
 						</div>
 						<div class="row">
 							<div class="col p-2">
-								<label class="form-label input-file-button btn-lg btn-warning" for="uploadedImage">포스터/스틸컷</label>
+								<label class="form-label" for="uploadedImage">포스터/스틸컷</label>
 								<img id="imgProfile" src="" alt="" style="width:300px; height:300px; border-radius:50%;">
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="MultipartFile" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage2" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage2', 0, 1, 1, 0, 0, 1);">
@@ -184,6 +184,7 @@
 	<%@include file="../../../common/xdmin/includeV1/modalBase.jsp"%>
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/datePicker.jsp" %>
     
     <script>
     var goUrlList = "/movie/movieList";

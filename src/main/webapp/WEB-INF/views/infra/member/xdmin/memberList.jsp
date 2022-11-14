@@ -223,7 +223,7 @@
 <%@include file = "../../../common/xdmin/includeV1/modalBase.jsp" %> 
 <%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 <%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
-
+<%@include file = "../../../common/xdmin/includeV1/datePicker.jsp" %>
    
 <script>
 		var goUrlList = "/member/memberList";

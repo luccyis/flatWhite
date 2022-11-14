@@ -4,6 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mj.infra.common.constants.Constants;
 import com.mj.infra.common.util.UtilDateTime;
+import com.mj.infra.modules.code.CodeServiceImpl;
 
 @Controller
 @RequestMapping(value="/movie/")
@@ -138,6 +148,156 @@ public class MovieController {
 		return "redirect:/movie/movieList";
 	}
 	
+	
+	//엑셀 다운로드 
+	@RequestMapping("excelDownload")
+	public void excelDownload(MovieVo vo, HttpServletResponse httpServletResponse) throws Exception {
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() > 0) {
+			List<Movie> list = service.selectList(vo);
+			
+			Workbook workbook = new XSSFWorkbook();
+			Sheet sheet = workbook.createSheet("Sheet1");
+			CellStyle cellStyle = workbook.createCellStyle();
+			Row row = null;
+			Cell cell = null;
+			int rowNum = 0;
+			
+			sheet.setColumnWidth(0, 2100);
+			sheet.setColumnWidth(1, 3100);
+			
+			String[] tableHeader = {"Seq", "제목", "영어제목", "관람객 평점", "예매순위", "주요정보", "상영타입", "감독", "출연진", "장르", "상영시간", "등급", "개봉일자", "누적관객수", "예고편", "좋아요 수", "등록일", "수정일", "삭제여부", "사용여부"};
+			
+			row = sheet.createRow(rowNum++);
+	        
+			for(int i=0; i<tableHeader.length; i++) {
+				cell = row.createCell(i);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+				cell.setCellValue(tableHeader[i]);
+			}
+			
+			// Body
+
+			 for (int i=0; i<list.size(); i++) {
+		            row = sheet.createRow(rowNum++);
+		            
+		        cell = row.createCell(0);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(Integer.parseInt(list.get(i).getTdmvSeq()));
+	            
+	            cell = row.createCell(1);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvMovieTitle());
+	            
+	            cell = row.createCell(2);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvTitleEng());
+	            
+	            cell = row.createCell(3);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvAudienceScore());
+	            
+	            cell = row.createCell(4);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvRank());
+	            
+	            cell = row.createCell(5);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvStory());
+	            
+	            cell = row.createCell(6);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvShowType());
+	            
+	            cell = row.createCell(7);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvDirector());
+	            
+	            cell = row.createCell(8);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvCast());
+	            
+	            cell = row.createCell(9);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvGenres());
+	            
+	            cell = row.createCell(10);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvRunningTime());
+	            
+	            cell = row.createCell(11);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+		     	if(list.get(i).getTdmvAge() != null) cell.setCellValue(list.get(i).getTdmvAge());;
+	           
+	            cell = row.createCell(12);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvCast());
+	            
+	            cell = row.createCell(13);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvReleaseDate());
+	            
+	            cell = row.createCell(14);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvAudienceNumber());
+	            
+	            cell = row.createCell(15);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvTrailer());
+	            
+	            cell = row.createCell(16);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvLiked());
+	            
+	            cell = row.createCell(17);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvRegDate());
+	            
+	            cell = row.createCell(18);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvModDate());
+	            
+	            cell = row.createCell(19);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvDelNy());
+	            
+	            cell = row.createCell(20);
+		        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		     	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getTdmvUseNy());
+	            
+		}
+		
+		httpServletResponse.setContentType("ms-vnd/excel");
+	    httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xlsx");
+
+	        workbook.write(httpServletResponse.getOutputStream());
+	        workbook.close();
+		}
+			 
+	}
 	
 	
 	

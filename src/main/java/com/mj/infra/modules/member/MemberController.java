@@ -222,7 +222,6 @@ public class MemberController {
 		return "infra/member/user/joinResult";
 	}
 	
-	
 	//엑셀 다운로드 
 	@RequestMapping("excelDownload")
     public void excelDownload(MemberVo vo, HttpServletResponse httpServletResponse) throws Exception {
@@ -300,7 +299,6 @@ public class MemberController {
 	            cell.setCellStyle(cellStyle);
 	            cell.setCellValue(list.get(i).getIfmmPhone());    
 	            
-	       
 	        }
 
 	        httpServletResponse.setContentType("ms-vnd/excel");

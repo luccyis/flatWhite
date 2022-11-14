@@ -63,10 +63,10 @@
 								</select>	
 							</div>
 							<div class="col p-2">
-								<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일">
+								<input type="text" class="form-control" id="shDateStart" placeholder="시작일">
 							</div>
 							<div class="col p-2">
-								<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일">
+								<input type="text" class="form-control" id="shDateEnd" placeholder="종료일">
 							</div>
 						</div>
 						<div class="row">
@@ -220,6 +220,8 @@
 	<%@include file = "../../../common/xdmin/includeV1/modalBase.jsp" %> 
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/datePicker.jsp" %>
+	
 	<script>
 		var goUrlList = "/movie/movieList";
 		var goUrlInst = "/movie/movieInst";
@@ -227,6 +229,8 @@
 		var goUrlUele = "/movie/movieUele";
 		var goUrlDele = "/movie/movieDele";
 		var goUrlForm = "/movie/movieForm";
+		
+		var excelUri = "/movie/excelDownload";
 		
 		
 		var seq = $("input:hidden[name=tdmvSeq]");
