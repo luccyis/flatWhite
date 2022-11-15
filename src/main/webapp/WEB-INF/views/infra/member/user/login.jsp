@@ -16,8 +16,6 @@
 	<title>meet play share, 메가박스</title>
 	<link rel="stylesheet" href="/resources/css/megabox.min.css" media="all">
 
-
-
 </head>
 
 <body>
@@ -85,9 +83,9 @@
 										</div>
 
 										<div class="sns-login">
-											<a href="" lnkgty="FACEBOOK" title="페이스북으로 로그인 선택"><img src="/resources/images/ico-facebook.png" alt="페이스북">페이스북으로 로그인</a>
-											<a title="네이버로 로그인 선택"><img src="/resources/images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
-											<a id="kakaoBtn" lnkgty="KAKAO" title="카카오톡으로 로그인 선택"><img src="/resources/images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
+											<a ><img src="/resources/images/ico-facebook.png" alt="페이스북">페이스북으로 로그인</a>
+											<a href="javascript:naverIdLogin()"><img src="/resources/images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
+											<a id="kakaoBtn"><img src="/resources/images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
 										</div>
 									</div>
 								</div>
@@ -133,15 +131,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+
 <script>
-Kakao.init('ae2d588a9908efcae4b7f462eb1258db'); // test 용
+Kakao.init('ae2d588a9908efcae4b7f462eb1258db'); 
 console.log(Kakao.isInitialized());
 
 $("#kakaoBtn").on("click", function() {
-	/* Kakao.Auth.authorize({
-	      redirectUri: 'http://localhost:8080/member/kakaoCallback',
-	    }); */
-	
+
 	Kakao.Auth.login({
 	      success: function (response) {
 	        Kakao.API.request({
@@ -204,6 +201,68 @@ $("#kakaoBtn").on("click", function() {
 	    })
 });
 
+</script>
+
+<script>
+	var naverLogin ;
+		
+	naverIdLogin = function(){
+		naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "GZq9bia1ndQvMuqzFoRw",
+					callbackUrl: "http://localhost:8080/userHome",
+					isPopup: true
+				}
+			);
+		
+		naverLogin.init();
+		
+		naverLogin.getLoginStatus(function (status) {
+			
+			if(!status)
+				naverLogin.authorize();
+			else 
+				 setLoginStatus();
+		});
+		
+		
+	};
+
+	function setLoginStatus() {
+   			
+			if (naverLogin.user.gender == 'M'){
+				$("input[name=ifmmGender]").val(1);
+			} else {
+				$("input[name=ifmmGender]").val(2);
+			} 
+			
+			
+			
+		$.ajax({
+			async: true
+			,cache: false
+			,type:"POST"
+			,url: "/member/naverLoginProc"
+			,data: {
+				"ifmmName": naverLogin.user.name, 
+				"ifmmEmailAddress": naverLogin.user.email, 
+				"ifmmGender": $("input[name=ifmmGender]").val(),
+				"ifmmDob": naverLogin.user.birthyear+"-"+naverLogin.user.birthday, 
+				"ifmmSnsImg": naverLogin.user.profile_image, 
+				"ifmmId": naverLogin.user.id}
+			,success : function(response) {
+				if (response.rt == "fail") {
+					alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+					return false;
+				} else {
+					location.href="/userHome";
+				}
+			},
+			error : function(jqXHR, status, error) {
+				alert("ajax error..!");
+			}
+		});
+	}
 </script>
  
  <script>

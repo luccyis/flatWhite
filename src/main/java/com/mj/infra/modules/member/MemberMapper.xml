@@ -131,6 +131,36 @@
 		</selectKey>
 	</insert>
 	
+	<insert id="naverInst">
+		INSERT INTO infrMember (
+			ifmmId
+			,ifmmName
+			,ifmmEmailAddress
+			,ifmmGender
+			,ifmmDob
+			,ifmmRegDate
+			,ifmmSnsLogin
+			,ifmmDelNy
+			,ifmmSnsImg
+			,ifmmGrade
+		)
+		VALUES (
+			#{ifmmId}
+			,#{ifmmName}
+			,#{ifmmEmailAddress}
+			,#{ifmmGender}
+			,#{ifmmDob}
+			,now()
+			,12
+			,0
+			,#{ifmmSnsImg}
+			,4
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 	
 	<update id="update">
 		UPDATE infrMember

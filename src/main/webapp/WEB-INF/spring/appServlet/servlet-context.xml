@@ -44,6 +44,8 @@
 			
 			<exclude-mapping path="/member/checkId"/>
 			<exclude-mapping path="/member/kakaoLoginProc"/>
+			<exclude-mapping path="/member/naverLoginProc"/>
+			<exclude-mapping path="/member/logoutProc"/>
 			
 			
 			<exclude-mapping path="/member/findIdPwdForm" />

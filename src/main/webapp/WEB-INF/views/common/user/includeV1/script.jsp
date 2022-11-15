@@ -11,7 +11,7 @@
 <script>
 $("#btnLogout").on("click", function(){
 	$.ajax({
-		async: trues
+		async: true
 		,cach: false
 		,type: "post"
 		,url: "/member/logoutProc"

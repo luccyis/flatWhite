@@ -74,6 +74,26 @@ public class MovieController {
 		return review;
 	}
 	
+	//ajax로 리스트 
+	@RequestMapping(value="movieAjaxList")
+	public String movieAjaxList(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception {
+		
+		setSearchAndPaging(vo);
+		
+		return "infra/movie/user/movieAjaxList";
+	}
+
+	@RequestMapping(value="movieAjaxLita")
+	public String movieAjaxLita(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception {
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() > 0) {
+			List<Movie> list = service.selectList(vo);
+			model.addAttribute("list", list);
+		}
+		return "infra/movie/user/movieAjaxLita";
+	}
+	
 	
 
 
@@ -298,33 +318,6 @@ public class MovieController {
 		}
 			 
 	}
-	
-	
-	@RequestMapping(value="movieAjaxList")
-	public String movieAjaxList(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception {
-		
-		setSearchAndPaging(vo);
-		
-		return "infra/movie/xdmin/movieAjaxList";
-	}
-
-	@RequestMapping(value="movieAjaxLita")
-	public String movieAjaxLita(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception {
-		vo.setParamsPaging(service.selectOneCount(vo));
-		
-		if(vo.getTotalRows() > 0) {
-			List<Movie> list = service.selectList(vo);
-			model.addAttribute("list", list);
-		}
-		return "infra/movie/xdmin/movieAjaxLita";
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

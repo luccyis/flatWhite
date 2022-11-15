@@ -177,13 +177,40 @@ public class MemberController {
 	     httpSession.setAttribute("sessGrade", dto.getIfmmGrade());
 	 }
 	
+	 @ResponseBody
+	 @RequestMapping(value = "naverLoginProc")
+		public Map<String, Object> naverLoginProc(Member dto, HttpSession httpSession) throws Exception {
+		 
+		 Map<String, Object> returnMap = new HashMap<String, Object>();
+		 
+		    // id 값 있는지 체크 
+		    Member naverLogin = service.selectOneId(dto);
+	          
+		    if (naverLogin == null) {
+		        System.out.println("여기는 : " + null);
+		        service.naverInst(dto);
+		        
+		        httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+		        //session(naver.getSeq(), naver.getId(), naver.getName(), naver.getEmail(), naver.getUser_div(), naver.getSnsImg(), naver.getSns_type(), httpSession);
+		        session(dto, httpSession);
+		    } else {
+		        System.out.println("여기는 :  not " + null);
+	  
+		        httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+		        //session(naverLogin.getSeq(), naverLogin.getId(), naverLogin.getName(), naverLogin.getEmail(), naverLogin.getUser_div(), naverLogin.getSnsImg(), naverLogin.getSns_type(), httpSession);
+		        session(naverLogin, httpSession);
+		        returnMap.put("rt", "success");
+		    }
+		    return returnMap;
+		}
+	 
 
 	@ResponseBody
 	@RequestMapping(value = "logoutProc")
 	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		httpSession.invalidate();
-		returnMap.put("rt", "success");
+		
 		return returnMap;
 	}
 
