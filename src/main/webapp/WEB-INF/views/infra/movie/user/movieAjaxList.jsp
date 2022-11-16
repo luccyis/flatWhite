@@ -43,7 +43,7 @@
 					<h2 class="tit">전체영화</h2>
 					<div class="tab-list fixed">
 						<ul id="topMenu">
-							<li class="on"><a href="javascript:goLitaOption(0)">박스오피스</a></li> 
+							<li class="on" id="basic"><a href="javascript:goLitaOption(0)">박스오피스</a></li> 
 							<li id="now"><a href="javascript:goLitaOption(1)">현재상영작</a></li>
 							<li id="will"><a href="javascript:goLitaOption(2)">상영예정작</a></li>
 						</ul>
@@ -113,12 +113,13 @@
 			,success: function(response){
 				$("#lita").empty();
 				$("#lita").append(response);
+				$('li').removeClass('on');
 				if(key == 0){
-					
+					$("#basic").addClass('on');	
 				} else if (key == 1) {
-					
+					$("#now").addClass('on');
 				} else if(key == 2) {
-					
+					$("#will").addClass('on');
 				}
 			} 
 			,error : function(jqXHR, textStatus, errorThrown){
