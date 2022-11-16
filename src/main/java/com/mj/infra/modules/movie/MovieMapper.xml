@@ -233,10 +233,11 @@
 		JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
 		where 1=1
 		and image.defaultNy = 1 
-		<choose>
-			<when test="shOption == 1">AND movie.tdmvState = 1</when>
-			<when test="shOption == 2">AND movie.tdmvState = 2</when>
-		</choose>
+		<if test="shValue != null and !shValue.equals('')">AND movie.tdmvMovieTitle LIKE CONCAT('%', #{shValue},'%')</if>
+			<choose>
+				<when test="shOption == 1">AND movie.tdmvState = 1</when>
+				<when test="shOption == 2">AND movie.tdmvState = 2</when>
+			</choose>
 		order by movie.tdmvRank
 	</select>
 	

@@ -27,7 +27,7 @@
 
 	<nav id="gnb" class="">
         <ul class="gnb-depth1">
-            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
+            <li><a href="/movie/movieAjaxList" class="gnb-txt-movie" title="영화">영화</a></li>
             <li><a href="/timetable/choiceMovie" class="gnb-txt-reserve" title="예매">예매</a></li>
         </ul>
     </nav>

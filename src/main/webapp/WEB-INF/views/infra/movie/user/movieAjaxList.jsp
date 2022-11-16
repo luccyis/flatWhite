@@ -35,30 +35,29 @@
 	<!-- contents -->
 		<form method="post" name="formList" id="formList">
 		<input type="hidden" name="tdmvSeq">
+		<input type="hidden" name="shOption">
 		
-		<div id="contents" class="">
-			<!-- inner-wrap -->
-			<div class="inner-wrap">
-				<h2 class="tit">전체영화</h2>
-				<div class="tab-list fixed">
-					<ul id="topMenu">
-						<li class="on"><a title="박스오피스 탭으로 이동">박스오피스</a></li> 
-						<li><a title="" value="2">상영예정작</a></li>
-						<li><a title=""></a></li>
-						<li><a title=""></a></li>
-						<li><a title=""></a></li>
-					</ul>
-				</div>
-				<div class="movie-list-util mt40">
-					<div class="movie-search">
-						<input type="text" title="영화명을 입력하세요" id="shValue" name="shValue" value="${vo.shValue}" placeholder="영화명 검색" autocomplete="off" class="input-text">
-						<button type="button" class="btn-search-input" id="btnSearch">검색</button>
+			<div id="contents" class="">
+				<!-- inner-wrap -->
+				<div class="inner-wrap">
+					<h2 class="tit">전체영화</h2>
+					<div class="tab-list fixed">
+						<ul id="topMenu">
+							<li class="on"><a href="javascript:goLitaOption(0)">박스오피스</a></li> 
+							<li id="now"><a href="javascript:goLitaOption(1)">현재상영작</a></li>
+							<li id="will"><a href="javascript:goLitaOption(2)">상영예정작</a></li>
+						</ul>
 					</div>
+					<div class="movie-list-util mt40">
+						<div class="movie-search">
+							<input type="text" title="영화명을 입력하세요" id="shValue" name="shValue" value="${vo.shValue}" placeholder="영화명 검색" autocomplete="off" class="input-text">
+							<button type="button" class="btn-search-input" id="btnSearch">검색</button>
+						</div>
+					</div>	
+					
+					<div id="lita"></div>
 				</div>	
-				
-				<div id="lita"></div>
-			</div>	
-		</div>
+			</div>
 		</form>
 	</div>
 
@@ -72,17 +71,70 @@
 <!-- scripte-e -->
 
 <script>
-	var goUrlView = "/movie/view";
-	var seq = $("input:hidden[name=tdmvSeq]");
+
+	$(document).ready(function(){
+		setLita();
+	});
+	
+	var goUrlList = "/movie/movieAjaxList";
+	var goUrlLita = "/movie/movieAjaxLita";
 	
 	var form = $("form[name=formList]");
+	var goLitaOption;
 	
-	goView = function(tdmvSeq){
-		seq.val(tdmvSeq);
-		form.attr("action",goUrlView).submit();
+	function setLita(){
+		$.ajax({
+				async: true
+				,cache: false
+				,type: "post"
+				,url: goUrlLita
+				,data: $("#formList").serialize()
+				,success: function(response){
+					$("#lita").empty();
+					$("#lita").append(response);
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+		});
+		
 	}
+	
+	goLitaOption = function(key){
+		$.ajax({
+			async: true
+			,cache: false
+			,type: "post"
+			,url: goUrlLita
+			,data: {
+					"shOption": key,
+					form: $("#formList").val()
+			}		
+			,success: function(response){
+				$("#lita").empty();
+				$("#lita").append(response);
+				if(key == 0){
+					
+				} else if (key == 1) {
+					
+				} else if(key == 2) {
+					
+				}
+			} 
+			,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+	});
+	}
+	
+	$("#btnSearch").on("click", function(){
+		form.attr("action", goUrlList).submit();
+	});
+	
+
 
 </script>
+
 	
 </body>
 </html>

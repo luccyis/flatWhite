@@ -85,12 +85,10 @@ public class MovieController {
 
 	@RequestMapping(value="movieAjaxLita")
 	public String movieAjaxLita(@ModelAttribute("vo") MovieVo vo, Model model) throws Exception {
-		vo.setParamsPaging(service.selectOneCount(vo));
-		
-		if(vo.getTotalRows() > 0) {
-			List<Movie> list = service.selectList(vo);
+			
+			List<Movie> list = service.selectListMoviePage(vo);
 			model.addAttribute("list", list);
-		}
+		
 		return "infra/movie/user/movieAjaxLita";
 	}
 	

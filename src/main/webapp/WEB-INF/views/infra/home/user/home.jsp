@@ -55,7 +55,7 @@
 	
 		<nav id="gnb" class="">
 	        <ul class="gnb-depth1">
-	            <li><a href="/movie/main" class="gnb-txt-movie" title="영화">영화</a></li>
+	            <li><a href="/movie/movieAjaxList" class="gnb-txt-movie" title="영화">영화</a></li>
 	            <li><a href="/timetable/choiceMovie" class="gnb-txt-reserve" title="예매">예매</a></li>
 	        </ul>
 	    </nav>
@@ -81,7 +81,7 @@
 							<button type="button" class="on" sort="boxoRankList" name="btnSort">박스오피스</button>
 						</div>
 						<!-- tab-sorting -->
-						<a href="/movie/main" class="more-movie" title="더 많은 영화보기">
+						<a href="/movie/movieAjaxList" class="more-movie" title="더 많은 영화보기">
 							더 많은 영화보기 <i class="iconset ico-more-corss gray"></i>
 						</a>
 							
@@ -118,7 +118,7 @@
 						<div class="search-link">
 							<div class="cell"><div class="search"></div></div>
 							<div class="cell"><a href="/timetable/choiceMovie" title="상영시간표 보기"><i class="iconset ico-schedule-main"></i> 상영시간표</a></div>
-							<div class="cell"><a href="/movie/main" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
+							<div class="cell"><a href="/movie/movieAjaxList" title="박스오피스 보기"><i class="iconset ico-boxoffice-main"></i> 박스오피스</a></div>
 							<div class="cell"><a href="/timetable/choiceMovie" title="빠른예매 보기"><i class="iconset ico-quick-reserve-main"></i> 빠른예매</a></div>
 						</div>
 					</div>
