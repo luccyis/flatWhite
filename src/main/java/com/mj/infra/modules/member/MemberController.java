@@ -106,6 +106,9 @@ public class MemberController {
 		return "redirect:/member/memberList";
 	}
 	
+	
+	
+	//user
 	@RequestMapping(value="login")
 	public String login() throws Exception {
 		return "infra/member/user/login";
@@ -129,7 +132,7 @@ public class MemberController {
 				httpSession.setAttribute("sessGrade", rtMember2.getIfmmGrade());
 				httpSession.setAttribute("sessPhone", rtMember2.getIfmmPhone());
 
-				System.out.println(httpSession.getAttribute("sessName"));
+				System.out.println(httpSession.getAttribute("sessName") + ": 로그인 세션 이름");
 				returnMap.put("rt", "success");
 				}
 			} else {
@@ -175,6 +178,8 @@ public class MemberController {
 	     httpSession.setAttribute("sessImg", dto.getIfmmSnsImg());
 	     httpSession.setAttribute("sessSns", dto.getIfmmSnsLogin());
 	     httpSession.setAttribute("sessGrade", dto.getIfmmGrade());
+	     
+	     System.out.println(" dto.getIfmmSeq() " +  dto.getIfmmSeq());
 	 }
 	
 	 @ResponseBody
@@ -209,7 +214,10 @@ public class MemberController {
 	@RequestMapping(value = "logoutProc")
 	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
 		httpSession.invalidate();
+		
+		returnMap.put("rt", "success");
 		
 		return returnMap;
 	}

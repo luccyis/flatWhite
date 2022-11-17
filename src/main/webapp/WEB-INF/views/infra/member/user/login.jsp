@@ -204,19 +204,18 @@ $("#kakaoBtn").on("click", function() {
 </script>
 
 <script>
-	var naverLogin ;
 		
-	naverIdLogin = function(){
-		naverLogin = new naver.LoginWithNaverId(
+	var	naverLogin = new naver.LoginWithNaverId(
 				{
 					clientId: "GZq9bia1ndQvMuqzFoRw",
-					callbackUrl: "http://localhost:8080/userHome",
-					isPopup: true
+					callbackUrl: "http://localhost:8080/member/login",
+					isPopup: false,
 				}
 			);
 		
 		naverLogin.init();
 		
+		naverIdLogin = function(){
 		naverLogin.getLoginStatus(function (status) {
 			
 			if(!status)
@@ -224,9 +223,17 @@ $("#kakaoBtn").on("click", function() {
 			else 
 				 setLoginStatus();
 		});
-		
-		
 	};
+	
+	window.addEventListener('load', function(){
+		if(naverLogin.accessToken != null) {
+			naverLogin.getLoginStatus(function (status){
+				if(status) {
+					setLoginStatus();
+				}
+			});
+		}
+	});
 
 	function setLoginStatus() {
    			

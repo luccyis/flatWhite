@@ -11,6 +11,7 @@ public class Booking extends Base {
 	private String ifmmSeq;
 	private String tdttSeq;
 	private String tdbkTotalCost;
+	private Integer tdbkDelNy;
 	
 	//결제seat 
 	private String[] tdbsSeq;
@@ -57,31 +58,7 @@ public class Booking extends Base {
 	private String bkDate;
 	private Integer bkSum;
 	
-	public Integer getBkSum() {
-		return bkSum;
-	}
-	public void setBkSum(Integer bkSum) {
-		this.bkSum = bkSum;
-	}
-	public String getBkDate() {
-		return bkDate;
-	}
-	public void setBkDate(String bkDate) {
-		this.bkDate = bkDate;
-	}
-
-	public String getTdmvState() {
-		return tdmvState;
-	}
-	public void setTdmvState(String tdmvState) {
-		this.tdmvState = tdmvState;
-	}
-	public String getIfmmPhone() {
-		return ifmmPhone;
-	}
-	public void setIfmmPhone(String ifmmPhone) {
-		this.ifmmPhone = ifmmPhone;
-	}
+	
 	public String getTdbkSeq() {
 		return tdbkSeq;
 	}
@@ -117,6 +94,12 @@ public class Booking extends Base {
 	}
 	public void setTdbkTotalCost(String tdbkTotalCost) {
 		this.tdbkTotalCost = tdbkTotalCost;
+	}
+	public Integer getTdbkDelNy() {
+		return tdbkDelNy;
+	}
+	public void setTdbkDelNy(Integer tdbkDelNy) {
+		this.tdbkDelNy = tdbkDelNy;
 	}
 	public String[] getTdbsSeq() {
 		return tdbsSeq;
@@ -177,6 +160,12 @@ public class Booking extends Base {
 	}
 	public void setTdmvShowType(String tdmvShowType) {
 		this.tdmvShowType = tdmvShowType;
+	}
+	public String getTdmvState() {
+		return tdmvState;
+	}
+	public void setTdmvState(String tdmvState) {
+		this.tdmvState = tdmvState;
 	}
 	public String getTdthSeq() {
 		return tdthSeq;
@@ -268,6 +257,26 @@ public class Booking extends Base {
 	public void setThprTeenagerNy(String thprTeenagerNy) {
 		this.thprTeenagerNy = thprTeenagerNy;
 	}
+	public String getIfmmPhone() {
+		return ifmmPhone;
+	}
+	public void setIfmmPhone(String ifmmPhone) {
+		this.ifmmPhone = ifmmPhone;
+	}
+	public String getBkDate() {
+		return bkDate;
+	}
+	public void setBkDate(String bkDate) {
+		this.bkDate = bkDate;
+	}
+	public Integer getBkSum() {
+		return bkSum;
+	}
+	public void setBkSum(Integer bkSum) {
+		this.bkSum = bkSum;
+	}
+	
+	
 	
 	
 	

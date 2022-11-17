@@ -12,10 +12,5 @@
 <input type="hidden" name="shOption" value="<c:out value="${vo.shOption}"/>"/>
 <input type="hidden" name="shValue" value="<c:out value="${vo.shValue}"/>"/>
 
-<input type="hidden" name="tdbkSeq" value="<c:out value="${vo.tdbkSeq}"/>"/>
-<input type="hidden" name="tdbsSeq" value="<c:out value="${vo.tdbsSeq}"/>"/>
-<input type="hidden" name="tdmvSeq" value="<c:out value="${vo.tdmvSeq}"/>"/>
-<input type="hidden" name="ifmmSeq" value="<c:out value="${vo.ifmmSeq}"/>"/>
-<input type="hidden" name="tdttSeq" value="<c:out value="${vo.tdttSeq}"/>"/>
-<input type="hidden" name="tdthSeq" value="<c:out value="${vo.tdthSeq}"/>"/>
-<input type="hidden" name="tdpxSeq" value="<c:out value="${vo.tdpxSeq}"/>"/>
+<input type="hidden" name="cgSeq" value="<c:out value="${vo.cgSeq}"/>"/>
+

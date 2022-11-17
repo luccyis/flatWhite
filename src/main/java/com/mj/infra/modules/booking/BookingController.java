@@ -8,6 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mj.infra.common.util.UtilDateTime;
+import com.mj.infra.modules.booking.BookingVo;
+import com.mj.infra.modules.member.Member;
+import com.mj.infra.modules.member.MemberVo;
 import com.mj.infra.modules.movie.Movie;
 import com.mj.infra.modules.movie.MovieServiceImpl;
 import com.mj.infra.modules.movie.MovieVo;
@@ -25,6 +29,15 @@ public class BookingController {
 	TimetableServiceImpl serviceTimetable;
 	@Autowired
 	MovieServiceImpl serviceMovie;
+	
+	public void setSearchAndPaging(BookingVo vo) throws Exception {
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+	}
+	 
 	
 	//영화예매 - 결제 
 	@RequestMapping(value="bookingPay")
@@ -66,6 +79,21 @@ public class BookingController {
 		
 		return "infra/booking/user/bookingResult";
 	}
+	
+
+	@RequestMapping(value="bookingList")
+	public String payList(BookingVo vo, Model model) throws Exception {
+		System.out.println("868686868");
+		setSearchAndPaging(vo);
+		
+		System.out.println("888888");
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		List<Booking> list = service.selectList(vo);
+		model.addAttribute("list", list);
+		return "infra/booking/xdmin/bookingList";
+	}
+	
 
 
 }

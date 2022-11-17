@@ -47,7 +47,7 @@
 						<strong>회원가입이 완료되었습니다</strong>
 					</p>
 					<div class="join-chk-me col-1">
-						<a href="/userHome" title="예매페이지로 이동" id="">
+						<a href="/member/login" >
 							<i class="fa-solid fa-clapperboard"></i>
 							<span>영화예매하러가기
 								<i class="fa-solid fa-angle-right"></i>

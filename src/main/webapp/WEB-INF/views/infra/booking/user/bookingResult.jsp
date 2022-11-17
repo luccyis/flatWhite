@@ -100,7 +100,7 @@
 						</div>
 						<!--// reserve-finish -->
 						<div class="btn-group pt30">
-							<a href="/mypage/bookingList" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
+							<a href="/mypage/main" class="button purple large" title="예매내역 페이지로 이동">예매내역</a>
 						</div>
 						<div class="box-border v1 mt10">
 							<ul class="dot-list gray">

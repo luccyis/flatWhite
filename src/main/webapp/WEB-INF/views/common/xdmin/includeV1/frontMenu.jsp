@@ -63,11 +63,6 @@
                     <div data-i18n="Without navbar">상영관</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="/theaterPrice/priceList" class="menu-link">
-                    <div data-i18n="Container">관람료</div>
-                  </a>
-                </li>
               </ul>
             </li>
 
@@ -83,7 +78,7 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="" class="menu-link">
+                  <a href="/booking/bookingList" class="menu-link">
                     <div data-i18n="Notifications">결제 관리</div>
                   </a>
                 </li>

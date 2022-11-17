@@ -21,6 +21,10 @@ public class BookingDao {
 		List<Booking> list = sqlSession.selectList(namespace + ".selectList", vo);
 		return list;
 	}
+	
+	public int selectOneCount(BookingVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
 
 	public Booking selectOne(BookingVo vo) {
 		Booking result = sqlSession.selectOne(namespace + ".selectOne", vo);

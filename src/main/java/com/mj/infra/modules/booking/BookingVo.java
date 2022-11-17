@@ -6,7 +6,6 @@ public class BookingVo extends BaseVo {
 
 	private Integer shOption;
 	private String shValue;
-	
 	private Integer shDelNy;
 	
 	private String tdbkSeq;

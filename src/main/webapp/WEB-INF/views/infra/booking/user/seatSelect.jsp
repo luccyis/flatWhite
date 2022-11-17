@@ -45,42 +45,16 @@
 	                <div class="seat-select-section">
 	                    <div class="seat-section">
 	                        <div class="tit-util">
-	                            <h3 class="tit small"> 관람인원선택</h3>
-	                            <div class="right">
-	                                <button type="button" class="button gray-line small" id="seatMemberCntInit"> <i class="iconset ico-reset-small"></i>초기화</button>
-	                            </div>
+	                            <h3 class="tit small"> 좌석선택</h3>
+	                           
 	                        </div>
 	                        <div class="seat-area">
 	                            <div class="seat-count" style="min-height: 52px">
 	                            	<div class="cell">
-	                            		<p class="txt">성인</p>
-	                            		<div class="count">
-	                            			<button type="button" class="down" onclick="adultCount('down')" value="-" title="성인 좌석 선택 감소">-</button>
-	                            			<div class="number">
-	                            				<button type="button" class="now" id="adultTicket" name="adultCount" title="성인 현재 좌석 선택 수">0</button>
-	                            				<ul class="num-choice">
-	                            					<li>
-	                            						<button type="button" class="btn">0</button>
-	                            					</li>
-	                            				</ul>
-	                           				</div>
-	                            			<button type="button" class="up" onclick="adultCount('up')" value="+" title="성인 좌석 선택 증가">+</button>
-	                            		</div>
+	                            		
 	                            	</div>
 	                            	<div class="cell">
-	                            		<p class="txt">청소년</p>
-	                            		<div class="count">
-	                            			<button type="button" class="down" onclick="teenCount('down')" value="-" title="청소년 좌석 선택 감소">-</button>
-	                            			<div class="number">
-	                            				<button type="button" class="now" id="teenTicket" name="teenCount" title="청소년 현재 좌석 선택 수" >0</button>
-	                            				<ul class="num-choice">
-	                            					<li>
-	                            						<button type="button" class="btn on">0</button>
-	                            					</li>
-	                            				</ul>
-	                            			</div>
-	                            			<button type="button" class="up" onclick="teenCount('up')" value="+"  title="청소년 좌석 선택 증가">+</button>
-	                            		</div>
+	                            		
 	                            	</div>
 	                            </div>
 	                            <div class="seat-layout">
@@ -259,7 +233,7 @@
 </script>
 
 <script>
-	var goUrlChoiceMovie = "/timetable/choiceMovie";
+	var goUrlBack = "/timetable/choiceMovie";
 	var goUrlPay = "/booking/bookingPay";
 	var form=$("form[name=formList]");
 	var seq = $("input:hidden[name=tdttSeq]");
@@ -274,7 +248,7 @@
 	});
 	
 	$("#pagePrevious").on("click", function(){
-		form.attr("action", goUrlChoiceMovie);
+		form.attr("action", goUrlBack).submit();
 	});
 	
 	

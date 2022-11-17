@@ -8,6 +8,17 @@
 
     <resultMap id="resultMapObj" type="com.mj.infra.modules.booking.Booking"></resultMap>
     
+    <sql id="selectCommon">
+	FROM tradBooking a
+	WHERE 1=1
+		<if test="shDelNy != null and !shDelNy.equals('')">AND tdbkDelNy = #{shDelNy}</if>
+		<choose>
+			<when test="shOption == 1">AND tdbkSeq = #{shValue}</when>
+			<when test="shOption == 2">AND tdbkPayment LIKE CONCAT('%', #{shValue},'%')</when>
+		</choose>
+		ORDER BY a.tdbkSeq desc
+	</sql>
+	
     <select id="selectList" resultMap="resultMapObj">
     	SELECT 
     		a.tdbkSeq
@@ -15,8 +26,9 @@
     		,a.tdbkBookingDate
     		,a.infrMember_ifmmSeq as ifmmSeq
     		,a.tradTimeTable_tdttSeq as tdttSeq
-    	FROM tradBooking a
-    	ORDER BY a.tdbkSeq
+    		,a.tdbkTotalCost
+    		,a.tdbkDelNy
+    	<include refid="selectCommon"/>
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
@@ -26,9 +38,17 @@
     		,a.tdbkBookingDate
     		,a.infrMember_ifmmSeq as ifmmSeq
     		,a.tradTimeTable_tdttSeq as tdttSeq
+    		,a.tdbkTotalCost
+    		,a.tdbkDelNy
     	FROM tradBooking
     	WHERE 1=1
     		AND a.tdbkSeq = #{tdbkSeq}
+    </select>
+    
+    <select id="selectOneCount" resultType="Integer">
+   		SELECT COUNT(*)
+    	<include refid="selectCommon"/>
+    
     </select>
     
     <insert id="insertBooking">

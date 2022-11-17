@@ -88,7 +88,7 @@
 								</a>등급입니다.</p>
 			
 								<div class="link">
-									<a href="/mypage/mypageMod" title="개인정보수정 페이지로 이동">개인정보수정 <i class="iconset ico-arr-right-reverse"></i></a>
+									<a href="/mypage/main" title="개인정보수정 페이지로 이동">개인정보수정 <i class="iconset ico-arr-right-reverse"></i></a>
 								</div>
 							</div>
 						</div>
@@ -131,10 +131,7 @@
 							<div class="coupon" id="myCoupon">
 								<div class="tit-area">
 									<p class="tit">관람권/쿠폰</p>
-			
-									<a href="" class="more"><i class="iconset ico-arr-right-gray" title="영화관람권 페이지로 이동">더보기</i></a>
 								</div>
-			
 								<div class="list">
 									<ul>
 										<li>
@@ -189,8 +186,6 @@
 					<div id="myBokd">
 						<div class="tit-util mt70">
 							<h2 class="tit small">나의 예매내역</h2>
-			
-							<a href="/mypage/bookingList" class="more" title="나의 예매내역 더보기">더보기 <i class="iconset ico-arr-right-gray"></i></a>
 						</div>
 			
 						<!-- my-reserve-history -->

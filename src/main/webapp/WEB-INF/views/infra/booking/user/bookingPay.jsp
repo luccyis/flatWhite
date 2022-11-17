@@ -171,7 +171,7 @@
 								</div>
 			
 								<div class="btn-group">
-									<a class="button" id="btn_booking_back" title="이전">이전 </a>
+									<a class="button" id="pagePrevious" title="이전">이전 </a>
 									<a w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" onclick="startPay()" title="결제">결제</a>
 								</div>
 							</div>
@@ -197,13 +197,19 @@
 <!-- scripte-e -->
 <script>
 
-	var goUrlSeat = "/booking/seatSelect";
+	var goUrlSeat = "/timetable/seatSelect";
 	var goUrlResult = "/booking/bookingResult";
 	var form = $("form[name=formList]");
 	
 	startPay = function(){
 		form.attr("action", goUrlResult).submit();
 	}
+	
+	
+
+	$("#pagePrevious").on("click", function(){
+		form.attr("action", goUrlSeat).submit();
+	});
 	
 	
 	

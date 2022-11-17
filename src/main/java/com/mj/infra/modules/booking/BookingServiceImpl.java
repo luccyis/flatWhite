@@ -38,6 +38,11 @@ public class BookingServiceImpl implements BookingService {
 		List<Booking> list = dao.monthListBooking();
 		return list;
 	}
+
+	@Override
+	public int selectOneCount(BookingVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
 	
 	
 	
