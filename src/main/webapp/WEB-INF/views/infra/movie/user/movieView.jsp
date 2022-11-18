@@ -6,7 +6,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+
 <jsp:useBean id="CodeServiceImpl" class="com.mj.infra.modules.code.CodeServiceImpl"/>
+<% pageContext.setAttribute("br", "\n"); %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -121,7 +123,9 @@
 					        </ul>
 					    </div>
 					    <div class="movie-summary infoContent on" id="info">
-				            <div class="txt"><c:out value="${result.tdmvStory}"/></div>
+				            <div class="txt">
+				            	<p><c:out value="${fn:replace(result.tdmvStory, br, '<br/>')}" escapeXml = "false"/></p>
+				            </div>
 				            <div class="btn-more toggle">
 				                <button type="button" class="btn"><span>더보기</span> <i class="iconset ico-btn-more-arr"></i></button>
 				            </div>
@@ -231,7 +235,7 @@
 							                               <span class="font-gblue"><c:out value="${sessName}"/></span>님 <span class="font-gblue"><c:out value="${result.tdmvMovieTitle}"/></span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.
 							                           		<div class="input-group" style="display: flex;">
 								                           		<select class="form-select form-select-sm" name="tdmcRate" id="tdmcRate">
-								                           			 <option selected>평점 선택</option>
+								                           			 <option value="0" selected>평점 선택</option>
 																	  <option value="1">1점</option>
 																	  <option value="2">2점</option>
 																	  <option value="3">3점</option>

@@ -67,11 +67,6 @@
 												<input id="autoLogin" type="checkbox"> <label for="chkIdSave">아이디 저장</label>
 											</div>
 
-											<div class="right">
-												<div class="hp-ad">
-										      <a href="https://www.sepay.org/spm/join?regSiteCode=XF&amp;ctgCode=1&amp;subCode=1" title="휴대폰 간편 로그인 선택" target="_blank"><span>휴대폰 간편로그인</span> <em>광고</em></a>
-												</div>
-											</div>
 										</div>
 										<!--// chk-util -->
 
@@ -83,7 +78,6 @@
 										</div>
 
 										<div class="sns-login">
-											<a ><img src="/resources/images/ico-facebook.png" alt="페이스북">페이스북으로 로그인</a>
 											<a href="javascript:naverIdLogin()"><img src="/resources/images/ico-naver.png" alt="네이버"> 네이버로 로그인</a>
 											<a id="kakaoBtn"><img src="/resources/images/ico-kakao.png" alt="카카오톡">카카오톡으로 로그인</a>
 										</div>

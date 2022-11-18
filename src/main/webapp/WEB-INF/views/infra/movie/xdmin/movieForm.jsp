@@ -73,7 +73,7 @@
 						<div class="row">
 							<div class="col p-2">
 								<label class="form-label" for="tdmvStory">스토리</label>
-								<textarea class="form-control" id="tdmvStory" row="30" name="tdmvStory"><c:out value="${item.tdmvStory} "/></textarea>
+								<textarea class="form-control" id="tdmvStory" row="30" name="tdmvStory" wrap="hard"><c:out value="${item.tdmvStory} "/></textarea>
 							</div>
 							<div class="col p-2">
 								<label class="form-label" for="tdmvShowType">상영타입</label>
@@ -128,7 +128,6 @@
 						<div class="row">
 							<div class="col p-2">
 								<label class="form-label" for="uploadedImage">포스터/스틸컷</label>
-								<img id="imgProfile" src="" alt="" style="width:300px; height:300px; border-radius:50%;">
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="MultipartFile" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage2" name="ifmmUploadedProfileImage" type="file" multiple="multiple" onChange="upload('ifmmUploadedProfileImage2', 0, 1, 1, 0, 0, 1);">
 								<div class="addScroll" id="MovieUploadedImage1View"></div>
