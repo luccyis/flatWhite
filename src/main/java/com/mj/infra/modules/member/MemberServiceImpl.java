@@ -90,9 +90,30 @@ public class MemberServiceImpl implements MemberService {
 		return dao.snsLoginSelectOne(dto);
 	}
 
+	@Override
+	public Member findId(Member dto) throws Exception {
 	
-	
+		Member id =dao.findId(dto);
+		String showId = id.getIfmmId().substring(0, id.getIfmmId().length()-3);
+		int star = id.getIfmmId().length() - showId.length();
 		
+		for (int i=0; i<star; i++) {
+			showId += "*";
+		}
+		dto.setIfmmId(showId);
+		return dto;
+	}
+
+	@Override
+	public int findPw(Member dto) throws Exception {
+		return dao.findPw(dto);
+	}
+
+	@Override
+	public int changePwd(Member dto) throws Exception {
+		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+		return dao.changePwd(dto);
+	}
 	
 }
 

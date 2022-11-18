@@ -64,6 +64,18 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".snsLoginSelectOne", dto);
 	}
 	
+	//아이디 비밀번호 찾기
+	public Member findId(Member dto) {
+		return sqlSession.selectOne(namespace + ".findId", dto);
+	}
+	
+	public int findPw(Member dto) {
+		return sqlSession.selectOne(namespace + ".findPw", dto);
+	}
+	
+	public int changePwd(Member dto) {
+		return sqlSession.update(namespace +".changePwd", dto);
+	}
 	
 		
 	

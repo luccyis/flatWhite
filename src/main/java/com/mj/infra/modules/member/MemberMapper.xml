@@ -247,6 +247,36 @@
 			<if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if>
 	</select>
 	
+	<select id="findId" resultMap="resultMapObj">
+		SELECT 
+			ifmmId
+		FROM infrMember
+		WHERE 1=1
+			and ifmmName = #{ifmmName}
+			and ifmmDob = #{ifmmDob}
+			and ifmmPhone = #{ifmmPhone}
+	</select>
+	
+	<select id="findPw" parameterType="String" resultType="int">
+		SELECT 
+			count(*)
+		FROM infrMember
+		WHERE 1=1
+			and ifmmId = #{ifmmId}
+			and ifmmName = #{ifmmName}
+			and ifmmDob = #{ifmmDob}
+	</select>
+	
+	<update id="changPwd">
+		UPDATE infrMember
+		SET
+			ifmmPassword = #{ifmmPassword}
+		WHERE 1=1
+			and ifmmId = #{ifmmId}
+			and ifmmName = #{ifmmName}
+			and ifmmDob = #{ifmmDob}
+	</update>
+	
 	
 	
 	

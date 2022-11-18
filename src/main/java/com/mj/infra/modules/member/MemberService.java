@@ -23,4 +23,8 @@ public interface MemberService {
 	public int naverInst(Member dto) throws Exception;
 	public Member snsLoginSelectOne(Member dto) throws Exception;
 	
+	public Member findId(Member dto) throws Exception;
+	public int findPw(Member dto) throws Exception;
+	public int changePwd(Member dto) throws Exception;
+	
 }

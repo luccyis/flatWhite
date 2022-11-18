@@ -50,6 +50,7 @@
 			<exclude-mapping path="/member/findIdPwdForm" />
 			<exclude-mapping path="/userHome"/>
 			<exclude-mapping path="/rest/**"/>
+			<exclude-mapping path="/find/**"/>
 			
 			<beans:bean id="checkLoginSessionInterception" class="com.mj.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>

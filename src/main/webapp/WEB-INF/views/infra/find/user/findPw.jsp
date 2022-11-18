@@ -87,22 +87,10 @@
 					</table>
 				</div>
 
-				<div class="mt20 font-size-14">
-					※ 휴대폰 번호가 변경된 경우 본인인증 찾기를 통하여 아이디찾기를 진행해주시기 바랍니다.
-				</div>
-
 				<div class="btn-member-bottom v1">
-					<button id="btnSchId" type="button" class="button purple large" disabled="disabled">비밀번호 찾기</button>
+					<button id="btnSchId" type="button" class="button purple large">비밀번호 찾기</button>
 				</div>
-				<h2 class="tit">본인인증으로 찾기</h2>
-
-				<div class="">
-					본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집하며, 인증 이외의 용도로 이용 또는 저장되지 않습니다.
-				</div>
-
-				<div class="btn-member-bottom">
-					<button id="btnSchIdMblpCert" type="button" class="button purple large">본인인증</button>
-				</div>
+				
 			</div>
 			<!--// col -->
 		</div>
