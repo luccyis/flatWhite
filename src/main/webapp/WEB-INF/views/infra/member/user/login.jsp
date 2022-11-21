@@ -202,7 +202,7 @@ $("#kakaoBtn").on("click", function() {
 	var	naverLogin = new naver.LoginWithNaverId(
 				{
 					clientId: "GZq9bia1ndQvMuqzFoRw",
-					callbackUrl: "http://localhost:8080/member/login",
+					callbackUrl: "http://3.35.136.131/member/login",
 					isPopup: false,
 				}
 			);

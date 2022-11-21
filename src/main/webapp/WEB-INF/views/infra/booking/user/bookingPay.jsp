@@ -90,7 +90,7 @@
 			
 								<div class="select-payment-easypay" style="">
 									<input type="radio" name="tdbkPayment" id="rdo_pay_kakaopay" value="kakaopay" checked>
-									<label for="rdo_pay_kakaopay">카카오페이</label>
+									<label for="rdo_pay_kakaopay"><img alt="카카오페이" src="../resources/images/payment_icon_yellow_small.png"></label>
 								</div>
 			
 							<dl class="term-list" id="terms" style="display: block;">

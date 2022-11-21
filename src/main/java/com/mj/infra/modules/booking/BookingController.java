@@ -38,6 +38,11 @@ public class BookingController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
 	 
+	/*
+	 * @RequestMapping(value="kakaopay") public String kakaopay
+	 * (@ModelAttribute("bk") Booking dto, Model model, TimetableVo vo) throws
+	 * Exception { return }
+	 */
 	
 	//영화예매 - 결제 
 	@RequestMapping(value="bookingPay")
@@ -83,16 +88,14 @@ public class BookingController {
 
 	@RequestMapping(value="bookingList")
 	public String payList(BookingVo vo, Model model) throws Exception {
-		System.out.println("868686868");
 		setSearchAndPaging(vo);
-		
-		System.out.println("888888");
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Booking> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		return "infra/booking/xdmin/bookingList";
 	}
+	
 	
 
 

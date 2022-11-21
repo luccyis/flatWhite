@@ -59,6 +59,24 @@ public class Booking extends Base {
 	private Integer bkSum;
 	
 	
+	//카카오페이
+	private String cid;
+	private String cid_secret;
+	private Integer total_amount;
+	private String tid;
+	private String next_redirect_pc_url;
+	private String created_at;
+	private String partner_order_id;
+	private String partner_user_id;
+	private String item_name;
+	private String item_code;
+	private String approval_url;
+	private Integer quantity;
+	private String cancel_url;
+	private String fail_url;
+	 
+	
+	
 	public String getTdbkSeq() {
 		return tdbkSeq;
 	}
