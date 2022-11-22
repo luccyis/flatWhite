@@ -334,6 +334,12 @@ var CommentList = $("#CommentList");
 
 
 submitReview = function(){
+	
+	if($("#tdmcRate").val() == 0) {
+		alert("평점을 선택해주세요.");
+		return;
+	}
+	
 	$.ajax({
 
         url : goUrlReview,

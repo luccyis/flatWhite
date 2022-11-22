@@ -69,7 +69,7 @@ public class MovieController {
 	@RequestMapping(value="MovieComment")
 	public Map<String, Object> MovieComment(Movie dto) throws Exception {
 		Map<String, Object> review = new HashMap<String, Object>();
-		
+		 
 		service.insertMovieComment(dto);
 		return review;
 	}
