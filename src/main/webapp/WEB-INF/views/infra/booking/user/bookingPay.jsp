@@ -35,16 +35,23 @@
 		<form method="post" id="formList" name="formList">
 			<input type="hidden" name="tdttSeq" value="${dtoBk.tdttSeq}">
 			<input type="hidden" name="tdthSeq" value="${dtoBk.tdthSeq}">
-			<input type="hidden" name="ifmmSeq" value="${sessSeq}">
+			<input type="hidden" name="ifmmSeq" id="ifmmSeq" value="${sessSeq}">
+			<input type="hidden" name="ifmmId" id="ifmmId" value="${sessId}">
+			<input type="hidden" name="ifmmName" id="ifmmName" value="${sessName}">
 			
 			<input type="hidden" name="thprSeq" value="${dtoBk.thprSeq}">
 		  	<input type="hidden" name="thprPrice" value="${dtoBk.thprPrice}"/>
 	        <input type="hidden" id="tdbkTotalCost" name="tdbkTotalCost" value="${dtoBk.tdbkTotalCost}">
 	        <input type="hidden" name="tdmvSeq" value="${dtoBk.tdmvSeq}">
-	        <input type="hidden" name="tdmvMovieTitle" value="${dtoBk.tdmvMovieTitle}">
+	        <input type="hidden" name="tdmvMovieTitle" id="tdmvMovieTitle" value="${dtoBk.tdmvMovieTitle}">
 	        <input type="hidden" name="tdthBranch" value="${dtoBk.tdthBranch}">
 	        <input type="hidden" name="tdpxPlexName" value="${dtoBk.tdpxPlexName}">
-	        <input type="hidden" name="tdttShowTime" value="${dtoBk.tdttShowTime}">
+	        <input type="hidden" name="tdttShowTime" id="tdttShowTime" value="${dtoBk.tdttShowTime}">
+	        
+	        <input type="hidden" name="tid" value="" id="tid">
+	        <input type="hidden" name="created_at" value="" id="created_at">
+	        <input type="hidden" name="pc_url" value="" id="pc_url">
+	        
 	        
 	        <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
 		        <input type="hidden" name="tdbsSeatNums" value="${list}">        
@@ -141,25 +148,11 @@
 											<span class="price"><em><c:out value="${dtoBk.tdbkTotalCost}"/></em> <span>원 </span></span>
 										</div>
 									</div>
-			
-									<div class="box discout-box">
-			
-										<div class="all">
-											<span class="tit">할인적용 </span>
-											<span class="price"><em>0</em> 원</span>
-										</div>
-									</div>
 								</div>
 			
 								<div class="pay-area">
-									<div class="add-thing">
-										<p class="tit">추가차액 </p>
-			
-										<div class="money">0</div>
-									</div>
 									<div class="pay">
 										<p class="tit">최종결제금액</p>
-			
 										<div class="money">
 	                                        <em id="finalPrice"><c:out value="${dtoBk.tdbkTotalCost}"/></em> <span>원</span>
 	                                    </div>
@@ -172,7 +165,7 @@
 			
 								<div class="btn-group">
 									<a class="button" id="pagePrevious" title="이전">이전 </a>
-									<a w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" onclick="startPay()" title="결제">결제</a>
+									<a w-data="600" h-data="400" class="button active btn-modal-open" id="btn-kakaopay" href="javascript:kakao()" title="결제">결제</a>
 								</div>
 							</div>
 						</div>
@@ -194,25 +187,55 @@
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- scripte-e -->
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js"></script>
+
+
 <script>
 
 	var goUrlSeat = "/timetable/seatSelect";
 	var goUrlResult = "/booking/bookingResult";
+	var goPay ="/booking/kakaopayApprove";
+	var goAfter ="/booking/approve";
 	var form = $("form[name=formList]");
+
+	var tid = $("input:hidden[name=tid]").val();
 	
 	startPay = function(){
 		form.attr("action", goUrlResult).submit();
 	}
-	
-	
 
 	$("#pagePrevious").on("click", function(){
 		form.attr("action", goUrlSeat).submit();
 	});
 	
-	
-	
+	function kakao(name, price, id) {
+		
+		$.ajax({
+			dataType:"json"
+			,url: "/booking/test"
+			,data: {
+				name : $("#tdmvMovieTitle").val(),
+				price : $("#tdbkTotalCost").val(),
+				id : $("#ifmmId").val()
+				}
+			,success : function(data) {
+				console.log(data);
+				var box = data.returnMap.redirect_pc_url;
+				var tid = data.tid;
+				var created_at = data.created_at;
+				$("input:hidden[name=tid]").val(data.tid);
+				$("input:hidden[name=created_at]").val(date.created_at);
+				$("input:hidden[name=pc_url]").val(box);
+			}
+			,error : function(){
+				alert("ajax error..");
+			}
+		});
+	}
+
 	
 	
 	
