@@ -197,7 +197,7 @@
 
 	var goUrlSeat = "/timetable/seatSelect";
 	var goUrlResult = "/booking/bookingResult";
-	var goPay ="/booking/kakaopayApprove";
+	var goPay ="/pay/kakaopayReady";
 	var goAfter ="/booking/approve";
 	var form = $("form[name=formList]");
 
@@ -211,24 +211,18 @@
 		form.attr("action", goUrlSeat).submit();
 	});
 	
-	function kakao(name, price, id) {
+
+	kakao = function(){
 		
 		$.ajax({
-			dataType:"json"
-			,url: "/booking/test"
-			,data: {
-				name : $("#tdmvMovieTitle").val(),
-				price : $("#tdbkTotalCost").val(),
-				id : $("#ifmmId").val()
-				}
-			,success : function(data) {
-				console.log(data);
-				var box = data.returnMap.redirect_pc_url;
-				var tid = data.tid;
-				var created_at = data.created_at;
-				$("input:hidden[name=tid]").val(data.tid);
-				$("input:hidden[name=created_at]").val(date.created_at);
-				$("input:hidden[name=pc_url]").val(box);
+			async: true
+			,cach: false
+			,method: "post"
+			,url: "/pay/kakaopayReady"
+			,data: {"cid" : "TC0ONETIME"}
+			,success: function(response){
+				window.open(response.url,"_blank",“width=550,height=750,left=658,top=161”);
+				opener.document.location.reload();
 			}
 			,error : function(){
 				alert("ajax error..");
