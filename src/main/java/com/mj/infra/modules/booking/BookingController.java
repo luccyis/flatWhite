@@ -59,14 +59,7 @@ public class BookingController {
 	
 	@RequestMapping(value="bookingResult")
 	public String bookingResult(@ModelAttribute("dtoBk") Booking dto, Model model, Movie dto1) throws Exception {
-		dto.setTdbkTotalCost(dto.getTdbkTotalCost());
-		service.insertBooking(dto);
-		 
-		dto.setTdbkSeq(dto.getTdbkSeq());
-		for(int i=0; i<dto.getTdbsSeatNums().length; i++) {
-			dto.setTdbsSeatNum(dto.getTdbsSeatNums()[i]);
-			service.insertBookingSeat(dto);
-		 }
+		
 		
 		dto1.setPseq(dto.getTdmvSeq());
 		Movie imageItem = serviceMovie.selectMovieImage(dto1);
@@ -75,7 +68,7 @@ public class BookingController {
 		return "infra/booking/user/bookingResult";
 	}
 	
-
+	//xdmin
 	@RequestMapping(value="bookingList")
 	public String payList(BookingVo vo, Model model) throws Exception {
 		setSearchAndPaging(vo);

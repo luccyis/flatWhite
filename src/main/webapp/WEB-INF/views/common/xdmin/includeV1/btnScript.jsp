@@ -47,7 +47,7 @@ $("#modalConfirm").modal("show");
 
 
 $("#btnDelete").on("click", function(){
-$("input:hidden[name=exDeleteType]").val(2);
+$("input:hidden[name=exDeleteType]").val(1);
 $(".modal-title").text("확 인");
 $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
 $("#btnModalUelete").hide();

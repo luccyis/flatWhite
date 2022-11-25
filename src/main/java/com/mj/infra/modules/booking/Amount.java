@@ -1,6 +1,6 @@
 package com.mj.infra.modules.booking;
 
-public class AmountVO {
+public class Amount {
 	
 	private Integer total, tax_free, vat, point, discount;
 

@@ -2,12 +2,12 @@ package com.mj.infra.modules.booking;
 
 import java.util.Date;
 
-public class KakaoPayApprovalVo {
+public class KakaoPayApproval {
 	  
     //response
     private String aid, tid, cid, sid;
     private String partner_order_id, partner_user_id, payment_method_type;
-    private AmountVO amount;
+    private Amount amount;
     private CardVO card_info;
     private String item_name, item_code, payload;
     private Integer quantity, tax_free_amount, vat_amount;
@@ -54,10 +54,10 @@ public class KakaoPayApprovalVo {
 	public void setPayment_method_type(String payment_method_type) {
 		this.payment_method_type = payment_method_type;
 	}
-	public AmountVO getAmount() {
+	public Amount getAmount() {
 		return amount;
 	}
-	public void setAmount(AmountVO amount) {
+	public void setAmount(Amount amount) {
 		this.amount = amount;
 	}
 	public CardVO getCard_info() {

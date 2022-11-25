@@ -1,20 +1,14 @@
 package com.mj.infra.modules.booking;
 
-import java.net.URI;
-
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.ui.Model;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mj.infra.modules.movie.MovieServiceImpl;
@@ -22,6 +16,7 @@ import com.mj.infra.modules.timetable.TimetableServiceImpl;
 
 @RestController
 @RequestMapping(value="/pay/")
+@SessionAttributes({"tid"})
 public class BookingRestController {
 	
 	@Autowired 
@@ -35,74 +30,53 @@ public class BookingRestController {
 	JSONObject jsonObject = new JSONObject();
 	
 	//카카오페이
-	@ResponseBody
 	@RequestMapping(value="kakaopayReady")
-	public String kakaopay (@ModelAttribute("dtoBk") Booking dto, Model model, kakaoPayReadVo vo) throws Exception {
+	public KakaopayReady payReady (@RequestParam(name = "movieTitle") String movieTitle, @RequestParam(name = "total_amount") int totalAmount, @ModelAttribute("dtoBk") Booking dto, Model model, KakaopayReady vo) throws Exception {
 		 
-		RestTemplate restTemplate = new RestTemplate();
-		URI uri = new URI("https://kapi.kakao.com/v1/payment/ready");
+		KakaopayReady kakaopayReady = service.payReady(movieTitle, totalAmount, dto);
+		model.addAttribute("tid", kakaopayReady.getTid());
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK 350f7c3672cdc83cebf0a98072bdcd72");
-		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		System.out.println("카카오페이이이이" + kakaopayReady.getNext_redirect_pc_url());
+		System.out.println("tid??" + kakaopayReady.getTid());
 		
-		MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-		
-		params.add("cid", "TC0ONETIME");
-		params.add("partner_order_id", "megabox");
-		params.add("partner_user_id", dto.getIfmmSeq());
-		params.add("item_name", dto.getTdmvMovieTitle());
-		params.add("quantity", dto.getTdbsSeatNums().length);
-		params.add("total_amount", dto.getTdbkTotalCost());
-		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8080/booking/bookingResult");
-		params.add("cancel_url", "http://localhost:8080/booking/bookingPay");
-		params.add("fail_url", "http://localhost:8080/booking/bookingPay");
-		
-		HttpEntity<MultiValueMap<String, Object>> body  = new HttpEntity<MultiValueMap<String, Object>>(params, headers);
-		try {
-			vo  = restTemplate.postForObject(uri, body, kakaoPayReadVo.class);
-			return vo.getNext_redirect_pc_url();
-		
-		} catch (RestClientException e) {
-			 e.printStackTrace();
-		}
-		
-		return "infra/booking/user/bookingPay";	
+		return kakaopayReady;
 	}
 	
-	@RequestMapping(value="kakaopayInfo")
-	public KakaoPayApprovalVo kakaopayInfo(String pg_token, KakaoPayApprovalVo vo) throws Exception {
+    // 결제승인요청
+	@RequestMapping(value="kakaopayApproval")
+	public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dtoBk") Booking dto,  Model model) throws Exception {
 		
-		RestTemplate restTemplate = new RestTemplate();
+		System.out.println("승인까지 갈수있어?");
+		// 카카오 결제 요청하기
+		KakaoPayApproval kakaoPayApproval = service.payApprove(tid, pgToken, dto);
 		
-		URI uri = new URI("https://kapi.kakao.com/v1/payment/ready");
+		kakaoPayApproval.getTid();
+		System.out.println(kakaoPayApproval.getTid());
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK 350f7c3672cdc83cebf0a98072bdcd72");
-		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		dto.setTdbkTotalCost(dto.getTdbkTotalCost());
+		service.insertBooking(dto);
+		 
+		dto.setTdbkSeq(dto.getTdbkSeq());
+		for(int i=0; i<dto.getTdbsSeatNums().length; i++) {
+			dto.setTdbsSeatNum(dto.getTdbsSeatNums()[i]);
+			service.insertBookingSeat(dto);
+		 }
 		
-		MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
-		
-		params.add("cid", "TC0ONETIME");
-		params.add("tid", vo.getTid());
-		params.add("partner_order_id","megabox");
-		params.add("partner_user_id", vo.getPartner_user_id());
-		params.add("pg_token", pg_token);
-		params.add("total_amount", vo.getAmount());
-		
-		HttpEntity<MultiValueMap<String, Object>> body  = new HttpEntity<MultiValueMap<String, Object>>(params, headers);
-		
-		try {
-			vo = restTemplate.postForObject(uri, body,KakaoPayApprovalVo.class);
-			
-			return vo;
-			
-		} catch (RestClientException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return "redirect:/booking/bookingResult";
 	}
+	// 결제 취소시 실행 url
+	@GetMapping("kakaopayCancel")
+	public String payCancel() {
+		return "redirect:/booking/bookingPay";
+	}
+    
+	// 결제 실패시 실행 url    	
+	@GetMapping("/kakaopayFail")
+	public String payFail() {
+		return "redirect:/booking/bookingPay";
+	}
+	
+	
 		
 	
 	

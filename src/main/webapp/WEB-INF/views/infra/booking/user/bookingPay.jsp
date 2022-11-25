@@ -219,10 +219,14 @@
 			,cach: false
 			,method: "post"
 			,url: "/pay/kakaopayReady"
-			,data: {"cid" : "TC0ONETIME"}
+			,data: {
+					form : $("#formList").serialize()
+					,total_amount : ${dtoBk.tdbkTotalCost}
+					,movieTitle : "${dtoBk.tdmvMovieTitle}"
+			}
 			,success: function(response){
-				window.open(response.url,"_blank",“width=550,height=750,left=658,top=161”);
-				opener.document.location.reload();
+				location.href= response.next_redirect_pc_url
+				
 			}
 			,error : function(){
 				alert("ajax error..");

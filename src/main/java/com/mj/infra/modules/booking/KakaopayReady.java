@@ -2,13 +2,11 @@ package com.mj.infra.modules.booking;
 
 import java.util.Date;
 
-public class kakaoPayReadVo {
+public class KakaopayReady {
 
 	 //response
 	public String tid, next_redirect_pc_url;
-	public Date created_at;
-	
-	
+	public String created_at;
 	
 	public String getTid() {
 		return tid;
@@ -22,12 +20,14 @@ public class kakaoPayReadVo {
 	public void setNext_redirect_pc_url(String next_redirect_pc_url) {
 		this.next_redirect_pc_url = next_redirect_pc_url;
 	}
-	public Date getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
-	public void setCreated_at(Date created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
+	
+	
 	
 	
 	
