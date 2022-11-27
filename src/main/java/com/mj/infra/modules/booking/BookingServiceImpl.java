@@ -75,9 +75,9 @@ public class BookingServiceImpl implements BookingService {
 		params.add("quantity", "1");
 		params.add("total_amount", ""+totalAmount);
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://3.35.136.131/pay/kakaopayApproval");
-		params.add("cancel_url", "http://3.35.136.131/pay/kakaopayCancel");
-		params.add("fail_url", "http://3.35.136.131/pay/kakaopayFail");
+		params.add("approval_url", "http://localhost:8080/pay/kakaopayApproval");
+		params.add("cancel_url", "http://localhost:8080/pay/kakaopayCancel");
+		params.add("fail_url", "http://localhost:8080/pay/kakaopayFail");
 		
 		HttpEntity<MultiValueMap<String, String>> body  = new HttpEntity<MultiValueMap<String, String>>(params, this.getHeaders());
 		// 외부url요청 통로 열기.
@@ -86,13 +86,11 @@ public class BookingServiceImpl implements BookingService {
         // template으로 값을 보내고 받아온 ReadyResponse값 readyResponse에 저장.
 		KakaopayReady KakaopayReady = template.postForObject(url, body, KakaopayReady.class);
 		
-		
 		return KakaopayReady;
 	}
 	
 	//결제승인
 	public KakaoPayApproval payApprove(String tid, String pgToken, Booking dto) throws Exception  {
-		
 		
 		// request값 담기.
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();

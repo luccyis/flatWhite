@@ -1,5 +1,10 @@
 package com.mj.infra.modules.booking;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mj.infra.modules.movie.MovieServiceImpl;
@@ -44,7 +50,7 @@ public class BookingRestController {
 	
     // 결제승인요청
 	@RequestMapping(value="kakaopayApproval")
-	public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dtoBk") Booking dto,  Model model) throws Exception {
+	public String payCompleted(@RequestParam("pg_token") String pgToken, @ModelAttribute("tid") String tid,  @ModelAttribute("dtoBk") Booking dto,  Model model, SessionStatus sessionStatus) throws Exception {
 		
 		System.out.println("승인까지 갈수있어?");
 		// 카카오 결제 요청하기
@@ -53,16 +59,28 @@ public class BookingRestController {
 		kakaoPayApproval.getTid();
 		System.out.println(kakaoPayApproval.getTid());
 		
-		dto.setTdbkTotalCost(dto.getTdbkTotalCost());
-		service.insertBooking(dto);
-		 
-		dto.setTdbkSeq(dto.getTdbkSeq());
-		for(int i=0; i<dto.getTdbsSeatNums().length; i++) {
-			dto.setTdbsSeatNum(dto.getTdbsSeatNums()[i]);
-			service.insertBookingSeat(dto);
-		 }
+		URL url = new URL("https://kapi.kakao.com/v1/payment/approve");
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod("POST");
 		
-		return "redirect:/booking/bookingResult";
+		BufferedReader bufferedReader;
+		if (httpURLConnection.getResponseCode() == 200) {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		} else {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		}
+		
+		return bufferedReader.readLine();
+		
+//		service.insertBooking(dto);
+//		 
+//		dto.setTdbkSeq(dto.getTdbkSeq());
+//		for(int i=0; i<dto.getTdbsSeatNums().length; i++) {
+//			dto.setTdbsSeatNum(dto.getTdbsSeatNums()[i]);
+//			service.insertBookingSeat(dto);
+//		 }
+		
+//		sessionStatus.setComplete();
 	}
 	// 결제 취소시 실행 url
 	@GetMapping("kakaopayCancel")
