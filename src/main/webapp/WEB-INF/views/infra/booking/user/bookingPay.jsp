@@ -142,7 +142,7 @@
 									<p class="date"><span id="playDe"><c:out value="${item.tdttShowTime.substring(0, 10)}"/></span><em id="dowNm">(수)</em> <span class="time" id="playTime"><i class="iconset ico-clock-white"></i><c:out value="${item.tdttShowTime.substring(10, 16)}"/>~<c:out value="${item.tdttEndTime.substring(10, 16)}"/></span></p>
 								</div>
 								<div class="price-process">
-									<div class="box"><div class="data"><span class="tit">성인 <em>2</em></span><span class="price"><c:out value="${dtoBk.tdbkTotalCost}"/></span></div>
+									<div class="box"><div class="data"><span class="tit">성인 <em><c:out value="${fn:length(dtoBk.tdbsSeatNums)}"/></em></span><span class="price"><c:out value="${dtoBk.tdbkTotalCost}"/></span></div>
 										<div class="all">
 											<span class="tit">금액 </span>
 											<span class="price"><em><c:out value="${dtoBk.tdbkTotalCost}"/></em> <span>원 </span></span>
@@ -154,7 +154,7 @@
 									<div class="pay">
 										<p class="tit">최종결제금액</p>
 										<div class="money">
-	                                        <em id="finalPrice"><c:out value="${dtoBk.tdbkTotalCost}"/></em> <span>원</span>
+	                                        <em id="finalPrice"><fmt:formatNumber pattern="#,###" value="${dtoBk.tdbkTotalCost}" /></em> <span>원</span>
 	                                    </div>
 									</div>
 									<div class="payment-thing">
@@ -187,7 +187,6 @@
 
 <!-- script-s -->
 <%@include file="../../../common/user/includeV1/script.jsp" %>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- scripte-e -->
 
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js"></script>
@@ -197,8 +196,6 @@
 
 	var goUrlSeat = "/timetable/seatSelect";
 	var goUrlResult = "/booking/bookingResult";
-	var goPay ="/pay/kakaopayReady";
-	var goAfter ="/booking/approve";
 	var form = $("form[name=formList]");
 
 	var tid = $("input:hidden[name=tid]").val();
@@ -218,11 +215,13 @@
 			async: true
 			,cach: false
 			,method: "post"
-			,url: "/pay/kakaopayReady"
+			,url: "/booking/kakaopayReady"
 			,data: {
 					form : $("#formList").serialize()
 					,total_amount : ${dtoBk.tdbkTotalCost}
 					,movieTitle : "${dtoBk.tdmvMovieTitle}"
+					,tdttSeq : "${dtoBk.tdttSeq}"
+					,tdmvSeq: "${dtoBk.tdmvSeq}"
 			}
 			,success: function(response){
 				location.href= response.next_redirect_pc_url

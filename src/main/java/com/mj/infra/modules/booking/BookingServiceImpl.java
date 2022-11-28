@@ -64,7 +64,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 	
 	//결제준비
-	public KakaopayReady payReady(String movieTitle, int totalAmount, Booking dto) throws Exception {
+	public KakaopayReady payReady(String movieTitle, int totalAmount, Booking dto, String tdttSeq) throws Exception {
 		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		
@@ -74,10 +74,11 @@ public class BookingServiceImpl implements BookingService {
 		params.add("item_name",	movieTitle);
 		params.add("quantity", "1");
 		params.add("total_amount", ""+totalAmount);
+		params.add("item_code", tdttSeq);
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8080/pay/kakaopayApproval");
-		params.add("cancel_url", "http://localhost:8080/pay/kakaopayCancel");
-		params.add("fail_url", "http://localhost:8080/pay/kakaopayFail");
+		params.add("approval_url", "http://localhost:8080/booking/kakaopayApproval");
+		params.add("cancel_url", "http://localhost:8080/booking/kakaopayCancel");
+		params.add("fail_url", "http://localhost:8080/booking/kakaopayFail");
 		
 		HttpEntity<MultiValueMap<String, String>> body  = new HttpEntity<MultiValueMap<String, String>>(params, this.getHeaders());
 		// 외부url요청 통로 열기.
@@ -108,10 +109,21 @@ public class BookingServiceImpl implements BookingService {
 		String url = "https://kapi.kakao.com/v1/payment/approve";
         // 보낼 외부 url, 요청 메시지(header,parameter), 처리후 값을 받아올 클래스. 
 		KakaoPayApproval KakaoPayApproval = template.postForObject(url, requestEntity, KakaoPayApproval.class);
+		System.out.println("카카오페이 서비스임플");
+		System.out.println(KakaoPayApproval.getAmount());
+		System.out.println(KakaoPayApproval.getPg_token());
 		
 		return KakaoPayApproval;
 
 		}
+
+	@Override
+	public Booking selectListAfterPay(Booking dto) throws Exception {
+		Booking result = dao.selectListAfterPay(dto);
+		return result;
+	}
+	
+	
 
 }
 	

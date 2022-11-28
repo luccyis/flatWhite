@@ -44,4 +44,8 @@ public class BookingDao {
 		return list;
 	}
 	
+	public Booking selectListAfterPay(Booking dto) {
+		Booking result = sqlSession.selectOne(namespace + ".selectListAfterPay", dto);
+		return result;
+	}
 }

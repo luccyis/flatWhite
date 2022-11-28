@@ -61,7 +61,7 @@
 		)
 		VALUES (
 			now()
-		    ,#{tdbkPayment}
+		    ,"kakaoPay"
 		    ,#{ifmmSeq}
 		    ,#{tdttSeq}
 		    ,#{tdbkTotalCost}
@@ -86,6 +86,50 @@
 		)
     
     </insert>
+    
+    <select id="selectListAfterPay" resultMap="resultMapObj">
+		select
+			image.seq
+			,image.defaultNy
+			,image.originalName
+			,image.uuIdName
+			,image.pseq
+			,image.upPath
+			,movie.tdmvSeq
+			,movie.tdmvMovieTitle
+			,movie.tdmvTitleEng
+			,movie.tdmvStory
+			,movie.tdmvRunningTime
+			,movie.tdmvDelNy
+			,time.tdttSeq
+			,time.tdttShowTime
+			,time.tdttSeq
+			,time.tdttEndTime
+			,time.tradTheater_tdthSeq as tdthSeq
+			,time.tradTheaterPlex_tdpxSeq as tdpxSeq
+			,theater.tdthSeq
+			,theater.tdthRegion
+			,theater.tdthBranch
+			,theater.tdthBranchEng
+			,plex.tdpxSeq
+			,plex.tdpxPlexName
+			,plex.tdpxSeq
+			,booking.tdbkSeq
+			,booking.tdbkPayment
+			,booking.tdbkBookingDate
+			,booking.tdbkTotalCost
+		FROM tradBooking booking 
+		JOIN tradTimeTable time on time.tdttSeq = booking.tradTimeTable_tdttSeq
+		JOIN tradTheater theater on theater.tdthSeq = time.tradTheater_tdthSeq
+		JOIN tradTheaterPlex plex on plex.tdpxSeq = time.tradTheaterPlex_tdpxSeq
+		JOIN tradMovie movie on movie.tdmvSeq = time.tradMovie_tdmvSeq
+		JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
+		where 1=1
+		and booking.tdbkSeq = #{tdbkSeq}
+		and time.tdttSeq = #{tdttSeq}
+		and image.defaultNy = 1
+	</select>
+    
     
     <select id="monthListBooking" resultMap="resultMapObj">
     	SELECT month(`tdbkBookingDate`) as `bkDate`, 

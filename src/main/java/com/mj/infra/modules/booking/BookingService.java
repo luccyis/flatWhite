@@ -12,6 +12,10 @@ public interface BookingService {
 	public int insertBookingSeat(Booking dto) throws Exception;
 	
 	public List<Booking> monthListBooking() throws Exception;
+	
+	public Booking selectListAfterPay(Booking dto) throws Exception;
+		
+	
 
 
 	

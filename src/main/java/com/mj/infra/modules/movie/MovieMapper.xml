@@ -205,8 +205,10 @@
 	
 	<select id="selectMovieImage" resultMap="resultMapObj">
 		select
-			*
-		from tradMovieUpload
+			image.*
+			,movie.*
+		FROM tradMovie movie
+		JOIN tradMovieUpload image on image.pseq = movie.tdmvSeq
 		where 1=1
 		and pseq = #{pseq}
 		and defaultNy = 1
