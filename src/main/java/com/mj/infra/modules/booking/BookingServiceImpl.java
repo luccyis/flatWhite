@@ -52,7 +52,6 @@ public class BookingServiceImpl implements BookingService {
 	
 	
 	//카카오페이
-	
 	// header() 셋팅
 	private HttpHeaders getHeaders() throws Exception {
 		

@@ -47,12 +47,7 @@
 	        <input type="hidden" name="tdthBranch" value="${dtoBk.tdthBranch}">
 	        <input type="hidden" name="tdpxPlexName" value="${dtoBk.tdpxPlexName}">
 	        <input type="hidden" name="tdttShowTime" id="tdttShowTime" value="${dtoBk.tdttShowTime}">
-	        
-	        <input type="hidden" name="tid" value="" id="tid">
-	        <input type="hidden" name="created_at" value="" id="created_at">
-	        <input type="hidden" name="pc_url" value="" id="pc_url">
-	        
-	        
+
 	        <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
 		        <input type="hidden" name="tdbsSeatNums" value="${list}">        
 	        </c:forEach>
@@ -229,13 +224,6 @@
 			}
 		});
 	}
-
-	
-	
-	
-	
-	
-
 
 
 </script>
