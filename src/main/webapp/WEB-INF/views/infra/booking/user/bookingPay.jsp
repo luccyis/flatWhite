@@ -218,10 +218,7 @@
 			,url: "/booking/kakaopayReady"
 			,data: {
 					form : $("#formList").serialize()
-					,total_amount : ${dtoBk.tdbkTotalCost}
-					,movieTitle : "${dtoBk.tdmvMovieTitle}"
-					,tdttSeq : "${dtoBk.tdttSeq}"
-					,tdmvSeq: "${dtoBk.tdmvSeq}"
+					
 			}
 			,success: function(response){
 				location.href= response.next_redirect_pc_url

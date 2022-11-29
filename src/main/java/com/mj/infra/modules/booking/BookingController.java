@@ -26,7 +26,7 @@ import com.mj.infra.modules.timetable.TimetableVo;
 
 @Controller
 @RequestMapping(value="/booking/")
-@SessionAttributes({"tid"})
+@SessionAttributes({"dtoBk", "tid"})
 public class BookingController {
 	
 	@Autowired 
@@ -35,6 +35,11 @@ public class BookingController {
 	TimetableServiceImpl serviceTimetable;
 	@Autowired
 	MovieServiceImpl serviceMovie;
+
+	@ModelAttribute("dtoBk")
+	public Booking setEmptyBooking() {
+		return new Booking();
+	}
 	
 	public void setSearchAndPaging(BookingVo vo) throws Exception {
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
@@ -44,6 +49,7 @@ public class BookingController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
 	
+	 
 	//영화예매 - 결제 
 	@RequestMapping(value="bookingPay")
 	public String bookingPay(@ModelAttribute("dtoBk") Booking dto, TimetableVo vo, Model model) throws Exception {
@@ -70,9 +76,9 @@ public class BookingController {
 	//카카오페이
 	@ResponseBody
 	@RequestMapping(value="kakaopayReady")
-	public KakaopayReady payReady (@RequestParam(name = "movieTitle") String movieTitle, @RequestParam(name ="tdttSeq") String tdttSeq, @RequestParam(name = "total_amount") int totalAmount, @ModelAttribute("dtoBk") Booking dto, Model model, KakaopayReady vo) throws Exception {
+	public KakaopayReady payReady (@ModelAttribute("dtoBk") Booking dto, Model model) throws Exception {
 		 
-		KakaopayReady kakaopayReady = service.payReady(movieTitle, totalAmount, dto, tdttSeq);
+		KakaopayReady kakaopayReady = service.payReady(dto);
 		model.addAttribute("tid", kakaopayReady.getTid());
 		
 		System.out.println("카카오페이이이이" + kakaopayReady.getNext_redirect_pc_url());
@@ -107,13 +113,16 @@ public class BookingController {
 		dto.setTdttSeq(map.get("item_code").toString());
 		dto.setTdbkTotalCost(amount.get("total").toString());
 		dto.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
-		System.out.println("타임테이블 시퀀스: " +dto.getTdttSeq());
+		
+		Booking booking = (Booking) httpSession.getAttribute("dtoBk");
 		
 		service.insertBooking(dto);
-		
 		dto.setTdbkSeq(dto.getTdbkSeq());
 		
-		//좌석정보 넣어야돼요
+		for(int i = 0; i < booking.getTdbsSeatNums().length; i++) {
+			dto.setTdbsSeatNum(booking.getTdbsSeatNums()[i]);
+			service.insertBookingSeat(dto);
+		}
 		
 		Booking result = service.selectListAfterPay(dto);
 		model.addAttribute("result", result);

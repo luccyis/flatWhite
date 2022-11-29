@@ -64,17 +64,17 @@ public class BookingServiceImpl implements BookingService {
 	}
 	
 	//결제준비
-	public KakaopayReady payReady(String movieTitle, int totalAmount, Booking dto, String tdttSeq) throws Exception {
+	public KakaopayReady payReady(Booking dto) throws Exception {
 		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		
 		params.add("cid", "TC0ONETIME");
 		params.add("partner_order_id", "megabox");
 		params.add("partner_user_id", "megabox");
-		params.add("item_name",	movieTitle);
+		params.add("item_name",	dto.getTdmvMovieTitle());
 		params.add("quantity", "1");
-		params.add("total_amount", ""+totalAmount);
-		params.add("item_code", tdttSeq);
+		params.add("total_amount", dto.getTdbkTotalCost());
+		params.add("item_code", dto.getTdttSeq());
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8080/booking/kakaopayApproval");
 		params.add("cancel_url", "http://localhost:8080/booking/kakaopayCancel");

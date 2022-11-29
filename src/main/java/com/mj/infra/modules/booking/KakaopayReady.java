@@ -5,7 +5,8 @@ import java.util.Date;
 public class KakaopayReady {
 
 	 //response
-	public String tid, next_redirect_pc_url;
+	public String tid;
+	public String next_redirect_pc_url;
 	public String created_at;
 	
 	public String getTid() {

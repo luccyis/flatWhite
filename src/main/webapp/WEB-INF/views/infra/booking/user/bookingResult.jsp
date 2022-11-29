@@ -74,12 +74,12 @@
 		
 									<div class="movie-info-middle">
 										<ul class="dot-list gray">
-											<li><span>예매영화</span> <c:out value="${result.tdmvMovieTitle}"/> / 2D(자막)</li>
-											<li><span>관람극장/상영관</span> <c:out value="${result.tdthBranch}"/> / <c:out value="${result.tdpxPlexName}"/></li>
-											<li><span>관람일시</span> &nbsp;<c:out value="${result.tdttShowTime.substring(0, 16)}"/></li>
-											<li><span>관람인원</span> &nbsp;성인 <c:out value="${fn:length(result.tdbsSeatNums)}"/></li>
+											<li><span>예매영화</span> <c:out value="${dtoBk.tdmvMovieTitle}"/> / 2D(자막)</li>
+											<li><span>관람극장/상영관</span> <c:out value="${dtoBk.tdthBranch}"/> / <c:out value="${dtoBk.tdpxPlexName}"/></li>
+											<li><span>관람일시</span> &nbsp;<c:out value="${dtoBk.tdttShowTime.substring(0, 16)}"/></li>
+											<li><span>관람인원</span> &nbsp;성인 <c:out value="${fn:length(dtoBk.tdbsSeatNums)}"/></li>
 											<li><span>좌석번호</span> &nbsp;
-												 <c:forEach items="${result.tdbsSeatNums}" var="list" varStatus="statusSn">
+												 <c:forEach items="${dtoBk.tdbsSeatNums}" var="list" varStatus="statusSn">
 											        <c:out value="${list}"/>       
 										        </c:forEach>
 											</li>
