@@ -75,9 +75,9 @@ public class BookingServiceImpl implements BookingService {
 		params.add("total_amount", dto.getTdbkTotalCost());
 		params.add("item_code", dto.getTdttSeq());
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8080/booking/kakaopayApproval");
-		params.add("cancel_url", "http://localhost:8080/booking/kakaopayCancel");
-		params.add("fail_url", "http://localhost:8080/booking/kakaopayFail");
+		params.add("approval_url", "http://3.35.136.131/booking/kakaopayApproval");
+		params.add("cancel_url", "http://3.35.136.131/booking/kakaopayCancel");
+		params.add("fail_url", "http://3.35.136.131/booking/kakaopayFail");
 		
 		HttpEntity<MultiValueMap<String, String>> body  = new HttpEntity<MultiValueMap<String, String>>(params, this.getHeaders());
 		// 외부url요청 통로 열기.
