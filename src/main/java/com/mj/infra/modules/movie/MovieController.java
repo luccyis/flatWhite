@@ -30,7 +30,7 @@ import com.mj.infra.modules.code.CodeServiceImpl;
 public class MovieController {
 	
 	@Autowired
-	MovieServiceImpl service;
+	MovieServiceImpl service; 
 	
 	public void setSearchAndPaging(MovieVo vo) throws Exception {
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
