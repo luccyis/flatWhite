@@ -43,8 +43,8 @@ public class BookingController {
 	
 	public void setSearchAndPaging(BookingVo vo) throws Exception {
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
-		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
-		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+//		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+//		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}

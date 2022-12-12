@@ -63,10 +63,10 @@
 								</select>	
 							</div>
 							<div class="col p-2">
-								<input type="text" class="form-control" id="shDateStart" placeholder="시작일">
+								<input type="text" class="form-control" id="shDateStart" name="shDateStart" value="${vo.shDateStart}" placeholder="시작일">
 							</div>
 							<div class="col p-2">
-								<input type="text" class="form-control" id="shDateEnd" placeholder="종료일">
+								<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" value="${vo.shDateEnd}" placeholder="종료일">
 							</div>
 						</div>
 						<div class="row">
@@ -199,24 +199,20 @@
 						</button>
 					</div>
 				</div>	
-			</form>
-		</div>
+			</div>	
+		</form>
+	</div>
 
      
           <!-- / Content -->
-		<%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
+	<%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
 
-            <div class="content-backdrop fade"></div>
-          </div>
+    <div class="content-backdrop fade"></div>
+   </div>
           <!-- Content wrapper -->
-        </div>
-        <!-- / Layout page -->
-      </div>
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- / Layout wrapper -->
 	<%@include file = "../../../common/xdmin/includeV1/modalBase.jsp" %> 
 	<%@include file = "../../../common/xdmin/includeV1/includeScript.jsp" %>
 	<%@include file = "../../../common/xdmin/includeV1/btnScript.jsp" %>
