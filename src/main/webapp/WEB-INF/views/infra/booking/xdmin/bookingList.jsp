@@ -44,7 +44,7 @@
 			
 			<form method="post" name="formList" id="formList">
 			<input type="hidden" name="tdbkSeq" value="${vo.tdbkSeq}">
-			<%-- <input type="hidden" name="thisPage" value="${vo.thisPage}"> --%>	
+		 	<input type="hidden" name="thisPage" value="1">	
 				<div class="card"> 
 					<div class="card-body">
 						<div class="row">
