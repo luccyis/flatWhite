@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mj.infra.common.util.UtilDateTime;
+import com.mj.infra.modules.member.MemberVo;
 import com.mj.infra.modules.movie.Movie;
 import com.mj.infra.modules.movie.MovieServiceImpl;
 import com.mj.infra.modules.timetable.Timetable;
@@ -42,11 +43,10 @@ public class BookingController {
 	}
 	
 	public void setSearchAndPaging(BookingVo vo) throws Exception {
-		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
-//		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
-//		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
-		
 		vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 0 : vo.getShOptionDate());
+		vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
+		vo.setShOption(vo.getShOption() == null ? 0: vo.getShOption() );		
 	}
 	
 	 
@@ -147,7 +147,6 @@ public class BookingController {
 	public String payList(BookingVo vo, Model model) throws Exception {
 		setSearchAndPaging(vo);
 		
-		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Booking> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		return "infra/booking/xdmin/bookingList";

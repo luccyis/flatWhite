@@ -58,8 +58,7 @@
 							<div class="col p-2">
 								<select id="shOptionDate" name="shOptionDate" class="form-select">
 									<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
-									<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
-									<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+									<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>결제일 </option>
 								</select>	
 							</div>
 							<div class="col p-2">

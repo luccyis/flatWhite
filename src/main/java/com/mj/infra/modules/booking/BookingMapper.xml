@@ -16,6 +16,10 @@
 			<when test="shOption == 1">AND tdbkSeq = #{shValue}</when>
 			<when test="shOption == 2">AND tdbkPayment LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
+		
+		<choose>
+			<when test="shOptionDate == 1">AND a.tdbkBookingDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
 		ORDER BY a.tdbkSeq desc
 	</sql>
 	

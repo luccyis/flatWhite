@@ -37,11 +37,10 @@ public class MemberController {
 	CodeServiceImpl codeservice;
 	
 	public void setSearchAndPaging(MemberVo vo) throws Exception {
-		vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
-		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
-		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
-		
 		vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 0 : vo.getShOptionDate());
+		vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
+		vo.setShOption(vo.getShOption() == null ? 0: vo.getShOption() );		
 	}
 	
 	@RequestMapping(value = "memberList")
@@ -51,7 +50,6 @@ public class MemberController {
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
 		
-		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		return "infra/member/xdmin/memberList";

@@ -18,6 +18,11 @@
 			<when test="shOption == 2">AND ifmmName LIKE CONCAT('%', #{shValue},'%')</when>
 			<when test="shOption == 3">AND ifmmId LIKE CONCAT('%', #{shValue},'%')</when>
 		</choose>
+		
+		<choose>
+			<when test="shOptionDate == 1">AND a.ifmmRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND a.ifmmDob BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
 		ORDER BY a.ifmmSeq desc
 	</sql>
 	

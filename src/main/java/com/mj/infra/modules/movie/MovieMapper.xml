@@ -16,6 +16,11 @@
 		<when test="shOption == 1">AND a.tdmvSeq = #{shValue}</when>
 		<when test="shOption == 2">AND a.tdmvMovieTitle LIKE CONCAT('%', #{shValue},'%')</when>
 	</choose>
+	
+	<choose>
+		<when test="shOptionDate == 1">AND a.tdmvRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		<when test="shOptionDate == 2">AND a.tdmvReleaseDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+	</choose>
 	</sql>
 	
 	<!-- xdmin -->
