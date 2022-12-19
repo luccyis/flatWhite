@@ -54,6 +54,16 @@ public class MypageController {
 		return "infra/mypage/user/mypageMod";
 	}
 	
+	//회원탈퇴 
+	@RequestMapping(value="userUele")
+	public String userUele(Member dto, HttpSession httpSession) throws Exception {
+		int result = memberService.uelete(dto);
+		httpSession.invalidate();
+		
+		return "redirect:/userhome";
+	}
+	
+	
 	@RequestMapping(value="updt")
 	public String mypageUpdt(Mypage dto, MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.updateMypage(dto);

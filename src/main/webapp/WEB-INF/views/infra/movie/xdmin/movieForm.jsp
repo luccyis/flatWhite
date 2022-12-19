@@ -169,8 +169,6 @@
 		
        <!-- / Content -->
  	<%@include file = "../../../common/xdmin/includeV1/footer.jsp" %>
- 	<!-- modalBase s -->
-	<!-- modalBase e -->
 
             <div class="content-backdrop fade"></div>
           </div>

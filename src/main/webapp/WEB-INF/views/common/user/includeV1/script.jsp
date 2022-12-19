@@ -8,6 +8,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
+
 <script>
 $("#btnLogout").on("click", function(){
 	$.ajax({

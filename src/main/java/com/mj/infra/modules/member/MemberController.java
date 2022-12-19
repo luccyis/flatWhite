@@ -103,7 +103,7 @@ public class MemberController {
 		System.out.println("uelete result: " + result);
 		return "redirect:/member/memberList";
 	}
-	
+
 	
 	
 	//user
@@ -220,8 +220,6 @@ public class MemberController {
 		return returnMap;
 	}
 
-	
-	//user
 	
 	@ResponseBody
 	@RequestMapping(value="checkId")
