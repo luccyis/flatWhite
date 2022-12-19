@@ -231,13 +231,14 @@
 		              <button class="button large" id="cancelBtn">취소</button>
 		              <button type="button" class="button purple large" id="updateBtn">등록</button>
 		          </div>
+		          <%@include file="../../../common/user/includeV1/modalBase.jsp" %>
 		        </form>
 	      </div>
       </div>
 	</div>
 	
 	<!-- footer-s -->
-	<%@include file="../../../common/user/includeV1/modalBase.jsp" %>
+	
 	<%@include file="../../../common/user/includeV1/footer.jsp" %>
 	<!-- footer-e -->		
 	
