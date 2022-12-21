@@ -61,21 +61,34 @@ public class FindController {
 		return returnMap;
 	}
 	
-	@ResponseBody
+//	@ResponseBody
+//	@RequestMapping(value="changePwd")
+//	public Map<String, Object> changePwd(Member dto) throws Exception {
+//		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		
+//		int pw = service.findPw(dto);
+//		
+//		if (pw == 1) {
+//			returnMap.put("rt", "success");
+//			service.changePwd(dto);
+//		} else {
+//			returnMap.put("rt", "fail");
+//		}
+//		return returnMap;
+//	}
+	
 	@RequestMapping(value="changePwd")
-	public Map<String, Object> changePwd(Member dto) throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
+	public String changePwd(Member dto) throws Exception {
 		
-		int pw = service.findPw(dto);
-		
-		if (pw == 1) {
-			returnMap.put("rt", "success");
-			service.changePwd(dto);
-		} else {
-			returnMap.put("rt", "fail");
-		}
-		return returnMap;
+		return "infra/find/user/findPwResult";
 	}
+	
+	@RequestMapping(value="pwdInst")
+	public String pwdInst(Member dto) throws Exception {
+		
+		return "redirect:/";
+	}
+	
 
 
 }

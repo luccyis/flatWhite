@@ -40,6 +40,7 @@
 				<h2 class="tit mt20">비밀번호 재설정</h2>
 				
 				<form>
+					<input type="hidden" name="ifmmSeq" value="${sessSeq}">
 					<div class="table-wrap">
 						<table class="board-form">
 							<caption>비밀번호 재설정표</caption>
@@ -51,7 +52,7 @@
 								<tr>
 									<th scope="row"><label for="settingPw">비밀번호</label>
 									<td>
-										<input id="settingPw" maxlength="20" type="password" class="input-password w230px">
+										<input id="settingPw" name="ifmmPassword" maxlength="20" type="password" class="input-password w230px">
 									</td>
 								</tr>	
 								<tr>
@@ -63,7 +64,7 @@
 							</tbody>
 						</table>
 						<div class="btn-member-bottom">
-							<button type="submit" type="btn" class="button purple large">확인</button>
+							<button type="button" type="button" id="btnSubmit" class="button purple large">확인</button>
 						</div>
 					</div>
 				</form>	
