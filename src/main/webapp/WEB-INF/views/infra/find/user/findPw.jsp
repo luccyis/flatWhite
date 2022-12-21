@@ -50,19 +50,19 @@
 							<tr>
 								<th scope="row"><label for="ibxSchPwdLoginId">아이디</label></th>
 								<td>
-									<input id="ibxSchPwdLoginId" maxlength="20" type="text" placeholder="아이디" class="input-text w230px">
+									<input id="ibxSchPwdLoginId" maxlength="20" name="ifmmId" type="text" placeholder="아이디" class="input-text w230px">
 								</td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="ibxSchPwdMbNm">이름</label></th>
 								<td>
-									<input id="ibxSchPwdMbNm" maxlength="20" type="text" placeholder="이름" class="input-text w230px">
+									<input id="ibxSchPwdMbNm" maxlength="20" name="ifmmName" type="text" placeholder="이름" class="input-text w230px">
 								</td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="ibxSchPwdMblpTelno">휴대폰 번호</label></th>
 								<td>
-									<input type="text" id="ibxSchPwdMblpTelno" maxlength="11" placeholder="'-' 없이 입력" class="input-text w230px">
+									<input type="text" id="ibxSchPwdMblpTelno" name="ifmmPhone" maxlength="11" placeholder="'-' 없이 입력" class="input-text w230px">
 									<button id="btnSchPwdMbCertNoSend" type="button" class="button gray w75px ml08 disabled" disabled="disabled">인증요청</button>
 								</td>
 							</tr>

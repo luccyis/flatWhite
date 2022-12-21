@@ -86,7 +86,7 @@ public class FindController {
 	@RequestMapping(value="pwdInst")
 	public String pwdInst(Member dto) throws Exception {
 		
-		return "redirect:/";
+		return "redirect:/member/login";
 	}
 	
 
