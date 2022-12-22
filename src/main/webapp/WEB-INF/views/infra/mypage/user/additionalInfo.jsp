@@ -129,21 +129,26 @@
 					<th scope="row">선호극장</th>
 					<td>
 						<span>선호 영화관은 최대 3개까지 등록 가능합니다.</span><br>
-						<c:forEach var="sort" begin="1" end="3" step="1" varStatus="sortNum">
-							<span><c:out value="${sortNum.index}"/>순위</span>
-							<input type="hidden" name="xtheaterSort" value="${sortNum.index}"/>
+						<c:forEach items="${favTh}" var="sort" begin="0" end="2" step="1" varStatus="sortNum">
+							<span><c:out value="${sortNum.count}"/>순위</span>
+							<input type="hidden" name="xtheaterSort" value="${sortNum.count}"/>
 								<div class="row">
 									<div class="col p-2" style="display: inline;">
-										<select title="${sortNum.index}순위 지역 선택" class="w150px" tabindex="-98">
+										<select title="${sortNum.count}순위 지역 선택" class="w150px" tabindex="-98">
 											<option value="">지역선택</option>
 											<option value="" selected="">서울</option>
 										</select>
 									</div>	
 									<div class="col p-2" style="display: inline;">
-										<select name="xtdthSeq" title="${sortNum.index}순위 극장 선택" class="w150px" tabindex="-98">
+										<select name="xtdthSeq" title="${sortNum.count}순위 극장 선택" class="w150px" tabindex="-98">
 											<option>극장선택</option>
 											<c:forEach items="${thList}" var="list" varStatus="statusThList">
-												<option value="${list.tdthSeq}" checked><c:out value="${list.tdthBranch}"/></option>
+												<option value="${list.tdthSeq}" 
+													<c:if test="${sort.tdthSeq eq list.tdthSeq}">
+														selected
+													</c:if>>
+													<c:out value="${list.tdthBranch}"/>
+												</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -181,9 +186,14 @@
 <script>
 	var form = $("#formList");
 	var goUrlUpdt = "/mypage/additinalInfoUpdt";
+	var goUrlMain = "/mypage/main";
 	
 	$("#updateBtn").on("click", function(){
 		form.attr("action", goUrlUpdt).submit();
+	});
+	
+	$("#cancelBtn").on("click", function(){
+		form.attr("action", goUrlMain).submit();
 	});
 	
 

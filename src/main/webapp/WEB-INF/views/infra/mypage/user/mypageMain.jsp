@@ -88,7 +88,7 @@
 								</a>등급입니다.</p>
 			
 								<div class="link">
-									<a href="/mypage/main" title="개인정보수정 페이지로 이동">개인정보수정 <i class="iconset ico-arr-right-reverse"></i></a>
+									<a href="/mypage/mod" title="개인정보수정 페이지로 이동">개인정보수정 <i class="iconset ico-arr-right-reverse"></i></a>
 								</div>
 							</div>
 						</div>
@@ -153,40 +153,12 @@
 						</div>
 						<!--// bottom -->
 					</div>
-					<!--// my-magabox-info -->
-					<div id="myStory">
-						<div class="tit-util mt70">
-							<h2 class="tit small">나의 무비스토리</h2>
-						</div>
-		
-						<div class="box-border link-movie-story">
-							<a href="" title="본 영화 탭으로 이동">
-								<em><c:out value="${fn:length(history)}"/></em>
-								<span>본 영화</span>
-							</a>
-		
-							<a href="" title="관람평 탭으로 이동">
-								<em>0</em>
-								<span>관람평</span>
-							</a>
-		
-							<a href="" title="보고싶어 탭으로 이동">
-								<em>0</em>
-								<span>보고싶어</span>
-							</a>
-		
-							<a href="" title="무비포스트 탭으로 이동">
-								<em>0</em>
-								<span>무비포스트</span>
-							</a>
-						</div>
-					</div>
-						<!--// left -->
 			
 					<div id="myBokd">
 						<div class="tit-util mt70">
 							<h2 class="tit small">나의 예매내역</h2>
 						</div>
+						<em><span>본 영화 : </span><c:out value="${fn:length(history)}"/></em>
 			
 						<!-- my-reserve-history -->
 						<div class="my-reserve-history">

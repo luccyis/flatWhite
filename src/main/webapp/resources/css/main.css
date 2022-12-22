@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-#header.main-header {position:absolute; left:0; right:inherit; top:80px; width:100%; z-index:100;}
+#header.main-header {position:absolute; left:0; right:inherit; top:0px; width:100%; z-index:100;} 
 #header.main-header.none-ad {top:0;}
 body.no-scroll #header.main-header {right:18px; width:auto;}
 

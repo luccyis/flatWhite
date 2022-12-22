@@ -20,15 +20,8 @@
 
 <body>
 <div class="body-wrap">
-	<div class="header-add-area">
-    	<div class="cont">
-    		<div id="3Vx8ybGrT2Ka3I2TjnHTjQ">
-    			<iframe src="" title="메인 상단 배너영역" height="80px" width="100%" id="3Vx8ybGrT2Ka3I2TjnHTjQ" name="3Vx8ybGrT2Ka3I2TjnHTjQ" scrolling="no" frameborder="0" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0"></iframe>
-    		</div>
-   		</div>
-    	<button type="button" class="btn-del">광고영역 닫기</button>
-	</div>
-	<header id="header" class="main-header no-bg">
+	
+	<header id="header" class="main-header no-bg" style="top:0px;">
 	    <h1 class="ci"><a href="/userHome" title="MEGABOX 메인으로 가기">MEGABOX : Life Theater</a></h1>
 	    <div class="util-area">
 	        <div class="right-link">

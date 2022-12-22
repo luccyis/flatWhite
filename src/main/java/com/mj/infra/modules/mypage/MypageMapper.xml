@@ -19,11 +19,14 @@
 	    SELECT
 	    	ft.tdftSort
 	   		,th.tdthBranch
+	   		,th.tdthSeq
+	   		,mm.ifmmSeq
 		FROM infrMember mm
 		JOIN tradFavoriteTheater ft on ft.infrMember_ifmmSeq = mm.ifmmSeq
 		JOIN tradTheater th on th.tdthSeq = ft.tradTheater_tdthSeq
 		WHERE 1=1
 		and mm.ifmmSeq = #{ifmmSeq}
+		order by ft.tdftSort
     </select>
     
 	<select id="selectListMypageHistory" resultMap="resultMapObj">

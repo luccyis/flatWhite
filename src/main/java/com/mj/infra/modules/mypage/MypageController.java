@@ -73,10 +73,14 @@ public class MypageController {
 	
 	
 	@RequestMapping(value="additionalInfo")
-	public String additionalInfo(@ModelAttribute("dtoMy") Mypage dto, HttpSession httpSession, Model model, MemberVo vo, TheaterVo vo1) throws Exception {
+	public String additionalInfo(@ModelAttribute("dtoMy") Mypage dto, HttpSession httpSession, Model model, MemberVo vo, TheaterVo vo1, MypageVo vo2) throws Exception {
 		vo.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
 		Member AddInfo = memberService.selectOne(vo);
 		model.addAttribute("AddInfo", AddInfo);
+		
+		vo2.setIfmmSeq((String)httpSession.getAttribute("sessSeq"));
+		List<Mypage> favTh = service.selectListFavoritTheater(vo2);
+		model.addAttribute("favTh", favTh);
 		
 		List<Theater> thList = theaterService.selectList(vo1);
 		model.addAttribute("thList", thList);
