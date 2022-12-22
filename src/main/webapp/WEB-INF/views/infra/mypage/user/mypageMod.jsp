@@ -231,7 +231,6 @@
 		              <button class="button large" id="cancelBtn">취소</button>
 		              <button type="button" class="button purple large" id="updateBtn">등록</button>
 		          </div>
-		          <%@include file="../../../common/user/includeV1/modalBase.jsp" %>
 		        </form>
 	      </div>
       </div>
@@ -258,40 +257,29 @@
 	$("#updateBtn").on("click", function(){
 		form.attr("action", goUrlUpdt).submit();
 	}); 
-
-	/* 	swal({
-			  title: "확 인",
-			  text: "메가박스를 탈퇴하시겠습니까?",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  if (willDelete) {
-			    swal("탈퇴가 완료되었습니다. ", {
-			      icon: "success",
-			      form.attr("action", goUrlUele).submit();
-			    });
-			  } else {
-			    swal("회원탈퇴를 취소합니다. ");
-			  }
-			}); */
-		
 	
-
 	$("#btnUele").on("click", function(){
-		$("input:hidden[name=exDeleteType]").val(1);
-		$(".modal-title").text("확 인");
-		$(".modal-body").text("메가박스를 탈퇴하시겠습니까? ");
-		$("#btnModalUelete").show();
-		$("#btnModalDelete").hide();
-		$("#modalConfirm").modal('show'); 
-	}); 
 	
-	$("#btnModalUelete").on("click", function(){
-		$("#modalConfirm").modal("hide"); 
-		form.attr("action", goUrlUele).submit();
+		swal({
+			title: "메가박스를 탈퇴하시겠습니까?",
+			icon: "warning",
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			  if (willDelete) {
+				    swal("탈퇴가 완료되었습니다.", {
+				      icon: "success",
+				    })
+				    .then(function() {
+				    	form.attr("action", goUrlUele).submit();
+				    });
+				  } else {
+				    swal("변동사항 없습니다");
+				  }
+				}); 
 	});
+
+
 	
 	
 	
